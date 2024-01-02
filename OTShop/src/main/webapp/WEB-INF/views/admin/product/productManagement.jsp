@@ -5,4 +5,8 @@
 <h1>admin product management</h1>
 <br>
 
+<table>
+	<tr>1</tr>
+</table>
+
 <%@ include file="../common/footer.jsp" %>

@@ -142,6 +142,7 @@ CREATE TABLE invoice
 	address3 varchar2(100),
 	tel varchar2(20) NOT NULL,
 	state char(1) DEFAULT '1' NOT NULL,
+	logisid varchar2(20),
 	PRIMARY KEY (iseq)
 );
 
@@ -201,6 +202,7 @@ CREATE TABLE order_detail
 CREATE TABLE product
 (
 	pseq number NOT NULL,
+	pcseq number NOT NULL,
 	brand varchar2(30),
 	name varchar2(30) NOT NULL,
 	description varchar2(1000),
@@ -209,6 +211,7 @@ CREATE TABLE product
 	viewcount number DEFAULT 0 NOT NULL,
 	bestyn char(1) DEFAULT 'N',
 	useyn char(1) DEFAULT 'Y',
+	regdate date DEFAULT sysdate NOT NULL,
 	PRIMARY KEY (pseq)
 );
 
@@ -305,6 +308,12 @@ ALTER TABLE order_detail
 ALTER TABLE product_detail
 	ADD FOREIGN KEY (pseq)
 	REFERENCES product (pseq)
+;
+
+
+ALTER TABLE product
+	ADD FOREIGN KEY (pcseq)
+	REFERENCES product_category (pcseq)
 ;
 
 

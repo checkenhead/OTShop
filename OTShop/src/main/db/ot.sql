@@ -11,7 +11,6 @@ DROP TABLE order_detail CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product_detail CASCADE CONSTRAINTS;
-DROP TABLE reply CASCADE CONSTRAINTS;
 DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE qna_category CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
@@ -35,13 +34,12 @@ DROP SEQUENCE product_detail_pdseq;
 DROP SEQUENCE product_pseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
-DROP SEQUENCE reply_rseq;
 DROP SEQUENCE transport_tseq;
 DROP SEQUENCE invoice_iseq;
 
 */
 
-
+-- 모든 table/seq drop 후 이하 sql 실행-------------------------------------------
 
 /* Create Sequences */
 
@@ -55,7 +53,6 @@ CREATE SEQUENCE product_detail_pdseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_pseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE qna_category_qcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE qna_qseq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE reply_rseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE transport_tseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE invoice_iseq INCREMENT BY 1 START WITH 1;
 
@@ -157,6 +154,7 @@ CREATE TABLE order_detail
 CREATE TABLE product
 (
 	pseq number NOT NULL,
+	pcseq number NOT NULL,
 	brand varchar2(30),
 	name varchar2(30) NOT NULL,
 	description varchar2(1000),
@@ -288,6 +286,12 @@ ALTER TABLE order_detail
 ALTER TABLE product_detail
 	ADD FOREIGN KEY (pseq)
 	REFERENCES product (pseq)
+	ON DELETE CASCADE
+;
+
+ALTER TABLE product
+	ADD FOREIGN KEY (pcseq)
+	REFERENCES product_category (pcseq)
 	ON DELETE CASCADE
 ;
 
