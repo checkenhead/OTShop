@@ -7,6 +7,9 @@
 
 <H2> FOOTER 입니다 </H2>
 
+<a href="adminMain">admin</a><br>
+<a href="#">logis</a>
+
 </footer>
 
 

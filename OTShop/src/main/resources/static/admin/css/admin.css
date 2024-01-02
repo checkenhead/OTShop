@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+header{
+	width: 800px;
+	height: 77px;
+	margin: 0 auto;
+	border: 1px dotted black;
+}
+
+.logo{
+	float:left;
+}
+
+.adminLogin{
+	float:right;
+}
+
+ul li{
+	float: left;
+	margin: 10px;
+	list-style: none;
+}
+#wrap{
+	width: 800px;
+	margin: 0 auto;
+	border: 1px dotted blue;
+}
