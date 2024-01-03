@@ -15,21 +15,46 @@
 
 <header>
 
-<div id="logo">
-	<a href="/"><img src="/images/logo.png" width="180" height="80" style="border:1px solid white;"></a>
-	<nav id="top_menu">
+<div id="category">
+	<img src="/images/logo.png" width="180" height="80" onclick="location.href='/'">
+	<form action="/mainSearch" method="get">
+		<input type="search" id="mainSearch" placeholder="상품명을 입력하세요">
+		<button type="submit"><img src="/images/search.png"></button>
+	</form>
+	<nav id="category_menu">
 		<ul>
 			<li><a href="">랭킹</a></li>
 			<li><a href="">업데이트</a></li>
 			<li><a href="">세일</a></li>
-			<c:choose>
-				<c:when test="${empty loginUser}">
-					
-				</c:when>
-			</c:choose>
-			
 		</ul>
 	</nav>	
+</div>
+
+<div id="top_menu">
+			<c:choose>
+				<c:when test="${empty loginUser}">
+					<input type="button" value="로그인" onclick="location.href='loginForm';">
+					<nav>
+						<ul>
+							<li><a href="contract">회원가입</a></li>
+							<li><a href="mypage">마이페이지</a><li>
+							<li><a href="cartList">장바구니</a></li>
+							<li><a href="customer">고객센터</a></li>
+						</ul>
+					</li>
+				</c:when>
+				
+				<c:otherwise>
+					<input type="button" value="로그아웃" onclick="location.href=logout">
+					<nav>
+						<ul>
+							<li><a href="memberEditForm">${loginUser.NAME} (${loginUser.USERID})</li>
+							<li><a href="cartList">장바구니</a></li>
+							<li><a href="customer">고객센터</a></li>
+						</ul>
+					</nav>
+				</c:otherwise>
+			</c:choose>
 </div>
 
 
