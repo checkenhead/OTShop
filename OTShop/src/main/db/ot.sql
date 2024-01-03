@@ -31,7 +31,7 @@ DROP SEQUENCE orders_oseq;
 DROP SEQUENCE order_detail_odseq;
 DROP SEQUENCE product_category_pcseq;
 DROP SEQUENCE product_detail_pdseq;
-DROP SEQUENCE product_pseq;
+DROP SEQUENCE `_pseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
 DROP SEQUENCE transport_tseq;
