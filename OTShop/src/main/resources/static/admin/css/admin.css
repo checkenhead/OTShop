@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 header{
-	width: 800px;
+	width: 1000px;
 	height: 77px;
 	margin: 0 auto;
-	border: 1px dotted black;
+	/* border: 1px dotted black; */
 }
 
 .logo{
@@ -20,8 +20,52 @@ ul li{
 	margin: 10px;
 	list-style: none;
 }
+
 #wrap{
-	width: 800px;
+	width: 1000px;
 	margin: 0 auto;
-	border: 1px dotted blue;
+	/* border: 1px dotted blue; */
+}
+
+table.tblAdminProduct {
+	border-collapse: collapse;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	margin-top: 15px;
+	width: 100%;
+	font-size: 100%;
+}
+
+table.options{
+	border-collapse: collapse;
+	margin-top: 3px;
+	margin-bottom: 15px;
+	font-size: 90%;
+	width: 90%;
+}
+
+.tblAdminProduct th,
+.tblAdminProduct td,
+.options th,
+.options td {
+	text-align: center;
+	/* border-bottom: 1px dotted #6F0C78; */
+	padding: 5px;
+	border: 1px solid black;
+	empty-cells: hide;
+}
+
+table a {
+	display: block;
+	height: 20px;
+	text-decoration: none;
+	padding: 10px;
+}
+
+table a:hover {
+	font-weight: bold;
+}
+
+.btn{
+	display: inline-block;
 }
