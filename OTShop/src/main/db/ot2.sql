@@ -177,6 +177,9 @@ CREATE TABLE members
 	PRIMARY KEY (userid)
 );
 
+select * from members;
+delete from members;
+
 
 CREATE TABLE orders
 (

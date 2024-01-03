@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="/css/otshop.css">
+<script type="text/javascript" src="/script/member.js"></script>
 
 </head>
 <body>
@@ -45,10 +46,13 @@
 				</c:when>
 				
 				<c:otherwise>
-					<input type="button" value="로그아웃" onclick="location.href=logout">
+					<a href="logout">
+						<input type="button" value="로그아웃">
+					</a>
 					<nav>
 						<ul>
 							<li><a href="memberEditForm">${loginUser.NAME} (${loginUser.USERID})</li>
+							<li><a href="mypage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
 						</ul>

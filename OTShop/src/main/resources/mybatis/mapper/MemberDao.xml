@@ -7,6 +7,23 @@
 
 	<resultMap id="memberMap" type="java.util.HashMap"></resultMap>
 	
+	<select id="getMember" statementType="CALLABLE"	 parameterType="java.util.HashMap">
+		{
+			CALL getMember(
+				#{userid},
+				#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+			)
+		}
+	</select>
+	
+	<insert id="joinKakao" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL joinKakao(
+				#{userid}, #{name}, #{tel}, #{email}, #{provider}
+			)
+		}
+	</insert>
+	
 	
 
 

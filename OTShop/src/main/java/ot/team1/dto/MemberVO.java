@@ -3,6 +3,7 @@ package ot.team1.dto;
 import java.sql.Timestamp;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -14,9 +15,10 @@ public class MemberVO {
 	private String pwd;
 	@NotEmpty(message="이름을 입력하세요")
 	private String name;
-	@NotEmpty(message="성별을 입력하세요")
+	@NotEmpty(message="성별을 선택하세요")
 	private String gender;
-	@NotEmpty(message="생년월일을 입력하세요")
+	// Timestamp = NotNull , String = NotEmpty
+	@NotNull(message="생년월일을 입력하세요")
 	private Timestamp birthdate;
 	@NotEmpty(message="전화번호를 입력하세요")
 	private String tel;
