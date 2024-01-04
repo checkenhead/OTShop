@@ -39,6 +39,24 @@ BEGIN
 END;
 
 
+CREATE OR REPLACE PROCEDURE insertMembet(
+    p_userid IN members.userid%TYPE,         p_pwd IN members.pwd%TYPE,
+    p_name IN members.name%TYPE,             p_gender IN members.gender%TYPE,
+    p_birthdate IN members.birthdate%TYPE,   p_tel IN members.tel%TYPE,
+    p_email IN members.email%TYPE,           p_zipnum IN members.zipnum%TYPE,
+    p_address1 IN members.address1%TYPE,     p_address2 IN members.address2%TYPE,     
+    p_address3 IN members.address3%TYPE,     p_provider IN members.provider%TYPE
+)
+IS
+BEGIN
+    INSERT INTO members(userid, pwd, name, gender, birthdate, tel, email, zipnum, address1,
+                        address2, address3, provider)
+    VALUES (p_userid, p_pwd, p_name, p_gender, p_birthdate, p_tel, p_email, p_zipnum,
+            p_address1, p_address2, p_address3, p_provider);
+    COMMIT;
+END;
+
+
 
 
 
