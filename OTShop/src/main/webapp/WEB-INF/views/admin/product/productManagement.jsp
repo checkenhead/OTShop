@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="submenu.jsp" %>
+
+<div class="content_wrap">
 
 <br>
 <h1>admin product management</h1>
@@ -13,7 +16,7 @@
 <c:forEach items="${productList}" var="productVO" varStatus="status">
 	<table class="tblAdminProduct" cellpadding="5" border="1" style="width:100%;">
 		<tr>
-			<th rowspan="2"><img src="admin/images/bottom.png" width="15" height="15" id="img_option1" onClick="toggle_options('option_${productVO.PSEQ}');"></th>
+			<th rowspan="2"><img src="admin/images/bottom.png" width="20" height="20" id="img_${productVO.PSEQ}" onClick="toggle_options('${productVO.PSEQ}');"></th>
 			<th rowspan="2">${status.count}</th>
 			<th>브랜드</th><th>상품명</th><th>등록일</th><th>성별</th><th>베스트</th><th>등록중</th>
 			<th rowspan="2"><a>수정</a></th>
@@ -47,6 +50,6 @@
 	</div>
 </c:forEach>
 
-
+</div>
 
 <%@ include file="../common/footer.jsp" %>

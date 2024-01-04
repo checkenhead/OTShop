@@ -1,11 +1,11 @@
-function toggle_options(target) {
-	if (document.getElementById(target).style.display == "none") {
-		document.getElementById(target).style.display = "block";
-		document.getElementById("img_" + target).src = "admin/images/top.png";
+function toggle_options(pseq) {
+	if (document.getElementById("option_" + pseq).style.display == "none") {
+		document.getElementById("option_" + pseq).style.display = "block";
+		document.getElementById("img_" + pseq).src = "admin/images/top.png";
 	}
 	else {
-		document.getElementById(target).style.display = "none";
-		document.getElementById("img_" + target).src = "admin/images/bottom.png";
+		document.getElementById("option_" + pseq).style.display = "none";
+		document.getElementById("img_" + pseq).src = "admin/images/bottom.png";
 	}
 }
 

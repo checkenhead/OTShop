@@ -37,4 +37,4 @@
 	</div>
 </header>
 
-<div id="wrap">
+<div class="main_wrap">

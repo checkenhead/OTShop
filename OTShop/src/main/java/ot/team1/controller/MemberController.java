@@ -47,7 +47,7 @@ public class MemberController {
 			paramMap.put( "userid", membervo.getUserid() );
 			paramMap.put("ref_cs", null);
 			
-			ms.getMember(paramMap);
+			//ms.getMember(paramMap);
 			// 해당 메서드는 DB에서 꺼내온 데이터를 ref_cs에 저장한다 
 			
 			ArrayList<HashMap<String, Object>> list
@@ -66,12 +66,14 @@ public class MemberController {
 				model.addAttribute("message", "탈퇴한 회원입니다. 관리자에게 문의하세요.");
 			else if( !memberMap.get("PWD").equals(membervo.getPwd() ) )
 				model.addAttribute("message", "비밀번호가 틀렸습니다. 다시 시도하세요.");
-			else if( memberMap.get("PWD").equals(membervo.getPwd() ) )
+			else if( memberMap.get("PWD").equals(membervo.getPwd() ) ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", memberMap);
 				url = "redirect:/";
+			}
 
 		}
+		return url;
 	}
 	
 	
