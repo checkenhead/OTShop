@@ -14,8 +14,8 @@
 	<span>가입 회원</span>
 	<hr>
 	<input type="text" name="userid" class="loginData" value="${dto.userid}"><br>
-	<input type="password" name="pwd" class="loginData">
-	<span>${message }</span>
+	<input type="password" name="pwd" class="loginData"><br>
+	<span>${message}</span>
 	<input type="submit" id="loginBtn" value="로그인"><br>
 	<input type="button" id="findBtn" value="아이디 | 비밀번호 찾기"><br>
 	<a href="kakaostart" ><img src="/images/kakao.png"  style="width:300px;"></a><br>

@@ -39,7 +39,7 @@ BEGIN
 END;
 
 
-CREATE OR REPLACE PROCEDURE insertMembet(
+CREATE OR REPLACE PROCEDURE insertMember(
     p_userid IN members.userid%TYPE,         p_pwd IN members.pwd%TYPE,
     p_name IN members.name%TYPE,             p_gender IN members.gender%TYPE,
     p_birthdate IN members.birthdate%TYPE,   p_tel IN members.tel%TYPE,

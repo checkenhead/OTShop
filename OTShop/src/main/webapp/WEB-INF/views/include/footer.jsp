@@ -6,10 +6,10 @@
 <hr>
 <span class="title">COPYRIGHT (C) OTSHOP ALL RIGHTS RESERVED.</span>
 <fieldset>
-OTSHOP 내 매거진, 스트리트스냅, 스토어 등 OTSHOP 자체 생성 콘텐츠는 OTSHOP 및 무신사 계약업체에 저작권이 있습니다.<br>
+OTSHOP 내 매거진, 스트리트스냅, 스토어 등 OTSHOP 자체 생성 콘텐츠는 OTSHOP 및 옷샵 계약업체에 저작권이 있습니다.<br>
 이러한 콘텐츠는 출처를 밝히고(OTSHOP 표기 및 www.otshop.com 링크 포함 필수) 비상업적인 용도에서만 활용하실 수 있습니다.
 <br><br>
-커뮤니티 및 중고장터, 댓글 등 무신사 회원이 올린 이미지가 저작권에 위배될 경우신고하시면 검토 후 삭제하겠습니다.<br>
+커뮤니티 및 중고장터, 댓글 등 옷샵 회원이 올린 이미지가 저작권에 위배될 경우신고하시면 검토 후 삭제하겠습니다.<br>
 </fieldset>
 <hr>
 

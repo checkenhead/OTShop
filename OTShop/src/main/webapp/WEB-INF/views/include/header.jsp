@@ -51,7 +51,7 @@
 					</a>
 					<nav>
 						<ul>
-							<li><a href="memberEditForm">${loginUser.NAME} (${loginUser.USERID})</li>
+							<li><a href="medit">${loginUser.NAME} (${loginUser.USERID})</li>
 							<li><a href="mypage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>

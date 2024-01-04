@@ -8,12 +8,16 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -258,54 +262,103 @@ public class MemberController {
          Model model ) {
       
       String url = "member/joinForm";
+
       
       // validation 결과가 담긴 result에서 userid의 error가 있다면
-      if( result.getFieldError("userid") != null )
+      if(result.getFieldError("userid") != null )
          model.addAttribute("message", result.getFieldError("userid").getDefaultMessage() );
       else if( reid == null || ( !reid.equals(membervo.getUserid() ) ) )
          model.addAttribute("message", "아이디 중복확인이 되지 않았습니다." );
-      else if( repwd == null || ( !repwd.equals(membervo.getPwd() ) ) )
-         model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다." );
       else if( result.getFieldError("pwd") != null )
          model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+      else if( repwd == null || repwd.equals("") )
+    	  model.addAttribute("message", "비밀번호 확인을 입력하세요.");
+      else if( !repwd.equals(membervo.getPwd() ) )
+          model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다." );
       else if( result.getFieldError("name") != null )
          model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
       else if( result.getFieldError("gender") != null )
          model.addAttribute("message", result.getFieldError("gender").getDefaultMessage() );
-      else if( result.getFieldError("birthdate") != null )
-         model.addAttribute("message", result.getFieldError("birthdate").getDefaultMessage() );
       else if( result.getFieldError("tel") != null )
-         model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
+          model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
       else if( result.getFieldError("email") != null )
-         model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
-      
+          model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+      else if( membervo.getBirthdate() == null || 
+    		  membervo.getBirthdate().isEmpty() ||
+    		  membervo.getBirthdate().equals("null")) {
+    	  
+    	  model.addAttribute("message", "생년월일을 선택하세요." );
+      }
       else {
-         HashMap<String, Object> paramMap = new HashMap<String, Object>();
-         String userid = membervo.getUserid();
-         paramMap.put("userid", userid);
-         paramMap.put("pwd", membervo.getPwd() );
-         paramMap.put("name", membervo.getName() );
-         paramMap.put("gender", membervo.getGender() );
-         paramMap.put("birthdate", membervo.getBirthdate() );
-         paramMap.put("tel", membervo.getTel() );
-         paramMap.put("email", membervo.getEmail() );
-         paramMap.put("zipnum", membervo.getZipnum() );
-         paramMap.put("address1", membervo.getAddress1() );
-         paramMap.put("address2", membervo.getAddress2() );
-         paramMap.put("address3", membervo.getAddress3() );
-         paramMap.put("provider", membervo.getProvider() );
-         
-         ms.insertMember(paramMap);
-         
-         model.addAttribute("message", "회원가입을 축하합니다. 로그인 후 진행하여주세요.");
-         
-         url = "member/login";
+    	  
+    	  // HashMap에 데이터 추가
+          HashMap<String, Object> paramMap = new HashMap<>();
+          
+          paramMap.put("userid", membervo.getUserid());
+          paramMap.put("pwd", membervo.getPwd());
+          paramMap.put("name", membervo.getName());
+          paramMap.put("gender", membervo.getGender());
+          paramMap.put("birthdate", membervo.getBirthdate());
+          paramMap.put("tel", membervo.getTel());
+          paramMap.put("email", membervo.getEmail());
+          paramMap.put("zipnum", membervo.getZipnum());
+          paramMap.put("address1", membervo.getAddress1());
+          paramMap.put("address2", membervo.getAddress2());
+          paramMap.put("address3", membervo.getAddress3());
+          paramMap.put("provider", membervo.getProvider());
+
+          // 회원 추가 메서드 호출
+          ms.insertMember(paramMap);
+
+          model.addAttribute("message", "환영합니다! 로그인 후 이용해주세요.");
+          url = "member/login";
       }
       return url;
    }
    
    
-   
-   
-   
+   @GetMapping("/medit")
+   public ModelAndView memberEditForm(HttpServletRequest request) {
+	   
+	   ModelAndView mav = new ModelAndView();
+	   
+	   // 정보수정 폼으로 넘어갈때 loginUser의 데이터를 가지고 갈 객체
+	   MemberVO dto = new MemberVO();
+	   
+	   // session에 있는 "loginUser" 값을 가져와 loginUser에 저장
+	   HttpSession session = request.getSession();
+	   HashMap<String, Object> loginUser = 
+			   (HashMap<String, Object>) session.getAttribute("loginUser");
+	   
+	   // Object이므로 String으로 형변환
+	   dto.setUserid( (String)loginUser.get("USERID") );
+	   dto.setName( (String)loginUser.get("NAME") );
+	   dto.setGender( (String)loginUser.get("GENDER") );
+	   dto.setBirthdate( (String)loginUser.get("BIRTHDATE") );
+	   dto.setTel( (String)loginUser.get("TEL") );
+	   dto.setEmail( (String)loginUser.get("EMAIL") );
+	   dto.setZipnum( (String)loginUser.get("ZIPNUM") );
+	   dto.setAddress1( (String)loginUser.get("ADDRESS1") );
+	   dto.setAddress2( (String)loginUser.get("ADDRESS2") );
+	   dto.setAddress3( (String)loginUser.get("ADDRESS3") );
+	   dto.setProvider( (String)loginUser.get("PROVIDER") );
+	   
+	   mav.addObject("dto", dto);
+	   
+	   mav.setViewName("member/mupdate");
+	   return mav;
+   }
+
+
+
+
+
+
+
+
+
 }
+   
+   
+   
+   

@@ -17,8 +17,8 @@ DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE product_category CASCADE CONSTRAINTS;
 DROP TABLE transport CASCADE CONSTRAINTS;
 DROP TABLE invoice CASCADE CONSTRAINTS;
-
 */
+
 
 
 
@@ -31,13 +31,14 @@ DROP SEQUENCE orders_oseq;
 DROP SEQUENCE order_detail_odseq;
 DROP SEQUENCE product_category_pcseq;
 DROP SEQUENCE product_detail_pdseq;
-DROP SEQUENCE `_pseq;
+DROP SEQUENCE product_pseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
 DROP SEQUENCE transport_tseq;
 DROP SEQUENCE invoice_iseq;
-
 */
+
+
 
 -- 모든 table/seq drop 후 이하 sql 실행-------------------------------------------
 
@@ -116,7 +117,7 @@ CREATE TABLE members
 	pwd varchar2(30) NOT NULL,
 	name varchar2(20) NOT NULL,
 	gender char(1) NOT NULL,
-	birthdate date NOT NULL,
+	birthdate varchar2(20) NOT NULL,
 	tel varchar2(20) NOT NULL,
 	email varchar2(30) NOT NULL,
 	zipnum varchar2(20),
@@ -128,6 +129,8 @@ CREATE TABLE members
 	provider varchar2(10) DEFAULT 'ot' NOT NULL,
 	PRIMARY KEY (userid)
 );
+select*from members;
+drop table members;
 
 
 CREATE TABLE orders
@@ -222,6 +225,7 @@ CREATE TABLE reply
 	secret char(1) DEFAULT 'N' NOT NULL,
 	PRIMARY KEY (rseq)
 );
+
 
 
 CREATE TABLE transport
@@ -347,15 +351,15 @@ select * from product_category;
 insert into admins(adminid, pwd, name, tel, email)
 values('admin', '1234', '관리자', '010-1234-1234', 'admin@otshop.com');
 
-
-select * from members;
-delete from members where email = 'kakao';
+delete members where userid='asdf';
+select*from members;
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('hong', '1234', '홍길동', 'M', '1999-04-05', '010-1111-1111', 'hong@gmail.com');
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('kim', '1234', '김길동', 'F', '1989-02-03', '010-2222-2222', 'kim@gmail.com');
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gmail.com');
+
 
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '반소매 티셔츠');
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '니트/스웨터');

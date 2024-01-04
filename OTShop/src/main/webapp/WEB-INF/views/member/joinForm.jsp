@@ -10,11 +10,13 @@
 			<label>아이디</label><input type="text" name="userid" value="${dto.userid}">
 			<input type="hidden" name="reid" value="${reid}">
 			<input type="button" value="중복 확인" onclick="idcheck()"><br>
-			<label>비밀번호</label><input type="password" name="pwd"><br>
-			<label>비밀번호 확인</label><input type="password" name="repwd"><br>
+			<label>비밀번호</label><input type="password" name="pwd" value="${dto.pwd}"><br>
+			<label>비밀번호 확인</label><input type="password" name="repwd" value="${repwd}"><br>
 			<label>이름</label><input type="text" name="name" value="${dto.name}"><br>
 			<label>성별</label><input type="radio" name="gender" value="M">남자	<input type="radio" name="gender" value="F">여자<br>
-			<label>생년월일</label><input type="text" name="birthdate" value="${dto.birthdate}"><br>
+			<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 데이터가 저장된다 -->
+			<label>생년월일</label>
+			<input type="date" name="birthdate" value="${dto.birthdate}"><br>
 			<label>전화번호</label><input type="text" name="tel" value="${dto.tel}"><br>
 			<label>이메일</label><input type="text" name="email" value="${dto.email}"><br>
 	</fieldset>
@@ -22,7 +24,7 @@
 	<fieldset>
 		<legend>선택 입력 사항</legend>
 		<label>우편번호</label>
-        <input type="text" id="sample6_postcode" name="zip_num" readonly>
+        <input type="text" id="sample6_postcode" name="zipnum" readonly>
 		<input type="button" onclick="sample6_execDaumPostcode()" class="dup" 
 			value="우편번호 찾기"><br>
 		<label>Address</label>
@@ -90,8 +92,9 @@
 		</script><br>
 		
 		
-		<input type="hidden" name="provider" value="otshop">
-		<input type="submit" value="가입하기">
+		<input type="hidden" name="provider" value="ot">
+		<span>${message}</span><br>
+		<input type="submit" value="가입하기"><br>
 		<input type="button" value="이전으로" onclick="history.go(-1)">
 		
 			
