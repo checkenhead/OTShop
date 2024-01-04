@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 
+<div style="margin:0 auto;">
 <form name="frm" method="post" action="adminLogin">
 	<br>
 	<input type="text" name="adminid" placeholder="아이디" value="${adminid}"><br>
@@ -9,5 +10,6 @@
 	<br>
 	${message}
 </form>
+</div>
 
 <%@ include file="footer.jsp" %>

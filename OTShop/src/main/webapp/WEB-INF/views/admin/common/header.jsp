@@ -11,14 +11,11 @@
 
 <link rel="stylesheet" type="text/css" href="admin/css/admin.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-
-</script>
 <script type="text/javascript" src="admin/script/admin.js"></script>
 </head>
 <body>
 
+<div class="header_wrap">
 <header>
 
 	<div class="logo"><a href="adminMain"><img src="admin/images/logo_admin.png"></a></div>
@@ -35,6 +32,11 @@
 			<li>상품</li><li>주문</li><li>회원</li><li>Q&amp;A</li><li>FAQ</li><li>배너</li><li>통계</li>
 		</ul>
 	</div>
+	<div class="clear"></div>
+	<hr>
 </header>
+</div>
+
+
 
 <div class="main_wrap">
