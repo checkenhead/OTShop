@@ -96,6 +96,7 @@ public class MemberController {
 	}
 	
 	
+<<<<<<< HEAD
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -288,3 +289,6 @@ public class MemberController {
 	
 	
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
