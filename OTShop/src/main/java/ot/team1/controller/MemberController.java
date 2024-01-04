@@ -66,13 +66,8 @@ public class MemberController {
 			paramMap.put( "userid", membervo.getUserid() );
 			paramMap.put( "rfcursor", null );
 			
-<<<<<<< HEAD
 			// 해당 메서드는 DB에서 꺼내온 데이터를 rfcursor에 저장한다
 			ms.getMember(paramMap);
-=======
-			//ms.getMember(paramMap);
-			// 해당 메서드는 DB에서 꺼내온 데이터를 ref_cs에 저장한다 
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			
 			// rfcursor에 저장된 데이터를 꺼내 list에 저장한다
 			ArrayList<HashMap<String, Object>> list =
@@ -89,29 +84,19 @@ public class MemberController {
 			if( memberMap.get("USEYN").equals("N") )
 				model.addAttribute("message", "탈퇴한 회원입니다. 관리자에게 문의하세요.");
 			else if( !memberMap.get("PWD").equals(membervo.getPwd() ) )
-<<<<<<< HEAD
 				model.addAttribute("message", "비밀번호가 틀렸습니다. 다시 입력하세요.");
 			// 정상 로그인일 경우
-=======
-				model.addAttribute("message", "비밀번호가 틀렸습니다. 다시 시도하세요.");
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			else if( memberMap.get("PWD").equals(membervo.getPwd() ) ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", memberMap);
-<<<<<<< HEAD
-				return url = "redirect:/";
-			}
-=======
 				url = "redirect:/";
 			}
-
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 		}
 		return url;
-	}
+}
 	
 	
-<<<<<<< HEAD
+
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -263,7 +248,7 @@ public class MemberController {
 	}
 	
 	
-	// joinForm에서 submit 버튼 클릭 후 validation
+	// joinForm에서 submit 클릭 후 validation
 	@PostMapping("/join")
 	public String join(
 			@ModelAttribute("dto") @Valid MemberVO membervo,
@@ -293,17 +278,34 @@ public class MemberController {
 			model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
 		else if( result.getFieldError("email") != null )
 			model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
-
-	
+		
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			String userid = membervo.getUserid();
+			paramMap.put("userid", userid);
+			paramMap.put("pwd", membervo.getPwd() );
+			paramMap.put("name", membervo.getName() );
+			paramMap.put("gender", membervo.getGender() );
+			paramMap.put("birthdate", membervo.getBirthdate() );
+			paramMap.put("tel", membervo.getTel() );
+			paramMap.put("email", membervo.getEmail() );
+			paramMap.put("zipnum", membervo.getZipnum() );
+			paramMap.put("address1", membervo.getAddress1() );
+			paramMap.put("address2", membervo.getAddress2() );
+			paramMap.put("address3", membervo.getAddress3() );
+			paramMap.put("provider", membervo.getProvider() );
+			
+			ms.insertMember(paramMap);
+			
+			model.addAttribute("message", "회원가입을 축하합니다. 로그인 후 진행하여주세요.");
+			
+			url = "member/login";
+		}
+		return url;
 	}
 	
 	
 	
 	
 	
-	
-	
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
