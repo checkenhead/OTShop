@@ -12,7 +12,7 @@ end;
 
 --------------------------------------------------------------------------------------------
 
--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Member)
+-- ÀåÀ¯Áø (Member)
 
 CREATE OR REPLACE PROCEDURE getMember(
     p_userid IN members.userid%TYPE,
