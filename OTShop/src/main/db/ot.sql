@@ -17,6 +17,7 @@ DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE product_category CASCADE CONSTRAINTS;
 DROP TABLE transport CASCADE CONSTRAINTS;
 DROP TABLE invoice CASCADE CONSTRAINTS;
+DROP TABLE reply CASCADE CONSTRAINTS;
 */
 
 
@@ -129,8 +130,6 @@ CREATE TABLE members
 	provider varchar2(10) DEFAULT 'ot' NOT NULL,
 	PRIMARY KEY (userid)
 );
-select*from members;
-drop table members;
 
 
 CREATE TABLE orders
