@@ -186,7 +186,7 @@ CREATE TABLE product_detail
 	price2 number NOT NULL,
 	-- 마진
 	price3 number NOT NULL,
-	options varchar2(50) DEFAULT 'option' NOT NULL,
+	optname varchar2(50) DEFAULT 'option' NOT NULL,
 	stock number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (pdseq)
 );
@@ -336,7 +336,9 @@ ALTER TABLE transport
 /* Select Tables */
 select * from admins;
 select * from members;
-
+select * from product;
+select * from product_detail;
+select * from product_category;
 
 
 
@@ -355,7 +357,8 @@ values('kim', '1234', '김길동', 'F', '1989-02-03', '010-2222-2222', 'kim@gmai
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gmail.com');
 
-
-
+insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '반소매 티셔츠');
+insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '니트/스웨터');
+insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '후드 티셔츠');
 
 
