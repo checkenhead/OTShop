@@ -66,3 +66,15 @@ function idok(userid){
 	opener.joinFrm.reid.value = userid;
 	self.close();
 }
+
+
+function noDelete(){
+	alert("회원탈퇴가 취소되었습니다. 메인 화면으로 돌아갑니다.");
+	window.location.href="/";
+}
+
+
+function yesDelete(userid){
+	document.mdeleteFrm.action = "mdelete";
+	document.mdeleteFrm.submit();
+}

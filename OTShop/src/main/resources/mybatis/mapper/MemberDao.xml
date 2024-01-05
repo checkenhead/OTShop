@@ -33,6 +33,22 @@
 		}
 	</insert>
 	
+	<insert id="updateMember"   statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL updateMember(
+				#{USERID}, #{PWD}, #{NAME}, #{GENDER}, #{BIRTHDATE}, #{TEL}, #{EMAIL},
+				#{ZIPNUM}, #{ADDRESS1}, #{ADDRESS2}, #{ADDRESS3}, #{PROVIDER}
+			)
+		}
+	</insert>
+	
+	<!-- 회원을 delete 하는게 아닌 useyn을 N으로 바꾸는 것 -->
+	<update id="deleteMember" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{
+			CALL deleteMember( #{userid} )
+		}
+	</update>
+	
 	
 
 

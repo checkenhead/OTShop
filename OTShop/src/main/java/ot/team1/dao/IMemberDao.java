@@ -12,6 +12,10 @@ public interface IMemberDao {
 	void joinKakao(HashMap<String, Object> paramMap);
 
 	void insertMember(HashMap<String, Object> paramMap);
+
+	void updateMember(HashMap<String, Object> paramMap);
+
+	void deleteMember(HashMap<String, Object> paramMap);
 	
 
 }

@@ -22,6 +22,7 @@
 	<img src="/images/apple.png"    style="width:300px;"><br>
 	가입 즉시 20% 할인 쿠폰 지급 <input type="button" value="회원가입" onclick="location.href='contract'">
 	
+	
 	</fieldset>
 		
 	

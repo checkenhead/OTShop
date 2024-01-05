@@ -23,7 +23,9 @@
 				<input type="button" value="자세히" onclick="javascript:infoContract()"><br>
 			<input type="checkbox" id="advertAgree1">[선택] 광고성 정보 수집 동의<br>
 			<input type="checkbox" id="advertAgree2">[선택] 개인정보 수집 및 이용 동의<br>
-			<input type="button" value="동의하고 회원가입하기" onclick="goNext()"> 
+			<input type="button" value="동의하고 회원가입하기" onclick="goNext()">
+			<br><br><br>
+			<a href="kakaostart" ><img src="/images/kakao.png"  style="width:300px;"></a><br> 
 			
 			
 	

@@ -350,8 +350,6 @@ select * from product_category;
 insert into admins(adminid, pwd, name, tel, email)
 values('admin', '1234', '관리자', '010-1234-1234', 'admin@otshop.com');
 
-delete members where userid='asdf';
-select*from members;
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('hong', '1234', '홍길동', 'M', '1999-04-05', '010-1111-1111', 'hong@gmail.com');
 insert into members(userid, pwd, name, gender, birthdate, tel, email)

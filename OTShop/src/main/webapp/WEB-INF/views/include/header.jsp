@@ -38,7 +38,7 @@
 					<nav>
 						<ul>
 							<li><a href="contract">회원가입</a></li>
-							<li><a href="mypage">마이페이지</a><li>
+							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
 						</ul>
@@ -52,9 +52,10 @@
 					<nav>
 						<ul>
 							<li><a href="medit">${loginUser.NAME} (${loginUser.USERID})</li>
-							<li><a href="mypage">마이페이지</a><li>
+							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
+							<li><a href="mdeleteForm">회원탈퇴</a></li>
 						</ul>
 					</nav>
 				</c:otherwise>

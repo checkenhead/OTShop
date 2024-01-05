@@ -348,6 +348,98 @@ public class MemberController {
 	   mav.setViewName("member/mupdate");
 	   return mav;
    }
+   
+   
+   @PostMapping("/mupdate")
+   public String mupdate(
+		   HttpServletRequest request,
+		   @ModelAttribute("dto") @Valid MemberVO membervo,
+		   BindingResult result,
+		   @RequestParam(value="repwd", required=false) String repwd,
+		   Model model) {
+	   
+	   String url = "member/mupdate";
+	   
+	   if( result.getFieldError("pwd") != null )
+		   model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+	   else if( result.getFieldError("name") != null )
+		   model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+	   else if( result.getFieldError("gender") != null )
+		   model.addAttribute("message", result.getFieldError("gender").getDefaultMessage() );
+	   else if( result.getFieldError("tel") != null )
+		   model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
+	   else if( result.getFieldError("name") != null )
+		   model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+	   else if( repwd == null || ( !repwd.equals(membervo.getPwd() ) ) )
+		   model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다.");
+	   // 오류가 없다면 DB에 데이터 전송
+	   else {
+		   
+		   HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		  
+		   // paramMap에 HashMap 형태로 데이터 저장
+		   paramMap.put("USERID", membervo.getUserid());
+		   paramMap.put("PWD", membervo.getPwd());
+		   paramMap.put("NAME", membervo.getName());
+		   paramMap.put("GENDER", membervo.getGender());
+		   paramMap.put("BIRTHDATE", membervo.getBirthdate());
+		   paramMap.put("TEL", membervo.getTel());
+		   paramMap.put("EMAIL", membervo.getEmail());
+		   paramMap.put("ZIPNUM", membervo.getZipnum());
+		   paramMap.put("ADDRESS1", membervo.getAddress1());
+		   paramMap.put("ADDRESS2", membervo.getAddress2());
+		   paramMap.put("ADDRESS3", membervo.getAddress3());
+		   paramMap.put("PROVIDER", membervo.getProvider());
+		   
+		   // DB에 paramMap에 저장된 데이터로 정보 업데이트 시킬 메서드
+		   ms.updateMember(paramMap);
+		   
+		   // session 객체 생성 후 session에 수정된 데이터로 로그인된 유저의 정보값을 세팅
+		   HttpSession session = request.getSession();
+		   session.setAttribute("loginUser", paramMap);
+		   
+		   url = "redirect:/";
+	   }
+	   return url;
+   }
+   
+   
+   @GetMapping("/mdeleteForm")
+   public String mdeleteForm(
+		   HttpServletRequest request,
+		   Model model ) {
+	   
+	   HttpSession session = request.getSession();
+	   
+	   Object loginUser = session.getAttribute("loginUser");
+	   
+	   if( loginUser == null ) return "member/login";
+	   else {
+		   HashMap<String, Object> paramMap = (HashMap<String, Object>) loginUser;
+		   model.addAttribute("userid", paramMap.get("userid"));
+	   }
+	   
+	   return "member/mdeleteForm";
+   }
+   
+   
+   @PostMapping("/mdelete")
+   public String mdelete(
+		   HttpServletRequest request,
+		   Model model) {
+	   
+	   HttpSession session = request.getSession();
+	   HashMap<String, Object> mvo = 
+			   (HashMap<String, Object>) session.getAttribute("loginUser");
+	   
+	   String userid = (String)mvo.get("USERID");
+	   HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	   paramMap.put("userid", userid);
+	   
+	   ms.deleteMember(paramMap);
+	   
+	   return "member/completeDelete";
+   }
 
 
 
@@ -358,7 +450,3 @@ public class MemberController {
 
 
 }
-   
-   
-   
-   

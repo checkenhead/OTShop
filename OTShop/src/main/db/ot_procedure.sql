@@ -57,6 +57,34 @@ BEGIN
 END;
 
 
+CREATE OR REPLACE PROCEDURE updateMember(
+    p_userid IN members.userid%TYPE,        p_pwd IN members.pwd%TYPE,
+    p_name IN members.name%TYPE,            p_gender IN members.gender%TYPE,
+    p_birthdate IN members.birthdate%TYPE,  p_tel IN members.tel%TYPE,
+    p_email IN members.email%TYPE,          p_zipnum IN members.zipnum%TYPE,
+    p_address1 IN members.address1%TYPE,    p_address2 IN members.address2%TYPE,
+    p_address3 IN members.address3%TYPE,    p_provider IN members.provider%TYPE
+)
+IS
+BEGIN
+    UPDATE members SET userid=p_userid, pwd=p_pwd, name=p_name, gender=p_gender, birthdate=p_birthdate,
+    tel=p_tel, email=p_email, zipnum=p_zipnum, address1=p_address1, address2=p_address2,
+    address3=p_address3, provider=p_provider
+    WHERE userid = p_userid;
+    COMMIT;
+END;
+
+
+CREATE OR REPLACE PROCEDURE deleteMember(
+    p_userid IN members.userid%TYPE
+)
+IS
+BEGIN
+    UPDATE members SET useyn='N' WHERE userid = p_userid;
+    COMMIT;
+END;
+
+
 
 
 
