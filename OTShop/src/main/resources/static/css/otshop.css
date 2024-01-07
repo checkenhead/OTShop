@@ -12,9 +12,9 @@
 
 
 #top_menu{ display:flex; align-items:center; width:100%; height:40px; background-color:white;
-					margin-top:0; clear:both; }
+			margin-top:0; clear:both; }
 #top_menu input{ margin:0 10px 0 10px; padding:0; width:150px; height:30px; border:1px solid black;
-				 background-color:white; font-weight:bold; font-size:90%; }
+			background-color:white; font-weight:bold; font-size:90%; }
 #top_menu ul{ list-style:none; margin:0; padding:0; display:flex; }
 #top_menu ul li{margin-right:5px;}
 #top_menu ul li a{ text-decoration:none; padding:5px; color:black; font-weight:bold; font-size:90%; }
@@ -25,34 +25,62 @@ footer span.title{ text-align:left; font-weight:bold; margin-left:11px; }
 footer fieldset{ text-align:left; color:darkgray; font-weight:light; border:none; font-size:80%; margin-bottom:10;}
 footer #footerEnd{ width:100%; height:50px; background-color:black; color:white; }
 footer #footerEnd span{ line-height:50px; color:white; text-align:left; font-weight:light; font-size:100%;
-				margin-left:10px; letter-spacing:2px; }
-				
+			margin-left:10px; letter-spacing:2px; }
+		
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* login CSS */
+html#loginHtml, body#loginBody{ height:100%; margin:0; }
+body#loginBody{ display: flex; justify-content:center; align-items: center;  background-color:lightgray; }
+article#login{ height:100%; display:flex; justify-content:center; align-items:center; text-align:center; 
+			margin:0; padding-top:84px; }
+			
+#loginTop{ width:450px; height:45px; background-color:white; display:flex;
+			padding-bottom:20px; }
+#loginTop img{ margin-left:0; }
+#loginTop span{ display:flex; justify-content:center; align-items:center; margin-left:155px; font-weight:bold; 
+			font-size:larger; }
 
-article form div#loginTop{ width:450px; height:45px; display:flex; align-items:center; border:1px solid black; 
-					margin:0 auto; }					
-article form div#loginTop img{ width:40px; height:40px; margin-left:20px; }
-article form div#loginTop span{ width:60px; height:60px;  font-weight:bold; font-size:100%; line-height:60px;
-					margin-left:auto; margin-right:auto; color:black;  clear:both; }
+#loginBottom{ width:450px; height:100%; background-color:white; }
+#loginBottom span{ font-size:larger; width:100px; }
+#loginBottom hr{ width:100px; border:1.5px solid black; margin-bottom:40px;}
+
+#loginBottom input[type="text"], input[type="password"]{ width:300px; height:50px; border-radius:5px;
+			 border:1px solid lightgray; margin-bottom:5px; }
+#loginBottom input[type="password"]{ margin-bottom:15px; }
+#loginBottom input[type="submit"]{ width:300px; height:40px; border-radius:5px; margin-top:10px;
+			background-color:black; font-weight:bold; color:white; }
+#loginBottom input#joinBtn{ width:300px; height:40px; border-radius:5px; background-color:black; font-weight:bold;
+			color:white; margin-top:5px; }
+#loginBottom span#statueText{ margin-left:-172px; font-size:smaller; height:20px; }		
+#loginBottom input#findBtn{ border:none; width:200px; height:20px; color:lightgray; background-color:white;
+			margin:15px 0 15px 168px; }
+#loginBottom img#kakaoBtn{ width:300px; height:40px; margin-bottom:5px; border-radius:5px; }
+#loginBottom img#appleBtn{ width:300px; height:38px; margin-bottom:50px; border:1px solid lightgray;
+			border-radius:5px; }
+#loginBottom span#joinText{ font-weight:bold; }
+
+
+
 					
-article fieldset#loginBottom{ width:450px; height:100%; align-items:center; border:1px solid red;
-					margin:0 auto; padding:0; }
-article fieldset#loginBottom hr{border:none; border-top:2px solid black; widh:60px; margin-left:auto; margin-right:auto; }
-article fieldset#loginBottom span{ width:100px; height:40px; font-weight:bold; margin:0 auto; }
-article fieldset#loginBottom input.loginData{ width:300px; height:40px; border-radius:3%; border:1px solid lightgray; 
-					margin-left:auto; margin-right:auto; }
-article fieldset#loginBottom input#loginBtn{ width:300px; height:40px; border-radius:3%; color:white;
-					background-color:black; margin-left:auto; margin-right:auto; }
-article fieldset#loginBottom input#findBtn{ width:200px; height:25px; border:none; color:lightgray; 
-					background-color:white; margin-right:0; }
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* contract CSS */
+#loginTop #contractTitle{ display:flex; justify-content:center; align-items:center; margin-left:145px; font-weight:bold; 
+			font-size:larger; }
+#loginBottom span#welcome{ display:inline-block; }
+
+
+
+
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 					
-/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-					
-/* mypageSub 용 CSS */
+/* mypageSub CSS */
 .container{display:flex; justify-content:center; align-items:center; }					
 .container .box{width:500px; height:200px; display:flex; gap:20px; margin-top:50px; margin-bottom:50px;
-					background-color:white; justify-content:center; align-items:center; }
+			background-color:white; justify-content:center; align-items:center; }
 .container .box .subCategory{ border-right:1px solid white; cursor: pointer; width:150px; height:150px;
-					 text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
+			text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
 .container .box .subCategory img{padding:0; margin:0; justify-content:center; align-items:center;}
 
 

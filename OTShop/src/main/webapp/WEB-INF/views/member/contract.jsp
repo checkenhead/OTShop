@@ -3,14 +3,16 @@
 <link rel="stylesheet" href="/css/otshop.css">
 <script type="text/javascript" src="/script/member.js"></script>
 
-<article>
+<html id="loginHtml">
+<body id="loginBody">
+<article id="login">
 	<form id="contract" action="joinForm" method="post" name="contractFrm">
 		<div id="loginTop">
 			<img src="/images/back.png" onclick="history.go(-1);">
-			<span>OTSHOP</span>
-		</div><br>
-		<fieldset id="loginBottom">
-		<span>
+			<span id="contractTitle">OTSHOP</span>
+		</div>
+		<div id="loginBottom">
+		<span id="welcome">
 		환영합니다!<br>
 		옷샵에 가입하시려면<br>
 		약관에 동의해 주세요😊<br>
@@ -30,9 +32,9 @@
 			
 	
 		
-		</fieldset>
+		</div>
 	</form>
 </article>
 
-
-
+</body>
+</html>
