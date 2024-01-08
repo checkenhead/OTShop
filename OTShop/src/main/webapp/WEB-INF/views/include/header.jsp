@@ -51,7 +51,9 @@
 					</a>
 					<nav>
 						<ul>
+							<!-- 사용자 계정 클릭 : 사용자 정보 수정으로 이동 -->
 							<li><a href="medit">${loginUser.NAME} (${loginUser.USERID})</li>
+							<!-- 마이페이지 클릭 : 사용자 주문 정보 조회로 이동 -->
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
@@ -61,6 +63,6 @@
 				</c:otherwise>
 			</c:choose>
 </div>
-
-
 </header>
+
+<hr>

@@ -370,6 +370,8 @@ public class MemberController {
 		   model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
 	   else if( result.getFieldError("name") != null )
 		   model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+	   else if( result.getFieldError("email") != null )
+		   model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
 	   else if( repwd == null || ( !repwd.equals(membervo.getPwd() ) ) )
 		   model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다.");
 	   // 오류가 없다면 DB에 데이터 전송

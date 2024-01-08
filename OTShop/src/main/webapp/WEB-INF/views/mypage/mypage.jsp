@@ -3,11 +3,13 @@
     
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/mypageSub.jsp" %>
+<%@ include file="../include/categorySub.jsp" %>
 
 
 <article>
 
-<h2>마이페이지 메인.jsp</h2>
+<h2>여기서 사용자 주문 정보 조회 가능</h2>
+
 
 </article>
     

@@ -7,7 +7,6 @@ begin
     open p_cur for select * from admins where adminid = p_adminid;
     
 end;
-<<<<<<< HEAD
 
 
 --------------------------------------------------------------------------------------------
@@ -23,6 +22,7 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM members WHERE userid = p_userid;
 END;
 
+--------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE joinKakao(
     p_userid IN members.userid%TYPE,
@@ -38,6 +38,7 @@ BEGIN
     COMMIT;
 END;
 
+--------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE insertMember(
     p_userid IN members.userid%TYPE,         p_pwd IN members.pwd%TYPE,
@@ -56,6 +57,7 @@ BEGIN
     COMMIT;
 END;
 
+--------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE updateMember(
     p_userid IN members.userid%TYPE,        p_pwd IN members.pwd%TYPE,
@@ -74,6 +76,7 @@ BEGIN
     COMMIT;
 END;
 
+--------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE deleteMember(
     p_userid IN members.userid%TYPE
@@ -84,7 +87,7 @@ BEGIN
     COMMIT;
 END;
 
-
+--------------------------------------------------------------------------------------------
 
 
 

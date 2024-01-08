@@ -195,6 +195,7 @@ CREATE TABLE product_detail
 );
 
 
+
 CREATE TABLE qna
 (
 	qseq number NOT NULL,
