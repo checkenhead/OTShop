@@ -29,11 +29,17 @@
 	</div>
 	<div class="top_menu">
 		<ul>
-			<li>상품</li><li>주문</li><li>회원</li><li>Q&amp;A</li><li>FAQ</li><li>배너</li><li>통계</li>
+			<li><a href="productManagement">상품</a></li>
+			<li>주문</li>
+			<li><a href="memberManagement">회원</a></li>
+			<li>Q&amp;A</li>
+			<li><a href="faqManagement">FAQ</a></li>
+			<li>배너</li>
+			<li>통계</li>
 		</ul>
 	</div>
 	<div class="clear"></div>
-	<hr>
+	
 </header>
 </div>
 

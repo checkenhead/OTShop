@@ -188,6 +188,7 @@ CREATE TABLE product_detail
 	price3 number NOT NULL,
 	optname varchar2(50) DEFAULT 'option' NOT NULL,
 	stock number DEFAULT 0 NOT NULL,
+	useyn char(1) DEFAULT 'Y',
 	PRIMARY KEY (pdseq)
 );
 
@@ -331,6 +332,11 @@ ALTER TABLE transport
 ;
 
 
+create or replace view faq_view as
+select f.fseq, f.fcseq, fc.name, f.title, f.content
+from faq f, faq_category fc
+where f.fcseq = fc.fcseq;
+
 
 
 /* Select Tables */
@@ -339,7 +345,11 @@ select * from members;
 select * from product;
 select * from product_detail;
 select * from product_category;
+select * from faq;
+select * from faq_category;
+select * from faq_view;
 
+delete from product where pseq = 25;
 
 
 /* Test Records */

@@ -20,10 +20,19 @@
 		}
 	</select>
 	
+	<!-- <insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertProduct(
+			#{optionList, javaType=Object, jdbcType=ARRAY, jdbcTypeName=OPT_TABLE_TYPE, mode=IN, typeHandler=ot.team1.mybatis.ListMapTypeHandler},
+			#{pseq, mode=OUT, jdbcType=INTEGER})
+		}
+		
+	</insert> -->
+	
 	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call insertProduct(
-			#{pcseq}, #{brand}, #{name}, #{description}, #{gender}, #{image},
+			#{PCSEQ}, #{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE},
 			#{pseq, mode=OUT, jdbcType=INTEGER})
 		}
 	</insert>
@@ -31,13 +40,14 @@
 	<insert id="insertProductDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call insertProductDetail(
-			#{pseq}, #{optname}, #{price1}, #{price2}, #{price3}, #{stock})
+			#{PSEQ}, #{OPTNAME}, #{PRICE1}, #{PRICE2}, #{PRICE3}, #{STOCK})
 		}
 	</insert>
 	
 	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getProductList(
+			#{keyword},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
 		}
 	</select>
@@ -49,4 +59,84 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
 		}
 	</select>
+	
+	<select id="getCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getCount(
+			#{tablename}, #{keynum},
+			#{count, mode=OUT, jdbcType=INTEGER})
+		}
+	</select>
+	
+	<insert id="insertProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertProductCat(#{name})
+		}
+	</insert>
+	
+	<delete id="deleteProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteProductCat(#{pcseq})
+		}
+	</delete>
+	
+	<update id="updateProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateProductCat(#{pcseq}, #{name})
+		}
+	</update>
+	
+	<select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProduct(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<update id="updateProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateProduct(
+			#{PSEQ}, #{PCSEQ}, #{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE}, #{BESTYN}, #{USEYN})
+		}
+	</update>
+	
+	<insert id="updateProductDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateProductDetail(#{PDSEQ}, #{STORE}, #{USEYN})
+		}
+	</insert>
+	
+	<select id="getFaqList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getFaqList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<select id="getFaqCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getFaqCatList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<insert id="insertFaqCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertFaqCat(#{name})
+		}
+	</insert>
+	
+	<delete id="deleteFaqCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteFaqCat(#{fcseq})
+		}
+	</delete>
+	
+	<update id="updateFaqCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateFaqCat(#{fcseq}, #{name})
+		}
+	</update>
+	
 </mapper>

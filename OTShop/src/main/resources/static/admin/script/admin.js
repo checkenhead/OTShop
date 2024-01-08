@@ -14,28 +14,31 @@ function reg_new_product() {
 }
 
 function go_add_option() {
+	var targetForm = document.insertProductForm == undefined ? document.updateProductForm : document.insertProductForm;
 	if (document.getElementById("input_option").value == "") {
 		alert("옵션명을 입력하세요.");
 		document.getElementById("input_option").focus();
 		return;
 	}
 	else {
-		document.insertProductForm.action = "changeOption";
-		document.insertProductForm.submit();
+		targetForm.action = "changeOption";
+		targetForm.submit();
 	}
 }
 
 function go_delete_option(delIndex) {
-	document.insertProductForm.delIndex.value = delIndex;
-	document.insertProductForm.action = "changeOption";
-	document.insertProductForm.submit();
+	var targetForm = document.insertProductForm == undefined ? document.updateProductForm : document.insertProductForm;
+	targetForm.delIndex.value = delIndex;
+	targetForm.action = "changeOption";
+	targetForm.submit();
 }
 
 function cal_price(index) {
-	var price1 = document.insertProductForm.price1;
-	var price2 = document.insertProductForm.price2;
-	var price3 = document.insertProductForm.price3;
-
+	var targetForm = document.insertProductForm == undefined ? document.updateProductForm : document.insertProductForm;
+	var price1 = targetForm.price1;
+	var price2 = targetForm.price2;
+	var price3 = targetForm.price3;
+	
 	if (price1.length == undefined) {
 		//option이 1개인 경우
 		if (isNaN(price1.value) || isNaN(price2.value)) {
@@ -58,8 +61,8 @@ function upload_click() {
 }
 
 function copy_filename() {
-	document.getElementById("filename").innerHTML += document.fileup.upload.value.replace("C:\\fakepath\\", "");
-	document.insertProductForm.previewFilename.value = document.fileup.upload.value.replace("C:\\fakepath\\", "");
+	document.getElementById("filename").innerHTML = document.fileup.upload.value.replace("C:\\fakepath\\", "");
+	//document.insertProductForm.previewFilename.value = document.fileup.upload.value.replace("C:\\fakepath\\", "");
 
 	fileup();
 }
@@ -85,7 +88,7 @@ function fileup() {
 			if (data.STATUS == 1) {  	// 동적으로 div태그 달아주기.
 				//$("#filename").append("<div>" + data.FILENAME + "</div>");
 				$("#image").val(data.FILENAME);
-				$("#preview").append("<img src='images/product/" + data.FILENAME + "' height='150'/>");
+				$("#preview").html("<img src='images/product/" + data.FILENAME + "' height='150'/>");
 			}
 		},
 		error: function() { alert("실패"); }
@@ -95,4 +98,91 @@ function fileup() {
 function go_reg_product() {
 	document.insertProductForm.action = "insertProduct";
 	document.insertProductForm.submit();
+}
+
+function go_edit_cat(index){
+	document.getElementById("name_" + index).readOnly = false;
+	document.getElementById("name_" + index).focus();
+	document.getElementById("name_" + index).select();
+	document.getElementById("edit_" + index).style.display = "none";
+	document.getElementById("cancel_" + index).style.display = "block";
+	document.getElementById("save_" + index).style.display = "block";
+}
+
+function go_cancel_cat(index){
+	document.getElementById("name_" + index).readOnly = true;
+	document.getElementById("name_" + index).value = document.getElementById("oldName_" + index).value;
+	document.getElementById("edit_" + index).style.display = "block";
+	document.getElementById("edit_" + index).focus();
+	document.getElementById("cancel_" + index).style.display = "none";
+	document.getElementById("save_" + index).style.display = "none";
+}
+
+function go_delete_cat(name, index, action){
+	var targetForm = document.productCatForm == undefined ? document.faqCatForm : document.productCatForm;
+	
+	if(confirm("등록된 카테고리 [" + name + "]이 삭제됩니다. 진행하시겠습니까?")){
+		document.getElementById("index").value = index;
+		//targetForm.action = "deleteProductCat";
+		//targetForm.action = "deleteFaqCat";
+		targetForm.action = action;
+		targetForm.submit();
+	}
+}
+
+function go_save_cat(count, index, action){
+	var targetForm = document.productCatForm == undefined ? document.faqCatForm : document.productCatForm;
+	var answer = true;
+	
+	if(count != null)
+		answer = confirm("이미 사용 중인 " + count + "건의 카테고리 명이 변경됩니다. 진행하시겠습니까?");
+		
+	if(answer){
+		document.getElementById("index").value = index;
+		document.getElementById("name").value = document.getElementById("name_" + index).value;
+		//targetForm.action = "updateProductCat";
+		//targetForm.action = "updateFaqCat";
+		targetForm.action = action;
+		targetForm.submit();
+	}
+}
+
+function go_add_cat(action){
+	var targetForm = document.productCatForm == undefined ? document.faqCatForm : document.productCatForm;
+	
+	if(targetForm.name.value == ""){
+		alert("카테고리를 입력하세요.");
+	}else{
+		//targetForm.action = "insertProductCat";
+		//targetForm.action = "insertFaqCat";
+		targetForm.action = action;
+		targetForm.submit();
+	}
+}
+
+function go_view_product(pseq){
+	document.getElementById("pseq").value = pseq;
+	document.productManForm.action = "adminViewProduct";
+	document.productManForm.submit();
+}
+
+function go_edit_product(pseq){
+	var targetForm = document.productManForm == undefined ? document.adminViewProductForm : document.productManForm;
+	document.getElementById("pseq").value = pseq;
+	targetForm.method = "post";
+	targetForm.action = "updateProductForm";
+	targetForm.submit();
+}
+
+function change_opt_useyn(index){
+	if(document.getElementsByClassName("optRadio_" + index)[0].checked){
+		document.getElementById("optUseyn_" + index).value = "Y";
+	} else {
+		document.getElementById("optUseyn_" + index).value = "N";
+	}
+}
+
+function go_save_product(){
+	document.updateProductForm.action = "updateProduct";
+	document.updateProductForm.submit();
 }

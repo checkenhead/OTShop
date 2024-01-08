@@ -19,4 +19,28 @@ public interface IAdminDao {
 
 	public void getProductDetailList(HashMap<String, Object> paramMap);
 
+	public String getCount(HashMap<String, Object> paramMap);
+
+	public void insertProductCat(HashMap<String, Object> paramMap);
+
+	public void deleteProductCat(HashMap<String, Object> paramMap);
+
+	public void updateProductCat(HashMap<String, Object> paramMap);
+
+	public void getProduct(HashMap<String, Object> paramMap);
+
+	public void updateProduct(HashMap<String, Object> paramMap);
+
+	public void updateProductDetail(HashMap<String, Object> ovo);
+
+	public void getFaqList(HashMap<String, Object> paramMap);
+
+	public void getFaqCatList(HashMap<String, Object> paramMap);
+
+	public void insertFaqCat(HashMap<String, Object> paramMap);
+
+	public void deleteFaqCat(HashMap<String, Object> paramMap);
+
+	public void updateFaqCat(HashMap<String, Object> paramMap);
+
 }

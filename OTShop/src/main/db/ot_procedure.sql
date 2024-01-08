@@ -97,9 +97,9 @@ begin
     insert into product(pseq, pcseq, brand, name, description, gender, image)
     values(product_pseq.nextval, p_pcseq, p_brand, p_name, p_description, p_gender, p_image);
     p_pseq := product_pseq.currval;
-    commit;
     
 end;
+
 ------------------------------------------------------------------------------
 
 create or replace procedure insertProductDetail(
@@ -114,17 +114,17 @@ is
 begin
     insert into product_detail(pdseq, pseq, optname, price1, price2, price3, stock)
     values(product_detail_pdseq.nextval, p_pseq, p_optname, p_price1, p_price2, p_price3, p_stock);
-    commit;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure getProductList(
+    p_keyword in varchar2,
     p_cur out sys_refcursor)
 is
 
 begin
-    open p_cur for select * from product order by regdate desc;
+    open p_cur for select * from product where name like '%' || p_keyword || '%' or brand like '%' || p_keyword || '%' order by regdate desc;
     
 end;
 ------------------------------------------------------------------------------
@@ -139,4 +139,164 @@ begin
     
 end;
 ------------------------------------------------------------------------------
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
+--create or replace procedure insertProduct(
+--    p_optionlist in opt_table_type,
+--    p_out out varchar2)
+--is
+--
+--begin
+--    p_out := 'success';
+--    
+--end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure getCount(
+    p_tablename in varchar2,
+    p_keynum in number,
+    p_cnt out number)
+is
+
+begin
+    if p_tablename = 'product' then
+        select count(*) into p_cnt from product where pcseq = p_keynum;
+    elsif p_tablename = 'faq' then
+        select count(*) into p_cnt from faq where fcseq = p_keynum;
+    end if;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertProductCat(
+    p_name in product_category.name%type)
+is
+
+begin
+    insert into product_category(pcseq, name)
+    values(product_category_pcseq.nextval, p_name);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteProductCat(
+    p_pcseq in product_category.pcseq%type)
+is
+
+begin
+    delete from product_category where pcseq = p_pcseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateProductCat(
+    p_pcseq in product_category.pcseq%type,
+    p_name in product_category.name%type)
+is
+
+begin
+    update product_category set name = p_name where pcseq = p_pcseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProduct(
+    p_pseq in product.pseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from product where pseq = p_pseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateProduct(
+    p_pseq in product.pseq%type,
+    p_pcseq in product.pcseq%type,
+    p_brand in product.brand%type,
+    p_name in product.name%type,
+    p_description in product.description%type,
+    p_gender in product.gender%type,
+    p_image in product.image%type,
+    p_bestyn in product.bestyn%type,
+    p_useyn in product.useyn%type)
+is
+
+begin
+    update product set pcseq = p_pcseq, brand = p_brand, name = p_name, description = p_description,
+    gender = p_gender, image = p_image, bestyn = p_bestyn, useyn = p_useyn
+    where pseq = p_pseq;
+
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateProductDetail(
+    p_pdseq in product_detail.pdseq%type,
+    p_store in product_detail.stock%type,
+    p_useyn in product_detail.useyn%type)
+is
+
+begin
+    update product_detail set stock = stock + p_store, useyn = p_useyn where pdseq = p_pdseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getFaqList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from faq_view order by fseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getFaqCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from faq_category order by fcseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertFaqCat(
+    p_name in faq_category.name%type)
+is
+
+begin
+    insert into faq_category(fcseq, name)
+    values(faq_category_fcseq.nextval, p_name);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteFaqCat(
+    p_fcseq in faq_category.fcseq%type)
+is
+
+begin
+    delete from faq_category where fcseq = p_fcseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateFaqCat(
+    p_fcseq in faq_category.fcseq%type,
+    p_name in faq_category.name%type)
+is
+
+begin
+    update faq_category set name = p_name where fcseq = p_fcseq;
+    commit;
+    
+end;
