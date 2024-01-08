@@ -2,6 +2,7 @@ package ot.team1.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,14 +37,10 @@ public class AdminController {
 	public String productManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
-			return "redirect:/adminLoginForm";			
-		}
-		else {
-			model.addAttribute("productList", as.getProductList());
-			
-			
-			
-			
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("productList", as.getProductList(""));
+
 			return "admin/product/productManagement";
 		}
 	}
@@ -80,6 +76,13 @@ public class AdminController {
 
 		return url;
 	}
+	
+	@GetMapping("/adminLogout")
+	public String adminLogout(HttpServletRequest request) {
+		request.getSession().removeAttribute("loginAdmin");
+		
+		return "admin/common/adminLoginForm";
+	}
 
 	@GetMapping("/insertProductForm")
 	public String insertProductForm(HttpServletRequest request, Model model) {
@@ -93,18 +96,81 @@ public class AdminController {
 		}
 	}
 
+	/*
+	 * vo객체에 저장하는 방식으로 변경 요구
+	 * 
+	 * @PostMapping("/changeOption") public String changeOption(
+	 * 
+	 * @RequestParam(value = "productCategory", defaultValue = "0") int pcseq,
+	 * 
+	 * @RequestParam("gender") String gender, @RequestParam("brand") String brand,
+	 * 
+	 * @RequestParam("name") String name, @RequestParam("description") String
+	 * description,
+	 * 
+	 * @RequestParam("optname") String[] optname, @RequestParam(value = "image",
+	 * required = false) String image,
+	 * 
+	 * @RequestParam("previewFilename") String previewFilename,
+	 * 
+	 * @RequestParam(value = "price1", required = false) int[] price1,
+	 * 
+	 * @RequestParam(value = "price2", required = false) int[] price2,
+	 * 
+	 * @RequestParam(value = "price3", required = false) int[] price3,
+	 * 
+	 * @RequestParam(value = "stock", required = false) int[] stock,
+	 * 
+	 * @RequestParam(value = "delIndex", defaultValue = "0") int delIndex, Model
+	 * model) {
+	 * 
+	 * ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String,
+	 * Object>>();
+	 * 
+	 * // delIndex : 삭제할 인덱스, -1한 값이 실제 삭제할 index이고 따라서 delIndex가 0일 경우 삭제하지 않음 //
+	 * String[] option : 기존 추가된 옵션 + 방금 추가한 옵션의 이름 // price1, 2, 3 : 기존 추가된 price,
+	 * 따라서 맨 처음 추가 시 null이고 다음부터는 option배열보다 length가 1 // 작음
+	 * 
+	 * // option배열과 price배열을 vo객체에 넣고 리스트로 구성, 방금 추가된 option의 price들은 0을 대입 for (int
+	 * i = 0; i < optname.length; i++) { if ((delIndex - 1) == i ||
+	 * optname[i].equals("")) { // 삭제할 index가 있는 경우와 빈값인 경우 skip continue; } else {
+	 * HashMap<String, Object> optvo = new HashMap<String, Object>();
+	 * optvo.put("optname", optname[i]); // price가 null인 경우 : 맨 처음 추가 시 // price배열의
+	 * 크기는 option배열의 크기보다 1 작으므로 length 체크 후 default 대입 optvo.put("price1", (price1
+	 * == null) || (price1.length <= i) ? 0 : price1[i]); optvo.put("price2",
+	 * (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
+	 * optvo.put("price3", (price3 == null) || (price3.length <= i) ? 0 :
+	 * price3[i]); optvo.put("stock", (stock == null) || (stock.length <= i) ? 0 :
+	 * stock[i]); optionList.add(optvo); } } model.addAttribute("productCatList",
+	 * as.getProductCatList()); model.addAttribute("productCategory", pcseq);
+	 * model.addAttribute("gender", gender); model.addAttribute("brand", brand);
+	 * model.addAttribute("name", name); model.addAttribute("description",
+	 * description); model.addAttribute("image", image);
+	 * model.addAttribute("previewFilename", previewFilename);
+	 * model.addAttribute("optionList", optionList);
+	 * 
+	 * return "admin/product/insertProductForm"; }
+	 */
+
 	@PostMapping("/changeOption")
-	public String changeOption(
-			@RequestParam(value = "productCategory", defaultValue = "0") int pcseq,
-			@RequestParam("gender") String gender, @RequestParam("brand") String brand,
-			@RequestParam("name") String name, @RequestParam("description") String description,
-			@RequestParam("optname") String[] optname, @RequestParam(value = "image", required = false) String image,
+	public String changeOption(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+			@RequestParam("brand") String brand, @RequestParam("name") String name,
+			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
+			@RequestParam(value = "image", required = false) String image,
 			@RequestParam("previewFilename") String previewFilename,
 			@RequestParam(value = "price1", required = false) int[] price1,
 			@RequestParam(value = "price2", required = false) int[] price2,
 			@RequestParam(value = "price3", required = false) int[] price3,
 			@RequestParam(value = "stock", required = false) int[] stock,
-			@RequestParam(value = "delIndex", defaultValue = "0") int delIndex, Model model) {
+			@RequestParam(value = "regdate", required = false) Timestamp regdate,
+			@RequestParam(value = "bestyn", required = false) String bestyn,
+			@RequestParam(value = "useyn", required = false) String useyn,
+			@RequestParam(value = "viewcount", defaultValue = "0") int viewcount,
+			@RequestParam(value = "optUseyn", required = false) String[] optUseyn,
+			@RequestParam(value = "pdseq", required = false) int[] pdseq,
+			@RequestParam(value = "delIndex", defaultValue = "0") int delIndex,
+			@RequestParam("formName") String formName, Model model) {
 
 		ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
 
@@ -118,28 +184,44 @@ public class AdminController {
 			if ((delIndex - 1) == i || optname[i].equals("")) { // 삭제할 index가 있는 경우와 빈값인 경우 skip
 				continue;
 			} else {
-				HashMap<String, Object> optvo = new HashMap<String, Object>();
-				optvo.put("optname", optname[i]);
+				HashMap<String, Object> ovo = new HashMap<String, Object>();
+				ovo.put("OPTNAME", optname[i]);
 				// price가 null인 경우 : 맨 처음 추가 시
 				// price배열의 크기는 option배열의 크기보다 1 작으므로 length 체크 후 default 대입
-				optvo.put("price1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
-				optvo.put("price2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
-				optvo.put("price3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
-				optvo.put("stock", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
-				optionList.add(optvo);
+				ovo.put("PDSEQ", (pdseq == null) || (pdseq.length <= i) ? 0 : pdseq[i]);
+				ovo.put("PRICE1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
+				ovo.put("PRICE2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
+				ovo.put("PRICE3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
+				ovo.put("STOCK", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
+				ovo.put("USEYN", (optUseyn == null) || (optUseyn.length <= i) ? "Y" : optUseyn[i]);
+				optionList.add(ovo);
 			}
 		}
-		model.addAttribute("productCatList", as.getProductCatList());
-		model.addAttribute("productCategory", pcseq);
-		model.addAttribute("gender", gender);
-		model.addAttribute("brand", brand);
-		model.addAttribute("name", name);
-		model.addAttribute("description", description);
-		model.addAttribute("image", image);
-		model.addAttribute("previewFilename", previewFilename);
-		model.addAttribute("optionList", optionList);
 
-		return "admin/product/insertProductForm";
+		HashMap<String, Object> productVO = new HashMap<String, Object>();
+		productVO.put("PSEQ", pseq);
+		productVO.put("PCSEQ", pcseq);
+		productVO.put("GENDER", gender);
+		productVO.put("BRAND", brand);
+		productVO.put("NAME", name);
+		productVO.put("DESCRIPTION", description);
+		productVO.put("IMAGE", image);
+		productVO.put("REGDATE", regdate);
+		productVO.put("BESTYN", bestyn);
+		productVO.put("USEYN", useyn);
+		productVO.put("VIEWCOUNT", viewcount);
+		productVO.put("optionList", optionList);
+
+		model.addAttribute("productCatList", as.getProductCatList());
+		model.addAttribute("productVO", productVO);
+		model.addAttribute("previewFilename", previewFilename);
+
+		if (formName.equals("insertProductForm"))
+			return "admin/product/insertProductForm";
+		else if (formName.equals("updateProductForm"))
+			return "admin/product/updateProductForm";
+		else
+			return "";
 	}
 
 	@PostMapping("/fileup")
@@ -177,69 +259,88 @@ public class AdminController {
 	}
 
 	@PostMapping("/insertProduct")
-	public String insertProduct(@RequestParam(value = "productCategory", defaultValue = "0") int pcseq,
-			@RequestParam("gender") String gender, @RequestParam("brand") String brand,
-			@RequestParam("name") String name, @RequestParam("description") String description,
-			@RequestParam("optname") String[] optname, @RequestParam(value = "image", required = false) String image,
+	public String insertProduct(
+			@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam("gender") String gender,
+			@RequestParam("brand") String brand,
+			@RequestParam("name") String name,
+			@RequestParam("description") String description,
+			@RequestParam("optname") String[] optname,
+			@RequestParam(value = "image", required = false) String image,
 			@RequestParam("previewFilename") String previewFilename,
+			@RequestParam(value = "bestyn", required = false) String bestyn,
+			@RequestParam(value = "useyn", required = false) String useyn,
+			@RequestParam(value = "viewcount", defaultValue = "0") int viewcount,
+			@RequestParam(value = "regdate", required = false) Timestamp regdate,
 			@RequestParam(value = "price1", required = false) int[] price1,
 			@RequestParam(value = "price2", required = false) int[] price2,
 			@RequestParam(value = "price3", required = false) int[] price3,
-			@RequestParam(value = "stock", required = false) int[] stock, HttpServletRequest request, Model model) {
+			@RequestParam(value = "stock", required = false) int[] stock,
+			HttpServletRequest request,
+			Model model) {
 		if (request.getSession().getAttribute("loginAdmin") == null)
 			return "redirect:/adminLoginForm";
 		else {
 			boolean validationSucess = true;
-			
-			//validation 실패 시 가져갈 입력 데이터 model에 저장
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
-			if(stock != null) {
+			
+			paramMap.put("PSEQ", pseq);
+			paramMap.put("PCSEQ", pcseq);
+			paramMap.put("GENDER", gender);
+			paramMap.put("BRAND", brand);
+			paramMap.put("NAME", name);
+			paramMap.put("DESCRIPTION", description);
+			paramMap.put("IMAGE", image);
+			paramMap.put("BESTYN", bestyn);
+			paramMap.put("USEYN", useyn);
+			paramMap.put("REGDATE", regdate);
+			paramMap.put("VIEWCOUNT", viewcount);
+			
+			// validation 실패 시 가져갈 입력 데이터 model에 저장
+			if (stock != null) {
 				for (int i = 0; i < stock.length; i++) {
-					HashMap<String, Object> optvo = new HashMap<String, Object>();
-					optvo.put("optname", optname[i]);
-					optvo.put("price1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
-					optvo.put("price2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
-					optvo.put("price3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
-					optvo.put("stock", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
-					optionList.add(optvo);
+					HashMap<String, Object> ovo = new HashMap<String, Object>();
+					ovo.put("OPTNAME", optname[i]);
+					ovo.put("PRICE1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
+					ovo.put("PRICE2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
+					ovo.put("PRICE3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
+					ovo.put("STOCK", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
+					optionList.add(ovo);
 				}
 			}
-
-			model.addAttribute("productCatList", as.getProductCatList());
-			model.addAttribute("pcseq", pcseq);
-			model.addAttribute("gender", gender);
-			model.addAttribute("brand", brand);
-			model.addAttribute("name", name);
-			model.addAttribute("description", description);
-			model.addAttribute("image", image);
-			model.addAttribute("previewFilename", previewFilename);
-			model.addAttribute("optionList", optionList);
 			
-			//validation
-			if(pcseq == 0) {
+			paramMap.put("optionList", optionList);
+			
+			model.addAttribute("productCatList", as.getProductCatList());
+			model.addAttribute("productVO", paramMap);
+
+			// validation
+			if (pcseq == 0) {
 				model.addAttribute("message", "상품분류를 선택하세요.");
 				validationSucess = false;
-			} else if(brand.equals("")) {
+			} else if (brand.equals("")) {
 				model.addAttribute("message", "브랜드를 입력하세요.");
 				validationSucess = false;
-			} else if(name.equals("")) {
+			} else if (name.equals("")) {
 				model.addAttribute("message", "상품이름을 입력하세요.");
 				validationSucess = false;
-			} else if(description.equals("")) {
+			} else if (description.equals("")) {
 				model.addAttribute("message", "상품설명을 입력하세요.");
 				validationSucess = false;
-			} else if(image == null || image.equals("")) {
+			} else if (image == null || image.equals("")) {
 				model.addAttribute("message", "상품사진이 없습니다.");
 				validationSucess = false;
 			} else {
-				//option은 1개 이상 있을 것
-				//price는 0이 아닐 것
-				if(stock == null || stock.length < 1) {
+				// option은 1개 이상 있을 것
+				// price는 0이 아닐 것
+				if (stock == null || stock.length < 1) {
 					model.addAttribute("message", "상품 옵션은 1개 이상 있어야합니다.");
 					validationSucess = false;
 				} else {
-					for(int i = 0; i < stock.length; i++) {
-						if(price1[i] == 0 || price2[i] == 0 || price3[i] == 0) {
+					for (int i = 0; i < stock.length; i++) {
+						if (price1[i] == 0 || price2[i] == 0) {
 							model.addAttribute("message", "상품 가격을 입력하세요.");
 							validationSucess = false;
 							break;
@@ -247,25 +348,313 @@ public class AdminController {
 					}
 				}
 			}
-			
-			if(!validationSucess) {
+
+			if (!validationSucess) {
 				return "admin/product/insertProductForm";
 			} else {
-				HashMap<String, Object> paramMap = new HashMap<String, Object>();
-				
-				paramMap.put("pcseq", pcseq);
-				paramMap.put("brand", brand);
-				paramMap.put("gender", gender);
-				paramMap.put("name", name);
-				paramMap.put("description", description);
-				paramMap.put("image", image);
-				paramMap.put("optionList", optionList);
-				
-				as.insertProduct(paramMap);
-				
-				return "redirect:/productManagement";
+				if (as.insertProduct(paramMap)) {
+					// insert 성공 시
+					return "redirect:/productManagement";
+				} else {
+					// insert 실패 시
+					model.addAttribute("message", "DB insert 실패, 관리자에게 문의하세요.");
+					return "admin/product/insertProductForm";
+				}
 			}
-				
+
+		}
+	}
+	
+	@PostMapping("/searchProduct")
+	public String searchProduct(@RequestParam("keyword") String keyword, HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("productList", as.getProductList(keyword));
+
+			return "admin/product/productManagement";
+		}
+	}
+
+	@GetMapping("/productCatManagement")
+	public String productCatManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("productCatList", as.getProductCatListwithCount());
+
+			return "admin/product/productCatManagement";
+		}
+	}
+
+	@PostMapping("/insertProductCat")
+	public String insertProductCat(@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertProductCat(name);
+
+			return "redirect:/productCatManagement";
+		}
+	}
+
+	@PostMapping("/deleteProductCat")
+	public String deleteProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (pcseq == 0)
+				System.out.println("Error : pcseq값이 0입니다.");
+			else
+				as.deleteProductCat(pcseq);
+
+			return "redirect:/productCatManagement";
+		}
+	}
+
+	@PostMapping("/updateProductCat")
+	public String updateProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (pcseq == 0)
+				System.out.println("Error : pcseq값이 0입니다.");
+			else
+				as.updateProductCat(pcseq, name);
+
+			return "redirect:/productCatManagement";
+		}
+	}
+
+	@PostMapping("/updateProductForm")
+	public String updateProductForm(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (pseq == 0)
+				System.out.println("Error : pseq값이 0입니다.");
+			else {
+				model.addAttribute("productCatList", as.getProductCatList());
+				model.addAttribute("productVO", as.getProduct(pseq));
+			}
+
+			return "admin/product/updateProductForm";
+		}
+	}
+
+	@PostMapping("/updateProduct")
+	public String updateProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+			@RequestParam("brand") String brand, @RequestParam("name") String name,
+			@RequestParam("description") String description,
+			@RequestParam(value = "image", required = false) String image,
+			@RequestParam(value = "bestyn", required = false) String bestyn,
+			@RequestParam(value = "useyn", required = false) String useyn,
+			@RequestParam(value = "regdate", required = false) Timestamp regdate,
+			@RequestParam(value = "viewcount", defaultValue = "0") int viewcount,
+			@RequestParam(value = "pdseq", required = false) int[] pdseq, @RequestParam("optname") String[] optname,
+			@RequestParam(value = "price1", required = false) int[] price1,
+			@RequestParam(value = "price2", required = false) int[] price2,
+			@RequestParam(value = "price3", required = false) int[] price3,
+			@RequestParam(value = "stock", required = false) int[] stock,
+			@RequestParam(value = "store", required = false) int[] store,
+			@RequestParam(value = "optUseyn", required = false) String[] optUseyn, HttpServletRequest request,
+			Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			boolean validationSucess = true;
+
+			// 1. product의 데이터는 update
+			// 2. product_detail의 데이터는 update:기존 데이터(pdseq != 0)/insert:추가 데이터(pdseq == 0)
+			// 3. adminViewProduct로 이동
+
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
+
+			paramMap.put("PSEQ", pseq);
+			paramMap.put("PCSEQ", pcseq);
+			paramMap.put("GENDER", gender);
+			paramMap.put("BRAND", brand);
+			paramMap.put("NAME", name);
+			paramMap.put("DESCRIPTION", description);
+			paramMap.put("IMAGE", image);
+			paramMap.put("BESTYN", bestyn);
+			paramMap.put("USEYN", useyn);
+			paramMap.put("REGDATE", regdate);
+			paramMap.put("VIEWCOUNT", viewcount);
+
+			for (int i = 0; i < pdseq.length; i++) {
+				HashMap<String, Object> option = new HashMap<String, Object>();
+
+				option.put("PDSEQ", pdseq[i]);
+				option.put("OPTNAME", optname[i]);
+				option.put("PRICE1", price1[i]);
+				option.put("PRICE2", price2[i]);
+				option.put("PRICE3", price3[i]);
+				option.put("STOCK", stock[i]);
+				option.put("STORE", store[i]);
+				option.put("USEYN", optUseyn[i]);
+				optionList.add(option);
+			}
+
+			paramMap.put("optionList", optionList);
+
+			model.addAttribute("productCatList", as.getProductCatList());
+			model.addAttribute("productVO", paramMap);
+			
+			if (pcseq == 0) {
+				model.addAttribute("message", "상품분류를 선택하세요.");
+				validationSucess = false;
+			} else if (brand.equals("")) {
+				model.addAttribute("message", "브랜드를 입력하세요.");
+				validationSucess = false;
+			} else if (name.equals("")) {
+				model.addAttribute("message", "상품이름을 입력하세요.");
+				validationSucess = false;
+			} else if (description.equals("")) {
+				model.addAttribute("message", "상품설명을 입력하세요.");
+				validationSucess = false;
+			} else {
+				for(int i = 0; i < pdseq.length; i++) {
+					if(price1[i] == 0 || price2[i] == 0) {
+						model.addAttribute("message", "상품 가격을 입력하세요.");
+						validationSucess = false;
+						break;
+					} else if(stock[i] + store[i] < 0) {
+						model.addAttribute("message", "재고는 0미만일 수 없습니다.");
+						validationSucess = false;
+						break;
+					}
+				}
+			}
+			
+			// validation
+			if (!validationSucess) {
+				return "admin/product/updateProductForm";
+			} else {
+				if (as.updateProduct(paramMap)) {
+					// insert 성공 시
+					return "redirect:/adminViewProduct?pseq=" + pseq;
+				} else {
+					// insert 실패 시
+					model.addAttribute("message", "DB update 실패, 관리자에게 문의하세요.");
+					return "admin/product/updateProductForm";
+				}
+			}
+		}
+
+	}
+
+	@GetMapping("/adminViewProduct")
+	public String adminViewProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (pseq == 0)
+				System.out.println("Error : pseq값이 0입니다.");
+			else {
+				model.addAttribute("productCatList", as.getProductCatList());
+				model.addAttribute("productVO", as.getProduct(pseq));
+			}
+
+			return "admin/product/adminViewProduct";
+		}
+	}
+	
+	@GetMapping("/memberManagement")
+	public String memberManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			//model.addAttribute("memberList", as.getMemberList());
+			//member service 부분 완료 후 진행 예정
+			
+			return "admin/member/memberManagement";
+		}
+	}
+	
+	@GetMapping("/faqManagement")
+	public String faqManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("faqList", as.getFaqList());
+			
+			return "admin/faq/faqManagement";
+		}
+	}
+	
+	@GetMapping("/faqCatManagement")
+	public String faqCatManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("faqCatList", as.getFaqCatListwithCount());
+
+			return "admin/faq/faqCatManagement";
+		}
+	}
+	
+	@PostMapping("/insertFaqCat")
+	public String insertFaqCat(@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertFaqCat(name);
+
+			return "redirect:/faqCatManagement";
+		}
+	}
+
+	@PostMapping("/deleteFaqCat")
+	public String deleteFaqCat(@RequestParam(value = "fcseq", defaultValue = "0") int fcseq,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (fcseq == 0)
+				System.out.println("Error : fcseq값이 0입니다.");
+			else
+				as.deleteFaqCat(fcseq);
+
+			return "redirect:/faqCatManagement";
+		}
+	}
+
+	@PostMapping("/updateFaqCat")
+	public String updateFaqCat(@RequestParam(value = "fcseq", defaultValue = "0") int fcseq,
+			@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (fcseq == 0)
+				System.out.println("Error : fcseq값이 0입니다.");
+			else
+				as.updateFaqCat(fcseq, name);
+
+			return "redirect:/faqCatManagement";
 		}
 	}
 }

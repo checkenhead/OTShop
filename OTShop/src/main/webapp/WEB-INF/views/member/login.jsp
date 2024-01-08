@@ -14,8 +14,8 @@
 	<div id="loginBottom">
 	<span>가입 회원</span>
 	<hr>
-	<input type="text" name="userid" class="loginData" value="${dto.userid}"><br>
-	<input type="password" name="pwd" class="loginData"><br>
+	<input type="text" name="userid" class="loginData" value="${empty dto.userid ? '아이디' : dto.userid}"><br>
+	<input type="password" name="pwd" class="loginData" value="패스워드"><br>
 	<span id="statueText">${message}</span><br>
 	<input type="submit" value="로그인"><br>
 	<input type="button" id="joinBtn" value="회원가입" onclick="location.href='contract'">
