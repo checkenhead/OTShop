@@ -3,14 +3,15 @@
     
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/mypageSub.jsp" %>
+
+
+<article id="wrap">
 <%@ include file="../include/categorySub.jsp" %>
-
-
-<article>
+<form>
 
 <h2>여기서 사용자 주문 정보 조회 가능</h2>
 
-
+</form>
 </article>
     
 <%@ include file="../include/footer.jsp" %>

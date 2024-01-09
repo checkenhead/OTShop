@@ -9,9 +9,10 @@
 		<a href="">	
 			<div class="subCategory"><img src="images/cart.png">마이오더</div></a>
 		<a href="">
-			<div class="subCategory"><img src="images/delivery.png">배송조회</div></a>
+			<div class="subCategory""><img src="images/delivery.png">배송조회</div></a>
 		<a href="">
 			<div class="subCategory"><img src="images/call.png">고객센터</div></a>
 	</div>
 </div>
+			
 

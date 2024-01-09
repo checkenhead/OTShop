@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/otshop.css">
 
+
 <div class="containerCry">
 	<div class="bigcry" id="outer"><img src="images/plus.png">아우터</div>
 	<div class="bigcry" id="top"><img src="images/plus.png">상의

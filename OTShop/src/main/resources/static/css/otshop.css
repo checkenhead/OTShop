@@ -81,10 +81,11 @@ div#agreebox input[type="button"]{ border:none; border-bottom:1px solid black; b
 			background-color:deepskyblue; }
 			
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-/* joinForm CSS */
+/* joinForm, mypage(일부), mupdate CSS	 */
 
-#join{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin-top:50px; height:100%; }
-#join #joinCover{ display:flex;  flex-direction:column; align-items:center; justify:center; width:900px; height:100%; border:1px solid lightgray;
+article#wrap{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
+article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:1000px; height:100%; }
+article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
 			border-radius:10px; }
 #join #joinCover legend{ font-size:180%; font-weight:bold; padding:0; }
 #join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:450px; margin-top:20px; border:1px solid gray; 
@@ -124,24 +125,31 @@ body#idcheck div{ margin-top:30px; font-weight:bold; }
 body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-color:black; border:none; border-radius:5px; 
 			font-size:90%; font-weight:bold; color:white; }
 
+
+
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/		
 /* mypageSub CSS */
 
-.container{display:flex; justify-content:center; align-items:center; }					
+.container{width:100vw; height:250px; display:flex; justify-content:center; align-items:center; border:1px solid deeppink; }					
 .container .box{width:500px; height:200px; display:flex; gap:20px; margin-top:50px; margin-bottom:50px;
 			background-color:white; justify-content:center; align-items:center; }
 .container .box .subCategory{ border-right:1px solid white; cursor: pointer; width:150px; height:150px;
 			text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
 .container .box .subCategory img{padding:0; margin:0; justify-content:center; align-items:center;}
+			
+			
+			
+
+
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-/* categorySub CSS */
-
-.containerCry{ width:250px;  display:flex; flex-direction:column; align-items:left; border:1px solid black; }
-.bigcry{ padding:10px; margin:5px; cursor:pointer; border:1px solid blue; display:inline-block; flex-direction:column; justify-content:left;
+.containerCry{ width:250px;  display:flex; flex-direction:column; align-items:left; border:1px solid lightgray; margin-top:50px; }
+.bigcry{ padding:10px; margin:5px; cursor:pointer; border:none; border-bottom:1px solid lightgray; flex-direction:column; justify-content:left;
 			font-weight:bold; }
+.bigcry:last-child{ border-bottom:none; }
 .bigcry img{ width:15px; height:15px; border:none; margin:2px 5px 0 0; }
-.smallcry{display:none; padding:5px; margin:5px 5px 5px 15px; border:1px solid red; }
+.smallcry{ width:100px; display:none; padding:5px; margin:5px 5px 5px 15px; font-size:90%; color:gray; border:none; 
+			text-decoration:underline; }
 .bigcry:hover .smallcry{ display:block;  }
 
 

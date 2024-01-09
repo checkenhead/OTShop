@@ -9,18 +9,26 @@
 		
 			<fieldset id="mtitle1"><legend>필수 입력 사항</legend>
 				<div id="mspec">
-					<label>아이디</label><input type="text" name="userid" value="${dto.userid}">
+					<label>아이디</label><input type="text" name="userid" value="${mdto.userid}">
 					<input type="hidden" name="reid" value="${reid}">
 					<input type="button" id="idcheckBtn" value="중복 확인" onclick="idcheck()"><br>
-					<label>비밀번호</label><input type="password" name="pwd" value="${dto.pwd}"><br>
+					<label>비밀번호</label><input type="password" name="pwd" value="${mdto.pwd}"><br>
 					<label>비밀번호 확인</label><input type="password" name="repwd" value="${repwd}"><br>
-					<label>이름</label><input type="text" name="name" value="${dto.name}"><br>
+					<label>비밀번호 찾기 질문 선택</label>
+						<select id="pwdAsk" name="pwdAsk">
+							<option selected>---- 질문을 선택하세요 ----</option>
+							<option value="1">기억에 남는 추억의 장소는?</option>
+							<option value="2">가장 기억에 남는 선생님 성함은?</option>
+							<option value="3">유년시절 가장 생각나는 친구 이름은?</option>
+						</select><br>
+					<label>답변</label><input type="text" name="pwdAskCheck" placeholder="답변 입력"><br>
+					<label>이름</label><input type="text" name="name" value="${mdto.name}"><br>
 					<label>성별</label><input type="radio" name="gender" value="M">남자	<input type="radio" name="gender" value="F">여자<br>
 					<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 String 데이터가 저장된다 -->
 					<label>생년월일</label>
-					<input type="date" name="birthdate" value="${dto.birthdate}"><br>
-					<label>전화번호</label><input type="text" name="tel" value="${dto.tel}"><br>
-					<label>이메일</label><input type="text" name="email" value="${dto.email}"><br>
+					<input type="date" name="birthdate" value="${mdto.birthdate}"><br>
+					<label>전화번호</label><input type="text" name="tel" value="${mdto.tel}"><br>
+					<label>이메일</label><input type="text" name="email" value="${mdto.email}"><br>
 				</div>	
 			</fieldset><br>
 		
@@ -32,13 +40,13 @@
 						value="우편번호 찾기"><br>
 					<label>주&nbsp;소</label>
 					<input type="text" id="sample6_address" size="50" name="address1" 
-						value="${dto.address1}" readonly><br>
+						value="${mdto.address1}" readonly><br>
 					<label>상세주소</label>
 					<input type="text" id="sample6_detailAddress" name="address2" 
-						value="${dto.address2}" size="50"><br>
+						value="${mdto.address2}" size="50"><br>
 					<label>추가주소</label>
 					<input type="text" id="sample6_extraAddress" name="address3" 
-						value="${dto.address3}" readonly><br>
+						value="${mdto.address3}" readonly><br>
 					
 					
 					

@@ -36,8 +36,4 @@ public class MemberVO {
 	private String useyn;
 	private String provider;
 	
-	
-
-	
-
 }

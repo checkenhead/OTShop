@@ -1,5 +1,3 @@
-
-
 /* Drop Tables
 
 DROP TABLE admins CASCADE CONSTRAINTS;
@@ -11,6 +9,7 @@ DROP TABLE order_detail CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product_detail CASCADE CONSTRAINTS;
+DROP TABLE pwd_find CASCADE CONSTRAINTS;
 DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE qna_category CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
@@ -33,6 +32,7 @@ DROP SEQUENCE order_detail_odseq;
 DROP SEQUENCE product_category_pcseq;
 DROP SEQUENCE product_detail_pdseq;
 DROP SEQUENCE product_pseq;
+DROP SEQUENCE pwd_find_pfseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
 DROP SEQUENCE transport_tseq;
@@ -53,11 +53,11 @@ CREATE SEQUENCE order_detail_odseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_category_pcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_detail_pdseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_pseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE pwd_find_pfseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE qna_category_qcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE qna_qseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE transport_tseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE invoice_iseq INCREMENT BY 1 START WITH 1;
-
 
 
 /* Create Tables */
@@ -195,6 +195,16 @@ CREATE TABLE product_detail
 );
 
 
+CREATE TABLE pwd_find
+(
+	pfseq number NOT NULL,
+	userid varchar2(20) NOT NULL,
+	kind number NOT NULL,
+	answer varchar2(100) NOT NULL,
+	PRIMARY KEY (pfseq)
+);
+
+
 
 CREATE TABLE qna
 (
@@ -301,6 +311,13 @@ ALTER TABLE product
 ;
 
 
+ALTER TABLE pwd_find
+	ADD FOREIGN KEY (userid)
+	REFERENCES members (userid)
+;
+
+
+
 ALTER TABLE qna
 	ADD FOREIGN KEY (qcseq)
 	REFERENCES qna_category (qcseq)
@@ -335,11 +352,17 @@ ALTER TABLE transport
 	ON DELETE CASCADE
 ;
 
-
+/* View */
 create or replace view faq_view as
 select f.fseq, f.fcseq, fc.name, f.title, f.content
 from faq f, faq_category fc
 where f.fcseq = fc.fcseq;
+
+create or replace view findAcc as
+select pf.pfseq, m.userid, m.pwd, pf.kind, pf.answer
+from members m, pwd_find pf
+where m.userid = pf.userid;
+select*from findAcc;
 
 
 
@@ -352,6 +375,7 @@ select * from product_category;
 select * from faq;
 select * from faq_category;
 select * from faq_view;
+select * from pwd_find;
 
 delete from product where pseq = 25;
 
@@ -368,9 +392,9 @@ values('kim', '1234', '김길동', 'F', '1989-02-03', '010-2222-2222', 'kim@gmai
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gmail.com');
 
+insert into pwd_find(pfseq, userid, kind, answer) values(pwd_find_pfseq.nextval, 'hong', 1, '신촌');
+
 
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '반소매 티셔츠');
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '니트/스웨터');
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '후드 티셔츠');
-
-

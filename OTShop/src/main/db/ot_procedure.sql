@@ -42,6 +42,7 @@ END;
 
 CREATE OR REPLACE PROCEDURE insertMember(
     p_userid IN members.userid%TYPE,         p_pwd IN members.pwd%TYPE,
+    p_kind IN pwd_find.kind%TYPE,            p_answer IN pwd_find.answer%TYPE,
     p_name IN members.name%TYPE,             p_gender IN members.gender%TYPE,
     p_birthdate IN members.birthdate%TYPE,   p_tel IN members.tel%TYPE,
     p_email IN members.email%TYPE,           p_zipnum IN members.zipnum%TYPE,
@@ -50,6 +51,10 @@ CREATE OR REPLACE PROCEDURE insertMember(
 )
 IS
 BEGIN
+
+    INSERT INTO pwd_find(userid, kind, answer)
+    VALUES (p_userid, p_kind, p_answer);
+
     INSERT INTO members(userid, pwd, name, gender, birthdate, tel, email, zipnum, address1,
                         address2, address3, provider)
     VALUES (p_userid, p_pwd, p_name, p_gender, p_birthdate, p_tel, p_email, p_zipnum,

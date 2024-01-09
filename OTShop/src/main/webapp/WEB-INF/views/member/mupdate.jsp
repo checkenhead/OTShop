@@ -4,7 +4,9 @@
 <%@ include file="../include/mypageSub.jsp" %>
 
 
-<article>
+
+<article id="wrap">
+<%@ include file="../include/categorySub.jsp" %>
 <form id="join" method="post" name="mupdateFrm" action="mupdate">
 	<fieldset id="joinCover"><legend><img src="images/user.png">내 정보 수정</legend>
 	
