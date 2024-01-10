@@ -27,7 +27,7 @@
 	<insert id="insertMember"  statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL insertMember(
-				#{userid}, #{pwd}, #{name}, #{gender}, #{birthdate}, #{tel},
+				#{userid}, #{pwd}, #{kind}, #{answer}, #{name}, #{gender}, #{birthdate}, #{tel},
 				#{email}, #{zipnum}, #{address1}, #{address2}, #{address3}, #{provider}
 			)
 		}

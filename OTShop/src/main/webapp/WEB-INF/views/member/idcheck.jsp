@@ -11,16 +11,17 @@
 <script type="text/javascript" src="/script/member.js"></script>
 
 </head>
-<body>
+<body id="idcheck">
 
-<h1>아이디 중복확인</h1>
+<span id="title">아이디 중복확인</span>
+<hr>
 <form method="get" name="idCheckFrm" action="idCheckForm">
-	아이디 <input type="text" name="userid" value="${userid}">
+	<label>아이디</label> <input type="text" name="userid" value="${userid}">
 	<input type=submit value="조회">
 	<div>
 		<c:if test="${result == 1}">
 			<script type="text/javascript">opener.document.joinFrm.userid.value="";</script>
-			${userid}는 이미 사용중입니다.<br>
+			${userid}는 이미 사용중입니다.<br><br>
 			다른 아이디를 사용하세요.
 		</c:if>
 		<c:if test="${result == -1}">

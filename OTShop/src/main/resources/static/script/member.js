@@ -1,24 +1,10 @@
-function checkAll(){
-	var allAgree = document.getElementById("allAgree");
-	var ageAgree = document.getElementById("ageAgree");
-	var useAgree = document.getElementById("useAgree");
-	var infoAgree = document.getElementById("infoAgree");
-	var advertAgree1 = document.getElementById("advertAgree1");
-	var advertAgree2 = document.getElementById("advertAgree2");
-	
-	if(allAgree.checked){
-		ageAgree.checked = true;
-		useAgree.checked = true;
-		infoAgree.checked = true;
-		advertAgree1.checked = true;
-		advertAgree2.checked = true;
-	} else{
-		ageAgree.checked = false;
-		useAgree.checked = false;
-		infoAgree.checked = false;
-		advertAgree1.checked = false;
-		advertAgree2.checked = false;
-	}
+function checkAll() {
+    var allAgree = document.getElementById("allAgree");
+    var checkboxes = document.querySelectorAll("#ageAgree, #useAgree, #infoAgree, #advertAgree1, #advertAgree2");
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.checked = allAgree.checked;
+    });
 }
 
 

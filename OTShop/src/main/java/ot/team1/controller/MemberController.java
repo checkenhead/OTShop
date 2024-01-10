@@ -8,16 +8,12 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +35,7 @@ import ot.team1.dto.KakaoProfile.KakaoAccount;
 import ot.team1.dto.KakaoProfile.KakaoAccount.Profile;
 import ot.team1.dto.MemberVO;
 import ot.team1.dto.OAuthToken;
+import ot.team1.dto.PwdFindVO;
 import ot.team1.service.MemberService;
 
 @Controller
@@ -255,8 +252,10 @@ public class MemberController {
    // joinForm에서 submit 클릭 후 validation
    @PostMapping("/join")
    public String join(
-         @ModelAttribute("dto") @Valid MemberVO membervo,
-         BindingResult result,
+         @ModelAttribute("mdto") @Valid MemberVO membervo,
+         BindingResult mresult,
+         @ModelAttribute("pfdto") @Valid PwdFindVO pwdfindvo,
+         BindingResult pfresult,
          @RequestParam(value="reid", required=false) String reid,
          @RequestParam(value="repwd", required=false) String repwd,
          Model model ) {
@@ -265,24 +264,30 @@ public class MemberController {
 
       
       // validation 결과가 담긴 result에서 userid의 error가 있다면
-      if(result.getFieldError("userid") != null )
-         model.addAttribute("message", result.getFieldError("userid").getDefaultMessage() );
+      if(mresult.getFieldError("userid") != null )
+         model.addAttribute("message", mresult.getFieldError("userid").getDefaultMessage() );
       else if( reid == null || ( !reid.equals(membervo.getUserid() ) ) )
          model.addAttribute("message", "아이디 중복확인이 되지 않았습니다." );
-      else if( result.getFieldError("pwd") != null )
-         model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+      else if( mresult.getFieldError("pwd") != null )
+         model.addAttribute("message", mresult.getFieldError("pwd").getDefaultMessage() );
       else if( repwd == null || repwd.equals("") )
     	  model.addAttribute("message", "비밀번호 확인을 입력하세요.");
       else if( !repwd.equals(membervo.getPwd() ) )
           model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다." );
-      else if( result.getFieldError("name") != null )
-         model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
-      else if( result.getFieldError("gender") != null )
-         model.addAttribute("message", result.getFieldError("gender").getDefaultMessage() );
-      else if( result.getFieldError("tel") != null )
-          model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
-      else if( result.getFieldError("email") != null )
-          model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+      else if( pwdfindvo.getKind() == null || 
+    		  membervo.getBirthdate().isEmpty() ||
+    		  membervo.getBirthdate().equals("null"))
+    	  model.addAttribute("message", pfresult.getFieldError("kind").getDefaultMessage() );
+      else if( pfresult.getFieldError("answer") != null )
+    	  model.addAttribute("message", pfresult.getFieldError("answer").getDefaultMessage() );
+      else if( mresult.getFieldError("name") != null )
+         model.addAttribute("message", mresult.getFieldError("name").getDefaultMessage() );
+      else if( mresult.getFieldError("gender") != null )
+         model.addAttribute("message", mresult.getFieldError("gender").getDefaultMessage() );
+      else if( mresult.getFieldError("tel") != null )
+          model.addAttribute("message", mresult.getFieldError("tel").getDefaultMessage() );
+      else if( mresult.getFieldError("email") != null )
+          model.addAttribute("message", mresult.getFieldError("email").getDefaultMessage() );
       else if( membervo.getBirthdate() == null || 
     		  membervo.getBirthdate().isEmpty() ||
     		  membervo.getBirthdate().equals("null")) {
@@ -296,6 +301,8 @@ public class MemberController {
           
           paramMap.put("userid", membervo.getUserid());
           paramMap.put("pwd", membervo.getPwd());
+          paramMap.put("kind", pwdfindvo.getKind());
+          paramMap.put("answer", pwdfindvo.getAnswer());
           paramMap.put("name", membervo.getName());
           paramMap.put("gender", membervo.getGender());
           paramMap.put("birthdate", membervo.getBirthdate());
@@ -306,6 +313,7 @@ public class MemberController {
           paramMap.put("address2", membervo.getAddress2());
           paramMap.put("address3", membervo.getAddress3());
           paramMap.put("provider", membervo.getProvider());
+          
 
           // 회원 추가 메서드 호출
           ms.insertMember(paramMap);
@@ -315,6 +323,17 @@ public class MemberController {
       }
       return url;
    }
+   
+   // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 아이디 / 비밀번호 찾기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+   
+   @GetMapping("/findAcc")
+   public String findAcc() {
+	   return "member/findAcc";
+   }
+   
+   
+   
+   // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
    
    
    @GetMapping("/medit")
@@ -370,6 +389,8 @@ public class MemberController {
 		   model.addAttribute("message", result.getFieldError("tel").getDefaultMessage() );
 	   else if( result.getFieldError("name") != null )
 		   model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+	   else if( result.getFieldError("email") != null )
+		   model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
 	   else if( repwd == null || ( !repwd.equals(membervo.getPwd() ) ) )
 		   model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다.");
 	   // 오류가 없다면 DB에 데이터 전송

@@ -13,19 +13,19 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	@NotEmpty(message="아이디를 입력하세요")
+	@NotEmpty(message="아이디를 입력하세요!")
 	private String userid;
-	@NotEmpty(message="비밀번호를 입력하세요")
+	@NotEmpty(message="비밀번호를 입력하세요!")
 	private String pwd;
-	@NotEmpty(message="이름을 입력하세요")
+	@NotEmpty(message="이름을 입력하세요!")
 	private String name;
-	@NotEmpty(message="성별을 선택하세요")
+	@NotEmpty(message="성별을 선택하세요!")
 	private String gender;
-	@NotEmpty(message="생년월일을 입력하세요")
+	@NotEmpty(message="생년월일을 입력하세요!")
 	private String birthdate;
-	@NotEmpty(message="전화번호를 입력하세요")
+	@NotEmpty(message="전화번호를 입력하세요!")
 	private String tel;
-	@NotEmpty(message="이메일을 입력하세요")
+	@NotEmpty(message="이메일을 입력하세요!")
 	private String email;
 	
 	private String zipnum;
@@ -36,8 +36,4 @@ public class MemberVO {
 	private String useyn;
 	private String provider;
 	
-	
-
-	
-
 }

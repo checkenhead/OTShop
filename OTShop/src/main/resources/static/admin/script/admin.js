@@ -477,3 +477,7 @@ function lower_priority(priority){
 	document.bannerManForm.action = "lowerBannerPriority";
 	document.bannerManForm.submit();
 }
+
+function test(){
+	
+}

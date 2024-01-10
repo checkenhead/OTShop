@@ -5,10 +5,13 @@
 <%@ include file="../include/mypageSub.jsp" %>
 
 
-<article>
+<article id="wrap">
+<%@ include file="../include/categorySub.jsp" %>
+<form>
 
-<h2>마이페이지 메인.jsp</h2>
+<h2>여기서 사용자 주문 정보 조회 가능</h2>
 
+</form>
 </article>
     
 <%@ include file="../include/footer.jsp" %>

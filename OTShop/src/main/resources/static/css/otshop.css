@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* header CSS */
+
 #category{ display:flex; align-items:center; width:100%; height:80px; background-color: black; margin-bottom:0; }
 #category form{ margin-right:150px; }
 #category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px; flex:1;}
@@ -19,7 +22,7 @@
 #top_menu ul li{margin-right:5px;}
 #top_menu ul li a{ text-decoration:none; padding:5px; color:black; font-weight:bold; font-size:90%; }
 
-hr{ border:none; border-top:1px solid lightgray; }
+hr{ border:none; border-top:1px solid lightgray; margin:10px 0 0 0;}
 
 footer span.title{ text-align:left; font-weight:bold; margin-left:11px; }
 footer fieldset{ text-align:left; color:darkgray; font-weight:light; border:none; font-size:80%; margin-bottom:10;}
@@ -29,6 +32,7 @@ footer #footerEnd span{ line-height:50px; color:white; text-align:left; font-wei
 		
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* login CSS */
+
 html#loginHtml, body#loginBody{ height:100%; margin:0; }
 body#loginBody{ display: flex; justify-content:center; align-items: center;  background-color:lightgray; }
 article#login{ height:100%; display:flex; justify-content:center; align-items:center; text-align:center; 
@@ -42,17 +46,17 @@ article#login{ height:100%; display:flex; justify-content:center; align-items:ce
 
 #loginBottom{ width:450px; height:100%; background-color:white; }
 #loginBottom span{ font-size:larger; width:100px; }
-#loginBottom hr{ width:100px; border:1.5px solid black; margin-bottom:40px;}
+#loginBottom hr{ width:100px; border:1.5px solid black; margin-bottom:40px; margin-left:175px; }
 
-#loginBottom input[type="text"], input[type="password"]{ width:300px; height:50px; border-radius:5px;
-			 border:1px solid lightgray; margin-bottom:5px; color:darkgray; }
+#loginBottom input[type="text"], #loginBottom input[type="password"]{ width:300px; height:50px; border-radius:5px;
+			 border:1px solid lightgray; margin-bottom:5px; }
 #loginBottom input[type="password"]{ margin-bottom:15px; }
 #loginBottom input[type="submit"]{ width:300px; height:40px; border-radius:5px; margin-top:10px;
-			background-color:black; font-weight:bold; color:white; }
+			background-color:deepskyblue; font-weight:bold; color:white; border:none;}
 #loginBottom input#joinBtn{ width:300px; height:40px; border-radius:5px; background-color:black; font-weight:bold;
 			color:white; margin-top:5px; }
-#loginBottom span#statueText{ margin-left:-172px; font-size:smaller; height:20px; }		
-#loginBottom input#findBtn{ border:none; width:200px; height:20px; color:lightgray; background-color:white;
+#loginBottom span#statueText{ display:inline-block; text-align:left; font-size:smaller; font-weight:bold; width:300px; height:20px;}		
+#loginBottom input#findBtn{ border:none; width:200px; height:20px; color:gray; background-color:white;
 			margin:15px 0 15px 168px; }
 #loginBottom img#kakaoBtn{ width:300px; height:40px; margin-bottom:5px; border-radius:5px; }
 #loginBottom img#appleBtn{ width:300px; height:38px; margin-bottom:50px; border:1px solid lightgray;
@@ -64,26 +68,89 @@ article#login{ height:100%; display:flex; justify-content:center; align-items:ce
 					
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* contract CSS */
-#loginTop #contractTitle{ display:flex; justify-content:center; align-items:center; margin-left:145px; font-weight:bold; 
+
+#contractTitle{ display:flex; justify-content:center; align-items:center; margin-left:145px; font-weight:bold; 
 			font-size:larger; }
-#loginBottom span#welcome{ display:inline-block; }
+span#welcome{ width:350px; height:100px; display:inline-block; text-align:left; margin:40px 0 10px 0; font-weight:bolder; }
+div#agreebox{ width:350px; height:250px; display:inline-block; text-align:left; margin-top:30px; }
+div#agreebox span{ font-size:large; font-weight:bold; }
+div#agreebox input[type="checkbox"]{ margin-top:10px; }
+div#agreebox input[type="button"]{ border:none; border-bottom:1px solid black; background-color:transparent; font-weight:bold; 
+			margin-left:5px; }
+#joinGo, #kakaoGo{ width:300px; height:40px; border-radius:5px; border:none; font-weight:bold;  color:white; margin-bottom:5px;
+			background-color:deepskyblue; }
+			
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* joinForm, mypage(일부), mupdate CSS	 */
 
+article#wrap{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
+article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:1000px; height:100%; }
+article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
+			border-radius:10px; }
+#join #joinCover legend{ font-size:180%; font-weight:bold; padding:0; }
+#join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:450px; margin-top:20px; border:1px solid gray; 
+			border-radius:10px; }
+#join #joinCover fieldset#mtitle2{ display:inline-block;  flex-direction:column; width:700px; height:250px; margin-top:20px; border:1px solid gray; 
+			border-radius:10px; }
+#join #joinCover img{ width:50px; height:50px;}
 
+#join #mtitle1, #join #mtitle2{ display:inline-block; text-align:left; width:800px; height:50px; margin-top:10px; border:1px solid blue; }
+#join #mtitle1 legend, #join #mtitle2 legend{  font-size:140%; font-weight:bold; }
+#join label{ display:inline-block; align-items:left; text-align:left; width:150px; height:30px; margin:0 10px 10px 20px; padding-top:10px; 
+			border:none; border-right:1px solid lightgray; }
+#join #idcheckBtn{ width:50px; height:20px; }
+#join #mspec input[type="text"], #join #mspec input[type="password"]
+			{ display:inline-block; text-align:left;  width:150px; height:20px; margin-left:30px; }
+#join #mspec input[type="radio"]	 {margin-left:30px;}
+#join #mspec input[type="date"] {margin-left:25px; width:150px; height:20px; }
+#join #mspec input[type="button"] { width:100px; height:25px; background-color:white; border-radius:5px; border:1px solid lightgray; }
 
-
-
+#join  input[type="submit"]{ width:730px; height:50px; color:white; background-color:deepskyblue; font-size:110%; font-weight:bold;
+			border:none; border-radius:10px; margin-bottom:10px; }
+#join input#goBack{ width:730px; height:50px; color:white; background-color:black; font-size:110%; font-weight:bold;
+			border:none; border-radius:10px; margin-bottom:100px; }
+#join span{ font-size:100%; font-weight:bold; }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-					
+/* idcheck CSS */
+
+body#idcheck span#title{ font-size:130%; font-weight:bold; }
+hr{ border:none; border-top:1px solid lightgray; margin-bottom:30px;}
+body#idcheck form{ width:300px; height:300px; }
+body#idcheck label{ width:80px; height:25px; font-weight:bold; margin-right:10px; }
+body#idcheck input[type="text"]{ width:150px; height:25px; border:none; border-bottom:1px solid gray; margin-right:10px; }
+body#idcheck input[type="submit"]{ width:60px; height:25px; border:1px solid gray; border-radius:5px; 
+			background-color:white; }
+body#idcheck div{ margin-top:30px; font-weight:bold; }
+body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-color:black; border:none; border-radius:5px; 
+			font-size:90%; font-weight:bold; color:white; }
+
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/		
 /* mypageSub CSS */
-.container{display:flex; justify-content:center; align-items:center; }					
+
+.container{width:100vw; height:250px; display:flex; justify-content:center; align-items:center; border:1px solid deeppink; }					
 .container .box{width:500px; height:200px; display:flex; gap:20px; margin-top:50px; margin-bottom:50px;
 			background-color:white; justify-content:center; align-items:center; }
 .container .box .subCategory{ border-right:1px solid white; cursor: pointer; width:150px; height:150px;
 			text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
 .container .box .subCategory img{padding:0; margin:0; justify-content:center; align-items:center;}
+			
+			
+			
 
 
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.containerCry{ width:250px;  display:flex; flex-direction:column; align-items:left; border:1px solid lightgray; margin-top:50px; }
+.bigcry{ padding:10px; margin:5px; cursor:pointer; border:none; border-bottom:1px solid lightgray; flex-direction:column; justify-content:left;
+			font-weight:bold; }
+.bigcry:last-child{ border-bottom:none; }
+.bigcry img{ width:15px; height:15px; border:none; margin:2px 5px 0 0; }
+.smallcry{ width:100px; display:none; padding:5px; margin:5px 5px 5px 15px; font-size:90%; color:gray; border:none; 
+			text-decoration:underline; }
+.bigcry:hover .smallcry{ display:block;  }
 
 
 
