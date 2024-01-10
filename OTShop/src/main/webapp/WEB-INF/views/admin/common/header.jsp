@@ -32,9 +32,9 @@
 			<li><a href="productManagement">상품</a></li>
 			<li>주문</li>
 			<li><a href="memberManagement">회원</a></li>
-			<li>Q&amp;A</li>
+			<li><a href="qnaManagement">Q&amp;A</a></li>
 			<li><a href="faqManagement">FAQ</a></li>
-			<li>배너</li>
+			<li><a href="bannerManagement">배너</a></li>
 			<li>통계</li>
 		</ul>
 	</div>

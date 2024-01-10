@@ -7,6 +7,7 @@
 <br>
 <h1>admin faq category management</h1>
 <br>
+
 <form name="faqCatForm" method="post">
 	<table class="tblAdminFaqCat">
 		<tr><th>번호</th><th>FAQ 분류명</th><th>등록된 FAQ 수</th><th>커맨드</th></tr>
@@ -42,13 +43,15 @@
 		</c:forEach>
 		<tr>
 			<td colspan="3">
-				<input type="text" id="name" name="name" style="width:90%;">
+				<input type="text" id="inputName" name="inputName" style="width:90%;">
+				<input type="hidden" id="name" name="name">
 				<input type="hidden" id="index" name="fcseq">
 			</td>
 			<td><div class="btn"><input type="button" value="추가" onClick="go_add_cat('insertFaqCat');"></div></td>
 		</tr>
 	</table>
 </form>
+
 </div>
 
 <%@ include file="../common/footer.jsp" %>

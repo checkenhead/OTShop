@@ -139,4 +139,160 @@
 		}
 	</update>
 	
+	<insert id="insertFaq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertFaq(
+			#{fcseq}, #{title}, #{content})
+		}
+	</insert>
+	
+	<update id="updateFaq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateFaq(
+			#{fseq}, #{fcseq}, #{title}, #{content})
+		}
+	</update>
+	
+	<delete id="deleteFaq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteFaq(#{fseq})
+		}
+	</delete>
+	
+	<select id="getMemberList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getMemberList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<update id="changeMemberUseyn" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call changeMemberUseyn(#{userid}, #{useyn})
+		}
+	</update>
+	
+	<select id="getQnaList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getQnaList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<select id="getQnaCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getQnaCatList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<insert id="insertQnaCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertQnaCat(#{name})
+		}
+	</insert>
+	
+	<delete id="deleteQnaCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteQnaCat(#{qcseq})
+		}
+	</delete>
+	
+	<update id="updateQnaCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateQnaCat(#{qcseq}, #{name})
+		}
+	</update>
+	
+	<select id="getQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getQna(
+			#{qseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<update id="updateQnaReply" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateQnaReply(#{qseq}, #{reply})
+		}
+	</update>
+	
+	<delete id="deleteQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteQna(#{qseq})
+		}
+	</delete>
+	
+	<insert id="insertBannerImage" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertBannerImage(#{name}, #{image})
+		}
+	</insert>
+	
+	<select id="getBannerImageList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getBannerImageList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<delete id="deleteBannerImage" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteBannerImage(#{biseq})
+		}
+	</delete>
+	
+	<select id="getImageByBiseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getImageByBiseq(
+			#{biseq}, #{image, mode=OUT, jdbcType=VARCHAR})
+		}
+	</select>
+	
+	<insert id="insertBanner" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertBanner(#{biseq}, #{uri}, #{useyn}, #{priority})
+		}
+	</insert>
+	
+	<select id="getBannerList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getBannerList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<delete id="deleteBanner" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteBanner(#{bseq})
+		}
+	</delete>
+	
+	<update id="updateBanner" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateBanner(#{bseq}, #{uri}, #{useyn}, #{priority})
+		}
+	</update>
+	
+	<select id="getMaxPriority" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getMaxPriority(
+			#{maxpriority, mode=OUT, jdbcType=INTEGER})
+		}
+	</select>
+	
+	<select id="getBannerPriorityList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getBannerPriorityList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<update id="updateBannerPriority" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateBannerPriority(#{bseq}, #{priority})
+		}
+	</update>
+	
 </mapper>

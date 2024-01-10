@@ -45,6 +45,8 @@ DROP SEQUENCE invoice_iseq;
 
 /* Create Sequences */
 
+CREATE SEQUENCE banner_bseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE banner_images_biseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE cart_cseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE faq_category_fcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE faq_fseq INCREMENT BY 1 START WITH 1;
@@ -70,6 +72,25 @@ CREATE TABLE admins
 	tel varchar2(20) NOT NULL,
 	email varchar2(30) NOT NULL,
 	PRIMARY KEY (adminid)
+);
+
+CREATE TABLE banner
+(
+	bseq number NOT NULL,
+	biseq number NOT NULL,
+	priority number DEFAULT 0 NOT NULL,
+	uri varchar2(300) DEFAULT '#' NOT NULL,
+	useyn char(1) DEFAULT 'N' NOT NULL,
+	PRIMARY KEY (bseq)
+);
+
+
+CREATE TABLE banner_images
+(
+	biseq number NOT NULL,
+	name varchar2(50) NOT NULL,
+	image varchar2(300) NOT NULL,
+	PRIMARY KEY (biseq)
 );
 
 
@@ -199,11 +220,13 @@ CREATE TABLE qna
 (
 	qseq number NOT NULL,
 	qcseq number NOT NULL,
+	userid varchar2(20) NOT NULL,
 	title varchar2(50) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
 	reply varchar2(1000),
 	secret char(1) DEFAULT 'N' NOT NULL,
+	pseq number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (qseq)
 );
 
@@ -259,6 +282,12 @@ CREATE TABLE invoice
 
 /* Create Foreign Keys */
 
+ALTER TABLE banner
+	ADD FOREIGN KEY (biseq)
+	REFERENCES banner_images (biseq)
+	ON DELETE CASCADE
+;
+
 ALTER TABLE faq
 	ADD FOREIGN KEY (fcseq)
 	REFERENCES faq_category (fcseq)
@@ -306,6 +335,12 @@ ALTER TABLE qna
 	ON DELETE CASCADE
 ;
 
+ALTER TABLE qna
+	ADD FOREIGN KEY (userid)
+	REFERENCES members (userid)
+	ON DELETE CASCADE
+;
+
 
 ALTER TABLE cart
 	ADD FOREIGN KEY (pdseq)
@@ -335,11 +370,25 @@ ALTER TABLE transport
 ;
 
 
+
+/* Create Views */
+
 create or replace view faq_view as
 select f.fseq, f.fcseq, fc.name, f.title, f.content
 from faq f, faq_category fc
 where f.fcseq = fc.fcseq;
 
+
+create or replace view qna_view as
+select q.qseq, q.qcseq, q.userid, qc.name, q.title, q.content, q.regdate, q.reply, q.secret, q.pseq
+from qna q, qna_category qc
+where q.qcseq = qc.qcseq;
+
+
+create or replace view banner_view as
+select b.bseq, b.biseq, bi.name, bi.image, b.priority, b.uri, b.useyn
+from banner b, banner_images bi
+where b.biseq = bi.biseq;
 
 
 /* Select Tables */
@@ -351,9 +400,14 @@ select * from product_category;
 select * from faq;
 select * from faq_category;
 select * from faq_view;
+select * from qna;
+select * from qna_category;
+select * from qna_view;
+select * from banner;
+select * from banner_images;
+select * from banner_view;
 
-delete from product where pseq = 25;
-
+select max(nvl(priority, 0)) from banner;
 
 /* Test Records */
 
@@ -372,4 +426,12 @@ insert into product_category(pcseq, name) values(product_category_pcseq.nextval,
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '니트/스웨터');
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '후드 티셔츠');
 
+insert into faq(fseq, fcseq, title, content) values(faq_fseq.nextval, 1, '회원가입은 어떻게 하나요?', '회원가입은 화면 왼쪽 상단에 있는 회원가입 버튼을 눌러 진행합니다. 약관에 동의하지 않으면 가입할 수 없습니다.');
 
+insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '회원정보/계정');
+insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '상품');
+insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '주문/결제');
+
+
+insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
+insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
