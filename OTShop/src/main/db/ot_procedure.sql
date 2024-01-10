@@ -24,6 +24,40 @@ END;
 
 --------------------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE findId(
+    p_name IN members.name%TYPE,
+    p_email IN members.email%TYPE,
+    p_userid OUT members.userid%TYPE
+)
+IS
+BEGIN
+    SELECT userid INTO p_userid FROM members WHERE name = p_name AND email = p_email;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN p_userid := NULL;
+END;
+
+--------------------------------------------------------------------------------------------
+
+
+CREATE OR REPLACE PROCEDURE findPwd(
+    p_userid IN findAcc.userid%TYPE,
+    p_kind IN findAcc.kind%TYPE,
+    p_answer IN OUT findAcc.answer%TYPE,
+    p_pwd OUT findAcc.pwd%TYPE
+)
+IS
+BEGIN
+    SELECT answer, pwd INTO p_answer, p_pwd 
+    FROM findAcc 
+    WHERE userid = p_userid AND kind = p_kind AND answer = p_answer;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+    p_answer := NULL;
+    p_pwd := NULL;
+END;
+
+--------------------------------------------------------------------------------------------
+
 CREATE OR REPLACE PROCEDURE joinKakao(
     p_userid IN members.userid%TYPE,
     p_name IN members.name%TYPE,
@@ -52,13 +86,14 @@ CREATE OR REPLACE PROCEDURE insertMember(
 IS
 BEGIN
 
-    INSERT INTO pwd_find(userid, kind, answer)
-    VALUES (p_userid, p_kind, p_answer);
-
-    INSERT INTO members(userid, pwd, name, gender, birthdate, tel, email, zipnum, address1,
+    INSERT INTO members( userid, pwd, name, gender, birthdate, tel, email, zipnum, address1,
                         address2, address3, provider)
-    VALUES (p_userid, p_pwd, p_name, p_gender, p_birthdate, p_tel, p_email, p_zipnum,
+    VALUES ( p_userid, p_pwd, p_name, p_gender, p_birthdate, p_tel, p_email, p_zipnum,
             p_address1, p_address2, p_address3, p_provider);
+            
+    INSERT INTO pwd_find(pfseq, userid, kind, answer)
+    VALUES ( pwd_find_pfseq.nextVal, p_userid, p_kind, p_answer);
+    
     COMMIT;
 END;
 

@@ -67,7 +67,7 @@ article#login{ height:100%; display:flex; justify-content:center; align-items:ce
 
 					
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-/* contract CSS */
+/* contract CSS = login.jsp에 기반함 */
 
 #contractTitle{ display:flex; justify-content:center; align-items:center; margin-left:145px; font-weight:bold; 
 			font-size:larger; }
@@ -83,12 +83,21 @@ div#agreebox input[type="button"]{ border:none; border-bottom:1px solid black; b
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* joinForm, mypage(일부), mupdate CSS	 */
 
+/* joinForm.jsp */
+article#jwrap{ display:flex; flex-direction:column;  align-items:center;  justify-content:center; margin:0 auto; }
+article#jwrap #join{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 10px; width:900px; height:100%; }
+article#jwrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
+			border-radius:10px; }
+
+
+
+/* mypage, mupdate */
 article#wrap{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
-article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:1000px; height:100%; }
-article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
+article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:900px; height:100%; }
+article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:800px; height:100%; border:1px solid lightgray;
 			border-radius:10px; }
 #join #joinCover legend{ font-size:180%; font-weight:bold; padding:0; }
-#join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:450px; margin-top:20px; border:1px solid gray; 
+#join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:550px; margin-top:20px; border:1px solid gray; 
 			border-radius:10px; }
 #join #joinCover fieldset#mtitle2{ display:inline-block;  flex-direction:column; width:700px; height:250px; margin-top:20px; border:1px solid gray; 
 			border-radius:10px; }
@@ -96,13 +105,14 @@ article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:cente
 
 #join #mtitle1, #join #mtitle2{ display:inline-block; text-align:left; width:800px; height:50px; margin-top:10px; border:1px solid blue; }
 #join #mtitle1 legend, #join #mtitle2 legend{  font-size:140%; font-weight:bold; }
-#join label{ display:inline-block; align-items:left; text-align:left; width:150px; height:30px; margin:0 10px 10px 20px; padding-top:10px; 
+#join label{ display:inline-block; align-items:left; text-align:left; width:200px; height:30px; margin:0 10px 10px 20px; padding-top:10px; 
 			border:none; border-right:1px solid lightgray; }
+#join select{ display:inline-block; text-align:left; width:190px; height:25px; margin-left:23px; }
 #join #idcheckBtn{ width:50px; height:20px; }
 #join #mspec input[type="text"], #join #mspec input[type="password"]
-			{ display:inline-block; text-align:left;  width:150px; height:20px; margin-left:30px; }
+			{ display:inline-block; text-align:left;  width:180px; height:20px; margin-left:30px; }
 #join #mspec input[type="radio"]	 {margin-left:30px;}
-#join #mspec input[type="date"] {margin-left:25px; width:150px; height:20px; }
+#join #mspec input[type="date"] {margin-left:25px; width:180px; height:20px; }
 #join #mspec input[type="button"] { width:100px; height:25px; background-color:white; border-radius:5px; border:1px solid lightgray; }
 
 #join  input[type="submit"]{ width:730px; height:50px; color:white; background-color:deepskyblue; font-size:110%; font-weight:bold;
@@ -136,13 +146,11 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 .container .box .subCategory{ border-right:1px solid white; cursor: pointer; width:150px; height:150px;
 			text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
 .container .box .subCategory img{padding:0; margin:0; justify-content:center; align-items:center;}
-			
-			
-			
-
 
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* categorySub CSS */
+
 .containerCry{ width:250px;  display:flex; flex-direction:column; align-items:left; border:1px solid lightgray; margin-top:50px; }
 .bigcry{ padding:10px; margin:5px; cursor:pointer; border:none; border-bottom:1px solid lightgray; flex-direction:column; justify-content:left;
 			font-weight:bold; }
@@ -152,8 +160,14 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 			text-decoration:underline; }
 .bigcry:hover .smallcry{ display:block;  }
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* findAcc CSS = login.jsp CSS에 기반함 */
 
-
+#findAccForm #loginTop span{ margin:0 0 0 130px; }
+#findAccForm #loginBottom{ padding-top:20px; }
+#findAccForm hr{ margin-bottom:30px; }
+#findAccForm .findTitle{ text-align:center; font-weight:bold;}
+#findAccForm select{ width:300px; height:50px; border-radius:5px; border:1px solid lightgray; margin-bottom:5px; color:gray; }
 
 
 

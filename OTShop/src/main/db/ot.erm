@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>0</x>
-	<y>0</y>
+	<y>60</y>
 	<default_color>
 		<r>192</r>
 		<g>192</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-12-28 21:16:38</creation_date>
-			<updated_date>2024-01-09 16:57:04</updated_date>
+			<updated_date>2024-01-10 09:47:01</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -602,7 +602,7 @@
 		</word>
 		<word>
 			<id>27</id>
-			<length>null</length>
+			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -614,7 +614,7 @@
 			<description></description>
 			<logical_name>kind</logical_name>
 			<physical_name>kind</physical_name>
-			<type>decimal</type>
+			<type>character(n)</type>
 		</word>
 		<word>
 			<id>28</id>
@@ -1541,7 +1541,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>30</word_id>
+					<word_id>32</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1607,7 +1607,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>17</word_id>
+					<word_id>18</word_id>
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1671,7 +1671,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>28</word_id>
+					<word_id>29</word_id>
 					<id>5</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1737,7 +1737,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>32</word_id>
+					<word_id>30</word_id>
 					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1803,7 +1803,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>19</word_id>
+					<word_id>17</word_id>
 					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2063,7 +2063,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>23</word_id>
+					<word_id>22</word_id>
 					<id>15</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2129,7 +2129,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>69</word_id>
+					<word_id>67</word_id>
 					<id>17</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2162,7 +2162,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>18</word_id>
+					<word_id>19</word_id>
 					<id>18</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2195,7 +2195,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>79</word_id>
+					<word_id>78</word_id>
 					<id>19</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2294,7 +2294,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>4</word_id>
+					<word_id>5</word_id>
 					<id>22</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2327,7 +2327,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>57</word_id>
+					<word_id>61</word_id>
 					<id>23</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2659,7 +2659,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>9</source>
+					<source>14</source>
 					<target>5</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2681,7 +2681,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>14</source>
+					<source>9</source>
 					<target>5</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2745,7 +2745,7 @@
 				<normal_column>
 					<id>31</id>
 					<referenced_column>48</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2779,7 +2779,7 @@
 				<normal_column>
 					<id>32</id>
 					<referenced_column>80</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2844,7 +2844,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>65</word_id>
+					<word_id>64</word_id>
 					<id>34</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3565,7 +3565,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>59</word_id>
+					<word_id>57</word_id>
 					<id>50</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3794,7 +3794,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>78</word_id>
+					<word_id>79</word_id>
 					<id>56</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3893,7 +3893,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>4</word_id>
 					<id>59</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3926,7 +3926,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>67</word_id>
+					<word_id>69</word_id>
 					<id>60</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3959,7 +3959,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>64</word_id>
+					<word_id>65</word_id>
 					<id>61</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3992,7 +3992,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>29</word_id>
+					<word_id>28</word_id>
 					<id>62</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4145,7 +4145,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>61</word_id>
+					<word_id>59</word_id>
 					<id>65</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4275,7 +4275,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>36</word_id>
+					<word_id>35</word_id>
 					<id>68</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4461,7 +4461,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>35</word_id>
+					<word_id>36</word_id>
 					<id>72</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4527,7 +4527,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>22</word_id>
+					<word_id>23</word_id>
 					<id>74</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -5136,7 +5136,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>decimal</type>
+					<type>character(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>

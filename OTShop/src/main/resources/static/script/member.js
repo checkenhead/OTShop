@@ -46,6 +46,28 @@ function idcheck(){
 }
 
 
+function findId(){
+	if(document.findAccFrm.name.value==""){
+		alert("이름을 입력하세요.")
+		document.findAccFrm.name.focus();
+		return;
+	}else if(document.findAccFrm.email.value==""){
+		alert("이메일을 입력하세요.")
+		document.findAccFrm.email.focus();
+		return;
+	}
+	var url = "findId?name=" + document.findAccFrm.name.value +
+						 "&email=" + document.findAccFrm.email.value;
+	locatioin.href = url;
+}
+
+
+function findClose(){
+	window.close();
+}
+
+
+
 function idok(userid){
 	opener.joinFrm.userid.value = userid;
 	// 부모창(opener)의 해당 폼(joinFrm)의 userid 값을 전달인수로 받은 userid로 설정

@@ -274,10 +274,9 @@ public class MemberController {
     	  model.addAttribute("message", "비밀번호 확인을 입력하세요.");
       else if( !repwd.equals(membervo.getPwd() ) )
           model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다." );
-      else if( pwdfindvo.getKind() == null || 
-    		  membervo.getBirthdate().isEmpty() ||
-    		  membervo.getBirthdate().equals("null"))
-    	  model.addAttribute("message", pfresult.getFieldError("kind").getDefaultMessage() );
+      else if( pwdfindvo.getKind() == null || pwdfindvo.getKind().isEmpty() ||
+    		  pwdfindvo.getKind().equals("null") || pwdfindvo.getKind().equals("0") )
+    	  model.addAttribute("message", "비밀번호 질문을 선택하세요" );
       else if( pfresult.getFieldError("answer") != null )
     	  model.addAttribute("message", pfresult.getFieldError("answer").getDefaultMessage() );
       else if( mresult.getFieldError("name") != null )
@@ -331,6 +330,77 @@ public class MemberController {
 	   return "member/findAcc";
    }
    
+   
+   @GetMapping("/findId")
+   public ModelAndView findId(
+	         @RequestParam("name") String name,
+	         @RequestParam("email") String email) {
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	      paramMap.put("name", name);
+	      paramMap.put("email", email);
+	      paramMap.put("rfcursor", null);
+	      
+	      
+	      
+	      ms.findId(paramMap);
+	      String userid = (String) paramMap.get("userid");
+	      
+	      // DB에 해당 name과 email이 일치하는 값이 없을 때
+	      if( userid == null ) mav.addObject("result", -1);
+	      
+	      // DB에 해당 name과 email이 일치하는 값이 있을 때
+	      else mav.addObject("result", 1);	
+	      
+	      mav.addObject("userid", userid);
+	      mav.addObject("name", name);
+	      mav.addObject("email", email);
+	      
+	      mav.setViewName("member/findId");
+	      
+	      return mav;
+	   }
+   
+   
+   @PostMapping("/findPwd")
+   public ModelAndView findPwd(
+	         @RequestParam("userid") String userid,
+	         @RequestParam("kind") String kind,
+	         @RequestParam("answer") String answer) {
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      String userAnswer = answer;
+	      
+	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	      paramMap.put("userid", userid);
+	      paramMap.put("kind", kind);
+	      paramMap.put("answer", answer);
+	      
+	      
+	      ms.findPwd(paramMap);
+	      String pwd = (String) paramMap.get("pwd");
+	      
+	      // DB에 해당 name과 email이 일치하는 값이 없을 때
+	      if( pwd == null ) mav.addObject("result", -1);
+	      
+	      // 사용자 입력 답변과 DB 답변이 일치하지 않을 때
+	      else if( !userAnswer.equals( paramMap.get("answer") ) ) 
+	    	  mav.addObject("result", 2);
+	      
+	      else mav.addObject("result", 1);	
+	      
+	      mav.addObject("pwd", pwd);
+	      mav.addObject("userid", userid);
+	      mav.addObject("kind", kind);
+	      mav.addObject("answer", answer);
+	      
+	      mav.setViewName("member/findPwd");
+	      
+	      return mav;
+	   }
    
    
    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

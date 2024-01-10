@@ -16,6 +16,25 @@
 		}
 	</select>
 	
+	<select id="findId" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL findId(
+			#{name}, #{email},
+			#{userid, mode=OUT, jdbcType=VARCHAR}
+		)
+	}
+	</select>
+	
+	<select id="findPwd" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL findPwd(
+			#{userid}, #{kind}, #{answer},
+			#{pwd, mode=OUT, jdbcType=VARCHAR}
+		)
+	}
+	</select>
+	
+	
 	<insert id="joinKakao" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL joinKakao(

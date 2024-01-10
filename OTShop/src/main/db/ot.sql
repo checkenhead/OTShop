@@ -199,7 +199,7 @@ CREATE TABLE pwd_find
 (
 	pfseq number NOT NULL,
 	userid varchar2(20) NOT NULL,
-	kind number NOT NULL,
+	kind char(1) NOT NULL,
 	answer varchar2(100) NOT NULL,
 	PRIMARY KEY (pfseq)
 );
@@ -376,6 +376,7 @@ select * from faq;
 select * from faq_category;
 select * from faq_view;
 select * from pwd_find;
+select * from findAcc;
 
 delete from product where pseq = 25;
 
@@ -392,7 +393,9 @@ values('kim', '1234', '김길동', 'F', '1989-02-03', '010-2222-2222', 'kim@gmai
 insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gmail.com');
 
-insert into pwd_find(pfseq, userid, kind, answer) values(pwd_find_pfseq.nextval, 'hong', 1, '신촌');
+insert into pwd_find(pfseq, userid, kind, answer) values(pwd_find_pfseq.nextval, 'hong', '1', '신촌');
+delete from pwd_find;
+
 
 
 insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '반소매 티셔츠');
