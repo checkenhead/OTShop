@@ -1,4 +1,7 @@
 @charset "UTF-8";
+*{
+	font-family: Arial, san-serif;
+}
 
 .clear {
 	clear: both;
@@ -7,6 +10,10 @@
 body{
 	margin: 0;
 	padding: 0;
+}
+
+pre{
+	font-size: 15px;
 }
 
 .main_wrap {
@@ -85,13 +92,18 @@ ul li {
 }
 
 table.tblAdminProduct, table.tblAdminProductCat,
-table.tblAdminFaqCat{
-	border-collapse: collapse;
+table.tblAdminFaq, table.tblAdminFaqCat,
+table.tblAdminQna, table.tblAdminQnaCat,
+table.tblAdminMember,
+table.tblAdminBanner {
+	/*border-collapse: collapse;*/
+	border-spacing: 2px;
 	border-top: 3px solid black;
 	border-bottom: 3px solid black;
 	margin-top: 15px;
 	width: 100%;
 	font-size: 90%;
+	empty-cells: hide;
 }
 
 table.options {
@@ -102,14 +114,20 @@ table.options {
 	width: 90%;
 }
 
-.tblAdminProduct th, .tblAdminProduct td, .options th, .options td,
+.options th, .options td,
+.tblAdminProduct th, .tblAdminProduct td,
 .tblAdminProductCat th, .tblAdminProductCat td,
-.tblAdminFaqCat th, .tblAdminFaqCat td {
+.tblAdminFaq th, .tblAdminFaq td,
+.tblAdminFaqCat th, .tblAdminFaqCat td,
+.tblAdminQna th, .tblAdminQna td,
+.tblAdminQnaCat th, .tblAdminQnaCat td,
+.tblAdminMember th, .tblAdminMember td,
+.tblAdminBanner th, .tblAdminBanner td {
 	text-align: center;
 	/* border-bottom: 1px dotted #6F0C78; */
 	padding: 5px;
 	border: 1px solid black;
-	empty-cells: hide;
+	/*empty-cells: hide;*/
 }
 
 table a {

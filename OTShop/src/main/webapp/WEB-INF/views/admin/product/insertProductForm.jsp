@@ -79,7 +79,7 @@
 			<input type="hidden" id="image" name="image" value="${productVO.IMAGE}">
 			<input type="hidden" id="previewFilename" name="previewFilename" value="${previewFilename}">
 			<div id="preview"><c:if test="${not empty productVO.IMAGE}"><img src="images/product/${productVO.IMAGE}" height="150"></c:if></div>
-			<input class="btn" type="button" value="사진선택" onClick="upload_click();">
+			<input class="btn" type="button" value="사진선택" onClick="product_upload_click();">
 		</td>
 	</tr>
 	</table>
@@ -92,6 +92,7 @@
 <div class="message">${message}</div>
 <div style="display:none;">
 <form id="fileup" name="fileup" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="path" name="path">
 	<input type="file" name="upload" onChange="copy_filename();">
 </form>
 </div>

@@ -76,11 +76,11 @@ public class AdminController {
 
 		return url;
 	}
-	
+
 	@GetMapping("/adminLogout")
 	public String adminLogout(HttpServletRequest request) {
 		request.getSession().removeAttribute("loginAdmin");
-		
+
 		return "admin/common/adminLoginForm";
 	}
 
@@ -90,71 +90,16 @@ public class AdminController {
 			return "redirect:/adminLoginForm";
 		else {
 			// product_category 테이블 select값 model에 저장
-			model.addAttribute("productCatList", as.getProductCatList());
+			//model.addAttribute("productCatList", as.getProductCatList());
 
 			return "admin/product/insertProductForm";
 		}
 	}
 
-	/*
-	 * vo객체에 저장하는 방식으로 변경 요구
-	 * 
-	 * @PostMapping("/changeOption") public String changeOption(
-	 * 
-	 * @RequestParam(value = "productCategory", defaultValue = "0") int pcseq,
-	 * 
-	 * @RequestParam("gender") String gender, @RequestParam("brand") String brand,
-	 * 
-	 * @RequestParam("name") String name, @RequestParam("description") String
-	 * description,
-	 * 
-	 * @RequestParam("optname") String[] optname, @RequestParam(value = "image",
-	 * required = false) String image,
-	 * 
-	 * @RequestParam("previewFilename") String previewFilename,
-	 * 
-	 * @RequestParam(value = "price1", required = false) int[] price1,
-	 * 
-	 * @RequestParam(value = "price2", required = false) int[] price2,
-	 * 
-	 * @RequestParam(value = "price3", required = false) int[] price3,
-	 * 
-	 * @RequestParam(value = "stock", required = false) int[] stock,
-	 * 
-	 * @RequestParam(value = "delIndex", defaultValue = "0") int delIndex, Model
-	 * model) {
-	 * 
-	 * ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String,
-	 * Object>>();
-	 * 
-	 * // delIndex : 삭제할 인덱스, -1한 값이 실제 삭제할 index이고 따라서 delIndex가 0일 경우 삭제하지 않음 //
-	 * String[] option : 기존 추가된 옵션 + 방금 추가한 옵션의 이름 // price1, 2, 3 : 기존 추가된 price,
-	 * 따라서 맨 처음 추가 시 null이고 다음부터는 option배열보다 length가 1 // 작음
-	 * 
-	 * // option배열과 price배열을 vo객체에 넣고 리스트로 구성, 방금 추가된 option의 price들은 0을 대입 for (int
-	 * i = 0; i < optname.length; i++) { if ((delIndex - 1) == i ||
-	 * optname[i].equals("")) { // 삭제할 index가 있는 경우와 빈값인 경우 skip continue; } else {
-	 * HashMap<String, Object> optvo = new HashMap<String, Object>();
-	 * optvo.put("optname", optname[i]); // price가 null인 경우 : 맨 처음 추가 시 // price배열의
-	 * 크기는 option배열의 크기보다 1 작으므로 length 체크 후 default 대입 optvo.put("price1", (price1
-	 * == null) || (price1.length <= i) ? 0 : price1[i]); optvo.put("price2",
-	 * (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
-	 * optvo.put("price3", (price3 == null) || (price3.length <= i) ? 0 :
-	 * price3[i]); optvo.put("stock", (stock == null) || (stock.length <= i) ? 0 :
-	 * stock[i]); optionList.add(optvo); } } model.addAttribute("productCatList",
-	 * as.getProductCatList()); model.addAttribute("productCategory", pcseq);
-	 * model.addAttribute("gender", gender); model.addAttribute("brand", brand);
-	 * model.addAttribute("name", name); model.addAttribute("description",
-	 * description); model.addAttribute("image", image);
-	 * model.addAttribute("previewFilename", previewFilename);
-	 * model.addAttribute("optionList", optionList);
-	 * 
-	 * return "admin/product/insertProductForm"; }
-	 */
-
 	@PostMapping("/changeOption")
 	public String changeOption(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
 			@RequestParam(value = "image", required = false) String image,
@@ -200,7 +145,7 @@ public class AdminController {
 
 		HashMap<String, Object> productVO = new HashMap<String, Object>();
 		productVO.put("PSEQ", pseq);
-		productVO.put("PCSEQ", pcseq);
+		//productVO.put("PCSEQ", pcseq);
 		productVO.put("GENDER", gender);
 		productVO.put("BRAND", brand);
 		productVO.put("NAME", name);
@@ -212,7 +157,7 @@ public class AdminController {
 		productVO.put("VIEWCOUNT", viewcount);
 		productVO.put("optionList", optionList);
 
-		model.addAttribute("productCatList", as.getProductCatList());
+		//model.addAttribute("productCatList", as.getProductCatList());
 		model.addAttribute("productVO", productVO);
 		model.addAttribute("previewFilename", previewFilename);
 
@@ -226,10 +171,12 @@ public class AdminController {
 
 	@PostMapping("/fileup")
 	@ResponseBody
-	public HashMap<String, Object> fileup(@RequestParam("upload") MultipartFile file, HttpServletRequest request,
-			Model model) {
+	public HashMap<String, Object> fileup(@RequestParam("upload") MultipartFile file, @RequestParam("path") String path,
+			HttpServletRequest request, Model model) {
 
-		String path = context.getRealPath("/images/product");
+		System.out.println("path : " + path);
+
+		String realPath = context.getRealPath(path);
 
 		Calendar today = Calendar.getInstance();
 		long t = today.getTimeInMillis();
@@ -237,7 +184,7 @@ public class AdminController {
 		String filename = file.getOriginalFilename();
 		String fn1 = filename.substring(0, filename.indexOf("."));
 		String fn2 = filename.substring(filename.indexOf("."));
-		String uploadPath = path + "/" + fn1 + t + fn2;
+		String uploadPath = realPath + fn1 + t + fn2;
 
 		System.out.println("경로 : " + uploadPath);
 
@@ -259,14 +206,11 @@ public class AdminController {
 	}
 
 	@PostMapping("/insertProduct")
-	public String insertProduct(
-			@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+	public String insertProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
 			@RequestParam("gender") String gender,
-			@RequestParam("brand") String brand,
-			@RequestParam("name") String name,
-			@RequestParam("description") String description,
-			@RequestParam("optname") String[] optname,
+			@RequestParam("brand") String brand, @RequestParam("name") String name,
+			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
 			@RequestParam(value = "image", required = false) String image,
 			@RequestParam("previewFilename") String previewFilename,
 			@RequestParam(value = "bestyn", required = false) String bestyn,
@@ -276,18 +220,16 @@ public class AdminController {
 			@RequestParam(value = "price1", required = false) int[] price1,
 			@RequestParam(value = "price2", required = false) int[] price2,
 			@RequestParam(value = "price3", required = false) int[] price3,
-			@RequestParam(value = "stock", required = false) int[] stock,
-			HttpServletRequest request,
-			Model model) {
+			@RequestParam(value = "stock", required = false) int[] stock, HttpServletRequest request, Model model) {
 		if (request.getSession().getAttribute("loginAdmin") == null)
 			return "redirect:/adminLoginForm";
 		else {
 			boolean validationSucess = true;
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
-			
+
 			paramMap.put("PSEQ", pseq);
-			paramMap.put("PCSEQ", pcseq);
+			//paramMap.put("PCSEQ", pcseq);
 			paramMap.put("GENDER", gender);
 			paramMap.put("BRAND", brand);
 			paramMap.put("NAME", name);
@@ -297,7 +239,7 @@ public class AdminController {
 			paramMap.put("USEYN", useyn);
 			paramMap.put("REGDATE", regdate);
 			paramMap.put("VIEWCOUNT", viewcount);
-			
+
 			// validation 실패 시 가져갈 입력 데이터 model에 저장
 			if (stock != null) {
 				for (int i = 0; i < stock.length; i++) {
@@ -310,17 +252,14 @@ public class AdminController {
 					optionList.add(ovo);
 				}
 			}
-			
+
 			paramMap.put("optionList", optionList);
-			
-			model.addAttribute("productCatList", as.getProductCatList());
+
+			//model.addAttribute("productCatList", as.getProductCatList());
 			model.addAttribute("productVO", paramMap);
 
 			// validation
-			if (pcseq == 0) {
-				model.addAttribute("message", "상품분류를 선택하세요.");
-				validationSucess = false;
-			} else if (brand.equals("")) {
+			if (brand.equals("")) {
 				model.addAttribute("message", "브랜드를 입력하세요.");
 				validationSucess = false;
 			} else if (name.equals("")) {
@@ -364,7 +303,7 @@ public class AdminController {
 
 		}
 	}
-	
+
 	@PostMapping("/searchProduct")
 	public String searchProduct(@RequestParam("keyword") String keyword, HttpServletRequest request, Model model) {
 		// 로그인 체크
@@ -377,7 +316,8 @@ public class AdminController {
 			return "admin/product/productManagement";
 		}
 	}
-
+	
+	/* 상품 카테고리 변경
 	@GetMapping("/productCatManagement")
 	public String productCatManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
@@ -390,7 +330,50 @@ public class AdminController {
 			return "admin/product/productCatManagement";
 		}
 	}
+	*/
+	
+	@GetMapping("/productCatManagement")
+	public String productCatManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("mainCatList", as.getProductCatList("main"));
+			model.addAttribute("subCatList", as.getProductCatList("sub"));
 
+			return "admin/product/productCatManagement";
+		}
+	}
+	
+	@GetMapping("/productMainCategory")
+	public String productMainCategory(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("mainCatList", as.getProductCatListwithCount("main"));
+
+			return "admin/product/productMainCategory";
+		}
+	}
+	
+	@GetMapping("/productSubCategory")
+	public String productSubCategory(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("subCatList", as.getProductCatListwithCount("sub"));
+
+			return "admin/product/productSubCategory";
+		}
+	}
+	
+	
+	/* 상품 카테고리 변경
 	@PostMapping("/insertProductCat")
 	public String insertProductCat(@RequestParam("name") String name, HttpServletRequest request) {
 		// 로그인 체크
@@ -402,36 +385,63 @@ public class AdminController {
 			return "redirect:/productCatManagement";
 		}
 	}
-
-	@PostMapping("/deleteProductCat")
-	public String deleteProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+	*/
+	
+	@PostMapping("/insertProductCat")
+	public String insertProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam("name") String name,
 			HttpServletRequest request) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
-			if (pcseq == 0)
-				System.out.println("Error : pcseq값이 0입니다.");
-			else
-				as.deleteProductCat(pcseq);
-
-			return "redirect:/productCatManagement";
+			as.insertProductCat(categoryClass, name);
+			
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
 		}
 	}
 
-	@PostMapping("/updateProductCat")
-	public String updateProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
-			@RequestParam("name") String name, HttpServletRequest request) {
+	@PostMapping("/deleteProductCat")
+	public String deleteProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam(value = "index", defaultValue = "0") int index,
+			HttpServletRequest request) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
-			if (pcseq == 0)
-				System.out.println("Error : pcseq값이 0입니다.");
-			else
-				as.updateProductCat(pcseq, name);
+			as.deleteProductCat(categoryClass, index);
 
-			return "redirect:/productCatManagement";
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
+		}
+	}
+
+	@PostMapping("/updateProductCat")
+	public String updateProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam(value = "index", defaultValue = "0") int index,
+			@RequestParam("name") String name,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateProductCat(categoryClass, index, name);
+
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
 		}
 	}
 
@@ -445,7 +455,7 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				model.addAttribute("productCatList", as.getProductCatList());
+				//model.addAttribute("productCatList", as.getProductCatList());
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 
@@ -512,9 +522,9 @@ public class AdminController {
 
 			paramMap.put("optionList", optionList);
 
-			model.addAttribute("productCatList", as.getProductCatList());
+			//model.addAttribute("productCatList", as.getProductCatList());
 			model.addAttribute("productVO", paramMap);
-			
+
 			if (pcseq == 0) {
 				model.addAttribute("message", "상품분류를 선택하세요.");
 				validationSucess = false;
@@ -528,19 +538,19 @@ public class AdminController {
 				model.addAttribute("message", "상품설명을 입력하세요.");
 				validationSucess = false;
 			} else {
-				for(int i = 0; i < pdseq.length; i++) {
-					if(price1[i] == 0 || price2[i] == 0) {
+				for (int i = 0; i < pdseq.length; i++) {
+					if (price1[i] == 0 || price2[i] == 0) {
 						model.addAttribute("message", "상품 가격을 입력하세요.");
 						validationSucess = false;
 						break;
-					} else if(stock[i] + store[i] < 0) {
+					} else if (stock[i] + store[i] < 0) {
 						model.addAttribute("message", "재고는 0미만일 수 없습니다.");
 						validationSucess = false;
 						break;
 					}
 				}
 			}
-			
+
 			// validation
 			if (!validationSucess) {
 				return "admin/product/updateProductForm";
@@ -568,39 +578,52 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				model.addAttribute("productCatList", as.getProductCatList());
+				//model.addAttribute("productCatList", as.getProductCatList());
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 
 			return "admin/product/adminViewProduct";
 		}
 	}
-	
+
 	@GetMapping("/memberManagement")
 	public String memberManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
-			//model.addAttribute("memberList", as.getMemberList());
-			//member service 부분 완료 후 진행 예정
-			
+			model.addAttribute("memberList", as.getMemberList());
+
 			return "admin/member/memberManagement";
 		}
 	}
-	
+
+	@PostMapping("/changeMemberUseyn")
+	public String changeMemberUseyn(@RequestParam("userid") String userid, @RequestParam("useyn") String useyn,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.changeMemberUseyn(userid, useyn.equals("Y") ? "N" : "Y");
+
+			return "redirect:/memberManagement";
+		}
+	}
+
 	@GetMapping("/faqManagement")
 	public String faqManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
+			model.addAttribute("faqCatList", as.getFaqCatList());
 			model.addAttribute("faqList", as.getFaqList());
-			
+
 			return "admin/faq/faqManagement";
 		}
 	}
-	
+
 	@GetMapping("/faqCatManagement")
 	public String faqCatManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
@@ -613,7 +636,7 @@ public class AdminController {
 			return "admin/faq/faqCatManagement";
 		}
 	}
-	
+
 	@PostMapping("/insertFaqCat")
 	public String insertFaqCat(@RequestParam("name") String name, HttpServletRequest request) {
 		// 로그인 체크
@@ -655,6 +678,307 @@ public class AdminController {
 				as.updateFaqCat(fcseq, name);
 
 			return "redirect:/faqCatManagement";
+		}
+	}
+
+	@PostMapping("/insertFaq")
+	public String insertFaq(@RequestParam("fcseq") int fcseq, @RequestParam("title") String title,
+			@RequestParam("content") String content, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertFaq(fcseq, title, content);
+
+			return "redirect:/faqManagement";
+		}
+	}
+
+	@PostMapping("/updateFaq")
+	public String updateFaq(@RequestParam("fseq") int fseq, @RequestParam("fcseq") int fcseq,
+			@RequestParam("title") String title, @RequestParam("content") String content, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateFaq(fseq, fcseq, title, content);
+
+			return "redirect:/faqManagement";
+		}
+	}
+
+	@PostMapping("/deleteFaq")
+	public String deleteFaq(@RequestParam("fseq") int fseq, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.deleteFaq(fseq);
+
+			return "redirect:/faqManagement";
+		}
+	}
+
+	@GetMapping("/qnaManagement")
+	public String qnaManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("qnaList", as.getQnaList());
+
+			return "admin/qna/qnaManagement";
+		}
+	}
+
+	@GetMapping("/qnaCatManagement")
+	public String qnaCatManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("qnaCatList", as.getQnaCatListwithCount());
+
+			return "admin/qna/qnaCatManagement";
+		}
+	}
+
+	@PostMapping("/insertQnaCat")
+	public String insertQnaCat(@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertQnaCat(name);
+
+			return "redirect:/qnaCatManagement";
+		}
+	}
+
+	@PostMapping("/deleteQnaCat")
+	public String deleteQnaCat(@RequestParam(value = "qcseq", defaultValue = "0") int qcseq,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (qcseq == 0)
+				System.out.println("Error : qcseq값이 0입니다.");
+			else
+				as.deleteQnaCat(qcseq);
+
+			return "redirect:/qnaCatManagement";
+		}
+	}
+
+	@PostMapping("/updateQnaCat")
+	public String updateQnaCat(@RequestParam(value = "qcseq", defaultValue = "0") int qcseq,
+			@RequestParam("name") String name, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if (qcseq == 0)
+				System.out.println("Error : qcseq값이 0입니다.");
+			else
+				as.updateQnaCat(qcseq, name);
+
+			return "redirect:/qnaCatManagement";
+		}
+	}
+
+	@GetMapping("/adminViewQna")
+	public String adminViewQna(@RequestParam("qseq") int qseq, @RequestParam("pseq") int pseq,
+			HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 상품문의일 경우 productVO도 넣음
+			model.addAttribute("qnaVO", as.getQna(qseq));
+			model.addAttribute("productVO", pseq == 0 ? null : as.getProduct(pseq));
+
+			return "admin/qna/adminViewQna";
+		}
+	}
+
+	@PostMapping("/updateQnaReply")
+	public String updateQnaReply(@RequestParam("qseq") int qseq,
+			@RequestParam(value = "pseq", defaultValue = "0") int pseq, @RequestParam("reply") String reply,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateQnaReply(qseq, reply);
+
+			return "redirect:/adminViewQna?qseq=" + qseq + "&pseq=" + pseq;
+		}
+	}
+
+	@PostMapping("/deleteQna")
+	public String deleteQna(@RequestParam("qseq") int qseq, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.deleteQna(qseq);
+
+			return "redirect:/qnaManagement";
+		}
+	}
+
+	@GetMapping("/bannerManagement")
+	public String bannerManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("bannerImageList", as.getBannerImageListwithCount());
+			model.addAttribute("bannerList", as.getBannerList());
+			model.addAttribute("maxPriority", as.getBannerMaxPriority());
+			return "admin/banner/bannerManagement";
+		}
+	}
+
+	@GetMapping("/bannerImages")
+	public String bannerImages(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("bannerImageList", as.getBannerImageListwithCount());
+
+			return "admin/banner/bannerImages";
+		}
+	}
+
+	@PostMapping("/insertBannerImage")
+	public String insertBannerImage(@RequestParam("name") String name, @RequestParam("image") String image,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertBannerImage(name, image);
+
+			return "redirect:/bannerImages";
+		}
+	}
+
+	@PostMapping("/deleteBannerImage")
+	public String deleteBannerImage(@RequestParam("biseq") int biseq, HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.deleteBannerImage(biseq);
+
+			return "redirect:/bannerImages";
+		}
+	}
+
+	@PostMapping("/getImageByBiseq")
+	@ResponseBody
+	public HashMap<String, Object> getImageByBiseq(@RequestParam("biseq") int biseq, HttpServletRequest request,
+			Model model) {
+
+		System.out.println("biseq : " + biseq);
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+
+		try {
+			String image = as.getImageByBiseq(biseq);
+			System.out.println("image : " + image);
+
+			result.put("STATUS", 1);
+			result.put("FILENAME", image);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			result.put("STATUS", 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("STATUS", 0);
+		}
+
+		return result;
+	}
+
+	@PostMapping("/insertBanner")
+	public String insertBanner(
+			@RequestParam("biseq") int biseq,
+			@RequestParam(value = "uri", defaultValue = "#") String uri,
+			@RequestParam("useyn") String useyn,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertBanner(biseq, uri, useyn);
+
+			return "redirect:/bannerManagement";
+		}
+	}
+	
+	@PostMapping("/deleteBanner")
+	public String deleteBanner(
+			@RequestParam("bseq") int bseq,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.deleteBanner(bseq);
+			
+			//priority 정렬 필요
+			
+			return "redirect:/bannerManagement";
+		}
+	}
+	
+	@PostMapping("/updateBanner")
+	public String updateBanner(
+			@RequestParam("bseq") int bseq,
+			@RequestParam("priority") int priority,
+			@RequestParam(value = "uri", defaultValue = "#") String uri,
+			@RequestParam("useyn") String useyn,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateBanner(bseq, priority, uri, useyn);
+			
+			return "redirect:/bannerManagement";
+		}
+	}
+	
+	@PostMapping("/raiseBannerPriority")
+	public String raiseBannerPriority(
+			@RequestParam("priority") int priority,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.swapBannerPriority(priority, "raise");
+			
+			return "redirect:/bannerManagement";
+		}
+	}
+	
+	@PostMapping("/lowerBannerPriority")
+	public String lowerBannerPriority(
+			@RequestParam("priority") int priority,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.swapBannerPriority(priority, "lower");
+			
+			return "redirect:/bannerManagement";
 		}
 	}
 }

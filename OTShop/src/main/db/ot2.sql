@@ -1,6 +1,8 @@
 
 /* Drop Triggers */
 
+DROP TRIGGER TRI_banner_bseq;
+DROP TRIGGER TRI_banner_images_biseq;
 DROP TRIGGER TRI_cart_cseq;
 DROP TRIGGER TRI_faq_category_fcseq;
 DROP TRIGGER TRI_faq_fseq;
@@ -10,10 +12,16 @@ DROP TRIGGER TRI_option_opseq;
 DROP TRIGGER TRI_orders_oseq;
 DROP TRIGGER TRI_order_detail_odseq;
 DROP TRIGGER TRI_order_oseq;
+DROP TRIGGER TRI_product_category_list_pcseq;
 DROP TRIGGER TRI_product_category_pcseq;
+DROP TRIGGER TRI_product_category_set_pcsseq;
 DROP TRIGGER TRI_product_detail_opseq;
 DROP TRIGGER TRI_product_detail_pdseq;
+DROP TRIGGER TRI_product_main_category_list_pmclseq;
+DROP TRIGGER TRI_product_main_category_pmcseq;
 DROP TRIGGER TRI_product_pseq;
+DROP TRIGGER TRI_product_sub_category_list_psclseq;
+DROP TRIGGER TRI_product_sub_category_pscseq;
 DROP TRIGGER TRI_qna_category_qcseq;
 DROP TRIGGER TRI_qna_qseq;
 DROP TRIGGER TRI_reply_rseq;
@@ -25,6 +33,8 @@ DROP TRIGGER TRI_transport_tseq;
 /* Drop Tables */
 
 DROP TABLE admins CASCADE CONSTRAINTS;
+DROP TABLE banner CASCADE CONSTRAINTS;
+DROP TABLE banner_images CASCADE CONSTRAINTS;
 DROP TABLE cart CASCADE CONSTRAINTS;
 DROP TABLE faq CASCADE CONSTRAINTS;
 DROP TABLE faq_category CASCADE CONSTRAINTS;
@@ -33,17 +43,23 @@ DROP TABLE invoice CASCADE CONSTRAINTS;
 DROP TABLE logis CASCADE CONSTRAINTS;
 DROP TABLE order_detail CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
+DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE product_detail CASCADE CONSTRAINTS;
+DROP TABLE product_main_category_list CASCADE CONSTRAINTS;
+DROP TABLE product_sub_category_list CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
-DROP TABLE product_category CASCADE CONSTRAINTS;
-DROP TABLE qna CASCADE CONSTRAINTS;
+DROP TABLE product_category_set CASCADE CONSTRAINTS;
+DROP TABLE product_main_category CASCADE CONSTRAINTS;
+DROP TABLE product_sub_category CASCADE CONSTRAINTS;
 DROP TABLE qna_category CASCADE CONSTRAINTS;
 
 
 
 /* Drop Sequences */
 
+DROP SEQUENCE SEQ_banner_bseq;
+DROP SEQUENCE SEQ_banner_images_biseq;
 DROP SEQUENCE SEQ_cart_cseq;
 DROP SEQUENCE SEQ_faq_category_fcseq;
 DROP SEQUENCE SEQ_faq_fseq;
@@ -53,10 +69,16 @@ DROP SEQUENCE SEQ_option_opseq;
 DROP SEQUENCE SEQ_orders_oseq;
 DROP SEQUENCE SEQ_order_detail_odseq;
 DROP SEQUENCE SEQ_order_oseq;
+DROP SEQUENCE SEQ_product_category_list_pcseq;
 DROP SEQUENCE SEQ_product_category_pcseq;
+DROP SEQUENCE SEQ_product_category_set_pcsseq;
 DROP SEQUENCE SEQ_product_detail_opseq;
 DROP SEQUENCE SEQ_product_detail_pdseq;
+DROP SEQUENCE SEQ_product_main_category_list_pmclseq;
+DROP SEQUENCE SEQ_product_main_category_pmcseq;
 DROP SEQUENCE SEQ_product_pseq;
+DROP SEQUENCE SEQ_product_sub_category_list_psclseq;
+DROP SEQUENCE SEQ_product_sub_category_pscseq;
 DROP SEQUENCE SEQ_qna_category_qcseq;
 DROP SEQUENCE SEQ_qna_qseq;
 DROP SEQUENCE SEQ_reply_rseq;
@@ -68,6 +90,8 @@ DROP SEQUENCE SEQ_transport_tseq;
 
 /* Create Sequences */
 
+CREATE SEQUENCE SEQ_banner_bseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_banner_images_biseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_cart_cseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_faq_category_fcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_faq_fseq INCREMENT BY 1 START WITH 1;
@@ -77,10 +101,16 @@ CREATE SEQUENCE SEQ_option_opseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_order_detail_odseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_order_oseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_category_list_pcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_category_pcseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_category_set_pcsseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_detail_opseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_detail_pdseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_main_category_list_pmclseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_main_category_pmcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_pseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_sub_category_list_psclseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_sub_category_pscseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_qna_category_qcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_qna_qseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_reply_rseq INCREMENT BY 1 START WITH 1;
@@ -99,6 +129,26 @@ CREATE TABLE admins
 	tel varchar2(20) NOT NULL,
 	email varchar2(30) NOT NULL,
 	PRIMARY KEY (adminid)
+);
+
+
+CREATE TABLE banner
+(
+	bseq number NOT NULL,
+	biseq number NOT NULL,
+	priority number DEFAULT 0 NOT NULL,
+	uri varchar2(300) DEFAULT '#' NOT NULL,
+	useyn char(1) DEFAULT 'N' NOT NULL,
+	PRIMARY KEY (bseq)
+);
+
+
+CREATE TABLE banner_images
+(
+	biseq number NOT NULL,
+	name varchar2(50) NOT NULL,
+	image varchar2(300) NOT NULL,
+	PRIMARY KEY (biseq)
 );
 
 
@@ -177,9 +227,6 @@ CREATE TABLE members
 	PRIMARY KEY (userid)
 );
 
-select * from members;
-delete from members;
-
 
 CREATE TABLE orders
 (
@@ -205,7 +252,6 @@ CREATE TABLE order_detail
 CREATE TABLE product
 (
 	pseq number NOT NULL,
-	pcseq number NOT NULL,
 	brand varchar2(30),
 	name varchar2(30) NOT NULL,
 	description varchar2(1000),
@@ -219,11 +265,12 @@ CREATE TABLE product
 );
 
 
-CREATE TABLE product_category
+CREATE TABLE product_category_set
 (
-	pcseq number NOT NULL,
-	name varchar2(30) NOT NULL,
-	PRIMARY KEY (pcseq)
+	pcsseq number NOT NULL,
+	pmcseq number NOT NULL,
+	pscseq number NOT NULL,
+	PRIMARY KEY (pcsseq)
 );
 
 
@@ -237,9 +284,43 @@ CREATE TABLE product_detail
 	price2 number NOT NULL,
 	-- 마진
 	price3 number NOT NULL,
-	options varchar2(50) DEFAULT 'option' NOT NULL,
+	optname varchar2(50) DEFAULT 'option' NOT NULL,
 	stock number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (pdseq)
+);
+
+
+CREATE TABLE product_main_category
+(
+	pmcseq number NOT NULL,
+	name varchar2(30) NOT NULL,
+	PRIMARY KEY (pmcseq)
+);
+
+
+CREATE TABLE product_main_category_list
+(
+	pmclseq number NOT NULL,
+	pseq number NOT NULL,
+	pmcseq number NOT NULL,
+	PRIMARY KEY (pmclseq)
+);
+
+
+CREATE TABLE product_sub_category
+(
+	pscseq number NOT NULL,
+	name varchar2(30) NOT NULL,
+	PRIMARY KEY (pscseq)
+);
+
+
+CREATE TABLE product_sub_category_list
+(
+	psclseq number NOT NULL,
+	pseq number NOT NULL,
+	pscseq number NOT NULL,
+	PRIMARY KEY (psclseq)
 );
 
 
@@ -247,11 +328,13 @@ CREATE TABLE qna
 (
 	qseq number NOT NULL,
 	qcseq number NOT NULL,
+	userid varchar2(20) NOT NULL,
 	title varchar2(50) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
 	reply varchar2(1000),
 	secret char(1) DEFAULT 'N' NOT NULL,
+	pseq number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (qseq)
 );
 
@@ -278,6 +361,12 @@ CREATE TABLE transport
 
 /* Create Foreign Keys */
 
+ALTER TABLE banner
+	ADD FOREIGN KEY (biseq)
+	REFERENCES banner_images (biseq)
+;
+
+
 ALTER TABLE faq
 	ADD FOREIGN KEY (fcseq)
 	REFERENCES faq_category (fcseq)
@@ -302,6 +391,12 @@ ALTER TABLE orders
 ;
 
 
+ALTER TABLE qna
+	ADD FOREIGN KEY (userid)
+	REFERENCES members (userid)
+;
+
+
 ALTER TABLE order_detail
 	ADD FOREIGN KEY (oseq)
 	REFERENCES orders (oseq)
@@ -314,9 +409,15 @@ ALTER TABLE product_detail
 ;
 
 
-ALTER TABLE product
-	ADD FOREIGN KEY (pcseq)
-	REFERENCES product_category (pcseq)
+ALTER TABLE product_main_category_list
+	ADD FOREIGN KEY (pseq)
+	REFERENCES product (pseq)
+;
+
+
+ALTER TABLE product_sub_category_list
+	ADD FOREIGN KEY (pseq)
+	REFERENCES product (pseq)
 ;
 
 
@@ -332,6 +433,30 @@ ALTER TABLE order_detail
 ;
 
 
+ALTER TABLE product_category_set
+	ADD FOREIGN KEY (pmcseq)
+	REFERENCES product_main_category (pmcseq)
+;
+
+
+ALTER TABLE product_main_category_list
+	ADD FOREIGN KEY (pmcseq)
+	REFERENCES product_main_category (pmcseq)
+;
+
+
+ALTER TABLE product_category_set
+	ADD FOREIGN KEY (pscseq)
+	REFERENCES product_sub_category (pscseq)
+;
+
+
+ALTER TABLE product_sub_category_list
+	ADD FOREIGN KEY (pscseq)
+	REFERENCES product_sub_category (pscseq)
+;
+
+
 ALTER TABLE qna
 	ADD FOREIGN KEY (qcseq)
 	REFERENCES qna_category (qcseq)
@@ -340,6 +465,26 @@ ALTER TABLE qna
 
 
 /* Create Triggers */
+
+CREATE OR REPLACE TRIGGER TRI_banner_bseq BEFORE INSERT ON banner
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_banner_bseq.nextval
+	INTO :new.bseq
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_banner_images_biseq BEFORE INSERT ON banner_images
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_banner_images_biseq.nextval
+	INTO :new.biseq
+	FROM dual;
+END;
+
+/
 
 CREATE OR REPLACE TRIGGER TRI_cart_cseq BEFORE INSERT ON cart
 FOR EACH ROW
@@ -431,11 +576,31 @@ END;
 
 /
 
+CREATE OR REPLACE TRIGGER TRI_product_category_list_pcseq BEFORE INSERT ON product_category_list
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_category_list_pcseq.nextval
+	INTO :new.pcseq
+	FROM dual;
+END;
+
+/
+
 CREATE OR REPLACE TRIGGER TRI_product_category_pcseq BEFORE INSERT ON product_category
 FOR EACH ROW
 BEGIN
 	SELECT SEQ_product_category_pcseq.nextval
 	INTO :new.pcseq
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_product_category_set_pcsseq BEFORE INSERT ON product_category_set
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_category_set_pcsseq.nextval
+	INTO :new.pcsseq
 	FROM dual;
 END;
 
@@ -461,11 +626,51 @@ END;
 
 /
 
+CREATE OR REPLACE TRIGGER TRI_product_main_category_list_pmclseq BEFORE INSERT ON product_main_category_list
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_main_category_list_pmclseq.nextval
+	INTO :new.pmclseq
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_product_main_category_pmcseq BEFORE INSERT ON product_main_category
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_main_category_pmcseq.nextval
+	INTO :new.pmcseq
+	FROM dual;
+END;
+
+/
+
 CREATE OR REPLACE TRIGGER TRI_product_pseq BEFORE INSERT ON product
 FOR EACH ROW
 BEGIN
 	SELECT SEQ_product_pseq.nextval
 	INTO :new.pseq
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_product_sub_category_list_psclseq BEFORE INSERT ON product_sub_category_list
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_sub_category_list_psclseq.nextval
+	INTO :new.psclseq
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_product_sub_category_pscseq BEFORE INSERT ON product_sub_category
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_product_sub_category_pscseq.nextval
+	INTO :new.pscseq
 	FROM dual;
 END;
 

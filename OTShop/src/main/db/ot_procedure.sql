@@ -141,17 +141,21 @@ END;
 ------------------------------------------------------------------------------
 
 create or replace procedure getProductCatList(
+    p_categoryClass in varchar2,
     p_cur out sys_refcursor)
 is
 
 begin
-    open p_cur for select * from product_category order by pcseq asc;
+    if p_categoryClass = 'main' then
+        open p_cur for select * from product_main_category order by pmcseq asc;
+    elsif p_categoryClass = 'sub' then
+        open p_cur for select * from product_sub_category order by pscseq asc;
+    end if;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure insertProduct(
-    p_pcseq in product.pcseq%type,
     p_brand in product.brand%type,
     p_name in product.name%type,
     p_description in product.description%type,
@@ -161,8 +165,8 @@ create or replace procedure insertProduct(
 is
 
 begin
-    insert into product(pseq, pcseq, brand, name, description, gender, image)
-    values(product_pseq.nextval, p_pcseq, p_brand, p_name, p_description, p_gender, p_image);
+    insert into product(pseq, brand, name, description, gender, image)
+    values(product_pseq.nextval, p_brand, p_name, p_description, p_gender, p_image);
     p_pseq := product_pseq.currval;
     
 end;
@@ -226,45 +230,82 @@ create or replace procedure getCount(
 is
 
 begin
-    if p_tablename = 'product' then
-        select count(*) into p_cnt from product where pcseq = p_keynum;
+    if p_tablename = 'product_main_category' then
+        select count(*) into p_cnt from product_main_category_list where pmcseq = p_keynum;
+    elsif p_tablename = 'product_sub_category' then
+        select count(*) into p_cnt from product_sub_category_list where pscseq = p_keynum;
     elsif p_tablename = 'faq' then
         select count(*) into p_cnt from faq where fcseq = p_keynum;
+    elsif p_tablename = 'qna' then
+        select count(*) into p_cnt from qna where qcseq = p_keynum;
+    elsif p_tablename = 'banner' then
+        select count(*) into p_cnt from banner where priority > 0 and biseq = p_keynum;
     end if;
     
 end;
 ------------------------------------------------------------------------------
+--제품 카테고리 변경
+--create or replace procedure insertProductCat(
+--    p_name in product_category.name%type)
+--is
+--
+--begin
+--    insert into product_category(pcseq, name)
+--    values(product_category_pcseq.nextval, p_name);
+--    commit;
+--    
+--end;
+------------------------------------------------------------------------------
 
 create or replace procedure insertProductCat(
-    p_name in product_category.name%type)
+    p_tablename in varchar2,
+    p_name in varchar2)
 is
 
 begin
-    insert into product_category(pcseq, name)
-    values(product_category_pcseq.nextval, p_name);
+    if p_tablename = 'main' then
+        insert into product_main_category(pmcseq, name)
+        values(product_main_category_pmcseq.nextval, p_name);
+    elsif  p_tablename = 'sub' then
+        insert into product_sub_category(pscseq, name)
+        values(product_sub_category_pscseq.nextval, p_name);
+    end if;
+    
     commit;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure deleteProductCat(
-    p_pcseq in product_category.pcseq%type)
+    p_tablename in varchar2,
+    p_index in number)
 is
 
 begin
-    delete from product_category where pcseq = p_pcseq;
+    if p_tablename = 'main' then
+         delete from product_main_category where pmcseq = p_index;
+    elsif  p_tablename = 'sub' then
+         delete from product_sub_category where pscseq = p_index;
+    end if;
+    
     commit;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure updateProductCat(
-    p_pcseq in product_category.pcseq%type,
-    p_name in product_category.name%type)
+    p_tablename in varchar2,
+    p_index in number,
+    p_name in varchar2)
 is
 
 begin
-    update product_category set name = p_name where pcseq = p_pcseq;
+    if p_tablename = 'main' then
+         update product_main_category set name = p_name where pmcseq = p_index;
+    elsif  p_tablename = 'sub' then
+         update product_sub_category set name = p_name where pscseq = p_index;
+    end if;
+    
     commit;
     
 end;
@@ -365,5 +406,310 @@ is
 begin
     update faq_category set name = p_name where fcseq = p_fcseq;
     commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertFaq(
+    p_fcseq in faq.fcseq%type,
+    p_title in faq.title%type,
+    p_content in faq.content%type)
+is
+
+begin
+    insert into faq(fseq, fcseq, title, content)
+    values(faq_fseq.nextval, p_fcseq, p_title, p_content);
+    commit;
+    
+end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure updateFaq(
+    p_fseq in faq.fseq%type,
+    p_fcseq in faq.fcseq%type,
+    p_title in faq.title%type,
+    p_content in faq.content%type)
+is
+
+begin
+    update faq set fcseq = p_fcseq, title = p_title, content = p_content
+    where fseq = p_fseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteFaq(
+    p_fseq in faq.fseq%type)
+is
+
+begin
+    delete from faq where fseq = p_fseq;
+    commit;
+    
+end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure getMemberList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from members order by regdate desc;
+    
+end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure changeMemberUseyn(
+    p_userid in members.userid%type,
+    p_useyn in members.useyn%type)
+is
+
+begin
+    update members set useyn = p_useyn where userid = p_userid;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getQnaList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from qna_view order by regdate desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getQnaCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from qna_category order by qcseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertQnaCat(
+    p_name in qna_category.name%type)
+is
+
+begin
+    insert into qna_category(qcseq, name)
+    values(qna_category_qcseq.nextval, p_name);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteQnaCat(
+    p_qcseq in qna_category.qcseq%type)
+is
+
+begin
+    delete from qna_category where qcseq = p_qcseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateQnaCat(
+    p_qcseq in qna_category.qcseq%type,
+    p_name in qna_category.name%type)
+is
+
+begin
+    update qna_category set name = p_name where qcseq = p_qcseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getQna(
+    p_qseq in qna_view.qseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from qna_view where qseq = p_qseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateQnaReply(
+    p_qseq in qna.qseq%type,
+    p_reply in qna.reply%type)
+is
+
+begin
+    update qna set reply = p_reply where qseq = p_qseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteQna(
+    p_qseq in qna.qseq%type)
+is
+
+begin
+    delete from qna where qseq = p_qseq;
+    commit;
+    
+end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure insertBannerImage(
+    p_name in banner_images.name%type,
+    p_image in banner_images.image%type)
+is
+
+begin
+    insert into banner_images(biseq, name, image)
+    values(banner_images_biseq.nextval, p_name, p_image);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getBannerImageList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for select * from banner_images order by biseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteBannerImage(
+    p_biseq in banner_images.biseq%type)
+is
+
+begin
+    delete from banner_images where biseq = p_biseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getImageByBiseq(
+    p_biseq in banner_images.biseq%type,
+    p_image out varchar2)
+is
+
+begin
+    select image into p_image from banner_images where biseq = p_biseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertBanner(
+    p_biseq in banner.biseq%type,
+    p_uri in banner.uri%type,
+    p_useyn in banner.useyn%type,
+    p_priority in banner.priority%type)
+is
+
+begin
+    insert into banner(bseq, biseq, uri, useyn, priority)
+    values(banner_bseq.nextval, p_biseq, p_uri, p_useyn, p_priority);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getBannerList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from banner_view order by (case when priority = 0 then 1 else 0 end), priority;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteBanner(
+    p_bseq in banner.bseq%type)
+is
+
+begin
+    delete from banner where bseq = p_bseq;
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateBanner(
+    p_bseq in banner.bseq%type,
+    p_uri in banner.uri%type,
+    p_useyn in banner.useyn%type,
+    p_priority in banner.priority%type)
+is
+
+begin
+    update banner set uri = p_uri, useyn = p_useyn, priority = p_priority where bseq = p_bseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getMaxPriority(
+    p_maxpriority out number)
+is
+
+begin
+    select max(nvl(priority, 0)) into p_maxpriority from banner;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getBannerPriorityList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from banner where priority > 0 order by priority asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateBannerPriority(
+    p_bseq in banner.bseq%type,
+    p_priority in banner.priority%type)
+is
+
+begin
+    update banner set priority = p_priority where bseq = p_bseq;
+    -- no commit here : Service Transaction
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getMainCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_main_category order by pmcseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getSubCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_sub_category order by pscseq desc;
     
 end;
