@@ -18,7 +18,7 @@
 	<input type="password" name="pwd" class="loginData" placeholder="비밀번호"><br>
 	<span id="statueText">${message}</span><br>
 	<input type="submit" value="로그인"><br>
-	<input type="button" id="joinBtn" value="회원가입" onclick="location.href='contract'">
+	<input type="button" class="joinBtn" value="회원가입" onclick="location.href='contract'">
 	<input type="button" id="findBtn" value="아이디 | 비밀번호 찾기" onclick="location.href='findAcc'"><br>
 	<a href="kakaostart" ><img src="/images/kakao.png" id="kakaoBtn"></a><br>
 	<img src="/images/apple.png" id="appleBtn" ><br>

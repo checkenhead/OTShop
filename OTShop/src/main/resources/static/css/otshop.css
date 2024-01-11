@@ -53,7 +53,7 @@ article#login{ height:100%; display:flex; justify-content:center; align-items:ce
 #loginBottom input[type="password"]{ margin-bottom:15px; }
 #loginBottom input[type="submit"]{ width:300px; height:40px; border-radius:5px; margin-top:10px;
 			background-color:deepskyblue; font-weight:bold; color:white; border:none;}
-#loginBottom input#joinBtn{ width:300px; height:40px; border-radius:5px; background-color:black; font-weight:bold;
+#loginBottom input.joinBtn{ width:300px; height:40px; border-radius:5px; background-color:black; font-weight:bold;
 			color:white; margin-top:5px; }
 #loginBottom span#statueText{ display:inline-block; text-align:left; font-size:smaller; font-weight:bold; width:300px; height:20px;}		
 #loginBottom input#findBtn{ border:none; width:200px; height:20px; color:gray; background-color:white;
@@ -167,11 +167,13 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 #findAccForm #loginBottom{ padding-top:20px; }
 #findAccForm hr{ margin-bottom:30px; }
 #findAccForm .findTitle{ text-align:center; font-weight:bold;}
+#findAccForm .gofind{ width:300px; height:40px; border:none; border-radius:5px; background-color:deepskyblue; font-weight:bold;
+			color:white; margin-top:20px; }
 #findAccForm select{ width:300px; height:50px; border-radius:5px; border:1px solid lightgray; margin-bottom:5px; color:gray; }
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* findId, findPwd CSS = login.jsp CSS에 기반함 */
 
-
-
-
-
-
+#loginTop span.findAccTop{ display:flex; justify-content:center; align-items:center; margin-left:126px; font-weight:bold; 
+			font-size:larger; }
+#loginBottom .result{ font-weight:bold; font-size:90%; }

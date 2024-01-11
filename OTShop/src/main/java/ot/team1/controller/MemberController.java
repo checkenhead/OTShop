@@ -331,7 +331,7 @@ public class MemberController {
    }
    
    
-   @GetMapping("/findId")
+   @PostMapping("/findId")
    public ModelAndView findId(
 	         @RequestParam("name") String name,
 	         @RequestParam("email") String email) {
@@ -341,7 +341,6 @@ public class MemberController {
 	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
 	      paramMap.put("name", name);
 	      paramMap.put("email", email);
-	      paramMap.put("rfcursor", null);
 	      
 	      
 	      
@@ -366,41 +365,53 @@ public class MemberController {
    
    @PostMapping("/findPwd")
    public ModelAndView findPwd(
-	         @RequestParam("userid") String userid,
-	         @RequestParam("kind") String kind,
-	         @RequestParam("answer") String answer) {
+	         @RequestParam("userid") String inuserid,
+	         @RequestParam("kind") String inkind,
+	         @RequestParam("answer") String inanswer) {
 	      
 	      ModelAndView mav = new ModelAndView();
 	      
-	      String userAnswer = answer;
-	      
 	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
-	      paramMap.put("userid", userid);
-	      paramMap.put("kind", kind);
-	      paramMap.put("answer", answer);
+	      paramMap.put("userid", inuserid);
 	      
-	      
+	      // DB에서 데이터 가져옴
 	      ms.findPwd(paramMap);
+	      
+	      String userid = (String) paramMap.get("userid");
+	      String kind = (String) paramMap.get("kind");
+	      String answer = (String) paramMap.get("answer");
 	      String pwd = (String) paramMap.get("pwd");
 	      
-	      // DB에 해당 name과 email이 일치하는 값이 없을 때
-	      if( pwd == null ) mav.addObject("result", -1);
 	      
-	      // 사용자 입력 답변과 DB 답변이 일치하지 않을 때
-	      else if( !userAnswer.equals( paramMap.get("answer") ) ) 
-	    	  mav.addObject("result", 2);
+    	  System.out.println("inuserid : " + inuserid + ", userid : " + userid);
+    	  System.out.println("pwd : " + pwd);
+    	  System.out.println("inkind : " + inkind + ", kind : " + kind );
+    	  System.out.println("inanswer : " + inanswer + ", answer : " + answer);
+    	  
 	      
-	      else mav.addObject("result", 1);	
-	      
-	      mav.addObject("pwd", pwd);
-	      mav.addObject("userid", userid);
-	      mav.addObject("kind", kind);
-	      mav.addObject("answer", answer);
-	      
-	      mav.setViewName("member/findPwd");
-	      
-	      return mav;
-	   }
+	      // 해당되는 outpwd가 없을 경우 = 가입 이력 없음
+    	  if( pwd == null || pwd.equals("")) mav.addObject("result", -1);
+    	  // userid는 맞지만 질문 선택이 틀린 경우
+    	  else if( inuserid.equals(userid) && !inkind.equals(kind.trim()) &&( inanswer.equals(answer) || !inanswer.equals(answer) ))
+    		  mav.addObject("result",2);
+    	  // userid와 질문 선택은 맞지만 답변이 틀린 경우
+    	  else if( inuserid.equals(userid) && inkind.equals(kind.trim()) && !inanswer.equals(answer) )
+    		  mav.addObject("result",3);
+    	// 모두 맞는 경우
+    	  else if( inuserid.equals(userid) && inkind.equals(kind.trim()) && inanswer.equals(answer) ) {
+    		  mav.addObject("result", 1);
+    	  	  mav.addObject("pwd", pwd);
+    	  	  mav.addObject("userid", userid);
+    	  	  mav.addObject("kind", kind);
+    	  	  mav.addObject("answer", answer);
+    	  }
+
+      mav.setViewName("member/findPwd");
+      
+      return mav;
+   }
+
+	    	  
    
    
    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

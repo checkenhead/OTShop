@@ -46,24 +46,35 @@ function idcheck(){
 }
 
 
-function findId(){
-	if(document.findAccFrm.name.value==""){
+function gofindId(){
+	if(document.findIdFrm.name.value==""){
 		alert("이름을 입력하세요.")
-		document.findAccFrm.name.focus();
-		return;
-	}else if(document.findAccFrm.email.value==""){
+		document.findIdFrm.name.focus();
+	}else if(document.findIdFrm.email.value==""){
 		alert("이메일을 입력하세요.")
-		document.findAccFrm.email.focus();
-		return;
+		document.findIdFrm.email.focus();
+	}else{
+		document.findIdFrm.action = "findId";
+		document.findIdFrm.submit();
 	}
-	var url = "findId?name=" + document.findAccFrm.name.value +
-						 "&email=" + document.findAccFrm.email.value;
-	locatioin.href = url;
 }
 
 
-function findClose(){
-	window.close();
+function gofindPwd(){
+	if(document.findPwdFrm.userid.value==""){
+		alert("아이디를 입력하세요.");
+		document.findIdFrm.userid.focus();
+	}else if(document.findPwdFrm.kind.value==""
+				|| document.findPwdFrm.kind.value=="0"){
+		alert("질문을 선택하세요.");
+		document.findIdFrm.kind.focus();
+	}else if(document.findPwdFrm.answer.value==""){
+		alert("답변을 입력하세요.");
+		document.findIdFrm.kind.focus();
+	}else{
+		document.findPwdFrm.action = "findPwd";
+		document.findPwdFrm.submit();
+	}
 }
 
 
