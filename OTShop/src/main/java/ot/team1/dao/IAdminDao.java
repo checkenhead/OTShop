@@ -91,4 +91,8 @@ public interface IAdminDao {
 
 	public void updateBannerPriority(HashMap<String, Object> paramMap);
 
+	public void getMainCatList(HashMap<String, Object> paramMap);
+
+	public void getSubCatList(HashMap<String, Object> paramMap);
+
 }

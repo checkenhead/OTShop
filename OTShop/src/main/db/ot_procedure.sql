@@ -110,17 +110,21 @@ END;
 ------------------------------------------------------------------------------
 
 create or replace procedure getProductCatList(
+    p_categoryClass in varchar2,
     p_cur out sys_refcursor)
 is
 
 begin
-    open p_cur for select * from product_category order by pcseq asc;
+    if p_categoryClass = 'main' then
+        open p_cur for select * from product_main_category order by pmcseq asc;
+    elsif p_categoryClass = 'sub' then
+        open p_cur for select * from product_sub_category order by pscseq asc;
+    end if;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure insertProduct(
-    p_pcseq in product.pcseq%type,
     p_brand in product.brand%type,
     p_name in product.name%type,
     p_description in product.description%type,
@@ -130,8 +134,8 @@ create or replace procedure insertProduct(
 is
 
 begin
-    insert into product(pseq, pcseq, brand, name, description, gender, image)
-    values(product_pseq.nextval, p_pcseq, p_brand, p_name, p_description, p_gender, p_image);
+    insert into product(pseq, brand, name, description, gender, image)
+    values(product_pseq.nextval, p_brand, p_name, p_description, p_gender, p_image);
     p_pseq := product_pseq.currval;
     
 end;
@@ -195,8 +199,10 @@ create or replace procedure getCount(
 is
 
 begin
-    if p_tablename = 'product' then
-        select count(*) into p_cnt from product where pcseq = p_keynum;
+    if p_tablename = 'product_main_category' then
+        select count(*) into p_cnt from product_main_category_list where pmcseq = p_keynum;
+    elsif p_tablename = 'product_sub_category' then
+        select count(*) into p_cnt from product_sub_category_list where pscseq = p_keynum;
     elsif p_tablename = 'faq' then
         select count(*) into p_cnt from faq where fcseq = p_keynum;
     elsif p_tablename = 'qna' then
@@ -207,37 +213,68 @@ begin
     
 end;
 ------------------------------------------------------------------------------
+--제품 카테고리 변경
+--create or replace procedure insertProductCat(
+--    p_name in product_category.name%type)
+--is
+--
+--begin
+--    insert into product_category(pcseq, name)
+--    values(product_category_pcseq.nextval, p_name);
+--    commit;
+--    
+--end;
+------------------------------------------------------------------------------
 
 create or replace procedure insertProductCat(
-    p_name in product_category.name%type)
+    p_tablename in varchar2,
+    p_name in varchar2)
 is
 
 begin
-    insert into product_category(pcseq, name)
-    values(product_category_pcseq.nextval, p_name);
+    if p_tablename = 'main' then
+        insert into product_main_category(pmcseq, name)
+        values(product_main_category_pmcseq.nextval, p_name);
+    elsif  p_tablename = 'sub' then
+        insert into product_sub_category(pscseq, name)
+        values(product_sub_category_pscseq.nextval, p_name);
+    end if;
+    
     commit;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure deleteProductCat(
-    p_pcseq in product_category.pcseq%type)
+    p_tablename in varchar2,
+    p_index in number)
 is
 
 begin
-    delete from product_category where pcseq = p_pcseq;
+    if p_tablename = 'main' then
+         delete from product_main_category where pmcseq = p_index;
+    elsif  p_tablename = 'sub' then
+         delete from product_sub_category where pscseq = p_index;
+    end if;
+    
     commit;
     
 end;
 ------------------------------------------------------------------------------
 
 create or replace procedure updateProductCat(
-    p_pcseq in product_category.pcseq%type,
-    p_name in product_category.name%type)
+    p_tablename in varchar2,
+    p_index in number,
+    p_name in varchar2)
 is
 
 begin
-    update product_category set name = p_name where pcseq = p_pcseq;
+    if p_tablename = 'main' then
+         update product_main_category set name = p_name where pmcseq = p_index;
+    elsif  p_tablename = 'sub' then
+         update product_sub_category set name = p_name where pscseq = p_index;
+    end if;
+    
     commit;
     
 end;
@@ -574,6 +611,7 @@ is
 
 begin
     delete from banner where bseq = p_bseq;
+    -- no commit here : Service Transaction
     
 end;
 ------------------------------------------------------------------------------
@@ -620,5 +658,27 @@ is
 
 begin
     update banner set priority = p_priority where bseq = p_bseq;
+    -- no commit here : Service Transaction
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getMainCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_main_category order by pmcseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getSubCatList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_sub_category order by pscseq desc;
     
 end;

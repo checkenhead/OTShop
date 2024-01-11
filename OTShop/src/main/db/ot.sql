@@ -13,13 +13,15 @@ DROP TABLE pwd_find CASCADE CONSTRAINTS;
 DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE qna_category CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
-DROP TABLE product_category CASCADE CONSTRAINTS;
+DROP TABLE product_main_category CASCADE CONSTRAINTS;
+DROP TABLE product_sub_category CASCADE CONSTRAINTS;
+DROP TABLE product_main_category_list CASCADE CONSTRAINTS;
+DROP TABLE product_sub_category_list CASCADE CONSTRAINTS;
+DROP TABLE product_category_set CASCADE CONSTRAINTS;
 DROP TABLE transport CASCADE CONSTRAINTS;
 DROP TABLE invoice CASCADE CONSTRAINTS;
 DROP TABLE reply CASCADE CONSTRAINTS;
 */
-
-
 
 
 /* Drop Sequences
@@ -29,9 +31,13 @@ DROP SEQUENCE faq_category_fcseq;
 DROP SEQUENCE faq_fseq;
 DROP SEQUENCE orders_oseq;
 DROP SEQUENCE order_detail_odseq;
-DROP SEQUENCE product_category_pcseq;
 DROP SEQUENCE product_detail_pdseq;
 DROP SEQUENCE product_pseq;
+DROP SEQUENCE product_main_category_pmcseq;
+DROP SEQUENCE product_sub_category_pscseq;
+DROP SEQUENCE product_main_cat_list_pmclseq;
+DROP SEQUENCE product_sub_cat_list_psclseq;
+DROP SEQUENCE product_category_set_pcsseq;
 DROP SEQUENCE pwd_find_pfseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
@@ -52,7 +58,6 @@ CREATE SEQUENCE faq_category_fcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE faq_fseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE order_detail_odseq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE product_category_pcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_detail_pdseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_pseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE pwd_find_pfseq INCREMENT BY 1 START WITH 1;
@@ -60,6 +65,12 @@ CREATE SEQUENCE qna_category_qcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE qna_qseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE transport_tseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE invoice_iseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_main_cat_list_pmclseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_sub_cat_list_psclseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_main_category_pmcseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_sub_category_pscseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_category_set_pcsseq INCREMENT BY 1 START WITH 1;
+
 
 
 /* Create Tables */
@@ -177,7 +188,6 @@ CREATE TABLE order_detail
 CREATE TABLE product
 (
 	pseq number NOT NULL,
-	pcseq number NOT NULL,
 	brand varchar2(30),
 	name varchar2(30) NOT NULL,
 	description varchar2(1000),
@@ -188,14 +198,6 @@ CREATE TABLE product
 	useyn char(1) DEFAULT 'Y',
 	regdate date DEFAULT sysdate NOT NULL,
 	PRIMARY KEY (pseq)
-);
-
-
-CREATE TABLE product_category
-(
-	pcseq number NOT NULL,
-	name varchar2(30) NOT NULL,
-	PRIMARY KEY (pcseq)
 );
 
 
@@ -213,6 +215,49 @@ CREATE TABLE product_detail
 	stock number DEFAULT 0 NOT NULL,
 	useyn char(1) DEFAULT 'Y',
 	PRIMARY KEY (pdseq)
+);
+
+
+CREATE TABLE product_main_category_list
+(
+	pmclseq number NOT NULL,
+	pseq number NOT NULL,
+	pmcseq number NOT NULL,
+	PRIMARY KEY (pmclseq)
+);
+
+
+CREATE TABLE product_sub_category_list
+(
+	psclseq number NOT NULL,
+	pseq number NOT NULL,
+	pscseq number NOT NULL,
+	PRIMARY KEY (psclseq)
+);
+
+
+CREATE TABLE product_main_category
+(
+	pmcseq number NOT NULL,
+	name varchar2(30) NOT NULL,
+	PRIMARY KEY (pmcseq)
+);
+
+
+CREATE TABLE product_sub_category
+(
+	pscseq number NOT NULL,
+	name varchar2(30) NOT NULL,
+	PRIMARY KEY (pscseq)
+);
+
+
+CREATE TABLE product_category_set
+(
+	pcsseq number NOT NULL,
+	pmcseq number NOT NULL,
+	pscseq number NOT NULL,
+	PRIMARY KEY (pcsseq)
 );
 
 
@@ -333,11 +378,45 @@ ALTER TABLE product_detail
 	ON DELETE CASCADE
 ;
 
-ALTER TABLE product
-	ADD FOREIGN KEY (pcseq)
-	REFERENCES product_category (pcseq)
+
+ALTER TABLE product_main_category_list
+	ADD FOREIGN KEY (pseq)
+	REFERENCES product (pseq)
 	ON DELETE CASCADE
 ;
+
+ALTER TABLE product_main_category_list
+	ADD FOREIGN KEY (pmcseq)
+	REFERENCES product_main_category (pmcseq)
+	ON DELETE CASCADE
+;
+
+
+ALTER TABLE product_sub_category_list
+	ADD FOREIGN KEY (pseq)
+	REFERENCES product (pseq)
+	ON DELETE CASCADE
+;
+
+ALTER TABLE product_sub_category_list
+	ADD FOREIGN KEY (pscseq)
+	REFERENCES product_sub_category (pscseq)
+	ON DELETE CASCADE
+;
+
+ALTER TABLE product_category_set
+	ADD FOREIGN KEY (pmcseq)
+	REFERENCES product_main_category (pmcseq)
+	ON DELETE CASCADE
+;
+
+ALTER TABLE product_category_set
+	ADD FOREIGN KEY (pscseq)
+	REFERENCES product_sub_category (pscseq)
+	ON DELETE CASCADE
+;
+
+
 
 
 ALTER TABLE pwd_find
@@ -387,14 +466,12 @@ ALTER TABLE transport
 	ON DELETE CASCADE
 ;
 
-<<<<<<< HEAD
-
 
 /* Create Views */
 
-=======
+
 /* View */
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
 create or replace view faq_view as
 select f.fseq, f.fcseq, fc.name, f.title, f.content
 from faq f, faq_category fc
@@ -428,16 +505,25 @@ select * from product_category;
 select * from faq;
 select * from faq_category;
 select * from faq_view;
-<<<<<<< HEAD
+
 select * from qna;
 select * from qna_category;
 select * from qna_view;
 select * from banner;
 select * from banner_images;
 select * from banner_view;
-=======
+
 select * from pwd_find;
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
+select * from product_main_category;
+select * from product_sub_category;
+
+select * from product_main_category_list;
+select * from product_sub_category_list;
+
+insert into product_main_category_list(pmclseq, pseq, pmcseq) values(product_main_cat_list_pmclseq.nextval, 3, 2);
+insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
+
 
 select max(nvl(priority, 0)) from banner;
 
@@ -455,21 +541,12 @@ values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gm
 
 insert into pwd_find(pfseq, userid, kind, answer) values(pwd_find_pfseq.nextval, 'hong', 1, '신촌');
 
-
-insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '반소매 티셔츠');
-insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '니트/스웨터');
-<<<<<<< HEAD
-insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '후드 티셔츠');
-
 insert into faq(fseq, fcseq, title, content) values(faq_fseq.nextval, 1, '회원가입은 어떻게 하나요?', '회원가입은 화면 왼쪽 상단에 있는 회원가입 버튼을 눌러 진행합니다. 약관에 동의하지 않으면 가입할 수 없습니다.');
 
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '회원정보/계정');
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '상품');
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '주문/결제');
 
-
 insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
-=======
-insert into product_category(pcseq, name) values(product_category_pcseq.nextval, '후드 티셔츠');
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+

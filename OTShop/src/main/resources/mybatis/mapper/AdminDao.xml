@@ -16,6 +16,7 @@
 	<select id="getProductCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getProductCatList(
+			#{categoryClass},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
 		}
 	</select>
@@ -32,7 +33,7 @@
 	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call insertProduct(
-			#{PCSEQ}, #{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE},
+			#{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE},
 			#{pseq, mode=OUT, jdbcType=INTEGER})
 		}
 	</insert>
@@ -68,21 +69,29 @@
 		}
 	</select>
 	
+	<!-- 제품 카테고리 변경
 	<insert id="insertProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call insertProductCat(#{name})
 		}
 	</insert>
+	-->
+	
+	<insert id="insertProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertProductCat(#{tablename}, #{name})
+		}
+	</insert>
 	
 	<delete id="deleteProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			call deleteProductCat(#{pcseq})
+			call deleteProductCat(#{tablename}, #{index})
 		}
 	</delete>
 	
 	<update id="updateProductCat" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			call updateProductCat(#{pcseq}, #{name})
+			call updateProductCat(#{tablename}, #{index}, #{name})
 		}
 	</update>
 	

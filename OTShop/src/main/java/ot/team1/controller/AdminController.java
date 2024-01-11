@@ -90,71 +90,16 @@ public class AdminController {
 			return "redirect:/adminLoginForm";
 		else {
 			// product_category 테이블 select값 model에 저장
-			model.addAttribute("productCatList", as.getProductCatList());
+			//model.addAttribute("productCatList", as.getProductCatList());
 
 			return "admin/product/insertProductForm";
 		}
 	}
 
-	/*
-	 * vo객체에 저장하는 방식으로 변경 요구
-	 * 
-	 * @PostMapping("/changeOption") public String changeOption(
-	 * 
-	 * @RequestParam(value = "productCategory", defaultValue = "0") int pcseq,
-	 * 
-	 * @RequestParam("gender") String gender, @RequestParam("brand") String brand,
-	 * 
-	 * @RequestParam("name") String name, @RequestParam("description") String
-	 * description,
-	 * 
-	 * @RequestParam("optname") String[] optname, @RequestParam(value = "image",
-	 * required = false) String image,
-	 * 
-	 * @RequestParam("previewFilename") String previewFilename,
-	 * 
-	 * @RequestParam(value = "price1", required = false) int[] price1,
-	 * 
-	 * @RequestParam(value = "price2", required = false) int[] price2,
-	 * 
-	 * @RequestParam(value = "price3", required = false) int[] price3,
-	 * 
-	 * @RequestParam(value = "stock", required = false) int[] stock,
-	 * 
-	 * @RequestParam(value = "delIndex", defaultValue = "0") int delIndex, Model
-	 * model) {
-	 * 
-	 * ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String,
-	 * Object>>();
-	 * 
-	 * // delIndex : 삭제할 인덱스, -1한 값이 실제 삭제할 index이고 따라서 delIndex가 0일 경우 삭제하지 않음 //
-	 * String[] option : 기존 추가된 옵션 + 방금 추가한 옵션의 이름 // price1, 2, 3 : 기존 추가된 price,
-	 * 따라서 맨 처음 추가 시 null이고 다음부터는 option배열보다 length가 1 // 작음
-	 * 
-	 * // option배열과 price배열을 vo객체에 넣고 리스트로 구성, 방금 추가된 option의 price들은 0을 대입 for (int
-	 * i = 0; i < optname.length; i++) { if ((delIndex - 1) == i ||
-	 * optname[i].equals("")) { // 삭제할 index가 있는 경우와 빈값인 경우 skip continue; } else {
-	 * HashMap<String, Object> optvo = new HashMap<String, Object>();
-	 * optvo.put("optname", optname[i]); // price가 null인 경우 : 맨 처음 추가 시 // price배열의
-	 * 크기는 option배열의 크기보다 1 작으므로 length 체크 후 default 대입 optvo.put("price1", (price1
-	 * == null) || (price1.length <= i) ? 0 : price1[i]); optvo.put("price2",
-	 * (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
-	 * optvo.put("price3", (price3 == null) || (price3.length <= i) ? 0 :
-	 * price3[i]); optvo.put("stock", (stock == null) || (stock.length <= i) ? 0 :
-	 * stock[i]); optionList.add(optvo); } } model.addAttribute("productCatList",
-	 * as.getProductCatList()); model.addAttribute("productCategory", pcseq);
-	 * model.addAttribute("gender", gender); model.addAttribute("brand", brand);
-	 * model.addAttribute("name", name); model.addAttribute("description",
-	 * description); model.addAttribute("image", image);
-	 * model.addAttribute("previewFilename", previewFilename);
-	 * model.addAttribute("optionList", optionList);
-	 * 
-	 * return "admin/product/insertProductForm"; }
-	 */
-
 	@PostMapping("/changeOption")
 	public String changeOption(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
 			@RequestParam(value = "image", required = false) String image,
@@ -200,7 +145,7 @@ public class AdminController {
 
 		HashMap<String, Object> productVO = new HashMap<String, Object>();
 		productVO.put("PSEQ", pseq);
-		productVO.put("PCSEQ", pcseq);
+		//productVO.put("PCSEQ", pcseq);
 		productVO.put("GENDER", gender);
 		productVO.put("BRAND", brand);
 		productVO.put("NAME", name);
@@ -212,7 +157,7 @@ public class AdminController {
 		productVO.put("VIEWCOUNT", viewcount);
 		productVO.put("optionList", optionList);
 
-		model.addAttribute("productCatList", as.getProductCatList());
+		//model.addAttribute("productCatList", as.getProductCatList());
 		model.addAttribute("productVO", productVO);
 		model.addAttribute("previewFilename", previewFilename);
 
@@ -262,7 +207,8 @@ public class AdminController {
 
 	@PostMapping("/insertProduct")
 	public String insertProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
 			@RequestParam(value = "image", required = false) String image,
@@ -283,7 +229,7 @@ public class AdminController {
 			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
 
 			paramMap.put("PSEQ", pseq);
-			paramMap.put("PCSEQ", pcseq);
+			//paramMap.put("PCSEQ", pcseq);
 			paramMap.put("GENDER", gender);
 			paramMap.put("BRAND", brand);
 			paramMap.put("NAME", name);
@@ -309,14 +255,11 @@ public class AdminController {
 
 			paramMap.put("optionList", optionList);
 
-			model.addAttribute("productCatList", as.getProductCatList());
+			//model.addAttribute("productCatList", as.getProductCatList());
 			model.addAttribute("productVO", paramMap);
 
 			// validation
-			if (pcseq == 0) {
-				model.addAttribute("message", "상품분류를 선택하세요.");
-				validationSucess = false;
-			} else if (brand.equals("")) {
+			if (brand.equals("")) {
 				model.addAttribute("message", "브랜드를 입력하세요.");
 				validationSucess = false;
 			} else if (name.equals("")) {
@@ -373,7 +316,8 @@ public class AdminController {
 			return "admin/product/productManagement";
 		}
 	}
-
+	
+	/* 상품 카테고리 변경
 	@GetMapping("/productCatManagement")
 	public String productCatManagement(HttpServletRequest request, Model model) {
 		// 로그인 체크
@@ -386,7 +330,50 @@ public class AdminController {
 			return "admin/product/productCatManagement";
 		}
 	}
+	*/
+	
+	@GetMapping("/productCatManagement")
+	public String productCatManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("mainCatList", as.getProductCatList("main"));
+			model.addAttribute("subCatList", as.getProductCatList("sub"));
 
+			return "admin/product/productCatManagement";
+		}
+	}
+	
+	@GetMapping("/productMainCategory")
+	public String productMainCategory(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("mainCatList", as.getProductCatListwithCount("main"));
+
+			return "admin/product/productMainCategory";
+		}
+	}
+	
+	@GetMapping("/productSubCategory")
+	public String productSubCategory(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
+			model.addAttribute("subCatList", as.getProductCatListwithCount("sub"));
+
+			return "admin/product/productSubCategory";
+		}
+	}
+	
+	
+	/* 상품 카테고리 변경
 	@PostMapping("/insertProductCat")
 	public String insertProductCat(@RequestParam("name") String name, HttpServletRequest request) {
 		// 로그인 체크
@@ -398,36 +385,63 @@ public class AdminController {
 			return "redirect:/productCatManagement";
 		}
 	}
-
-	@PostMapping("/deleteProductCat")
-	public String deleteProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+	*/
+	
+	@PostMapping("/insertProductCat")
+	public String insertProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam("name") String name,
 			HttpServletRequest request) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
-			if (pcseq == 0)
-				System.out.println("Error : pcseq값이 0입니다.");
-			else
-				as.deleteProductCat(pcseq);
-
-			return "redirect:/productCatManagement";
+			as.insertProductCat(categoryClass, name);
+			
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
 		}
 	}
 
-	@PostMapping("/updateProductCat")
-	public String updateProductCat(@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
-			@RequestParam("name") String name, HttpServletRequest request) {
+	@PostMapping("/deleteProductCat")
+	public String deleteProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam(value = "index", defaultValue = "0") int index,
+			HttpServletRequest request) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {
 			return "redirect:/adminLoginForm";
 		} else {
-			if (pcseq == 0)
-				System.out.println("Error : pcseq값이 0입니다.");
-			else
-				as.updateProductCat(pcseq, name);
+			as.deleteProductCat(categoryClass, index);
 
-			return "redirect:/productCatManagement";
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
+		}
+	}
+
+	@PostMapping("/updateProductCat")
+	public String updateProductCat(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam(value = "index", defaultValue = "0") int index,
+			@RequestParam("name") String name,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateProductCat(categoryClass, index, name);
+
+			if(categoryClass.equals("main"))
+				return "redirect:/productMainCategory";
+			else if(categoryClass.equals("sub"))
+				return "redirect:/productSubCategory";
+			else return "";
 		}
 	}
 
@@ -441,7 +455,7 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				model.addAttribute("productCatList", as.getProductCatList());
+				//model.addAttribute("productCatList", as.getProductCatList());
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 
@@ -508,7 +522,7 @@ public class AdminController {
 
 			paramMap.put("optionList", optionList);
 
-			model.addAttribute("productCatList", as.getProductCatList());
+			//model.addAttribute("productCatList", as.getProductCatList());
 			model.addAttribute("productVO", paramMap);
 
 			if (pcseq == 0) {
@@ -564,7 +578,7 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				model.addAttribute("productCatList", as.getProductCatList());
+				//model.addAttribute("productCatList", as.getProductCatList());
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 

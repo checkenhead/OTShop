@@ -134,13 +134,13 @@ function go_cancel_cat(index) {
 function go_delete_cat(name, index, action) {
 	var targetForm;
 
-	if (document.productCatForm != undefined)
-		targetForm = document.productCatForm;
-	else if (document.faqCatForm != undefined)
+	if (document.faqCatForm != undefined){
 		targetForm = document.faqCatForm;
-	else if (document.qnaCatForm != undefined)
-		targetForm = document.qnaCatForm;
-	else {
+	} else if (document.qnaCatForm != undefined){
+		targetForm = document.qnaCatForm;		
+	} else if (document.productCatForm != undefined){
+		targetForm = document.productCatForm;
+	} else {
 		alert("targetForm 설정 오류");
 		return;
 	}
@@ -155,13 +155,13 @@ function go_delete_cat(name, index, action) {
 function go_save_cat(count, index, action) {
 	var targetForm;
 
-	if (document.productCatForm != undefined)
+	if (document.faqCatForm != undefined){
+		targetForm = document.faqCatForm;		
+	} else if (document.qnaCatForm != undefined){
+		targetForm = document.qnaCatForm;		
+	} else if (document.productCatForm != undefined){
 		targetForm = document.productCatForm;
-	else if (document.faqCatForm != undefined)
-		targetForm = document.faqCatForm;
-	else if (document.qnaCatForm != undefined)
-		targetForm = document.qnaCatForm;
-	else {
+	} else {
 		alert("targetForm 설정 오류");
 		return;
 	}
@@ -182,13 +182,13 @@ function go_save_cat(count, index, action) {
 function go_add_cat(action) {
 	var targetForm;
 
-	if (document.productCatForm != undefined)
-		targetForm = document.productCatForm;
-	else if (document.faqCatForm != undefined)
+	if (document.faqCatForm != undefined){
 		targetForm = document.faqCatForm;
-	else if (document.qnaCatForm != undefined)
+	} else if (document.qnaCatForm != undefined){
 		targetForm = document.qnaCatForm;
-	else {
+	} else if (document.productCatForm != undefined){
+		targetForm = document.productCatForm;
+	} else {
 		alert("targetForm 설정 오류");
 		return;
 	}
@@ -477,7 +477,52 @@ function lower_priority(priority){
 	document.bannerManForm.action = "lowerBannerPriority";
 	document.bannerManForm.submit();
 }
+/*
+function add_product_cat(){
+	if(document.productCatForm.inputCategoryClass.value == ""){
+		alert("카테고리의 상/하위 분류를 선택하세요.");
+		document.productCatForm.inputCategoryClass.focus();
+		return;
+	} else if(document.productCatForm.inputName.value == ""){
+		alert("카테고리 이름을 입력하세요.");
+		document.productCatForm.inputName.focus();
+		return;
+	} else {
+		document.productCatForm.categoryClass.value = document.productCatForm.inputCategoryClass.value;
+		document.productCatForm.name.value = document.productCatForm.inputName.value;
+		document.productCatForm.action = "insertProductCat";
+		document.productCatForm.submit();
+	}
+}
+*/
 
-function test(){
-	
+function add_main_cat_set(){
+	if(document.getElementById("inputMainCat").value == "0"){
+		alert("메인 카테고리를 선택하세요.");
+		document.getElementById("inputMainCat").focus();
+		return;
+	} else {
+		document.getElementById("emptyMessage").style.display = "none";
+		
+		var rows = document.getElementsByClassName("mainrow");
+		var cur_rows = rows == undefined ? 0 : rows.length;
+		
+		var content = "<tr class=\"mainrow\" id=\"mainrow_" + (cur_rows + 1) + "\"><th>tmp</th><td id=\"insertPoint_" + (cur_rows + 1) + "\" colspan=\"2\"></td></tr>";
+		
+		document.getElementById("tmp").insertAdjacentHTML("beforeend", content);
+		
+		content = document.getElementById("inputMainCat").outerHTML;
+		content = content.replace("\"inputMainCat\"", "\"inputMainCat_" + (cur_rows + 1) + "\" name=\"inputMainCat\"");
+		content = content.replace("<option value=\"0\">선택</option>", "");
+		
+		document.getElementById("insertPoint_" + (cur_rows + 1)).insertAdjacentHTML("beforeend", content);
+		document.getElementById("inputMainCat_" + (cur_rows + 1)).value = document.getElementById("inputMainCat").value;
+		
+		content = "<td><div class=\"btn\"><input type=\"button\" value=\"삭제\" onClick=\"remove_product_cat_set('" + (cur_rows + 1) + "');\"></div></td>";
+		document.getElementById("mainrow_" + (cur_rows + 1)).insertAdjacentHTML("beforeend", content);
+	}
+}
+
+function remove_main_cat_set(index){
+	document.getElementById("mainrow_" + index).outerHTML = "";
 }
