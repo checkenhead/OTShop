@@ -125,6 +125,18 @@ END;
 
 --------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------
+
+-- ¿Â¿Ø¡¯ (FAQ)
+
+
+CREATE OR REPLACE PROCEDURE listFaq(
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM faq_view ORDER BY fseq DESC;
+END;
 
 
 

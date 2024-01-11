@@ -427,25 +427,31 @@ public class MemberController {
 	   
 	   // session에 있는 "loginUser" 값을 가져와 loginUser에 저장
 	   HttpSession session = request.getSession();
-	   HashMap<String, Object> loginUser = 
-			   (HashMap<String, Object>) session.getAttribute("loginUser");
 	   
-	   // Object이므로 String으로 형변환
-	   dto.setUserid( (String)loginUser.get("USERID") );
-	   dto.setName( (String)loginUser.get("NAME") );
-	   dto.setGender( (String)loginUser.get("GENDER") );
-	   dto.setBirthdate( (String)loginUser.get("BIRTHDATE") );
-	   dto.setTel( (String)loginUser.get("TEL") );
-	   dto.setEmail( (String)loginUser.get("EMAIL") );
-	   dto.setZipnum( (String)loginUser.get("ZIPNUM") );
-	   dto.setAddress1( (String)loginUser.get("ADDRESS1") );
-	   dto.setAddress2( (String)loginUser.get("ADDRESS2") );
-	   dto.setAddress3( (String)loginUser.get("ADDRESS3") );
-	   dto.setProvider( (String)loginUser.get("PROVIDER") );
+	   Object loginUser = session.getAttribute("loginUser");
 	   
-	   mav.addObject("dto", dto);
-	   
-	   mav.setViewName("member/mupdate");
+	   if( loginUser == null ) mav.setViewName("member/login");
+	   else {
+		   HashMap<String, Object> paramMap = 
+				   (HashMap<String, Object>) session.getAttribute("loginUser");
+		   
+		   // Object이므로 String으로 형변환
+		   dto.setUserid( (String)paramMap.get("USERID") );
+		   dto.setName( (String)paramMap.get("NAME") );
+		   dto.setGender( (String)paramMap.get("GENDER") );
+		   dto.setBirthdate( (String)paramMap.get("BIRTHDATE") );
+		   dto.setTel( (String)paramMap.get("TEL") );
+		   dto.setEmail( (String)paramMap.get("EMAIL") );
+		   dto.setZipnum( (String)paramMap.get("ZIPNUM") );
+		   dto.setAddress1( (String)paramMap.get("ADDRESS1") );
+		   dto.setAddress2( (String)paramMap.get("ADDRESS2") );
+		   dto.setAddress3( (String)paramMap.get("ADDRESS3") );
+		   dto.setProvider( (String)paramMap.get("PROVIDER") );
+		   
+		   mav.addObject("dto", dto);
+		   
+		   mav.setViewName("member/mupdate");
+	   }
 	   return mav;
    }
    

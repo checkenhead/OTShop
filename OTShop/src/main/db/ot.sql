@@ -1,5 +1,7 @@
 /* Drop Tables
 
+DROP TABLE banner CASCADE CONSTRAINTS;
+DROP TABLE banner_images CASCADE CONSTRAINTS;
 DROP TABLE admins CASCADE CONSTRAINTS;
 DROP TABLE cart CASCADE CONSTRAINTS;
 DROP TABLE faq CASCADE CONSTRAINTS;
@@ -26,6 +28,8 @@ DROP TABLE reply CASCADE CONSTRAINTS;
 
 /* Drop Sequences
 
+DROP SEQUENCE banner_images_biseq;
+DROP SEQUENCE banner_bseq;
 DROP SEQUENCE cart_cseq;
 DROP SEQUENCE faq_category_fcseq;
 DROP SEQUENCE faq_fseq;
@@ -541,8 +545,10 @@ insert into members(userid, pwd, name, gender, birthdate, tel, email)
 values('park', '1234', '박길동', 'M', '2000-07-15', '010-3333-3333', 'park@gmail.com');
 
 insert into pwd_find(pfseq, userid, kind, answer) values(pwd_find_pfseq.nextval, 'hong', '1', '신촌');
-delete from pwd_find;
 
+insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '회원/계정');
+insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '상품/배송');
+insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '주문/결제');
 
 insert into faq(fseq, fcseq, title, content) values(faq_fseq.nextval, 1, '회원가입은 어떻게 하나요?', '회원가입은 화면 왼쪽 상단에 있는 회원가입 버튼을 눌러 진행합니다. 약관에 동의하지 않으면 가입할 수 없습니다.');
 
