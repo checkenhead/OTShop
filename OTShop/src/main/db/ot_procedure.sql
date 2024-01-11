@@ -38,23 +38,19 @@ END;
 
 --------------------------------------------------------------------------------------------
 
-
 CREATE OR REPLACE PROCEDURE findPwd(
-    p_userid IN findAcc.userid%TYPE,
-    p_kind IN findAcc.kind%TYPE,
-    p_answer IN OUT findAcc.answer%TYPE,
+    p_userid IN OUT findAcc.userid%TYPE,
+    p_kind OUT findAcc.kind%TYPE,
+    p_answer OUT findAcc.answer%TYPE,
     p_pwd OUT findAcc.pwd%TYPE
 )
 IS
 BEGIN
-    SELECT answer, pwd INTO p_answer, p_pwd 
-    FROM findAcc 
-    WHERE userid = p_userid AND kind = p_kind AND answer = p_answer;
+   SELECT kind, answer, pwd INTO p_kind, p_answer, p_pwd FROM findAcc WHERE userid = p_userid;
 EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-    p_answer := NULL;
-    p_pwd := NULL;
+   WHEN NO_DATA_FOUND THEN p_pwd := NULL; 
 END;
+
 
 --------------------------------------------------------------------------------------------
 
