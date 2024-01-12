@@ -8,13 +8,14 @@
 
 	<resultMap id="faqMap" type="java.util.HashMap"></resultMap>
 	
-	<select id="listFaq"  statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  
-			CALL listFaq( 
-				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=faqMap}
-			)	  
-		}
+	<select id="listFaq" statementType="CALLABLE" parameterType="java.util.HashMap" resultMap="faqMap">
+   		{ 
+   			CALL listFaq(
+   				#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=faqMap}
+   			) 
+   		}
 	</select>
+
 	
 	
 </mapper>

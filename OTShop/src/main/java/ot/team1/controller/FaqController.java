@@ -1,6 +1,7 @@
 package ot.team1.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,9 @@ public class FaqController {
 		mav.setViewName("faq/faqListForm");
 		return mav;
 	}
+
+	
+	
 	
 
 }

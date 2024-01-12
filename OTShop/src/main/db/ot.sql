@@ -480,6 +480,7 @@ create or replace view faq_view as
 select f.fseq, f.fcseq, fc.name, f.title, f.content
 from faq f, faq_category fc
 where f.fcseq = fc.fcseq;
+select*from faq_view;
 
 create or replace view findAcc as
 select pf.pfseq, m.userid, m.pwd, pf.kind, pf.answer
@@ -550,7 +551,15 @@ insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '회원
 insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '상품/배송');
 insert into faq_category(fcseq, name) values(faq_category_fcseq.nextval, '주문/결제');
 
-insert into faq(fseq, fcseq, title, content) values(faq_fseq.nextval, 1, '회원가입은 어떻게 하나요?', '회원가입은 화면 왼쪽 상단에 있는 회원가입 버튼을 눌러 진행합니다. 약관에 동의하지 않으면 가입할 수 없습니다.');
+insert into faq(fseq, fcseq, title, content)
+values(faq_fseq.nextval, 1, '회원가입은 어떻게 하나요?', '회원가입은 화면 왼쪽 상단에 있는 회원가입 버튼을 눌러 진행합니다. 약관에 동의하지 않으면 가입할 수 없습니다.');
+insert into faq(fseq, fcseq, title, content)
+values(faq_fseq.nextval, 2, '배송은 언제 되나요??', '택배사의 사정에 따라 정확한 일정은 알 수 없습니다. 결제일로부터 평균 7일 이내 배송됩니다.');
+insert into faq(fseq, fcseq, title, content)
+values(faq_fseq.nextval, 3, '주문을 취소했는데 환불은 언제 되나요?', '주문 취소가 확인되면 2~3일 이내 환불 예정입니다. (주말 제외, 카드사에 따라 상세일정 다름)');
+insert into faq(fseq, fcseq, title, content)
+values(faq_fseq.nextval, 1, '회원 탈퇴는 어떻게 하나요?', '마이페이지 - 내 정보 수정 - 회원탈퇴 버튼을 누르면 회원탈퇴 과정이 진행됩니다.');
+
 
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '회원정보/계정');
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '상품');

@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="/css/otshop.css">
 <script type="text/javascript" src="/script/member.js"></script>
 <script type="text/javascript" src="/script/customer.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -62,7 +63,6 @@
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
-							<li><a href="mdeleteForm">회원탈퇴</a></li>
 						</ul>
 					</nav>
 				</c:otherwise>
