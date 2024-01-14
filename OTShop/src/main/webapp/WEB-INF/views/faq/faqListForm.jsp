@@ -9,23 +9,23 @@
 
 <form method="get" name="faqListFrm">
 
-<div id="faqBanner">
-	<span id="bannerTitle">FAQ</span><span id="bannerSub">고객님들께서 자주 묻는 질문입니다</span>
+<div class="faqBanner">
+	<span class="bannerTitle">FAQ</span><span class="bannerSub">고객님들께서 자주 묻는 질문입니다</span>
 </div>
 
 
 
-<div id="listHead">
-	<div id="faqnum">NO</div>
-	<div id="faqcry">구분</div>
-	<div id="faqtitle">제목</div>
+<div class="listHead">
+	<div class="faqnum">NO</div>
+	<div class="faqcry">구분</div>
+	<div class="faqtitle">제목</div>
 </div>
 
-<div id="listBody" >
+<div class="listBody" >
 	<c:forEach items="${faqList}" var="faqVO"  varStatus="loop">
-		<div id="listWrap">
-			<div id="faqnum2">${faqVO.FSEQ}</div>
-			<div id="faqcry2">${faqVO.NAME}
+		<div class="listWrap">
+			<div class="faqnum2">${faqVO.FSEQ}</div>
+			<div class="faqcry2">${faqVO.NAME}
 				<input type="hidden" name="fcseq" value="${faqVO.FCSEQ}">
 			</div>
 			<div class="faqtitle2" id="faqTitle_${loop.index}">${faqVO.TITLE}</div>

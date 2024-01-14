@@ -567,4 +567,3 @@ insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '주문
 
 insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
-

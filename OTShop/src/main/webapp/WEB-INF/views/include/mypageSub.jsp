@@ -12,7 +12,7 @@
 			<div class="subCategory""><img src="images/delivery.png">배송조회</div></a>
 		<a href="faqList">
 			<div class="subCategory"><img src="images/faq.png">자주 묻는 질문</div></a>
-		<a href="customer">
+		<a href="qnaList">
 			<div class="subCategory"><img src="images/call.png">고객센터</div></a>
 	</div>
 </div>
