@@ -138,8 +138,18 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM faq_view ORDER BY fseq DESC;
 END;
 
+--------------------------------------------------------------------------------------------
+
+-- ¿Â¿Ø¡¯ (Customer)
 
 
+CREATE OR REPLACE PROCEDURE listQna(
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM qna_view ORDER BY qseq DESC;
+END;
 
 
 
@@ -351,7 +361,6 @@ begin
     gender = p_gender, image = p_image, bestyn = p_bestyn, useyn = p_useyn
     where pseq = p_pseq;
 
-    
 end;
 ------------------------------------------------------------------------------
 
