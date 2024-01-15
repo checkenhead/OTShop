@@ -19,7 +19,14 @@ public class CustomerService {
 
 	public void getQnaCatList(HashMap<String, Object> paramMap) {
 		cdao.getQnaCatList(paramMap);
-		
+	}
+
+	public void getQna(HashMap<String, Object> paramMap) {
+		cdao.getQna(paramMap);
+	}
+
+	public void getQnaCatListUser(HashMap<String, Object> paramMap) {
+		cdao.getQnaCatListUser(paramMap);
 	}
 
 }

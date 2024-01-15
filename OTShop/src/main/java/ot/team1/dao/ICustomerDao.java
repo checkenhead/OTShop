@@ -10,6 +10,10 @@ public interface ICustomerDao {
 	void listQna(HashMap<String, Object> paramMap);
 
 	void getQnaCatList(HashMap<String, Object> paramMap);
+
+	void getQna(HashMap<String, Object> paramMap);
+
+	void getQnaCatListUser(HashMap<String, Object> paramMap);
 	
 	
 

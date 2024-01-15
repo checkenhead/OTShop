@@ -29,10 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function getselect(){
 	var qnaName = document.getElementById("qnaName").value;
+	// 배열이므로 .value는 X(=.value는 하나의 값으로 가져오는 것)
+	var qnaAll = document.getElementsByClassName("qna");
+	
 	for(var i=0; i<document.getElementsByClassName("qcseq").length; i++){
 		var qcseqValue = document.getElementsByClassName("qcseq")[i].value;
 		
-		if(qnaName == qcseqValue){
+		if(qnaName == "all"){
+			qnaAll[i].style.display = '';
+		} else if(qnaName == qcseqValue){
 			document.getElementById("qna_"+ i).style.display='';
 		} else {
 			document.getElementById("qna_"+ i).style.display='none';

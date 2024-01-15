@@ -33,9 +33,25 @@
 						<input type="hidden" value="${qnaVO.QCSEQ}" class="qcseq">
 						<div class="faqnum2">${qnaVO.QSEQ}</div>
 			            <div class="faqcry2">${qnaVO.NAME}</div>
-			            <div class="faqtitle2">${qnaVO.TITLE}</div>
+			            <c:choose>
+			            	<c:when test="${qnaVO.SECRET == 'Y'}">
+			            		<a href='#' onclick="passCheck('${qnaVO.QSEQ}')">
+			            			<div class="faqtitle2">${qnaVO.TITLE}<img src="/images/key.png" style="width:20px;"></div>
+			            		</a>
+			            	</c:when>
+			            	<c:otherwise>
+			            		<a href="qnaView?qseq=${qnaVO.QSEQ}">
+			            			<div class="faqtitle2">${qnaVO.TITLE}</div>
+			            		</a>
+			            	</c:otherwise>
+			            </c:choose>
 			            <div class="qnadate2">${qnaVO.REGDATE}</div>
-			            <div class="reply2">${qnaVO.REPLY}</div>
+			            <c:choose>
+			            	<c:when test="${empty qnaVO.reply}">
+			            		<div class="reply2"> N </div></c:when>
+			            	<c:otherwise>
+			            		<div class="reply2"> Y </div></c:otherwise>
+			            </c:choose>
 					</div>
 				</c:forEach>
 			
