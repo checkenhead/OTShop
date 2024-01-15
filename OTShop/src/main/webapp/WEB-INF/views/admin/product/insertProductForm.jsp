@@ -11,24 +11,72 @@
 
 <form name="insertProductForm" method="post">
 <input type="hidden" name="formName" value="insertProductForm">
+
+<div id="template" style="display:none;">
+	<div id="#categoryClassCat_#index" style="display:flex; margin-left:5px; margin-right:5px;">
+		<div style="line-height:25px;">#name</div>
+		<img src="admin/images/remove.png" width="25" height="25" onClick="remove_category('#categoryClass', '#index');">
+		<input type="hidden" name="#categoryClassCat" value="#index">
+	</div>
+</div>
+
 	<table class="tblAdminProduct">
 	<tr>
-		<th>상품분류</th>
-		<td>
-			<select name="pcseq">
+		<th>메인 카테고리</th>
+		<td colspan="2">
+			<select id="mainCat" onChange="add_category('main');">
 				<option value="0">선택</option>
-				<c:forEach items="${productCatList}" var="productCat" varStatus="status">
-					<c:choose>
-					<c:when test="${productVO.PCSEQ == productCat.PCSEQ}">
-						<option value="${productCat.PCSEQ}" selected>${productCat.NAME}</option>
-					</c:when>
-					<c:otherwise><option value="${productCat.PCSEQ}">${productCat.NAME}</option></c:otherwise>
-					</c:choose>
+				<c:forEach items="${mainCatList}" var="mainCatVO">
+					<option value="${mainCatVO.PMCSEQ}">${mainCatVO.NAME}</option>
 				</c:forEach>
 			</select>
 		</td>
-		<th>브랜드</th><td><input type="text" name="brand" size="10" value="${productVO.BRAND}" onFocus="this.select();"></td>
-		<th>상품명</th><td><input type="text" name="name" size="10" value="${productVO.NAME}" onFocus="this.select();"></td>
+		<td colspan="5">
+		<div id="mainView" style="display:flex;">
+			<c:if test="${empty mainSelectedCatList}"><span id="mainCatEmptyMessage">카테고리를 추가하세요.</span></c:if>
+			<c:if test="${not empty mainSelectedCatList}"><span id="mainCatEmptyMessage" style="display:none;">카테고리를 추가하세요.</span></c:if>
+			<c:forEach items="${mainSelectedCatList}" var="mainCat" varStatus="stauts">
+				<div id="mainCat_${mainCat.PMCSEQ}" style="display:flex; margin-left:5px; margin-right:5px;">
+					<div style="line-height:25px;">
+						<c:forEach items="${mainCatList}" var="Cat"><c:if test="${Cat.PMCSEQ == mainCat.PMCSEQ}">${Cat.NAME}</c:if></c:forEach>
+					</div>
+					<img src="admin/images/remove.png" width="25" height="25" onClick="remove_category('main', '${mainCat.PMCSEQ}');">
+					<input type="hidden" name="mainCat" value="${mainCat.PMCSEQ}">
+				</div>
+			</c:forEach>
+		</div>
+		</td>
+	</tr>
+	<tr>
+		<th>서브 카테고리</th>
+		<td colspan="2">
+			<select id="subCat" onChange="add_category('sub');">
+				<option value="0">선택</option>
+				<c:forEach items="${subCatList}" var="subCatVO">
+					<option value="${subCatVO.PSCSEQ}">${subCatVO.NAME}</option>
+				</c:forEach>
+			</select>
+		</td>
+		<td colspan="5">
+		<div id="subView" style="display:flex;">
+			<c:if test="${empty subSelectedCatList}"><span id="subCatEmptyMessage">카테고리를 추가하세요.</span></c:if>
+			<c:if test="${not empty subSelectedCatList}"><span id="subCatEmptyMessage" style="display:none;">카테고리를 추가하세요.</span></c:if>
+			<c:forEach items="${subSelectedCatList}" var="subCat" varStatus="stauts">
+				<div id="subCat_${subCat.PSCSEQ}" style="display:flex; margin-left:5px; margin-right:5px;">
+					<div style="line-height:25px;">
+						<c:forEach items="${subCatList}" var="Cat"><c:if test="${Cat.PSCSEQ == subCat.PSCSEQ}">${Cat.NAME}</c:if></c:forEach>
+					</div>
+					<img src="admin/images/remove.png" width="25" height="25" onClick="remove_category('sub', '${subCat.PSCSEQ}');">
+					<input type="hidden" name="subCat" value="${subCat.PSCSEQ}">
+				</div>
+			</c:forEach>
+		</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>브랜드</th><td colspan="2"><input type="text" name="brand" size="10" value="${productVO.BRAND}" onFocus="this.select();"></td>
+		<th>상품명</th><td colspan="2"><input type="text" name="name" size="10" value="${productVO.NAME}" onFocus="this.select();"></td>
 		<th>성별</th>
 		<td>
 			<select name="gender">

@@ -109,7 +109,7 @@ END;
 
 ------------------------------------------------------------------------------
 
-create or replace procedure getProductCatList(
+create or replace procedure getAllProductCatList(
     p_categoryClass in varchar2,
     p_cur out sys_refcursor)
 is
@@ -293,7 +293,6 @@ end;
 
 create or replace procedure updateProduct(
     p_pseq in product.pseq%type,
-    p_pcseq in product.pcseq%type,
     p_brand in product.brand%type,
     p_name in product.name%type,
     p_description in product.description%type,
@@ -304,7 +303,7 @@ create or replace procedure updateProduct(
 is
 
 begin
-    update product set pcseq = p_pcseq, brand = p_brand, name = p_name, description = p_description,
+    update product set brand = p_brand, name = p_name, description = p_description,
     gender = p_gender, image = p_image, bestyn = p_bestyn, useyn = p_useyn
     where pseq = p_pseq;
 
@@ -680,5 +679,185 @@ is
 begin
     open p_cur for
     select * from product_sub_category order by pscseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertProductMainCatSet(
+    p_pmcseq in product_main_cat_set.pmcseq%type,
+    p_pmcsseq out product_main_cat_set.pmcsseq%type)
+is
+
+begin
+    insert into product_main_cat_set(pmcsseq, pmcseq)
+    values(product_main_cat_set_pmcsseq.nextval, p_pmcseq);
+    p_pmcsseq := product_main_cat_set_pmcsseq.currval;
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertProductSubCatSet(
+    p_pmcsseq in product_sub_cat_set.pmcsseq%type,
+    p_pscseq in product_sub_cat_set.pscseq%type)
+is
+
+begin
+    insert into product_sub_cat_set(pscsseq, pmcsseq, pscseq)
+    values(product_sub_cat_set_pscsseq.nextval, p_pmcsseq, p_pscseq);
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getMainCatSetList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_main_cat_set_view order by pmcsseq asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getSubCatSetList(
+    p_pmcsseq in product_sub_cat_set.pmcsseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+    select * from product_sub_cat_set_view where pmcsseq = p_pmcsseq order by pscsseq asc;
+    
+end;
+
+------------------------------------------------------------------------------
+
+create or replace procedure updateProductCatSet(
+    p_tablename in varchar2,
+    p_index in number,
+    p_value in number)
+is
+
+begin
+    if p_tablename = 'main' then
+        update product_main_cat_set set pmcseq = p_value where pmcsseq = p_index;
+    elsif p_tablename = 'sub' then
+        update product_sub_cat_set set pscseq = p_value where pscsseq = p_index;
+    end if;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteProductCatSet(
+    p_tablename in varchar2,
+    p_index in number)
+is
+
+begin
+    if p_tablename = 'main' then
+        delete from product_main_cat_set where pmcsseq = p_index;
+    elsif p_tablename = 'sub' then
+        delete from product_sub_cat_set where pscsseq = p_index;
+    end if;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertMainCatList(
+    p_pseq in product_main_category_list.pseq%type,
+    p_pmcseq in product_main_category_list.pmcseq%type)
+is
+
+begin
+    insert into product_main_category_list(pmclseq, pseq, pmcseq)
+    values(product_main_cat_list_pmclseq.nextval, p_pseq, p_pmcseq);
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertSubCatList(
+    p_pseq in product_sub_category_list.pseq%type,
+    p_pscseq in product_sub_category_list.pscseq%type)
+is
+
+begin
+    insert into product_sub_category_list(psclseq, pseq, pscseq)
+    values(product_sub_cat_list_psclseq.nextval, p_pseq, p_pscseq);
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductMainCatList(
+    p_pseq in product_main_cat_list_view.pseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product_main_cat_list_view where pseq = p_pseq order by pmclseq asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductSubCatList(
+    p_pseq in product_sub_cat_list_view.pseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product_sub_cat_list_view where pseq = p_pseq order by psclseq asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteMainCatList(
+    p_pmclseq in product_main_category_list.pmclseq%type)
+is
+
+begin
+    delete from product_main_category_list where pmclseq = p_pmclseq;
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteSubCatList(
+    p_psclseq in product_sub_category_list.psclseq%type)
+is
+
+begin
+    delete from product_sub_category_list where psclseq = p_psclseq;
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductMainCatList(
+    p_pseq in product_main_category_list.pseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product_main_category_list where pseq = p_pseq order by pmclseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductSubCatList(
+    p_pseq in product_sub_category_list.pseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product_sub_category_list where pseq = p_pseq order by psclseq;
     
 end;

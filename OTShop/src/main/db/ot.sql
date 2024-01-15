@@ -17,7 +17,8 @@ DROP TABLE product_main_category CASCADE CONSTRAINTS;
 DROP TABLE product_sub_category CASCADE CONSTRAINTS;
 DROP TABLE product_main_category_list CASCADE CONSTRAINTS;
 DROP TABLE product_sub_category_list CASCADE CONSTRAINTS;
-DROP TABLE product_category_set CASCADE CONSTRAINTS;
+DROP TABLE product_sub_cat_set CASCADE CONSTRAINTS;
+DROP TABLE product_main_cat_set CASCADE CONSTRAINTS;
 DROP TABLE transport CASCADE CONSTRAINTS;
 DROP TABLE invoice CASCADE CONSTRAINTS;
 DROP TABLE reply CASCADE CONSTRAINTS;
@@ -37,7 +38,8 @@ DROP SEQUENCE product_main_category_pmcseq;
 DROP SEQUENCE product_sub_category_pscseq;
 DROP SEQUENCE product_main_cat_list_pmclseq;
 DROP SEQUENCE product_sub_cat_list_psclseq;
-DROP SEQUENCE product_category_set_pcsseq;
+DROP SEQUENCE product_main_cat_set_pmcsseq;
+DROP SEQUENCE product_sub_cat_set_pscsseq;
 DROP SEQUENCE pwd_find_pfseq;
 DROP SEQUENCE qna_category_qcseq;
 DROP SEQUENCE qna_qseq;
@@ -69,7 +71,8 @@ CREATE SEQUENCE product_main_cat_list_pmclseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_sub_cat_list_psclseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_main_category_pmcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_sub_category_pscseq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE product_category_set_pcsseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_main_cat_set_pmcsseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE product_sub_cat_set_pscsseq INCREMENT BY 1 START WITH 1;
 
 
 
@@ -252,13 +255,22 @@ CREATE TABLE product_sub_category
 );
 
 
-CREATE TABLE product_category_set
+CREATE TABLE product_main_cat_set
 (
-	pcsseq number NOT NULL,
+	pmcsseq number NOT NULL,
 	pmcseq number NOT NULL,
-	pscseq number NOT NULL,
-	PRIMARY KEY (pcsseq)
+	PRIMARY KEY (pmcsseq)
 );
+
+CREATE TABLE product_sub_cat_set
+(
+	pscsseq number NOT NULL,
+	pmcsseq number NOT NULL,
+	pscseq number NOT NULL,
+	PRIMARY KEY (pscsseq)
+);
+
+
 
 
 CREATE TABLE pwd_find
@@ -404,20 +416,25 @@ ALTER TABLE product_sub_category_list
 	ON DELETE CASCADE
 ;
 
-ALTER TABLE product_category_set
+
+ALTER TABLE product_main_cat_set
 	ADD FOREIGN KEY (pmcseq)
 	REFERENCES product_main_category (pmcseq)
 	ON DELETE CASCADE
 ;
 
-ALTER TABLE product_category_set
+
+ALTER TABLE product_sub_cat_set
+	ADD FOREIGN KEY (pmcsseq)
+	REFERENCES product_main_cat_set (pmcsseq)
+	ON DELETE CASCADE
+;
+
+ALTER TABLE product_sub_cat_set
 	ADD FOREIGN KEY (pscseq)
 	REFERENCES product_sub_category (pscseq)
 	ON DELETE CASCADE
 ;
-
-
-
 
 ALTER TABLE pwd_find
 	ADD FOREIGN KEY (userid)
@@ -496,6 +513,33 @@ from banner b, banner_images bi
 where b.biseq = bi.biseq;
 
 
+create or replace view product_category_set_view as
+select pcs.pcsseq, pcs.pmcseq, pmc.name as mname, pcs.pscseq, psc.name as sname
+from product_category_set pcs, product_main_category pmc, product_sub_category psc
+where pcs.pmcseq = pmc.pmcseq and pcs.pscseq = psc.pscseq
+order by pcs.pscseq asc;
+
+create or replace view product_main_cat_set_view as
+select pmcs.pmcsseq, pmcs.pmcseq, pmc.name
+from product_main_cat_set pmcs, product_main_category pmc
+where pmcs.pmcseq = pmc.pmcseq;
+
+create or replace view product_sub_cat_set_view as
+select pscs.pscsseq, pscs.pmcsseq ,pscs.pscseq, psc.name
+from product_sub_cat_set pscs, product_sub_category psc
+where pscs.pscseq = psc.pscseq;
+
+create or replace view product_main_cat_list_view as
+select pmcl.pmclseq, pmcl.pseq, pmcl.pmcseq, pmc.name
+from product_main_category_list pmcl, product_main_category pmc
+where pmcl.pmcseq = pmc.pmcseq;
+
+create or replace view product_sub_cat_list_view as
+select pscl.psclseq, pscl.pseq, pscl.pscseq, psc.name
+from product_sub_category_list pscl, product_sub_category psc
+where pscl.pscseq = psc.pscseq;
+
+
 /* Select Tables */
 select * from admins;
 select * from members;
@@ -521,8 +565,10 @@ select * from product_sub_category;
 select * from product_main_category_list;
 select * from product_sub_category_list;
 
-insert into product_main_category_list(pmclseq, pseq, pmcseq) values(product_main_cat_list_pmclseq.nextval, 3, 2);
-insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
+select * from product_main_cat_set;
+select * from product_sub_cat_set;
+
+delete from qna;
 
 
 select max(nvl(priority, 0)) from banner;
@@ -547,6 +593,10 @@ insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '회원
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '상품');
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '주문/결제');
 
-insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
+insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 28);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
+
+
+insert into product_main_category_list(pmclseq, pseq, pmcseq) values(product_main_cat_list_pmclseq.nextval, 3, 2);
+insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
 

@@ -64,5 +64,5 @@
 			</c:choose>
 </div>
 </header>
-
+<div class="main_wrap">
 <hr>

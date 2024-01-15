@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ot.team1.dao.IAdminDao;
+import ot.team1.dao.IProductDao;
 
 @Service
 public class AdminService {
 	@Autowired
 	IAdminDao adao;
+	
+	@Autowired
+	IProductDao pdao;
 
 	public HashMap<String, Object> getAdmin(String adminid) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -29,25 +33,31 @@ public class AdminService {
 
 	@Transactional(rollbackFor = { RuntimeException.class, Error.class })
 	public boolean insertProduct(HashMap<String, Object> paramMap) {
-		ArrayList<HashMap<String, Object>> optionList = (ArrayList<HashMap<String, Object>>) paramMap.get("optionList");
 		boolean result = true;
 
-		paramMap.put("pseq", 0);
-
 		try {
+			paramMap.put("pseq", 0);
+			
 			adao.insertProduct(paramMap);
 			
 			int pseq = Integer.parseInt(paramMap.get("pseq").toString());
-
-			for (HashMap<String, Object> ovo : optionList) {
-				ovo.put("PSEQ", pseq);
-
-				//System.out.println("pseq:" + ovo.get("pseq") + " optname:" + ovo.get("optname") + " price1:"
-						//+ ovo.get("price1") + " price2:" + ovo.get("price2") + " price3:" + ovo.get("price3")
-						//+ " stock:" + ovo.get("stock"));
-
-				adao.insertProductDetail(ovo);
+			System.out.println("pseq" + pseq);
+			
+			for (HashMap<String, Object> vo : (ArrayList<HashMap<String, Object>>) paramMap.get("optionList")) {
+				vo.put("PSEQ", pseq);
+				adao.insertProductDetail(vo);
 			}
+			
+			for(HashMap<String, Object> vo : (ArrayList<HashMap<String, Object>>) paramMap.get("pmcseqList")) {
+				vo.put("PSEQ", pseq);
+				adao.insertMainCatList(vo);
+			}
+			
+			for(HashMap<String, Object> vo : (ArrayList<HashMap<String, Object>>) paramMap.get("pscseqList")) {
+				vo.put("PSEQ", pseq);
+				adao.insertSubCatList(vo);
+			}
+
 		} catch (Exception e) {
 			System.out.println("Service insertProduct Error");
 
@@ -58,14 +68,15 @@ public class AdminService {
 
 		return result;
 	}
-
+	
+	
 	public ArrayList<HashMap<String, Object>> getProductList(String keyword) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 
 		paramMap.put("ref_cursor", null);
 		paramMap.put("keyword", keyword);
 
-		adao.getProductList(paramMap);
+		pdao.getProductList(paramMap);
 
 		ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
@@ -73,7 +84,7 @@ public class AdminService {
 		for (HashMap<String, Object> pvo : result) {
 			pvo.put("ref_cursor", null);
 
-			adao.getProductDetailList(pvo);
+			pdao.getProductDetailList(pvo);
 
 			ArrayList<HashMap<String, Object>> optionList = (ArrayList<HashMap<String, Object>>) pvo.get("ref_cursor");
 
@@ -82,14 +93,15 @@ public class AdminService {
 
 		return result;
 	}
+	
 
-	public ArrayList<HashMap<String, Object>> getProductCatList(String categoryClass) {
+	public ArrayList<HashMap<String, Object>> getAllProductCatList(String categoryClass) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 
 		paramMap.put("ref_cursor", null);
 		paramMap.put("categoryClass", categoryClass);
 
-		adao.getProductCatList(paramMap);
+		adao.getAllProductCatList(paramMap);
 
 		return (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 	}
@@ -100,7 +112,7 @@ public class AdminService {
 		paramMap.put("ref_cursor", null);
 		paramMap.put("categoryClass", categoryClass);
 		
-		adao.getProductCatList(paramMap);
+		adao.getAllProductCatList(paramMap);
 
 		ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
@@ -171,7 +183,7 @@ public class AdminService {
 
 		result.put("ref_cursor", null);
 
-		adao.getProductDetailList(result);
+		pdao.getProductDetailList(result);
 
 		// 옵션 저장
 		result.put("optionList", result.get("ref_cursor"));
@@ -186,25 +198,92 @@ public class AdminService {
 
 		try {
 			adao.updateProduct(paramMap);
-			System.out.println("Service updateProduct PSEQ : " + (int) paramMap.get("PSEQ"));
-			int pseq = (int) paramMap.get("PSEQ");
-
-			// ArrayList<HashMap<String, Object>> optionList = (ArrayList<HashMap<String,
-			// Object>>)paramMap.get("optionList");
 
 			for (HashMap<String, Object> ovo : (ArrayList<HashMap<String, Object>>) paramMap.get("optionList")) {
-				System.out.println("Service updateProduct PDSEQ : " + (int) ovo.get("PDSEQ"));
-				ovo.put("PSEQ", pseq);
-
-				System.out.println("pseq:" + ovo.get("PSEQ") + "pdseq:" + ovo.get("PDSEQ") + " optname:"
-						+ ovo.get("OPTNAME") + " price1:" + ovo.get("PRICE1") + " price2:" + ovo.get("PRICE2")
-						+ " price3:" + ovo.get("PRICE3") + " stock:" + ovo.get("STOCK"));
 				if ((int) ovo.get("PDSEQ") != 0)
 					adao.updateProductDetail(ovo);
 				else
 					adao.insertProductDetail(ovo);
-
 			}
+			
+			//Category update 방법
+			//기존 입력되었던 카테고리와 updateForm으로 부터 받은 카테고리가 섞여 있는 상태이므로
+			//기존입력되었던 카테고리 리스트(list_1)와 Form으로 부터 온 카테고리 리스트(list_2)를 비교 필요
+			//1. list_1과 같은 값이 list_2에 있는 경우 list_2에서 삭제 / 없는 경우 list_1의 값 db에서 delete
+			//2. list_2의 값 db에 insert
+			
+			
+			//db에 저장된 리스트 저장
+			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+			
+			paramMap2.put("pseq", (int)paramMap.get("PSEQ"));
+			paramMap2.put("ref_cursor", null);
+			
+			adao.getProductMainCatList(paramMap2);
+			
+			ArrayList<HashMap<String, Object>> oldMainCatList = (ArrayList<HashMap<String, Object>>)paramMap2.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> newMainCatList = (ArrayList<HashMap<String, Object>>)paramMap.get("pmcseqList");
+			
+			for(HashMap<String, Object> oldMainCat : oldMainCatList) {
+				int oldValue = Integer.parseInt(oldMainCat.get("PMCSEQ").toString());
+				
+				boolean isFound = false;
+				
+				//list에서 삭제되는 경우가 있으므로 뒤에서 부터 탐색
+				for(int i = newMainCatList.size() - 1; i >= 0; i--) {
+					int newValue = Integer.parseInt(newMainCatList.get(i).get("PMCSEQ").toString());
+					
+					if(oldValue == newValue) {
+						newMainCatList.remove(i);
+						isFound = true;
+						break;
+					}
+				}
+				
+				if(!isFound) {
+					paramMap2.put("PMCLSEQ", Integer.parseInt(oldMainCat.get("PMCLSEQ").toString()));
+					adao.deleteMainCatList(paramMap2);
+				}
+			}
+			
+			for(HashMap<String, Object> newMainCat : newMainCatList) {
+				adao.insertMainCatList(newMainCat);
+			}
+			
+			paramMap2.put("ref_cursor", null);
+			
+			adao.getProductSubCatList(paramMap2);
+			
+			ArrayList<HashMap<String, Object>> oldSubCatList = (ArrayList<HashMap<String, Object>>)paramMap2.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> newSubCatList = (ArrayList<HashMap<String, Object>>)paramMap.get("pscseqList");
+			
+			for(HashMap<String, Object> oldSubCat : oldSubCatList) {
+				int oldValue = Integer.parseInt(oldSubCat.get("PSCSEQ").toString());
+				
+				boolean isFound = false;
+				
+				//list에서 삭제되는 경우가 있으므로 뒤에서 부터 탐색
+				for(int i = newSubCatList.size() - 1; i >= 0; i--) {
+					int newValue = Integer.parseInt(newSubCatList.get(i).get("PSCSEQ").toString());
+					
+					if(oldValue == newValue) {
+						newSubCatList.remove(i);
+						isFound = true;
+						break;
+					}
+				}
+				
+				if(!isFound) {
+					paramMap2.put("PSCLSEQ", Integer.parseInt(oldSubCat.get("PSCLSEQ").toString()));
+					adao.deleteSubCatList(paramMap2);
+				}
+			}
+			
+			for(HashMap<String, Object> newSubCat : newSubCatList) {
+				adao.insertSubCatList(newSubCat);
+			}
+			
+			
 		} catch (Exception e) {
 			System.out.println("Service updateProduct Error");
 
@@ -530,8 +609,7 @@ public class AdminService {
 
 			adao.getBannerPriorityList(paramMap);
 
-			ArrayList<HashMap<String, Object>> priorityList = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> priorityList = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
 			for (int i = 0; i < priorityList.size(); i++) {
 				if (Integer.parseInt(priorityList.get(i).get("PRIORITY").toString()) != (i + 1)) {
@@ -628,6 +706,98 @@ public class AdminService {
 
 		return result;
 		
+	}
+	
+	@Transactional(rollbackFor = { RuntimeException.class, Error.class })
+	public boolean insertProductCatSet(int pmcseq, int[] pscseq) {
+		boolean result = true;
+		
+		try {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			
+			paramMap.put("pmcseq", pmcseq);
+			paramMap.put("pmcsseq", 0);
+			
+			adao.insertProductMainCatSet(paramMap);
+			
+			paramMap.put("pmcsseq", Integer.parseInt(paramMap.get("pmcsseq").toString()));
+			
+			for(int i = 0; i < pscseq.length; i++) {
+				
+				paramMap.put("pscseq", pscseq[i]);
+				
+				adao.insertProductSubCatSet(paramMap);
+			}
+		} catch (Exception e) {
+			result = false;
+			throw new RuntimeException();
+		}
+
+		return result;
+	}
+
+	public Object getCategorySetList() {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+		//mainCatSetList select
+		paramMap.put("ref_cursor", null);
+		
+		pdao.getMainCatSetList(paramMap);
+		
+		ArrayList<HashMap<String, Object>> mainCatSetList = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		for(HashMap<String, Object> mcsvo : mainCatSetList) {
+			paramMap.put("pmcsseq", Integer.parseInt(mcsvo.get("PMCSSEQ").toString()));
+			paramMap.put("ref_cursor", null);
+			
+			pdao.getSubCatSetList(paramMap);
+			
+			mcsvo.put("subCatSetList", (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor"));
+		}
+		
+		return mainCatSetList;
+	}
+
+	public void updateProductCatSet(String categoryClass, int index, int value) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("tablename", categoryClass);
+		paramMap.put("index", index);
+		paramMap.put("value", value);
+		
+		adao.updateProductCatSet(paramMap);
+	}
+	
+	public void deleteProductCatSet(String categoryClass, int index) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("tablename", categoryClass);
+		paramMap.put("index", index);
+		
+		adao.deleteProductCatSet(paramMap);
+		
+	}
+
+	public ArrayList<HashMap<String, Object>> getProductMainCatList(int pseq) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pseq", pseq);
+		paramMap.put("ref_cursor", null);
+		
+		adao.getProductMainCatList(paramMap);
+		
+		return (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+	}
+	
+	public ArrayList<HashMap<String, Object>> getProductSubCatList(int pseq) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pseq", pseq);
+		paramMap.put("ref_cursor", null);
+		
+		adao.getProductSubCatList(paramMap);
+		
+		return (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 	}
 
 }

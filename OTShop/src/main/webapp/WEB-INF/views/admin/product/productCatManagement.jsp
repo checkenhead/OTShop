@@ -7,110 +7,134 @@
 <br>
 <h1>admin product category management</h1>
 <br>
-<!--
+
 <form name="productCatForm" method="post">
+	<input type="hidden" id="categoryClass" name="categoryClass">
+	<input type="hidden" id="index" name="index">
+	<input type="hidden" id="value" name="value">
+	
 	<table class="tblAdminProductCat">
-		<tr><th>번호</th><th>상품 분류명</th><th>등록된 상품</th><th>커맨드</th></tr>
-		<c:forEach items="${productCatList}" var="productCat" varStatus="status">
+	<tr><th colspan="2">번호</th><th colspan="2">카테고리</th><th>커맨드</th></tr>
+	<tbody>
+	<!-- 저장된 카테고리 셋 -->
+	<c:forEach items="${categorySetList}" var="mainCatSetVO" varStatus="mainStatus">
+	<tr>
+		<td colspan="2">${mainStatus.count}</td>
+		<td colspan="2">
+			<select id="select_${mainCatSetVO.PMCSSEQ}" disabled>
+			<c:forEach items="${mainCatList}" var="mainCatVO">
+				<c:if test="${mainCatSetVO.PMCSEQ == mainCatVO.PMCSEQ}">
+					<option value="${mainCatVO.PMCSEQ}" selected>${mainCatVO.NAME}</option>
+				</c:if>
+				<c:if test="${mainCatSetVO.PMCSEQ != mainCatVO.PMCSEQ}">
+					<option value="${mainCatVO.PMCSEQ}">${mainCatVO.NAME}</option>
+				</c:if>
+			</c:forEach>
+			</select>
+			<input type="hidden" id="oldValue_${mainCatSetVO.PMCSSEQ}" value="${mainCatSetVO.PMCSEQ}">
+		</td>
+		<td>
+			<div class="btn">
+				<input type="button" id="btnEdit_${mainCatSetVO.PMCSSEQ}"
+				value="수정" onClick="btn_action('edit', '${mainCatSetVO.PMCSSEQ}', '0')">
+			</div>
+			<div class="btn">
+				<input type="button" id="btnDelete_${mainCatSetVO.PMCSSEQ}"
+				value="삭제" onClick="btn_action('delete', '${mainCatSetVO.PMCSSEQ}', '0')">
+			</div>
+			<div class="btn">
+				<input type="button" id="btnSave_${mainCatSetVO.PMCSSEQ}"
+				value="저장" onClick="btn_action('save', '${mainCatSetVO.PMCSSEQ}', '0')" style="display:none;">
+			</div>
+			<div class="btn">
+				<input type="button" id="btnCancel_${mainCatSetVO.PMCSSEQ}"
+				value="취소" onClick="btn_action('cancel', '${mainCatSetVO.PMCSSEQ}', '0')" style="display:none;">
+			</div>
+		</td>
+	</tr>
+		<c:forEach items="${mainCatSetVO.subCatSetList}" var="subCatSetVO" varStatus="subStatus">
 		<tr>
-			<td>${status.count}</td>
-			<td>
-				<input type="text" id="name_${productCat.PCSEQ}" value="${productCat.NAME}" readonly>
-				<input type="hidden" id="oldName_${productCat.PCSEQ}" value="${productCat.NAME}">
+			<td></td>
+			<td>${mainStatus.count}-${subStatus.count}</td>
+			<td colspan="2">
+				<select id="select_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}" disabled>
+				<c:forEach items="${subCatList}" var="subCatVO">
+					<c:if test="${subCatSetVO.PSCSEQ == subCatVO.PSCSEQ}">
+						<option value="${subCatVO.PSCSEQ}" selected>${subCatVO.NAME}</option>
+					</c:if>
+					<c:if test="${subCatSetVO.PSCSEQ != subCatVO.PSCSEQ}">
+						<option value="${subCatVO.PSCSEQ}">${subCatVO.NAME}</option>
+					</c:if>
+				</c:forEach>
+				</select>
+				<input type="hidden" id="oldValue_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}" value="${subCatSetVO.PSCSEQ}">
 			</td>
-			<td>${productCat.COUNT}</td>
 			<td>
-				<c:choose>
-				<c:when test="${productCat.COUNT != 0}">
-					<div class="btn">
-						<input type="button" id="edit_${productCat.PCSEQ}" value="수정" onClick="go_edit_cat('${productCat.PCSEQ}');">
-					</div>
-					<div class="btn">
-						<input type="button" id="cancel_${productCat.PCSEQ}" value="취소" onClick="go_cancel_cat('${productCat.PCSEQ}');" style="display:none;">
-					</div>
-					<div class="btn">
-						<input type="button" id="save_${productCat.PCSEQ}" value="저장" onClick="go_save_cat('${productCat.COUNT}', '${productCat.PCSEQ}', 'updateProductCat');" style="display:none;">
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="btn">
-						<input type="button" value="삭제" onClick="go_delete_cat('${productCat.NAME}', '${productCat.PCSEQ}', 'deleteProductCat');">
-					</div>
-				</c:otherwise>
-				</c:choose>
+				<div class="btn">
+					<input type="button" id="btnEdit_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}"
+					value="수정" onClick="btn_action('edit', '${mainCatSetVO.PMCSSEQ}', '${subCatSetVO.PSCSSEQ}')">
+				</div>
+				<div class="btn">
+					<input type="button" id="btnDelete_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}"
+					value="삭제" onClick="btn_action('delete', '${mainCatSetVO.PMCSSEQ}', '${subCatSetVO.PSCSSEQ}')">
+				</div>
+				<div class="btn">
+					<input type="button" id="btnSave_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}"
+					value="저장" onClick="btn_action('save', '${mainCatSetVO.PMCSSEQ}', '${subCatSetVO.PSCSSEQ}')" style="display:none;">
+				</div>
+				<div class="btn">
+					<input type="button" id="btnCancel_${mainCatSetVO.PMCSSEQ}_${subCatSetVO.PSCSSEQ}"
+					value="취소" onClick="btn_action('cancel', '${mainCatSetVO.PMCSSEQ}', '${subCatSetVO.PSCSSEQ}')" style="display:none;">
+				</div>
 			</td>
 		</tr>
 		</c:forEach>
-		<tr>
-			<td colspan="3">
-				<input type="text" id="name" name="name" style="width:90%;">
-				<input type="hidden" id="index" name="pcseq">
-			</td>
-			<td><div class="btn"><input type="button" value="추가" onClick="go_add_cat('insertProductCat');"></div></td>
-		</tr>
-	</table>
-</form>
--->
-
-<form name="productCatForm" method="post">
-
-	<table class="tblAdminProductCat">
-	<!--
-	<tr>
-		<th>설정</th>
-		<td colspan="1">
-			<select name="inputMainCategory">
-			<option value="0">선택</option>
-			<c:forEach items="${mainCatList}" var="mainCatVO" varStatus="status">
-				<option value="${mainCatVO.PMCSEQ}">${mainCatVO.NAME}</option>
-			</c:forEach>
-			</select>
-			<input type="hidden" name="mainCategory">
-		</td>
-		<td colspan="1">
-			<select name="inputSubCategory">
-			<option value="0">선택</option>
-			<c:forEach items="${subCatList}" var="subCatVO" varStatus="status">
-				<option value="${subCatVO.PMCSEQ}">${subCatVO.NAME}</option>
-			</c:forEach>
-			</select>
-			<input type="hidden" name="subCategory">
-		</td>
-		<td>div class="btn"><input type="button" value="저장" onClick="add_product_cat_set();"></div></td>
-	</tr>
-	-->
-	<tr><th>번호</th><th colspan="2">카테고리</th><th>커맨드</th></tr>
-	<tbody id="tmp">
-		<tr id="emptyMessage"><td colspan="4">등록된 카테고리가 없습니다.</td></tr>
-		
-		<tr id="tmp_1">
-			<th rowspan="2">tmp</th>
-			<td id="" colspan="2">
-				<select id="inputMainCat_1">
+	</c:forEach>
+	</tbody>
+	
+	<tbody id="view"></tbody>
+	
+	<tbody id="main_template" style="display:none;">
+		<tr id="main_row#origin">
+			<th id="main_head#origin" rowspan="3" colspan="2">설정</th>
+			<td colspan="2">
+				<select id="mainRow_input#origin" onChange="main_changed();">
 				<c:forEach items="${mainCatList}" var="mainCatVO">
 					<option value="${mainCatVO.PMCSEQ}">${mainCatVO.NAME}</option>
 				</c:forEach>
 				</select>
+				<input type="hidden" id="pmcseq" name="pmcseq#origin">
 			</td>
-			<td><div class="btn"><input type="button" value="삭제" onClick="remove_main_cat_set('row');"></div></td>
-		</tr>
-		<tr>
-			<td></td>
 			<td>
-				<select id="inputSubCat_1">
+				<div class="btn"><input type="button" value="저장" onClick="save_product_cat_set();"></div>
+				<div class="btn"><input type="button" value="삭제" onClick="remove_main_cat_set();"></div>
+			</td>
+		</tr>
+		<tr id="btn_row#origin">
+			<td colspan="4"><div class="btn"><input type="button" value="추가" title="해당 메인 카테고리에 서브 카테고리를 추가합니다." onClick="add_sub_cat_set();"></div></td>
+		</tr>
+	</tbody>
+	
+	<tbody id="sub_template" style="display:none;">
+		<tr id="sub_row_#index" class="sub_rows#origin">
+			<td>Sub_#index</td>
+			<td>
+				<select id="subRow_input_#index" onChange="sub_changed('#index');">
 				<option value="0">선택</option>
 				<c:forEach items="${subCatList}" var="subCatVO">
 					<option value="${subCatVO.PSCSEQ}">${subCatVO.NAME}</option>
 				</c:forEach>
 				</select>
+				<input type="hidden" id="pscseq_#index" class="pscseq" name="pscseq#origin">
 			</td>
-			<td><div class="btn"><input type="button" value="삭제" onClick="remove_sub_cat_set('row');"></div></td>
+			<td>
+				<div class="btn"><input type="button" value="삭제" onClick="remove_sub_cat_set('#index');"></div>
+			</td>
 		</tr>
-		
 	</tbody>
 	
 	<tr>
-		<th rowspan="2">신규설정</th>
+		<th rowspan="2" colspan="2">추가</th>
 		<td colspan="2">
 			<select id="inputMainCat">
 				<option value="0">선택</option>
@@ -118,36 +142,10 @@
 					<option value="${mainCatVO.PMCSEQ}">${mainCatVO.NAME}</option>
 				</c:forEach>
 			</select>
-			<div style="display:none;">
-				<select id="inputSubCat">
-					<option value="0">선택</option>
-					<c:forEach items="${subCatList}" var="subCatVO">
-						<option value="${subCatVO.PSCSEQ}">${subCatVO.NAME}</option>
-					</c:forEach>
-				</select>
-			</div>
 		</td>
 		<td><div class="btn"><input type="button" value="추가" onClick="add_main_cat_set();"></div></td>
 	</tr>
 	
-	<!--
-	<tr>
-		<th>신규생성</th>
-		<td>
-			<select name="inputCategoryClass">
-				<option value="">선택</option>
-				<option value="main">메인 카테고리</option>
-				<option value="sub">서브 카테고리</option>
-			</select>
-			<input type="hidden" name="categoryClass">
-		</td>
-		<td>
-			<input type="text" name="inputName">
-			<input type="hidden" name="name">
-		</td>
-		<td><div class="btn"><input type="button" value="추가" onClick="add_product_cat();"></div></td>
-	</tr>
-	-->
 	</table>
 </form>
 

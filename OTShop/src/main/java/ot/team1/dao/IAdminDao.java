@@ -9,15 +9,17 @@ public interface IAdminDao {
 
 	public void getAdmin(HashMap<String, Object> paramMap);
 
-	public void getProductCatList(HashMap<String, Object> paramMap);
+	public void getAllProductCatList(HashMap<String, Object> paramMap);
 
 	public void insertProduct(HashMap<String, Object> paramMap);
 
 	public void insertProductDetail(HashMap<String, Object> ovo);
 
+	/* productDao로 이동
 	public void getProductList(HashMap<String, Object> paramMap);
 
 	public void getProductDetailList(HashMap<String, Object> paramMap);
+	*/
 
 	public String getCount(HashMap<String, Object> paramMap);
 
@@ -91,8 +93,34 @@ public interface IAdminDao {
 
 	public void updateBannerPriority(HashMap<String, Object> paramMap);
 
+	/* 중복으로 삭제(getAllProductCatList으로 대체)
 	public void getMainCatList(HashMap<String, Object> paramMap);
 
 	public void getSubCatList(HashMap<String, Object> paramMap);
+	*/
+	public void insertProductMainCatSet(HashMap<String, Object> paramMap);
 
+	public void insertProductSubCatSet(HashMap<String, Object> paramMap);
+
+	/* productDao로 이동
+	public void getMainCatSetList(HashMap<String, Object> paramMap);
+
+	public void getSubCatSetList(HashMap<String, Object> paramMap);
+	*/
+
+	public void updateProductCatSet(HashMap<String, Object> paramMap);
+	
+	public void deleteProductCatSet(HashMap<String, Object> paramMap);
+
+	public void insertMainCatList(HashMap<String, Object> vo);
+
+	public void insertSubCatList(HashMap<String, Object> vo);
+
+	public void getProductMainCatList(HashMap<String, Object> paramMap);
+
+	public void getProductSubCatList(HashMap<String, Object> paramMap);
+
+	public void deleteMainCatList(HashMap<String, Object> paramMap2);
+
+	public void deleteSubCatList(HashMap<String, Object> paramMap2);
 }

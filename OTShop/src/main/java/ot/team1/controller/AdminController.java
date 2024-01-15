@@ -89,8 +89,8 @@ public class AdminController {
 		if (request.getSession().getAttribute("loginAdmin") == null)
 			return "redirect:/adminLoginForm";
 		else {
-			// product_category 테이블 select값 model에 저장
-			//model.addAttribute("productCatList", as.getProductCatList());
+			model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+			model.addAttribute("subCatList", as.getAllProductCatList("sub"));
 
 			return "admin/product/insertProductForm";
 		}
@@ -98,7 +98,8 @@ public class AdminController {
 
 	@PostMapping("/changeOption")
 	public String changeOption(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+			@RequestParam(value = "mainCat", defaultValue = "0") int[] mainCat,
+			@RequestParam(value = "subCat", defaultValue = "0") int[] subCat,
 			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
@@ -142,10 +143,10 @@ public class AdminController {
 				optionList.add(ovo);
 			}
 		}
-
+		
 		HashMap<String, Object> productVO = new HashMap<String, Object>();
+		
 		productVO.put("PSEQ", pseq);
-		//productVO.put("PCSEQ", pcseq);
 		productVO.put("GENDER", gender);
 		productVO.put("BRAND", brand);
 		productVO.put("NAME", name);
@@ -156,8 +157,35 @@ public class AdminController {
 		productVO.put("USEYN", useyn);
 		productVO.put("VIEWCOUNT", viewcount);
 		productVO.put("optionList", optionList);
-
-		//model.addAttribute("productCatList", as.getProductCatList());
+		
+		if(mainCat != null && mainCat.length != 0 && mainCat[0] != 0) {
+			ArrayList<HashMap<String, Object>> mainSelectedCatList = new ArrayList<HashMap<String, Object>>();
+			
+			for(int i : mainCat) {
+				HashMap<String, Object> mainSelectedCat = new HashMap<String, Object>();
+				
+				mainSelectedCat.put("PMCSEQ", i);
+				mainSelectedCatList.add(mainSelectedCat);
+			}
+			
+			model.addAttribute("mainSelectedCatList", mainSelectedCatList);
+		}
+		
+		if(subCat != null && subCat.length != 0 && subCat[0] != 0) {
+			ArrayList<HashMap<String, Object>> subSelectedCatList = new ArrayList<HashMap<String, Object>>();
+			
+			for(int i : subCat) {
+				HashMap<String, Object> subSelectedCat = new HashMap<String, Object>();
+				
+				subSelectedCat.put("PSCSEQ", i);
+				subSelectedCatList.add(subSelectedCat);
+			}
+			
+			model.addAttribute("subSelectedCatList", subSelectedCatList);
+		}
+		
+		model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+		model.addAttribute("subCatList", as.getAllProductCatList("sub"));
 		model.addAttribute("productVO", productVO);
 		model.addAttribute("previewFilename", previewFilename);
 
@@ -204,10 +232,12 @@ public class AdminController {
 
 		return result;
 	}
-
+	
 	@PostMapping("/insertProduct")
-	public String insertProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			//@RequestParam(value = "pcseq", defaultValue = "0") int pcseq,
+	public String insertProduct(
+			//@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			@RequestParam(value = "mainCat", defaultValue = "0") int[] mainCat,
+			@RequestParam(value = "subCat", defaultValue = "0") int[] subCat,
 			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("optname") String[] optname,
@@ -226,10 +256,8 @@ public class AdminController {
 		else {
 			boolean validationSucess = true;
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
-
-			paramMap.put("PSEQ", pseq);
-			//paramMap.put("PCSEQ", pcseq);
+			
+			//paramMap.put("PSEQ", pseq);
 			paramMap.put("GENDER", gender);
 			paramMap.put("BRAND", brand);
 			paramMap.put("NAME", name);
@@ -240,26 +268,56 @@ public class AdminController {
 			paramMap.put("REGDATE", regdate);
 			paramMap.put("VIEWCOUNT", viewcount);
 
+			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
+			
 			// validation 실패 시 가져갈 입력 데이터 model에 저장
 			if (stock != null) {
 				for (int i = 0; i < stock.length; i++) {
-					HashMap<String, Object> ovo = new HashMap<String, Object>();
-					ovo.put("OPTNAME", optname[i]);
-					ovo.put("PRICE1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
-					ovo.put("PRICE2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
-					ovo.put("PRICE3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
-					ovo.put("STOCK", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
-					optionList.add(ovo);
+					HashMap<String, Object> vo = new HashMap<String, Object>();
+					vo.put("OPTNAME", optname[i]);
+					vo.put("PRICE1", (price1 == null) || (price1.length <= i) ? 0 : price1[i]);
+					vo.put("PRICE2", (price2 == null) || (price2.length <= i) ? 0 : price2[i]);
+					vo.put("PRICE3", (price3 == null) || (price3.length <= i) ? 0 : price3[i]);
+					vo.put("STOCK", (stock == null) || (stock.length <= i) ? 0 : stock[i]);
+					optionList.add(vo);
 				}
 			}
 
 			paramMap.put("optionList", optionList);
+			
+			
+			ArrayList<HashMap<String, Object>> pmcseqList = new ArrayList<HashMap<String, Object>>();
+			ArrayList<HashMap<String, Object>> pscseqList = new ArrayList<HashMap<String, Object>>();
+			
+			for(int i : mainCat) {
+				HashMap<String, Object> vo = new HashMap<String, Object>();
+				vo.put("PMCSEQ", i);
+				pmcseqList.add(vo);
+			}
+			
+			for(int i : subCat) {
+				HashMap<String, Object> vo = new HashMap<String, Object>();
+				vo.put("PSCSEQ", i);
+				pscseqList.add(vo);
+			}
+			
+			paramMap.put("pmcseqList", pmcseqList);
+			paramMap.put("pscseqList", pscseqList);			
 
-			//model.addAttribute("productCatList", as.getProductCatList());
+			model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+			model.addAttribute("subCatList", as.getAllProductCatList("sub"));
+			model.addAttribute("mainSelectedCatList", mainCat);
+			model.addAttribute("subSelectedCatList", subCat);
 			model.addAttribute("productVO", paramMap);
 
 			// validation
-			if (brand.equals("")) {
+			if(mainCat == null || mainCat.length == 0 || mainCat[0] == 0) {
+				model.addAttribute("message", "메인 카테고리를 입력하세요.");
+				validationSucess = false;
+			} else if(subCat == null || subCat.length == 0 || subCat[0] == 0) {
+				model.addAttribute("message", "서브 카테고리를 입력하세요.");
+				validationSucess = false;
+			} else if (brand.equals("")) {
 				model.addAttribute("message", "브랜드를 입력하세요.");
 				validationSucess = false;
 			} else if (name.equals("")) {
@@ -339,9 +397,10 @@ public class AdminController {
 			return "redirect:/adminLoginForm";
 		} else {
 			// 모든 Category 리스트 저장, 각 카테고리별 등록된 상품 수 저장
-			model.addAttribute("mainCatList", as.getProductCatList("main"));
-			model.addAttribute("subCatList", as.getProductCatList("sub"));
-
+			model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+			model.addAttribute("subCatList", as.getAllProductCatList("sub"));
+			model.addAttribute("categorySetList", as.getCategorySetList());
+			
 			return "admin/product/productCatManagement";
 		}
 	}
@@ -444,7 +503,54 @@ public class AdminController {
 			else return "";
 		}
 	}
+	
+	@PostMapping("/insertProductCatSet")
+	public String insertProductCatSet(
+			@RequestParam(value = "pmcseq", defaultValue = "0") int pmcseq,
+			@RequestParam(value = "pscseq", defaultValue = "0") int[] pscseq,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.insertProductCatSet(pmcseq, pscseq);
 
+			return "redirect:/productCatManagement";
+		}
+	}
+	
+	@PostMapping("/updateProductCatSet")
+	public String updateProductCatSet(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam("index") int index,
+			@RequestParam("value") int value,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateProductCatSet(categoryClass, index, value);
+
+			return "redirect:/productCatManagement";
+		}
+	}
+	
+	@PostMapping("/deleteProductCatSet")
+	public String deleteProductCatSet(
+			@RequestParam("categoryClass") String categoryClass,
+			@RequestParam("index") int index,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.deleteProductCatSet(categoryClass, index);
+
+			return "redirect:/productCatManagement";
+		}
+	}
+	
+	
 	@PostMapping("/updateProductForm")
 	public String updateProductForm(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
 			HttpServletRequest request, Model model) {
@@ -455,7 +561,10 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				//model.addAttribute("productCatList", as.getProductCatList());
+				model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+				model.addAttribute("subCatList", as.getAllProductCatList("sub"));
+				model.addAttribute("mainSelectedCatList", as.getProductMainCatList(pseq));
+				model.addAttribute("subSelectedCatList", as.getProductSubCatList(pseq));
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 
@@ -464,8 +573,11 @@ public class AdminController {
 	}
 
 	@PostMapping("/updateProduct")
-	public String updateProduct(@RequestParam(value = "pseq", defaultValue = "0") int pseq,
-			@RequestParam(value = "pcseq", defaultValue = "0") int pcseq, @RequestParam("gender") String gender,
+	public String updateProduct(
+			@RequestParam(value = "pseq", defaultValue = "0") int pseq,
+			@RequestParam(value = "mainCat", defaultValue = "0") int[] mainCat,
+			@RequestParam(value = "subCat", defaultValue = "0") int[] subCat,
+			@RequestParam("gender") String gender,
 			@RequestParam("brand") String brand, @RequestParam("name") String name,
 			@RequestParam("description") String description,
 			@RequestParam(value = "image", required = false) String image,
@@ -495,7 +607,6 @@ public class AdminController {
 			ArrayList<HashMap<String, Object>> optionList = new ArrayList<HashMap<String, Object>>();
 
 			paramMap.put("PSEQ", pseq);
-			paramMap.put("PCSEQ", pcseq);
 			paramMap.put("GENDER", gender);
 			paramMap.put("BRAND", brand);
 			paramMap.put("NAME", name);
@@ -507,26 +618,53 @@ public class AdminController {
 			paramMap.put("VIEWCOUNT", viewcount);
 
 			for (int i = 0; i < pdseq.length; i++) {
-				HashMap<String, Object> option = new HashMap<String, Object>();
-
-				option.put("PDSEQ", pdseq[i]);
-				option.put("OPTNAME", optname[i]);
-				option.put("PRICE1", price1[i]);
-				option.put("PRICE2", price2[i]);
-				option.put("PRICE3", price3[i]);
-				option.put("STOCK", stock[i]);
-				option.put("STORE", store[i]);
-				option.put("USEYN", optUseyn[i]);
-				optionList.add(option);
+				HashMap<String, Object> vo = new HashMap<String, Object>();
+				
+				vo.put("PSEQ", pseq);
+				vo.put("PDSEQ", pdseq[i]);
+				vo.put("OPTNAME", optname[i]);
+				vo.put("PRICE1", price1[i]);
+				vo.put("PRICE2", price2[i]);
+				vo.put("PRICE3", price3[i]);
+				vo.put("STOCK", stock[i]);
+				vo.put("STORE", store[i]);
+				vo.put("USEYN", optUseyn[i]);
+				optionList.add(vo);
 			}
 
 			paramMap.put("optionList", optionList);
+			
+			ArrayList<HashMap<String, Object>> pmcseqList = new ArrayList<HashMap<String, Object>>();
+			ArrayList<HashMap<String, Object>> pscseqList = new ArrayList<HashMap<String, Object>>();
+			
+			for(int i : mainCat) {
+				HashMap<String, Object> vo = new HashMap<String, Object>();
+				vo.put("PSEQ", pseq);
+				vo.put("PMCSEQ", i);
+				pmcseqList.add(vo);
+			}
+			
+			for(int i : subCat) {
+				HashMap<String, Object> vo = new HashMap<String, Object>();
+				vo.put("PSEQ", pseq);
+				vo.put("PSCSEQ", i);
+				pscseqList.add(vo);
+			}
+			
+			paramMap.put("pmcseqList", pmcseqList);
+			paramMap.put("pscseqList", pscseqList);	
 
-			//model.addAttribute("productCatList", as.getProductCatList());
+			model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+			model.addAttribute("subCatList", as.getAllProductCatList("sub"));
+			model.addAttribute("mainSelectedCatList", pmcseqList);
+			model.addAttribute("subSelectedCatList", pscseqList);
 			model.addAttribute("productVO", paramMap);
-
-			if (pcseq == 0) {
-				model.addAttribute("message", "상품분류를 선택하세요.");
+			
+			if(mainCat == null || mainCat.length == 0 || mainCat[0] == 0) {
+				model.addAttribute("message", "메인 카테고리를 입력하세요.");
+				validationSucess = false;
+			} else if(subCat == null || subCat.length == 0 || subCat[0] == 0) {
+				model.addAttribute("message", "서브 카테고리를 입력하세요.");
 				validationSucess = false;
 			} else if (brand.equals("")) {
 				model.addAttribute("message", "브랜드를 입력하세요.");
@@ -578,7 +716,10 @@ public class AdminController {
 			if (pseq == 0)
 				System.out.println("Error : pseq값이 0입니다.");
 			else {
-				//model.addAttribute("productCatList", as.getProductCatList());
+				model.addAttribute("mainCatList", as.getAllProductCatList("main"));
+				model.addAttribute("subCatList", as.getAllProductCatList("sub"));
+				model.addAttribute("mainSelectedCatList", as.getProductMainCatList(pseq));
+				model.addAttribute("subSelectedCatList", as.getProductSubCatList(pseq));
 				model.addAttribute("productVO", as.getProduct(pseq));
 			}
 
@@ -789,7 +930,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/adminViewQna")
-	public String adminViewQna(@RequestParam("qseq") int qseq, @RequestParam("pseq") int pseq,
+	public String adminViewQna(
+			@RequestParam("qseq") int qseq,
+			@RequestParam(value = "pseq", defaultValue = "0") int pseq,
 			HttpServletRequest request, Model model) {
 		// 로그인 체크
 		if (request.getSession().getAttribute("loginAdmin") == null) {

@@ -14,27 +14,43 @@
 <input type="hidden" id="pseq" name="pseq" value="${productVO.PSEQ}">
 	<table class="tblAdminProduct">
 	<tr>
-		<th>상품분류</th>
-		<td colspan="2">
-			<%-- <select name="pcseq">
-				<option value="0">선택</option>
-				<c:forEach items="${productCatList}" var="productCat" varStatus="status">
-					<c:choose>
-					<c:when test="${productVO.PCSEQ == productCat.PCSEQ}">
-						<option value="${productCat.PCSEQ}" selected>${productCat.NAME}</option>
-					</c:when>
-					<c:otherwise><option value="${productCat.PCSEQ}">${productCat.NAME}</option></c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</select> --%>
-			<c:forEach items="${productCatList}" var="productCat" varStatus="status">
-				<c:if test="${productVO.PCSEQ == productCat.PCSEQ}">${productCat.NAME}</c:if>
+		<th>메인 카테고리</th>
+		<td colspan="10">
+		<div id="mainView" style="display:flex;">
+			<c:if test="${empty mainSelectedCatList}"><span id="mainCatEmptyMessage">카테고리를 추가하세요.</span></c:if>
+			<c:if test="${not empty mainSelectedCatList}"><span id="mainCatEmptyMessage" style="display:none;">카테고리를 추가하세요.</span></c:if>
+			<c:forEach items="${mainSelectedCatList}" var="mainCat" varStatus="stauts">
+				<div id="mainCat_${mainCat.PMCSEQ}" style="display:flex; margin-left:5px; margin-right:5px;">
+					<div style="line-height:25px;">
+						<c:forEach items="${mainCatList}" var="Cat"><c:if test="${Cat.PMCSEQ == mainCat.PMCSEQ}">${Cat.NAME}</c:if></c:forEach>
+					</div>
+				</div>
 			</c:forEach>
+		</div>
 		</td>
-		<th>브랜드</th><td colspan="2">${productVO.BRAND}</td>
-		<th>상품명</th><td colspan="2">${productVO.NAME}</td>
+	</tr>
+	<tr>
+		<th>서브 카테고리</th>
+		<td colspan="10">
+		<div id="subView" style="display:flex;">
+			<c:if test="${empty subSelectedCatList}"><span id="subCatEmptyMessage">카테고리를 추가하세요.</span></c:if>
+			<c:if test="${not empty subSelectedCatList}"><span id="subCatEmptyMessage" style="display:none;">카테고리를 추가하세요.</span></c:if>
+			<c:forEach items="${subSelectedCatList}" var="subCat" varStatus="stauts">
+				<div id="subCat_${subCat.PSCSEQ}" style="display:flex; margin-left:5px; margin-right:5px;">
+					<div style="line-height:25px;">
+						<c:forEach items="${subCatList}" var="Cat"><c:if test="${Cat.PSCSEQ == subCat.PSCSEQ}">${Cat.NAME}</c:if></c:forEach>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>브랜드</th><td colspan="3">${productVO.BRAND}</td>
+		<th>상품명</th><td colspan="3">${productVO.NAME}</td>
 		<th>성별</th>
-		<td>
+		<td colspan="2">
 			<c:if test="${productVO.GENDER == 'N'}">남여공용</c:if>
 			<c:if test="${productVO.GENDER == 'M'}">남성용</c:if>
 			<c:if test="${productVO.GENDER == 'F'}">여성용</c:if>

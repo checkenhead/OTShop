@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ot.team1.dao.IProductDao">
+
+	<resultMap id="productMap" type="java.util.HashMap"></resultMap>
+	
+	<!-- <select id="getAdmin" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getAdmin(
+			#{adminid},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select> -->
+	
+
+	<select id="getMainCatSetList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getMainCatSetList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getSubCatSetList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getSubCatSetList(
+			#{pmcsseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductList(
+			#{keyword},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getProductDetailList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductDetailList(
+			#{PSEQ},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getProductMainCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductMainCatList(
+			#{PSEQ},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getProductSubCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductSubCatList(
+			#{PSEQ},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+</mapper>

@@ -502,7 +502,19 @@ function add_main_cat_set(){
 		document.getElementById("inputMainCat").focus();
 		return;
 	} else {
-		document.getElementById("emptyMessage").style.display = "none";
+		if(document.getElementById("main_row") != undefined){
+			alert("설정 중인 카테고리가 있습니다.");
+			return;
+		} else {
+			var content = document.getElementById("main_template").innerHTML;
+			content = content.replace(/#origin/g, "");
+			
+			document.getElementById("view").insertAdjacentHTML("beforeend", content);
+			document.getElementById("mainRow_input").value = document.getElementById("inputMainCat").value;
+			document.getElementById("pmcseq").value = document.getElementById("inputMainCat").value;
+			
+		}
+		/*document.getElementById("emptyMessage").style.display = "none";
 		
 		var rows = document.getElementsByClassName("mainrow");
 		var cur_rows = rows == undefined ? 0 : rows.length;
@@ -518,11 +530,173 @@ function add_main_cat_set(){
 		document.getElementById("insertPoint_" + (cur_rows + 1)).insertAdjacentHTML("beforeend", content);
 		document.getElementById("inputMainCat_" + (cur_rows + 1)).value = document.getElementById("inputMainCat").value;
 		
-		content = "<td><div class=\"btn\"><input type=\"button\" value=\"삭제\" onClick=\"remove_product_cat_set('" + (cur_rows + 1) + "');\"></div></td>";
-		document.getElementById("mainrow_" + (cur_rows + 1)).insertAdjacentHTML("beforeend", content);
+		content = "<td><div class=\"btn\"><input type=\"button\" value=\"삭제\" onClick=\"remove_main_cat_set('" + (cur_rows + 1) + "');\"></div></td>";
+		document.getElementById("mainrow_" + (cur_rows + 1)).insertAdjacentHTML("beforeend", content);*/
 	}
 }
 
-function remove_main_cat_set(index){
-	document.getElementById("mainrow_" + index).outerHTML = "";
+function add_sub_cat_set(){
+	var sub_rows = document.getElementsByClassName("sub_rows");
+	var curr_row = (sub_rows == undefined) ? 0 : sub_rows.length;
+	var content = document.getElementById("sub_template").innerHTML;
+	
+	content = content.replace(/#origin/g, "");
+	content = content.replace(/#index/g, (curr_row + 1) + "");
+	
+	document.getElementById("btn_row").insertAdjacentHTML("beforebegin", content);
+	document.getElementById("pscseq_" + sub_rows.length).value = "0";
+	document.getElementById("main_head").rowSpan = (2 + sub_rows.length) + "";
+}
+
+function remove_main_cat_set(){
+	if(confirm("설정 중인 카테고리가 삭제됩니다. 진행하시겠습니까?")){
+		var sub_rows = document.getElementsByClassName("sub_rows");
+		
+		if(sub_rows != undefined){
+			for(var i = sub_rows.length - 1; i >= 0; i--){
+				sub_rows[i].outerHTML = "";
+			}
+		}
+		
+		document.getElementById("main_row").outerHTML = "";
+		document.getElementById("btn_row").outerHTML = "";
+	}
+}
+
+function remove_sub_cat_set(index){
+	document.getElementById("sub_row_" + index).outerHTML = "";
+	document.getElementById("main_head").rowSpan = (2 + document.getElementsByClassName("sub_rows").length) + "";
+	
+	//삭제 후 맨 위의 sub부터 새로 만듦
+	var sub_rows = document.getElementsByClassName("sub_rows");
+	
+	if(sub_rows != undefined){
+		var rowNum = sub_rows.length;
+		
+		for(var i = 0; i < rowNum; i++){
+			var value = document.getElementById("subRow_input_" + sub_rows[i].id.replace("sub_row_", "")).value; //삭제 전 선택된 값 저장
+			sub_rows[i].outerHTML = ""; //삭제
+			
+			var content = document.getElementById("sub_template").innerHTML;
+			content = content.replace(/#origin/g, "");
+			content = content.replace(/#index/g, (i + 1) + "");
+			
+			if(i == 0){
+				document.getElementById("main_row").insertAdjacentHTML("afterend", content);
+			} else {
+				sub_rows[i-1].insertAdjacentHTML("afterend", content);
+			}
+			
+			document.getElementById("subRow_input_" + (i + 1)).value = value;
+		}
+	}
+}
+
+function main_changed(){
+	document.getElementById("pmcseq").value = document.getElementById("mainRow_input").value;
+}
+
+function sub_changed(index){
+	document.getElementById("pscseq_" + index).value = document.getElementById("subRow_input_" + index).value;
+	//alert(document.getElementById("pscseq_" + index).value);
+	//alert(document.getElementById("subRow_input_" + index).id);
+}
+
+function save_product_cat_set(){
+	if(document.getElementById("pmcseq").value == "0"){
+		alert("메인 카테고리를 선택하세요.");
+		document.getElementById("mainRow_input").focus();
+		return;
+	} else {
+		for(var i = 0; i < document.getElementsByClassName("pscseq").length; i++){
+			if(document.getElementsByClassName("pscseq")[i].value == "0"){
+				alert("서브 카테고리를 선택하세요.");
+				document.getElementById("subRow_input_" + (i + 1)).focus();
+				return;
+			}
+		}
+		
+		document.productCatForm.action = "insertProductCatSet";
+		document.productCatForm.submit();
+	}
+}
+
+function btn_action(action, pmcsseq, pscsseq){
+	var select = document.getElementById("select_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	var oldValue = document.getElementById("oldValue_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	var btnEdit = document.getElementById("btnEdit_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	var btnDelete = document.getElementById("btnDelete_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	var btnSave = document.getElementById("btnSave_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	var btnCancel = document.getElementById("btnCancel_" + pmcsseq + ((pscsseq == 0) ? "" : ("_" + pscsseq)));
+	
+	if(action == "edit"){
+		select.disabled = false;
+		btnEdit.style.display = "none";
+		btnDelete.style.display = "none";
+		btnSave.style.display = "";
+		btnCancel.style.display = "";
+	} else if(action == "cancel") {
+		select.value = oldValue.value;
+		select.disabled = true;
+		btnEdit.style.display = "";
+		btnDelete.style.display = "";
+		btnSave.style.display = "none";
+		btnCancel.style.display = "none";
+	} else if(action == "save") {
+		document.productCatForm.categoryClass.value = ((pscsseq == 0) ? "main" : "sub");
+		document.productCatForm.index.value = ((pscsseq == 0) ? pmcsseq : pscsseq);
+		document.productCatForm.value.value = select.value;
+		document.productCatForm.action = "updateProductCatSet";
+		document.productCatForm.submit();
+	} else if(action == "delete") {
+		document.productCatForm.categoryClass.value = ((pscsseq == 0) ? "main" : "sub");
+		document.productCatForm.index.value = ((pscsseq == 0) ? pmcsseq : pscsseq);
+		document.productCatForm.action = "deleteProductCatSet";
+		document.productCatForm.submit();
+	}
+}
+
+function add_category(categoryClass){
+	var selected_cat = document.getElementsByName(categoryClass + "Cat");
+	var input_index = document.getElementById(categoryClass + "Cat");
+	var input_text = input_index.options[input_index.selectedIndex].text;
+	var emptyMessage = document.getElementById(categoryClass + "CatEmptyMessage");
+	
+	emptyMessage.style.display = "none";
+	
+	if(selected_cat != undefined || selected_cat.length > 0){
+		//이미 추가된 경우 return
+		for(var i = 0; i < selected_cat.length; i++){
+			if(selected_cat[i].value == input_index.value){
+				alert("이미 추가된 항목입니다.");
+				input_index.value = "0";
+				return;
+			}
+		}
+	} else {
+		var emptyMessage = document.getElementById(categoryClass + "CatEmptyMessage");
+	
+		emptyMessage.style.display = "none";
+	}
+	
+	var target =  document.getElementById(categoryClass + "View");
+	var content = document.getElementById("template").innerHTML;
+	
+	content = content.replace(/#categoryClass/g, categoryClass);
+	content = content.replace(/#index/g, input_index.value + "");
+	content = content.replace(/#name/g, input_text);
+	
+	target.insertAdjacentHTML("beforeend", content);
+	
+	input_index.value = "0";
+}
+
+function remove_category(categoryClass, index){
+	document.getElementById(categoryClass + "Cat_" + index).outerHTML = "";
+	
+	var selected_list = document.getElementsByName(categoryClass + "Cat");
+	
+	if(selected_list == undefined || selected_list.length == 0){
+		document.getElementById(categoryClass + "CatEmptyMessage").style.display = "";
+	}
 }

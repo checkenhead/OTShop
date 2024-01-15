@@ -45,7 +45,8 @@
 		}
 	</insert>
 	
-	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<!-- productDao로 이동 -->
+	<!-- <select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getProductList(
 			#{keyword},
@@ -59,7 +60,7 @@
 			#{PSEQ},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
 		}
-	</select>
+	</select> -->
 	
 	<select id="getCount" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
@@ -106,7 +107,7 @@
 	<update id="updateProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call updateProduct(
-			#{PSEQ}, #{PCSEQ}, #{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE}, #{BESTYN}, #{USEYN})
+			#{PSEQ}, #{BRAND}, #{NAME}, #{DESCRIPTION}, #{GENDER}, #{IMAGE}, #{BESTYN}, #{USEYN})
 		}
 	</update>
 	
@@ -303,5 +304,95 @@
 			call updateBannerPriority(#{bseq}, #{priority})
 		}
 	</update>
+	
+	<insert id="insertProductMainCatSet" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertProductMainCatSet(#{pmcseq},
+			#{pmcsseq, mode=OUT, jdbcType=INTEGER})
+		}
+	</insert>
+	
+	<insert id="insertProductSubCatSet" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertProductSubCatSet(#{pmcsseq}, #{pscseq})
+		}
+	</insert>
+	
+	<select id="getCategorySetList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getCategorySetList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<!-- productDao로 이동 -->
+	<!-- <select id="getMainCatSetList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getMainCatSetList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<select id="getSubCatSetList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getSubCatSetList(
+			#{pmcsseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select> -->
+	
+	<update id="updateProductCatSet" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateProductCatSet(
+			#{tablename}, #{index}, #{value})
+		}
+	</update>
+	
+	<delete id="deleteProductCatSet" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteProductCatSet(
+			#{tablename}, #{index})
+		}
+	</delete>
+	
+	<insert id="insertMainCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertMainCatList(#{PSEQ}, #{PMCSEQ})
+		}
+	</insert>
+	
+	<insert id="insertSubCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertSubCatList(#{PSEQ}, #{PSCSEQ})
+		}
+	</insert>
+	
+	<select id="getProductMainCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductMainCatList(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<select id="getProductSubCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductSubCatList(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<delete id="deleteMainCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteMainCatList(#{PMCLSEQ})
+		}
+	</delete>
+	
+	<delete id="deleteSubCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteSubCatList(#{PSCLSEQ})
+		}
+	</delete>
 	
 </mapper>

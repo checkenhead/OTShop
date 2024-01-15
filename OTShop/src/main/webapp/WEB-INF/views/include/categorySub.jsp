@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/otshop.css">
 
-
+<!--
 <div class="containerCry">
 	<div class="bigcry" id="outer"><img src="images/plus.png">아우터</div>
 	<div class="bigcry" id="top"><img src="images/plus.png">상의
@@ -12,4 +11,16 @@
 	</div>
 	<div class="bigcry" id="bottom"><img src="images/plus.png">하의</div>
 	<div class="bigcry" id="acc"><img src="images/plus.png">ACC</div>
+</div>
+-->
+<div class="sub_wrap">
+	<div class="containerCry">
+	<c:forEach items="${mainCategoryList}" var="mainCategory">
+	<div class="bigcry" id="outer"><img src="images/plus.png">${mainCategory.NAME}
+		<c:forEach items="${mainCategory.subCategoryList}" var="subCategory">
+			<div class="smallcry" id="halfTshirt">${subCategory.NAME}</div>
+		</c:forEach>
+	</div>
+	</c:forEach>
+	</div>
 </div>
