@@ -16,6 +16,14 @@
 			)
 		}
 	</select>
+	
+	<select id="getQnaCatList"  statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getQnaCatList(
+				#{rfcursor2 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap }
+			)
+		}
+	</select>
 
 	
 	

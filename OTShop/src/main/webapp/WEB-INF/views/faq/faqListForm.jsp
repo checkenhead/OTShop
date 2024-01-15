@@ -30,7 +30,7 @@
 			</div>
 			<div class="faqtitle2" id="faqTitle_${loop.index}">${faqVO.TITLE}</div>
 		</div>
-			<div class="faqcontent" id="faqContent_${loop.index}" style="display:none;">
+		<div class="faqcontent" id="faqContent_${loop.index}" style="display:none;">
 				<span>${faqVO.CONTENT}</span></div>
 	</c:forEach><br>
 </div>

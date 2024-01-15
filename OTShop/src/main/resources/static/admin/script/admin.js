@@ -588,6 +588,7 @@ function remove_sub_cat_set(index){
 			}
 			
 			document.getElementById("subRow_input_" + (i + 1)).value = value;
+			document.getElementById("pscseq_" + (i + 1)).value = value;
 		}
 	}
 }

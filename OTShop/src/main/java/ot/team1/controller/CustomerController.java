@@ -25,11 +25,17 @@ public class CustomerController {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("rfcursor", null);
+		paramMap.put("rfcursor2", null);
 		
 		cs.listQna( paramMap );
+		cs.getQnaCatList(paramMap);
 		
-		mav.addObject("qnaList" , paramMap.get("rfcurosr") );
+		mav.addObject("qnaList" , paramMap.get("rfcursor") );
+		mav.addObject("qnaCat", paramMap.get("rfcursor2"));
 		mav.setViewName("customer/qnaListForm");
+		
+		System.out.println("REFCURSOR : " + paramMap.get("rfcursor"));
+		System.out.println("REFCURSOR2 : " + paramMap.get("rfcursor2"));
 		
 		return mav;
 		

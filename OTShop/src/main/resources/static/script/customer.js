@@ -25,3 +25,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+function getselect(){
+	var qnaName = document.getElementById("qnaName").value;
+	for(var i=0; i<document.getElementsByClassName("qcseq").length; i++){
+		var qcseqValue = document.getElementsByClassName("qcseq")[i].value;
+		
+		if(qnaName == qcseqValue){
+			document.getElementById("qna_"+ i).style.display='';
+		} else {
+			document.getElementById("qna_"+ i).style.display='none';
+		}
+		
+	}
+} 
