@@ -46,6 +46,39 @@ function idcheck(){
 }
 
 
+function gofindId(){
+	if(document.findIdFrm.name.value==""){
+		alert("이름을 입력하세요.")
+		document.findIdFrm.name.focus();
+	}else if(document.findIdFrm.email.value==""){
+		alert("이메일을 입력하세요.")
+		document.findIdFrm.email.focus();
+	}else{
+		document.findIdFrm.action = "findId";
+		document.findIdFrm.submit();
+	}
+}
+
+
+function gofindPwd(){
+	if(document.findPwdFrm.userid.value==""){
+		alert("아이디를 입력하세요.");
+		document.findIdFrm.userid.focus();
+	}else if(document.findPwdFrm.kind.value==""
+				|| document.findPwdFrm.kind.value=="0"){
+		alert("질문을 선택하세요.");
+		document.findIdFrm.kind.focus();
+	}else if(document.findPwdFrm.answer.value==""){
+		alert("답변을 입력하세요.");
+		document.findIdFrm.kind.focus();
+	}else{
+		document.findPwdFrm.action = "findPwd";
+		document.findPwdFrm.submit();
+	}
+}
+
+
+
 function idok(userid){
 	opener.joinFrm.userid.value = userid;
 	// 부모창(opener)의 해당 폼(joinFrm)의 userid 값을 전달인수로 받은 userid로 설정

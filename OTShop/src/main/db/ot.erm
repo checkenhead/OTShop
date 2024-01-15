@@ -11,8 +11,13 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
+<<<<<<< HEAD
 	<x>679</x>
 	<y>321</y>
+=======
+	<x>0</x>
+	<y>0</y>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 	<default_color>
 		<r>192</r>
 		<g>192</g>
@@ -41,7 +46,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>src\main\db\ot2.sql</output_path>
+				<output_path>src\main\db\ot3.sql</output_path>
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +140,11 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-12-28 21:16:38</creation_date>
+<<<<<<< HEAD
 			<updated_date>2024-01-12 11:14:15</updated_date>
+=======
+			<updated_date>2024-01-11 15:22:12</updated_date>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -282,6 +291,22 @@
 		</word>
 		<word>
 			<id>7</id>
+			<length>100</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>answer</logical_name>
+			<physical_name>answer</physical_name>
+			<type>varchar(n)</type>
+		</word>
+		<word>
+			<id>8</id>
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -297,8 +322,8 @@
 			<type>character(n)</type>
 		</word>
 		<word>
-			<id>8</id>
-			<length>null</length>
+			<id>9</id>
+			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -310,23 +335,7 @@
 			<description></description>
 			<logical_name>birthdate</logical_name>
 			<physical_name>birthdate</physical_name>
-			<type>date</type>
-		</word>
-		<word>
-			<id>9</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>biseq</logical_name>
-			<physical_name>biseq</physical_name>
-			<type>decimal</type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>10</id>
@@ -346,22 +355,6 @@
 		</word>
 		<word>
 			<id>11</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>bseq</logical_name>
-			<physical_name>bseq</physical_name>
-			<type>decimal</type>
-		</word>
-		<word>
-			<id>12</id>
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -374,6 +367,22 @@
 			<description></description>
 			<logical_name>clientid</logical_name>
 			<physical_name>clientid</physical_name>
+			<type>varchar(n)</type>
+		</word>
+		<word>
+			<id>12</id>
+			<length>1000</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>content</logical_name>
+			<physical_name>content</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
@@ -394,22 +403,6 @@
 		</word>
 		<word>
 			<id>14</id>
-			<length>1000</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>content</logical_name>
-			<physical_name>content</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>15</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -425,7 +418,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>16</id>
+			<id>15</id>
 			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -441,7 +434,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>17</id>
+			<id>16</id>
 			<length>1000</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -454,6 +447,22 @@
 			<description></description>
 			<logical_name>description</logical_name>
 			<physical_name>description</physical_name>
+			<type>varchar(n)</type>
+		</word>
+		<word>
+			<id>17</id>
+			<length>30</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>email</logical_name>
+			<physical_name>email</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
@@ -490,22 +499,6 @@
 		</word>
 		<word>
 			<id>20</id>
-			<length>30</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>email</logical_name>
-			<physical_name>email</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>21</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -521,7 +514,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>22</id>
+			<id>21</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -535,6 +528,22 @@
 			<logical_name>fseq</logical_name>
 			<physical_name>fseq</physical_name>
 			<type>decimal</type>
+		</word>
+		<word>
+			<id>22</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>gender</logical_name>
+			<physical_name>gender</physical_name>
+			<type>character(n)</type>
 		</word>
 		<word>
 			<id>23</id>
@@ -554,7 +563,7 @@
 		</word>
 		<word>
 			<id>24</id>
-			<length>1</length>
+			<length>300</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -564,44 +573,12 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>gender</logical_name>
-			<physical_name>gender</physical_name>
-			<type>character(n)</type>
+			<logical_name>image</logical_name>
+			<physical_name>image</physical_name>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>25</id>
-			<length>300</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>image</logical_name>
-			<physical_name>image</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>26</id>
-			<length>300</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>image</logical_name>
-			<physical_name>image</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>27</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -617,7 +594,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>28</id>
+			<id>26</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -631,6 +608,38 @@
 			<logical_name>iseq</logical_name>
 			<physical_name>iseq</physical_name>
 			<type>decimal</type>
+		</word>
+		<word>
+			<id>27</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>kind</logical_name>
+			<physical_name>kind</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+			<id>28</id>
+			<length>20</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>logisid</logical_name>
+			<physical_name>logisid</physical_name>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>29</id>
@@ -660,8 +669,8 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>logisid</logical_name>
-			<physical_name>logisid</physical_name>
+			<logical_name>name</logical_name>
+			<physical_name>name</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
@@ -698,7 +707,7 @@
 		</word>
 		<word>
 			<id>33</id>
-			<length>20</length>
+			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -762,54 +771,6 @@
 		</word>
 		<word>
 			<id>37</id>
-			<length>30</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>name</logical_name>
-			<physical_name>name</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>38</id>
-			<length>30</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>name</logical_name>
-			<physical_name>name</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>39</id>
-			<length>50</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>name</logical_name>
-			<physical_name>name</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>40</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -825,7 +786,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>41</id>
+			<id>38</id>
 			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -841,7 +802,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>42</id>
+			<id>39</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -857,7 +818,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>43</id>
+			<id>40</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -873,7 +834,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>44</id>
+			<id>41</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -884,12 +845,35 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
+<<<<<<< HEAD
+=======
+			<logical_name>pcseq</logical_name>
+			<physical_name>pcseq</physical_name>
+			<type>decimal</type>
+		</word>
+		<word>
+			<id>42</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<logical_name>pdseq</logical_name>
 			<physical_name>pdseq</physical_name>
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>45</id>
+=======
+			<id>43</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -900,11 +884,12 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>pmclseq</logical_name>
-			<physical_name>pmclseq</physical_name>
+			<logical_name>pfseq</logical_name>
+			<physical_name>pfseq</physical_name>
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>46</id>
 			<length>null</length>
 			<decimal>null</decimal>
@@ -938,6 +923,9 @@
 		</word>
 		<word>
 			<id>48</id>
+=======
+			<id>44</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -953,7 +941,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>49</id>
+			<id>45</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -969,7 +957,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>50</id>
+			<id>46</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -985,23 +973,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>51</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>priority</logical_name>
-			<physical_name>priority</physical_name>
-			<type>decimal</type>
-		</word>
-		<word>
-			<id>52</id>
+			<id>47</id>
 			<length>10</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1017,39 +989,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>53</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>psclseq</logical_name>
-			<physical_name>psclseq</physical_name>
-			<type>decimal</type>
-		</word>
-		<word>
-			<id>54</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>pscseq</logical_name>
-			<physical_name>pscseq</physical_name>
-			<type>decimal</type>
-		</word>
-		<word>
-			<id>55</id>
+			<id>48</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1065,6 +1005,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>56</id>
 			<length>null</length>
 			<decimal>null</decimal>
@@ -1083,6 +1024,10 @@
 		<word>
 			<id>57</id>
 			<length>null</length>
+=======
+			<id>49</id>
+			<length>30</length>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -1097,7 +1042,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>58</id>
+			<id>50</id>
 			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1113,7 +1058,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>59</id>
+			<id>51</id>
 			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1129,6 +1074,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>60</id>
 			<length>30</length>
 			<decimal>null</decimal>
@@ -1146,6 +1092,9 @@
 		</word>
 		<word>
 			<id>61</id>
+=======
+			<id>52</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1161,7 +1110,11 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>62</id>
+=======
+			<id>53</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1177,7 +1130,10 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>63</id>
+=======
+			<id>54</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1193,6 +1149,24 @@
 			<type>decimal</type>
 		</word>
 		<word>
+			<id>55</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>qty</logical_name>
+			<physical_name>qty</physical_name>
+			<type>decimal</type>
+		</word>
+		<word>
+<<<<<<< HEAD
 			<id>64</id>
 			<length>null</length>
 			<decimal>null</decimal>
@@ -1210,6 +1184,9 @@
 		</word>
 		<word>
 			<id>65</id>
+=======
+			<id>56</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1225,7 +1202,10 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>66</id>
+=======
+			<id>57</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1241,7 +1221,8 @@
 			<type>date</type>
 		</word>
 		<word>
-			<id>67</id>
+			<id>58</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1257,7 +1238,7 @@
 			<type>date</type>
 		</word>
 		<word>
-			<id>68</id>
+			<id>59</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1273,7 +1254,7 @@
 			<type>date</type>
 		</word>
 		<word>
-			<id>69</id>
+			<id>60</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1289,6 +1270,23 @@
 			<type>date</type>
 		</word>
 		<word>
+			<id>61</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>regdate</logical_name>
+			<physical_name>regdate</physical_name>
+			<type>date</type>
+		</word>
+		<word>
+<<<<<<< HEAD
 			<id>70</id>
 			<length>null</length>
 			<decimal>null</decimal>
@@ -1306,6 +1304,9 @@
 		</word>
 		<word>
 			<id>71</id>
+=======
+			<id>62</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>1000</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1321,7 +1322,11 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>72</id>
+=======
+			<id>63</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1337,7 +1342,10 @@
 			<type>character(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>73</id>
+=======
+			<id>64</id>
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1353,6 +1361,24 @@
 			<type>character(n)</type>
 		</word>
 		<word>
+			<id>65</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>state</logical_name>
+			<physical_name>state</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+<<<<<<< HEAD
 			<id>74</id>
 			<length>1</length>
 			<decimal>null</decimal>
@@ -1370,6 +1396,9 @@
 		</word>
 		<word>
 			<id>75</id>
+=======
+			<id>66</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1385,7 +1414,10 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>76</id>
+=======
+			<id>67</id>
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1401,7 +1433,8 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>77</id>
+			<id>68</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1417,7 +1450,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>78</id>
+			<id>69</id>
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1433,6 +1466,23 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+			<id>70</id>
+			<length>20</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>tel</logical_name>
+			<physical_name>tel</physical_name>
+			<type>varchar(n)</type>
+		</word>
+		<word>
+<<<<<<< HEAD
 			<id>79</id>
 			<length>20</length>
 			<decimal>null</decimal>
@@ -1450,6 +1500,9 @@
 		</word>
 		<word>
 			<id>80</id>
+=======
+			<id>71</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1465,7 +1518,11 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>81</id>
+=======
+			<id>72</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1481,7 +1538,11 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>82</id>
+=======
+			<id>73</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1497,6 +1558,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>83</id>
 			<length>300</length>
 			<decimal>null</decimal>
@@ -1514,6 +1576,9 @@
 		</word>
 		<word>
 			<id>84</id>
+=======
+			<id>74</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1529,7 +1594,10 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>85</id>
+=======
+			<id>75</id>
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1545,6 +1613,24 @@
 			<type>character(n)</type>
 		</word>
 		<word>
+			<id>76</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>useyn</logical_name>
+			<physical_name>useyn</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+<<<<<<< HEAD
 			<id>86</id>
 			<length>1</length>
 			<decimal>null</decimal>
@@ -1578,6 +1664,9 @@
 		</word>
 		<word>
 			<id>88</id>
+=======
+			<id>77</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1593,7 +1682,11 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>89</id>
+=======
+			<id>78</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1609,7 +1702,11 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>90</id>
+=======
+			<id>79</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1634,8 +1731,8 @@
 			<width>207</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1332</x>
-			<y>12</y>
+			<x>790</x>
+			<y>24</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1684,7 +1781,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>58</word_id>
+					<word_id>49</word_id>
 					<id>1</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1717,7 +1814,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>33</word_id>
+					<word_id>32</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1750,7 +1847,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>77</word_id>
+=======
+					<word_id>67</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>3</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1783,7 +1884,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>19</word_id>
+=======
+					<word_id>17</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1830,8 +1935,8 @@
 			<width>214</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1825</x>
-			<y>23</y>
+			<x>996</x>
+			<y>24</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1847,7 +1952,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>30</word_id>
+					<word_id>29</word_id>
 					<id>5</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1880,7 +1985,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>59</word_id>
+=======
+					<word_id>51</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>6</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1913,7 +2022,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>31</word_id>
+					<word_id>30</word_id>
 					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1946,7 +2055,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>79</word_id>
+=======
+					<word_id>69</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>8</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2022,18 +2135,19 @@
 		</table>
 		<table>
 			<id>2</id>
-			<height>169</height>
-			<width>195</width>
+			<height>138</height>
+			<width>193</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>612</x>
-			<y>21</y>
+			<x>1092</x>
+			<y>480</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
 				<relation>
 					<id>0</id>
 					<source>17</source>
@@ -2078,16 +2192,18 @@
 					<referenced_column>null</referenced_column>
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			</connections>
-			<physical_name>cart</physical_name>
-			<logical_name>cart</logical_name>
+			<physical_name>faq_category</physical_name>
+			<logical_name>faq_category</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>15</word_id>
+					<word_id>20</word_id>
 					<id>10</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2120,9 +2236,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+					<word_id>33</word_id>
 					<id>11</id>
+<<<<<<< HEAD
 					<referenced_column>84</referenced_column>
 					<relation>0</relation>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2130,73 +2250,6 @@
 					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<id>12</id>
-					<referenced_column>49</referenced_column>
-					<relation>1</relation>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>decimal</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>63</word_id>
-					<id>13</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>decimal</type>
-					<constraint></constraint>
-					<default_value>1</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -2231,12 +2284,12 @@
 		</table>
 		<table>
 			<id>3</id>
-			<height>154</height>
-			<width>213</width>
+			<height>169</height>
+			<width>195</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>316</x>
-			<y>488</y>
+			<x>300</x>
+			<y>24</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2244,8 +2297,8 @@
 			</color>
 			<connections>
 				<relation>
-					<id>2</id>
-					<source>6</source>
+					<id>0</id>
+					<source>15</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2266,8 +2319,8 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>3</id>
-					<source>9</source>
+					<id>1</id>
+					<source>13</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2288,16 +2341,16 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>order_detail</physical_name>
-			<logical_name>order_detail</logical_name>
+			<physical_name>cart</physical_name>
+			<logical_name>cart</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>40</word_id>
-					<id>14</id>
+					<word_id>14</word_id>
+					<id>12</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2329,15 +2382,83 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>15</id>
-					<referenced_column>30</referenced_column>
-					<relation>2</relation>
+					<id>13</id>
+					<referenced_column>77</referenced_column>
+					<relation>0</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>14</id>
+					<referenced_column>66</referenced_column>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>decimal</type>
 					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>54</word_id>
+					<id>15</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+<<<<<<< HEAD
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>true</foreign_key>
@@ -2438,6 +2559,8 @@
 					<physical_name></physical_name>
 					<type>character(n)</type>
 					<constraint></constraint>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<default_value>1</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
@@ -2473,12 +2596,12 @@
 		</table>
 		<table>
 			<id>4</id>
-			<height>242</height>
-			<width>229</width>
+			<height>154</height>
+			<width>213</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>24</x>
-			<y>152</y>
+			<x>282</x>
+			<y>472</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2486,8 +2609,13 @@
 			</color>
 			<connections>
 				<relation>
+<<<<<<< HEAD
 					<id>4</id>
 					<source>17</source>
+=======
+					<id>2</id>
+					<source>13</source>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<target>4</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2508,8 +2636,8 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>5</id>
-					<source>5</source>
+					<id>3</id>
+					<source>8</source>
 					<target>4</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2530,16 +2658,21 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>qna</physical_name>
-			<logical_name>qna</logical_name>
+			<physical_name>order_detail</physical_name>
+			<logical_name>order_detail</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>62</word_id>
 					<id>19</id>
+=======
+					<word_id>37</word_id>
+					<id>16</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2571,9 +2704,9 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>20</id>
-					<referenced_column>28</referenced_column>
-					<relation>5</relation>
+					<id>17</id>
+					<referenced_column>34</referenced_column>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2605,14 +2738,20 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>21</id>
 					<referenced_column>84</referenced_column>
 					<relation>4</relation>
+=======
+					<id>18</id>
+					<referenced_column>66</referenced_column>
+					<relation>2</relation>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2639,6 +2778,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>80</word_id>
 					<id>22</id>
 					<description></description>
@@ -2806,13 +2946,50 @@
 				<normal_column>
 					<word_id>56</word_id>
 					<id>27</id>
+=======
+					<word_id>55</word_id>
+					<id>19</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>decimal</type>
 					<constraint></constraint>
-					<default_value>0</default_value>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>65</word_id>
+					<id>20</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>1</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -2847,12 +3024,297 @@
 		</table>
 		<table>
 			<id>5</id>
+			<height>229</height>
+			<width>229</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>988</x>
+			<y>216</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+				<relation>
+					<id>4</id>
+					<source>6</source>
+					<target>5</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+			</connections>
+			<physical_name>qna</physical_name>
+			<logical_name>qna</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
+				<normal_column>
+					<word_id>53</word_id>
+					<id>21</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>true</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>22</id>
+					<referenced_column>28</referenced_column>
+					<relation>4</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>71</word_id>
+					<id>23</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>13</word_id>
+					<id>24</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>61</word_id>
+					<id>25</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>date</type>
+					<constraint></constraint>
+					<default_value>sysdate</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>62</word_id>
+					<id>26</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>63</word_id>
+					<id>27</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>N</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+			</table_properties>
+		</table>
+		<table>
+			<id>6</id>
 			<height>109</height>
 			<width>209</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>24</x>
-			<y>21</y>
+			<x>1248</x>
+			<y>348</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2868,7 +3330,11 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>61</word_id>
+=======
+					<word_id>52</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>28</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2901,7 +3367,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>36</word_id>
+					<word_id>34</word_id>
 					<id>29</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2943,13 +3409,13 @@
 			</table_properties>
 		</table>
 		<table>
-			<id>6</id>
-			<height>145</height>
-			<width>216</width>
+			<id>7</id>
+			<height>185</height>
+			<width>233</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>48</x>
-			<y>492</y>
+			<x>804</x>
+			<y>456</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2957,9 +3423,15 @@
 			</color>
 			<connections>
 				<relation>
+<<<<<<< HEAD
 					<id>6</id>
 					<source>17</source>
 					<target>6</target>
+=======
+					<id>5</id>
+					<source>2</source>
+					<target>7</target>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -2979,15 +3451,15 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>orders</physical_name>
-			<logical_name>orders</logical_name>
+			<physical_name>faq</physical_name>
+			<logical_name>faq</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>43</word_id>
+					<word_id>21</word_id>
 					<id>30</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3021,13 +3493,18 @@
 				</normal_column>
 				<normal_column>
 					<id>31</id>
+<<<<<<< HEAD
 					<referenced_column>84</referenced_column>
 					<relation>6</relation>
+=======
+					<referenced_column>10</referenced_column>
+					<relation>5</relation>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -3054,15 +3531,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>69</word_id>
+					<word_id>72</word_id>
 					<id>32</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>date</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
-					<default_value>sysdate</default_value>
+					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -3087,15 +3564,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>27</word_id>
+					<word_id>12</word_id>
 					<id>33</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>decimal</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
-					<default_value>0</default_value>
+					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -3129,29 +3606,51 @@
 			</table_properties>
 		</table>
 		<table>
-			<id>7</id>
-			<height>301</height>
-			<width>213</width>
+			<id>8</id>
+			<height>145</height>
+			<width>216</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1838</x>
-			<y>452</y>
+			<x>48</x>
+			<y>492</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+				<relation>
+					<id>6</id>
+					<source>15</source>
+					<target>8</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
 			</connections>
-			<physical_name>invoice</physical_name>
-			<logical_name>invoice</logical_name>
+			<physical_name>orders</physical_name>
+			<logical_name>orders</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>28</word_id>
+					<word_id>40</word_id>
 					<id>34</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3184,8 +3683,9 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>12</word_id>
 					<id>35</id>
+					<referenced_column>77</referenced_column>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3194,6 +3694,7 @@
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
+<<<<<<< HEAD
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
@@ -3611,6 +4112,8 @@
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<foreign_key>true</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
@@ -3634,8 +4137,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>68</word_id>
 					<id>47</id>
+=======
+					<word_id>59</word_id>
+					<id>36</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3667,15 +4175,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>16</word_id>
-					<id>48</id>
+					<word_id>25</word_id>
+					<id>37</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>0</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -3710,12 +4218,406 @@
 		</table>
 		<table>
 			<id>9</id>
-			<height>235</height>
-			<width>207</width>
+			<height>301</height>
+			<width>217</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>600</x>
-			<y>297</y>
+			<x>1224</x>
+			<y>24</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+			</connections>
+			<physical_name>invoice</physical_name>
+			<logical_name>invoice</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
+				<normal_column>
+					<word_id>26</word_id>
+					<id>38</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>true</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>11</word_id>
+					<id>39</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>39</word_id>
+					<id>40</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value>0</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>56</word_id>
+					<id>41</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>78</word_id>
+					<id>42</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>1</word_id>
+					<id>43</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>3</word_id>
+					<id>44</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>4</word_id>
+					<id>45</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>68</word_id>
+					<id>46</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>64</word_id>
+					<id>47</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>1</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>28</word_id>
+					<id>48</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+			</table_properties>
+		</table>
+		<table>
+			<id>10</id>
+			<height>169</height>
+			<width>240</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>1464</x>
+			<y>36</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -3723,9 +4625,15 @@
 			</color>
 			<connections>
 				<relation>
+<<<<<<< HEAD
 					<id>8</id>
 					<source>15</source>
 					<target>9</target>
+=======
+					<id>7</id>
+					<source>9</source>
+					<target>10</target>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -3745,15 +4653,19 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>product_detail</physical_name>
-			<logical_name>product_detail</logical_name>
+			<physical_name>transport</physical_name>
+			<logical_name>transport</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>44</word_id>
+=======
+					<word_id>73</word_id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<id>49</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3787,8 +4699,13 @@
 				</normal_column>
 				<normal_column>
 					<id>50</id>
+<<<<<<< HEAD
 					<referenced_column>71</referenced_column>
 					<relation>8</relation>
+=======
+					<referenced_column>38</referenced_column>
+					<relation>7</relation>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3820,15 +4737,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>48</word_id>
+					<word_id>60</word_id>
 					<id>51</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>decimal</type>
+					<type>date</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>sysdate</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -3853,12 +4770,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>49</word_id>
+					<word_id>15</word_id>
 					<id>52</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
+<<<<<<< HEAD
 					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
@@ -4088,6 +5006,8 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
@@ -4125,51 +5045,29 @@
 		</table>
 		<table>
 			<id>11</id>
-			<height>169</height>
-			<width>193</width>
+			<height>105</height>
+			<width>214</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1320</x>
-			<y>204</y>
+			<x>756</x>
+			<y>336</y>
 			<color>
-				<r>192</r>
-				<g>192</g>
+				<r>128</r>
+				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
-				<relation>
-					<id>9</id>
-					<source>10</source>
-					<target>11</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
 			</connections>
-			<physical_name>banner</physical_name>
-			<logical_name>banner</logical_name>
+			<physical_name>product_category</physical_name>
+			<logical_name>product_category</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>11</word_id>
-					<id>59</id>
+					<word_id>41</word_id>
+					<id>53</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4201,6 +5099,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>60</id>
 					<referenced_column>56</referenced_column>
 					<relation>9</relation>
@@ -4270,12 +5169,17 @@
 				<normal_column>
 					<word_id>83</word_id>
 					<id>62</id>
+=======
+					<word_id>36</word_id>
+					<id>54</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>varchar(n)</type>
 					<constraint></constraint>
+<<<<<<< HEAD
 					<default_value>#</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
@@ -4310,6 +5214,9 @@
 					<type>character(n)</type>
 					<constraint></constraint>
 					<default_value>N</default_value>
+=======
+					<default_value></default_value>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -4344,19 +5251,20 @@
 		</table>
 		<table>
 			<id>12</id>
-			<height>121</height>
-			<width>197</width>
+			<height>289</height>
+			<width>236</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>876</x>
-			<y>354</y>
+			<x>540</x>
+			<y>12</y>
 			<color>
-				<r>192</r>
-				<g>192</g>
+				<r>128</r>
+				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
 				<relation>
+<<<<<<< HEAD
 					<id>10</id>
 					<source>15</source>
 					<target>12</target>
@@ -4381,6 +5289,10 @@
 				<relation>
 					<id>11</id>
 					<source>13</source>
+=======
+					<id>8</id>
+					<source>11</source>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<target>12</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -4401,16 +5313,21 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>product_main_category_list</physical_name>
-			<logical_name>product_main_category_list</logical_name>
+			<physical_name>product</physical_name>
+			<logical_name>product</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>45</word_id>
 					<id>64</id>
+=======
+					<word_id>48</word_id>
+					<id>55</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4442,9 +5359,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>65</id>
 					<referenced_column>71</referenced_column>
 					<relation>10</relation>
+=======
+					<id>56</id>
+					<referenced_column>53</referenced_column>
+					<relation>8</relation>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4476,18 +5399,281 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>66</id>
-					<referenced_column>67</referenced_column>
-					<relation>11</relation>
+					<word_id>10</word_id>
+					<id>57</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>35</word_id>
+					<id>58</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>16</word_id>
+					<id>59</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>23</word_id>
+					<id>60</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>N</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>24</word_id>
+					<id>61</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>77</word_id>
+					<id>62</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>decimal</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>0</default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>8</word_id>
+					<id>63</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>N</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>76</word_id>
+					<id>64</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value>Y</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>58</word_id>
+					<id>65</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>date</type>
+					<constraint></constraint>
+					<default_value>sysdate</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
@@ -4520,29 +5706,56 @@
 		</table>
 		<table>
 			<id>13</id>
-			<height>112</height>
-			<width>197</width>
+			<height>235</height>
+			<width>211</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>828</x>
-			<y>560</y>
+			<x>528</x>
+			<y>396</y>
 			<color>
-				<r>192</r>
-				<g>192</g>
+				<r>128</r>
+				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+				<relation>
+					<id>9</id>
+					<source>12</source>
+					<target>13</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
 			</connections>
-			<physical_name>product_main_category</physical_name>
-			<logical_name>product_main_category</logical_name>
+			<physical_name>product_detail</physical_name>
+			<logical_name>product_detail</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>46</word_id>
 					<id>67</id>
+=======
+					<word_id>42</word_id>
+					<id>66</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4574,15 +5787,181 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>38</word_id>
+					<id>67</id>
+					<referenced_column>55</referenced_column>
+					<relation>9</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>44</word_id>
 					<id>68</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>45</word_id>
+					<id>69</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>46</word_id>
+					<id>70</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>38</word_id>
+					<id>71</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>varchar(n)</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>option</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>66</word_id>
+					<id>72</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value>0</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -4617,29 +5996,51 @@
 		</table>
 		<table>
 			<id>14</id>
-			<height>112</height>
-			<width>203</width>
+			<height>128</height>
+			<width>207</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1085</x>
-			<y>552</y>
+			<x>285</x>
+			<y>288</y>
 			<color>
 				<r>192</r>
 				<g>192</g>
 				<b>192</b>
 			</color>
 			<connections>
+				<relation>
+					<id>10</id>
+					<source>15</source>
+					<target>14</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
 			</connections>
-			<physical_name>product_sub_category</physical_name>
-			<logical_name>product_sub_category</logical_name>
+			<physical_name>pwd_find</physical_name>
+			<logical_name>새 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>54</word_id>
-					<id>69</id>
+					<word_id>43</word_id>
+					<id>73</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4671,8 +6072,80 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>34</word_id>
 					<id>70</id>
+=======
+					<id>74</id>
+					<referenced_column>77</referenced_column>
+					<relation>10</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>27</word_id>
+					<id>75</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>7</word_id>
+					<id>76</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4714,6 +6187,7 @@
 		</table>
 		<table>
 			<id>15</id>
+<<<<<<< HEAD
 			<height>289</height>
 			<width>236</width>
 				<font_name>맑은 고딕</font_name>
@@ -5251,12 +6725,14 @@
 		</table>
 		<table>
 			<id>17</id>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<height>373</height>
 			<width>216</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>338</x>
-			<y>21</y>
+			<x>36</x>
+			<y>24</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -5272,8 +6748,13 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>84</word_id>
 					<id>84</id>
+=======
+					<word_id>74</word_id>
+					<id>77</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5305,8 +6786,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>60</word_id>
 					<id>85</id>
+=======
+					<word_id>50</word_id>
+					<id>78</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5338,8 +6824,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>32</word_id>
 					<id>86</id>
+=======
+					<word_id>31</word_id>
+					<id>79</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5371,8 +6862,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>24</word_id>
 					<id>87</id>
+=======
+					<word_id>22</word_id>
+					<id>80</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5404,6 +6900,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>8</word_id>
 					<id>88</id>
 					<description></description>
@@ -5439,6 +6936,10 @@
 				<normal_column>
 					<word_id>76</word_id>
 					<id>89</id>
+=======
+					<word_id>9</word_id>
+					<id>81</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5470,8 +6971,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>18</word_id>
 					<id>90</id>
+=======
+					<word_id>70</word_id>
+					<id>82</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5503,8 +7009,46 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>90</word_id>
 					<id>91</id>
+=======
+					<word_id>18</word_id>
+					<id>83</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>79</word_id>
+					<id>84</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5537,6 +7081,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>0</word_id>
+<<<<<<< HEAD
 					<id>92</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -5637,10 +7182,115 @@
 				<normal_column>
 					<word_id>66</word_id>
 					<id>95</id>
+=======
+					<id>85</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
+<<<<<<< HEAD
+=======
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>2</word_id>
+					<id>86</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>5</word_id>
+					<id>87</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>57</word_id>
+					<id>88</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<type>date</type>
 					<constraint></constraint>
 					<default_value>sysdate</default_value>
@@ -5668,8 +7318,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>86</word_id>
 					<id>96</id>
+=======
+					<word_id>75</word_id>
+					<id>89</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5701,8 +7356,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>52</word_id>
 					<id>97</id>
+=======
+					<word_id>47</word_id>
+					<id>90</id>
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5742,6 +7402,7 @@
 				<schema></schema>
 			</table_properties>
 		</table>
+<<<<<<< HEAD
 		<table>
 			<id>18</id>
 			<height>138</height>
@@ -6321,42 +7982,14 @@
 				<schema></schema>
 			</table_properties>
 		</table>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 	</contents>
 	<column_groups>
 	</column_groups>
 	<test_data_list>
 	</test_data_list>
 	<sequence_set>
-		<sequence>
-			<name>SEQ_banner_bseq</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value></min_value>
-			<max_value></max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>SEQ_banner_images_biseq</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value></min_value>
-			<max_value></max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
 		<sequence>
 			<name>SEQ_cart_cseq</name>
 			<schema></schema>
@@ -6493,37 +8126,7 @@
 			<decimal_size>0</decimal_size>
 		</sequence>
 		<sequence>
-			<name>SEQ_product_category_list_pcseq</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value></min_value>
-			<max_value></max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
 			<name>SEQ_product_category_pcseq</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value></min_value>
-			<max_value></max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>SEQ_product_category_set_pcsseq</name>
 			<schema></schema>
 			<increment>1</increment>
 			<min_value></min_value>
@@ -6568,6 +8171,7 @@
 			<decimal_size>0</decimal_size>
 		</sequence>
 		<sequence>
+<<<<<<< HEAD
 			<name>SEQ_product_main_category_list_pmclseq</name>
 			<schema></schema>
 			<increment>1</increment>
@@ -6613,6 +8217,8 @@
 			<decimal_size>0</decimal_size>
 		</sequence>
 		<sequence>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<name>SEQ_product_pseq</name>
 			<schema></schema>
 			<increment>1</increment>
@@ -6628,22 +8234,7 @@
 			<decimal_size>0</decimal_size>
 		</sequence>
 		<sequence>
-			<name>SEQ_product_sub_category_list_psclseq</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value></min_value>
-			<max_value></max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>SEQ_product_sub_category_pscseq</name>
+			<name>SEQ_pwd_find_pfseq</name>
 			<schema></schema>
 			<increment>1</increment>
 			<min_value></min_value>
@@ -6750,18 +8341,6 @@
 	</sequence_set>
 	<trigger_set>
 		<trigger>
-			<name>TRI_banner_bseq</name>
-			<schema></schema>
-			<sql>BEFORE INSERT ON banner&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_banner_bseq.nextval&#x0D;&#x0A;&#x09;INTO :new.bseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
-			<name>TRI_banner_images_biseq</name>
-			<schema></schema>
-			<sql>BEFORE INSERT ON banner_images&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_banner_images_biseq.nextval&#x0D;&#x0A;&#x09;INTO :new.biseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
 			<name>TRI_cart_cseq</name>
 			<schema></schema>
 			<sql>BEFORE INSERT ON cart&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_cart_cseq.nextval&#x0D;&#x0A;&#x09;INTO :new.cseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
@@ -6816,21 +8395,9 @@
 			<description></description>
 		</trigger>
 		<trigger>
-			<name>TRI_product_category_list_pcseq</name>
-			<schema></schema>
-			<sql>BEFORE INSERT ON product_category_list&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_category_list_pcseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pcseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
 			<name>TRI_product_category_pcseq</name>
 			<schema></schema>
 			<sql>BEFORE INSERT ON product_category&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_category_pcseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pcseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
-			<name>TRI_product_category_set_pcsseq</name>
-			<schema></schema>
-			<sql>BEFORE INSERT ON product_category_set&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_category_set_pcsseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pcsseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
 			<description></description>
 		</trigger>
 		<trigger>
@@ -6846,6 +8413,7 @@
 			<description></description>
 		</trigger>
 		<trigger>
+<<<<<<< HEAD
 			<name>TRI_product_main_category_list_pmclseq</name>
 			<schema></schema>
 			<sql>BEFORE INSERT ON product_main_category_list&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_main_category_list_pmclseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pmclseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
@@ -6864,21 +8432,17 @@
 			<description></description>
 		</trigger>
 		<trigger>
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 			<name>TRI_product_pseq</name>
 			<schema></schema>
 			<sql>BEFORE INSERT ON product&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_pseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
 			<description></description>
 		</trigger>
 		<trigger>
-			<name>TRI_product_sub_category_list_psclseq</name>
+			<name>TRI_pwd_find_pfseq</name>
 			<schema></schema>
-			<sql>BEFORE INSERT ON product_sub_category_list&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_sub_category_list_psclseq.nextval&#x0D;&#x0A;&#x09;INTO :new.psclseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
-			<name>TRI_product_sub_category_pscseq</name>
-			<schema></schema>
-			<sql>BEFORE INSERT ON product_sub_category&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_product_sub_category_pscseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pscseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
+			<sql>BEFORE INSERT ON pwd_find&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_pwd_find_pfseq.nextval&#x0D;&#x0A;&#x09;INTO :new.pfseq&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
 			<description></description>
 		</trigger>
 		<trigger>

@@ -10,6 +10,10 @@
 
 <link rel="stylesheet" href="/css/otshop.css">
 <script type="text/javascript" src="/script/member.js"></script>
+<script type="text/javascript" src="/script/customer.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
 </head>
 <body>
@@ -27,6 +31,8 @@
 			<li><a href="">랭킹</a></li>
 			<li><a href="">업데이트</a></li>
 			<li><a href="">세일</a></li>
+			<li><a href="faqList">FAQ</a></li>
+			<li><a href="qnaList">고객센터</a></li>
 		</ul>
 	</nav>	
 </div>
@@ -40,7 +46,6 @@
 							<li><a href="contract">회원가입</a></li>
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
-							<li><a href="customer">고객센터</a></li>
 						</ul>
 					</li>
 				</c:when>
@@ -57,7 +62,6 @@
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
 							<li><a href="customer">고객센터</a></li>
-							<li><a href="mdeleteForm">회원탈퇴</a></li>
 						</ul>
 					</nav>
 				</c:otherwise>

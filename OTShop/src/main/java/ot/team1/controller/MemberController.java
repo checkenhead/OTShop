@@ -274,10 +274,9 @@ public class MemberController {
     	  model.addAttribute("message", "비밀번호 확인을 입력하세요.");
       else if( !repwd.equals(membervo.getPwd() ) )
           model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다." );
-      else if( pwdfindvo.getKind() == null || 
-    		  membervo.getBirthdate().isEmpty() ||
-    		  membervo.getBirthdate().equals("null"))
-    	  model.addAttribute("message", pfresult.getFieldError("kind").getDefaultMessage() );
+      else if( pwdfindvo.getKind() == null || pwdfindvo.getKind().isEmpty() ||
+    		  pwdfindvo.getKind().equals("null") || pwdfindvo.getKind().equals("0") )
+    	  model.addAttribute("message", "비밀번호 질문을 선택하세요" );
       else if( pfresult.getFieldError("answer") != null )
     	  model.addAttribute("message", pfresult.getFieldError("answer").getDefaultMessage() );
       else if( mresult.getFieldError("name") != null )
@@ -332,6 +331,88 @@ public class MemberController {
    }
    
    
+   @PostMapping("/findId")
+   public ModelAndView findId(
+	         @RequestParam("name") String name,
+	         @RequestParam("email") String email) {
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	      paramMap.put("name", name);
+	      paramMap.put("email", email);
+	      
+	      
+	      
+	      ms.findId(paramMap);
+	      String userid = (String) paramMap.get("userid");
+	      
+	      // DB에 해당 name과 email이 일치하는 값이 없을 때
+	      if( userid == null ) mav.addObject("result", -1);
+	      
+	      // DB에 해당 name과 email이 일치하는 값이 있을 때
+	      else mav.addObject("result", 1);	
+	      
+	      mav.addObject("userid", userid);
+	      mav.addObject("name", name);
+	      mav.addObject("email", email);
+	      
+	      mav.setViewName("member/findId");
+	      
+	      return mav;
+	   }
+   
+   
+   @PostMapping("/findPwd")
+   public ModelAndView findPwd(
+	         @RequestParam("userid") String inuserid,
+	         @RequestParam("kind") String inkind,
+	         @RequestParam("answer") String inanswer) {
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	      paramMap.put("userid", inuserid);
+	      
+	      // DB에서 데이터 가져옴
+	      ms.findPwd(paramMap);
+	      
+	      String userid = (String) paramMap.get("userid");
+	      String kind = (String) paramMap.get("kind");
+	      String answer = (String) paramMap.get("answer");
+	      String pwd = (String) paramMap.get("pwd");
+	      
+	      
+    	  System.out.println("inuserid : " + inuserid + ", userid : " + userid);
+    	  System.out.println("pwd : " + pwd);
+    	  System.out.println("inkind : " + inkind + ", kind : " + kind );
+    	  System.out.println("inanswer : " + inanswer + ", answer : " + answer);
+    	  
+	      
+	      // 해당되는 outpwd가 없을 경우 = 가입 이력 없음
+    	  if( pwd == null || pwd.equals("")) mav.addObject("result", -1);
+    	  // userid는 맞지만 질문 선택이 틀린 경우
+    	  else if( inuserid.equals(userid) && !inkind.equals(kind.trim()) &&( inanswer.equals(answer) || !inanswer.equals(answer) ))
+    		  mav.addObject("result",2);
+    	  // userid와 질문 선택은 맞지만 답변이 틀린 경우
+    	  else if( inuserid.equals(userid) && inkind.equals(kind.trim()) && !inanswer.equals(answer) )
+    		  mav.addObject("result",3);
+    	// 모두 맞는 경우
+    	  else if( inuserid.equals(userid) && inkind.equals(kind.trim()) && inanswer.equals(answer) ) {
+    		  mav.addObject("result", 1);
+    	  	  mav.addObject("pwd", pwd);
+    	  	  mav.addObject("userid", userid);
+    	  	  mav.addObject("kind", kind);
+    	  	  mav.addObject("answer", answer);
+    	  }
+
+      mav.setViewName("member/findPwd");
+      
+      return mav;
+   }
+
+	    	  
+   
    
    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
    
@@ -346,25 +427,31 @@ public class MemberController {
 	   
 	   // session에 있는 "loginUser" 값을 가져와 loginUser에 저장
 	   HttpSession session = request.getSession();
-	   HashMap<String, Object> loginUser = 
-			   (HashMap<String, Object>) session.getAttribute("loginUser");
 	   
-	   // Object이므로 String으로 형변환
-	   dto.setUserid( (String)loginUser.get("USERID") );
-	   dto.setName( (String)loginUser.get("NAME") );
-	   dto.setGender( (String)loginUser.get("GENDER") );
-	   dto.setBirthdate( (String)loginUser.get("BIRTHDATE") );
-	   dto.setTel( (String)loginUser.get("TEL") );
-	   dto.setEmail( (String)loginUser.get("EMAIL") );
-	   dto.setZipnum( (String)loginUser.get("ZIPNUM") );
-	   dto.setAddress1( (String)loginUser.get("ADDRESS1") );
-	   dto.setAddress2( (String)loginUser.get("ADDRESS2") );
-	   dto.setAddress3( (String)loginUser.get("ADDRESS3") );
-	   dto.setProvider( (String)loginUser.get("PROVIDER") );
+	   Object loginUser = session.getAttribute("loginUser");
 	   
-	   mav.addObject("dto", dto);
-	   
-	   mav.setViewName("member/mupdate");
+	   if( loginUser == null ) mav.setViewName("member/login");
+	   else {
+		   HashMap<String, Object> paramMap = 
+				   (HashMap<String, Object>) session.getAttribute("loginUser");
+		   
+		   // Object이므로 String으로 형변환
+		   dto.setUserid( (String)paramMap.get("USERID") );
+		   dto.setName( (String)paramMap.get("NAME") );
+		   dto.setGender( (String)paramMap.get("GENDER") );
+		   dto.setBirthdate( (String)paramMap.get("BIRTHDATE") );
+		   dto.setTel( (String)paramMap.get("TEL") );
+		   dto.setEmail( (String)paramMap.get("EMAIL") );
+		   dto.setZipnum( (String)paramMap.get("ZIPNUM") );
+		   dto.setAddress1( (String)paramMap.get("ADDRESS1") );
+		   dto.setAddress2( (String)paramMap.get("ADDRESS2") );
+		   dto.setAddress3( (String)paramMap.get("ADDRESS3") );
+		   dto.setProvider( (String)paramMap.get("PROVIDER") );
+		   
+		   mav.addObject("dto", dto);
+		   
+		   mav.setViewName("member/mupdate");
+	   }
 	   return mav;
    }
    

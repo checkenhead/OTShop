@@ -3,7 +3,7 @@
 <%@ include file="../include/header.jsp" %>
 
 
-<article>
+<article id="jwrap">
 <form id="join" action="join" method="post" name="joinFrm">
 	<fieldset id="joinCover"><legend><img src="images/user.png">회원 정보 입력</legend>
 		
@@ -15,13 +15,13 @@
 					<label>비밀번호</label><input type="password" name="pwd" value="${mdto.pwd}"><br>
 					<label>비밀번호 확인</label><input type="password" name="repwd" value="${repwd}"><br>
 					<label>비밀번호 찾기 질문 선택</label>
-						<select id="pwdAsk" name="pwdAsk">
-							<option selected>---- 질문을 선택하세요 ----</option>
+						<select name="kind" id="pwdAsk">
+							<option value="0" selected>---- 질문을 선택하세요 ----</option>
 							<option value="1">기억에 남는 추억의 장소는?</option>
 							<option value="2">가장 기억에 남는 선생님 성함은?</option>
 							<option value="3">유년시절 가장 생각나는 친구 이름은?</option>
 						</select><br>
-					<label>답변</label><input type="text" name="pwdAskCheck" placeholder="답변 입력"><br>
+					<label>답변</label><input type="text" name="answer" placeholder="답변 입력"><br>
 					<label>이름</label><input type="text" name="name" value="${mdto.name}"><br>
 					<label>성별</label><input type="radio" name="gender" value="M">남자	<input type="radio" name="gender" value="F">여자<br>
 					<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 String 데이터가 저장된다 -->

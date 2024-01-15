@@ -45,7 +45,8 @@
 						<input type="hidden" name="birthdate" value="${dto.birthdate}">
 						<label>전화번호</label><input type="text" name="tel" value="${dto.tel}"><br>
 						<label>이메일</label><input type="text" name="email" value="${dto.email}"><br>
-						<input type="hidden" name="provider" value="ot">
+						<input type="hidden" name="provider" value="ot"><br><br><br><br>
+						<a href="mdeleteForm"><input type="button" value="회원탈퇴" class="mdeleteBtn"></a>
 					</c:otherwise>
 				</c:choose>
 			</div>
