@@ -165,7 +165,7 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* findAcc CSS = login.jsp CSS에 기반함 */
 
-<<<<<<< HEAD
+
 .main_wrap{
 	width: 100%;
 	display: flex;
@@ -181,7 +181,7 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 	padding: 20px;
 	flex-wrap: wrap;
 }
-=======
+
 #findAccForm #loginTop span{ margin:0 0 0 130px; }
 #findAccForm #loginBottom{ padding-top:20px; }
 #findAccForm hr{ margin-bottom:30px; }
@@ -189,9 +189,7 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 #findAccForm .gofind{ width:300px; height:40px; border:none; border-radius:5px; background-color:deepskyblue; font-weight:bold;
 			color:white; margin-top:20px; }
 #findAccForm select{ width:300px; height:50px; border-radius:5px; border:1px solid lightgray; margin-bottom:5px; color:gray; }
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 
-<<<<<<< HEAD
 .item{
 	width: 200px;
 	height: 350px;
@@ -223,12 +221,12 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 	margin-left: 10px;
 	margin-right: 10px;
 }
-=======
+
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* findId, findPwd CSS = login.jsp CSS에 기반함 */
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 
-<<<<<<< HEAD
+
+
 .item_brand{
 	font-weight: bold;
 	border-bottom: 1px solid silver;
@@ -263,30 +261,30 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 	height: 20px;
 }
 .options_wrap{
-		position: absolute;
-		width: 180px;
-		margin-left: 10px;
-		margin-right: 10px;
-		background: white;
-		border: 1px solid silver;
+	position: absolute;
+	width: 180px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background: white;
+	border: 1px solid silver;
 		
-	}
-	.option{
+}
+.option{
 		position: relative;
 		width: 180px;
 		display:flex;
 		justify-content: space-between;
 		border-bottom: 1px solid silver;
 		user-select: none;
-	}
-	.option:last-child{
+}
+.option:last-child{
 		border-bottom: 0;
-	}
-=======
+}
+
 #loginTop span.findAccTop{ display:flex; justify-content:center; align-items:center; margin-left:126px; font-weight:bold; 
 			font-size:larger; }
 #loginBottom .result{ font-weight:bold; font-size:90%; }
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* faqListForm CSS */
