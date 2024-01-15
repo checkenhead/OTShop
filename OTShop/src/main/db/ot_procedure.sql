@@ -151,8 +151,17 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM qna_view ORDER BY qseq DESC;
 END;
 
+--------------------------------------------------------------------------------------------
 
+create or replace procedure getQnaCatListUser(
+    p_qseq IN qna_view.qseq%TYPE,
+    p_cur out sys_refcursor)
+is
 
+begin
+    open p_cur for select * from qna_view WHERE qseq = p_qseq;
+    
+end;
 
 
 
