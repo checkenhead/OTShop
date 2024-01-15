@@ -29,8 +29,9 @@ public interface IAdminDao {
 
 	public void updateProductCat(HashMap<String, Object> paramMap);
 
+	/* productDao로 이동
 	public void getProduct(HashMap<String, Object> paramMap);
-
+	*/
 	public void updateProduct(HashMap<String, Object> paramMap);
 
 	public void updateProductDetail(HashMap<String, Object> ovo);

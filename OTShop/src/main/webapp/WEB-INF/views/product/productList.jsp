@@ -3,6 +3,12 @@
 <%@ include file="../include/categorySub.jsp" %>
 
 <script>
+	function view_product(index){
+		document.productListForm.pseq = index;
+		document.productListForm.action = "viewProduct";
+		document.productListForm.submit();
+	}
+	
 	function toggle_options(index){
 		if(document.getElementById("options_wrap_" + index).style.display == "none"){
 			document.getElementById("options_wrap_" + index).style.display = "";
@@ -14,6 +20,8 @@
 
 
 <div class="content_wrap">
+<form name=productListForm method="get">
+	<input type="hidden" name="pseq">
 	<c:forEach items="${productList}" var="productVO">
 	<div class="item">
 		<div class="item_img" onClick="view_product('${productVO.PSEQ}');"><img src="images/product/${productVO.IMAGE}"></div>
@@ -34,6 +42,7 @@
 		</div>
 	</div>
 	</c:forEach>
+</form>
 </div>
 
 <%@ include file="../include/footer.jsp" %>

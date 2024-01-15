@@ -18,4 +18,6 @@ public interface IProductDao {
 	public void getProductMainCatList(HashMap<String, Object> paramMap);
 	
 	public void getProductSubCatList(HashMap<String, Object> paramMap);
+	
+	public void getProduct(HashMap<String, Object> paramMap);
 }

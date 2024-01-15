@@ -79,4 +79,46 @@ public class ProductService {
 		
 		return result;
 	}
+
+	public Object getProduct(int pseq) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("pseq", pseq);
+		paramMap.put("ref_cursor", null);
+
+		pdao.getProduct(paramMap);
+
+		HashMap<String, Object> result = ((ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")).get(0);
+
+		result.put("ref_cursor", null);
+
+		pdao.getProductDetailList(result);
+
+		ArrayList<HashMap<String, Object>> optionList = (ArrayList<HashMap<String, Object>>)result.get("ref_cursor");
+		// 옵션 저장
+		result.put("optionList", optionList);
+		
+		//price set
+		result.put("price", Integer.parseInt(optionList.get(0).get("PRICE2").toString()));
+		
+		//category start
+		result.put("ref_cursor", null);
+		
+		pdao.getProductMainCatList(result);
+		
+		ArrayList<HashMap<String, Object>> mainCategoryList = (ArrayList<HashMap<String, Object>>) result.get("ref_cursor");
+		
+		result.put("mainCategoryList", mainCategoryList);
+		
+		result.put("ref_cursor", null);
+		
+		pdao.getProductSubCatList(result);
+		
+		ArrayList<HashMap<String, Object>> subCategoryList = (ArrayList<HashMap<String, Object>>) result.get("ref_cursor");
+		
+		result.put("subCategoryList", subCategoryList);
+		//category end
+
+		return result;
+	}
 }

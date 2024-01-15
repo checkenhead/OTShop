@@ -13,7 +13,7 @@
 		}
 	</select>
 	
-	<select id="getProductCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<select id="getAllProductCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getProductCatList(
 			#{categoryClass},
@@ -96,13 +96,14 @@
 		}
 	</update>
 	
-	<select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<!-- productDao로 이동 -->
+	<!-- <select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getProduct(
 			#{pseq},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
 		}
-	</select>
+	</select> -->
 	
 	<update id="updateProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{

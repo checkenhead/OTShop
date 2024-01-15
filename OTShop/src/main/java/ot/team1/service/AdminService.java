@@ -177,7 +177,7 @@ public class AdminService {
 		paramMap.put("pseq", pseq);
 		paramMap.put("ref_cursor", null);
 
-		adao.getProduct(paramMap);
+		pdao.getProduct(paramMap);
 
 		HashMap<String, Object> result = ((ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")).get(0);
 
