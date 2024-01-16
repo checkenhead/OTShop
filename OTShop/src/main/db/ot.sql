@@ -443,6 +443,7 @@ ALTER TABLE product_sub_cat_set
 ALTER TABLE pwd_find
 	ADD FOREIGN KEY (userid)
 	REFERENCES members (userid)
+	ON DELETE CASCADE
 ;
 
 
@@ -544,6 +545,11 @@ select pscl.psclseq, pscl.pseq, pscl.pscseq, psc.name
 from product_sub_category_list pscl, product_sub_category psc
 where pscl.pscseq = psc.pscseq;
 
+create or replace view product_cart_view as
+select c.cseq, c.userid, pd.pseq, p.brand, p.name, p.image, c.pdseq, pd.price2, pd.optname, c.qty
+from cart c, product p, product_detail pd
+where c.pdseq = pd.pdseq and pd.pseq = p.pseq;
+
 
 /* Select Tables */
 select * from admins;
@@ -576,8 +582,22 @@ select * from product_sub_cat_set;
 
 delete from qna;
 
+select * from product_main_cat_list_view;
+select * from product_sub_cat_list_view;
+
+select * from cart;
+select * from product_cart_view;
+
 
 select max(nvl(priority, 0)) from banner;
+
+
+
+select * from product_main_category_list;
+select * from product where pseq in (select pseq from product_main_category_list where pmcseq = 2);
+
+
+
 
 /* Test Records */
 
@@ -611,7 +631,7 @@ insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '회원
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '상품');
 insert into qna_category(qcseq, name) values(qna_category_qcseq.nextval, '주문/결제');
 
-<<<<<<< HEAD
+
 insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 28);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
 
@@ -619,7 +639,7 @@ insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nex
 insert into product_main_category_list(pmclseq, pseq, pmcseq) values(product_main_cat_list_pmclseq.nextval, 3, 2);
 insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
 
-=======
+
 insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
