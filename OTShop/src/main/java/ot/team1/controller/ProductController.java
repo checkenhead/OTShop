@@ -17,7 +17,7 @@ public class ProductController {
 	@GetMapping("/")
 	public String main(HttpServletRequest request, Model model) {
 		//서브메뉴의 카테고리 리스트
-		model.addAttribute("mainCategoryList", ps.getCatSetList());
+		model.addAttribute("mainCategorySetList", ps.getCatSetList());
 		
 		//메인페이지 제품 리스트
 		model.addAttribute("productList", ps.getProductList(""));
@@ -32,11 +32,29 @@ public class ProductController {
 			@RequestParam("pseq") int pseq,
 			Model model) {
 		//서브메뉴의 카테고리 리스트
-		model.addAttribute("mainCategoryList", ps.getCatSetList());
+		model.addAttribute("mainCategorySetList", ps.getCatSetList());
 		
 		//상품 저장
 		model.addAttribute("productVO", ps.getProduct(pseq));
 		
 		return "product/viewProduct";
+	}
+	
+	@GetMapping("/searchProduct")
+	public String searchProduct(
+			@RequestParam(value = "pmcseq", defaultValue = "0") int pmcseq,
+			@RequestParam(value = "pscseq", defaultValue = "0") int pscseq,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			Model model) {
+		//서브메뉴의 카테고리 리스트
+		model.addAttribute("mainCategorySetList", ps.getCatSetList());
+		
+		//검색
+		if(pmcseq != 0 || pscseq != 0)
+			model.addAttribute("productList", ps.getProductListByCat(pmcseq, pscseq));
+		else
+			model.addAttribute("productList", ps.getProductList(keyword));
+		
+		return "index";
 	}
 }

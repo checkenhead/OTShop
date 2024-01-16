@@ -20,4 +20,8 @@ public interface IProductDao {
 	public void getProductSubCatList(HashMap<String, Object> paramMap);
 	
 	public void getProduct(HashMap<String, Object> paramMap);
+
+	public void getProductListByPmcseq(HashMap<String, Object> paramMap);
+
+	public void getProductListByPscseq(HashMap<String, Object> paramMap);
 }

@@ -20,18 +20,18 @@ public class ProductService {
 		
 		pdao.getMainCatSetList(paramMap);
 		
-		ArrayList<HashMap<String, Object>> mainCategoryList = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		ArrayList<HashMap<String, Object>> mainCategorySetList = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
-		for(HashMap<String, Object> mainCategory : mainCategoryList) {
-			paramMap.put("pmcsseq", Integer.parseInt(mainCategory.get("PMCSSEQ").toString()));
+		for(HashMap<String, Object> mainCategorySet : mainCategorySetList) {
+			paramMap.put("pmcsseq", Integer.parseInt(mainCategorySet.get("PMCSSEQ").toString()));
 			paramMap.put("ref_cursor", null);
 			
 			pdao.getSubCatSetList(paramMap);
 			
-			mainCategory.put("subCategoryList", paramMap.get("ref_cursor"));
+			mainCategorySet.put("subCategorySetList", paramMap.get("ref_cursor"));
 		}
 		
-		return mainCategoryList;
+		return mainCategorySetList;
 	}
 
 	public Object getProductList(String keyword) {
@@ -89,7 +89,7 @@ public class ProductService {
 		pdao.getProduct(paramMap);
 
 		HashMap<String, Object> result = ((ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")).get(0);
-
+		
 		result.put("ref_cursor", null);
 
 		pdao.getProductDetailList(result);
@@ -118,7 +118,64 @@ public class ProductService {
 		
 		result.put("subCategoryList", subCategoryList);
 		//category end
-
+		
 		return result;
 	}
+
+	public Object getProductListByCat(int pmcseq, int pscseq) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("ref_cursor", null);
+
+		if(pmcseq != 0) {
+			paramMap.put("pmcseq", pmcseq);
+			pdao.getProductListByPmcseq(paramMap);
+		} else if(pscseq != 0) {
+			paramMap.put("pscseq", pscseq);
+			pdao.getProductListByPscseq(paramMap);
+		}
+		else {
+			System.out.println("category index not found.");
+		}
+
+		ArrayList<HashMap<String, Object>> result = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+		for (HashMap<String, Object> pvo : result) {
+			//optionList start
+			pvo.put("ref_cursor", null);
+
+			pdao.getProductDetailList(pvo);
+
+			ArrayList<HashMap<String, Object>> optionList = (ArrayList<HashMap<String, Object>>) pvo.get("ref_cursor");
+
+			pvo.put("optionList", optionList);
+			//optionList end
+			
+			//price set
+			pvo.put("price", Integer.parseInt(optionList.get(0).get("PRICE2").toString()));
+			
+			//category start
+			pvo.put("ref_cursor", null);
+			
+			pdao.getProductMainCatList(pvo);
+			
+			ArrayList<HashMap<String, Object>> mainCategoryList = (ArrayList<HashMap<String, Object>>) pvo.get("ref_cursor");
+			
+			pvo.put("mainCategoryList", mainCategoryList);
+			
+			pvo.put("ref_cursor", null);
+			
+			pdao.getProductSubCatList(pvo);
+			
+			ArrayList<HashMap<String, Object>> subCategoryList = (ArrayList<HashMap<String, Object>>) pvo.get("ref_cursor");
+			
+			pvo.put("subCategoryList", subCategoryList);
+			//category end
+		}
+		
+		return result;
+	}
+
+
+	
 }

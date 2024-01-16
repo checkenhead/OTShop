@@ -6,7 +6,7 @@
 
 
 <article id="wrap">
-<%@ include file="../include/categorySub.jsp" %>
+<%-- <%@ include file="../include/categorySub.jsp" %> --%>
 <form>
 
 <h2>여기서 사용자 주문 정보 조회 가능</h2>
