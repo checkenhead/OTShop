@@ -163,9 +163,23 @@ begin
     
 end;
 
+--------------------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE insertQna(
+    p_userid IN qna.userid%TYPE,
+    p_secret IN qna.secret%TYPE,
+    p_qcseq IN qna.qcseq%TYPE,
+    p_title IN qna.title%TYPE,
+    p_content IN qna.content%TYPE
+)
+IS
+BEGIN
 
-
+    INSERT INTO qna( qseq, qcseq, userid, secret, title, content )
+    VALUES ( qna_qseq.nextVal, p_qcseq, p_userid, p_secret, p_title, p_content);
+    
+    COMMIT;
+END;
 
 
 

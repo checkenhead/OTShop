@@ -41,7 +41,13 @@ function getselect(){
 			document.getElementById("qna_"+ i).style.display='';
 		} else {
 			document.getElementById("qna_"+ i).style.display='none';
-		}
-		
+		}		
 	}
-} 
+}
+
+
+function userCheckForm(qseq, userid){
+	var url = "userCheckForm?qseq=" + qseq + "&userid=" + userid;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "userCheck", opt);
+}

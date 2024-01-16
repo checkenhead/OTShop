@@ -42,6 +42,14 @@
 			)
 		}
 	</select>
+	
+	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertQna(
+				#{userid} , #{secret} , #{qcseq} , #{title} , #{content}
+			)
+		}
+	</insert>
 
 	
 	

@@ -10,16 +10,13 @@
 <%@ include file="../include/categorySub.jsp" %>
 
 	<form method="post" name="qnaListFrm" id="qnaList">
-		<fieldset><legend>1 : 1 상담</legend>
+		<fieldset><legend>1 : 1 문의 내용</legend>
 			<table width="600">
-				<tr>
-					<th>등록일</th><th>구분</th><th>제목</th><th>질문</th><th>답변</th>
-				</tr>
-				
-				<tr>
-					<td>${qnaVO.REGDATE}</td><td>${qnaCAT.NAME}</td><td>${qnaVO.TITLE}</td>
-					<td>${qnaVO.CONTENT}</td><td>${qnaVO.REPLY}</td>
-				</tr>
+				<tr><th width="150" align="center">등록일</th><td style="text-align:left;">${qnaVO.REGDATE}</td></tr>
+				<tr><th align="center">구분</th><td style="text-align:left;">${qnaCAT.NAME}</td></tr>
+				<tr><th align="center">제목</th><td style="text-align:left;  font-size:120%">${qnaVO.TITLE}</td></tr>
+				<tr><th align="center">질문</th><td style="text-align:left;"><pre>${qnaVO.CONTENT}</pre></td></tr>
+				<tr><th align="center">답변</th><td style="text-align:left;">${qnaVO.REPLY}</td></tr>
 			</table>
 		</fieldset>
 		<div>

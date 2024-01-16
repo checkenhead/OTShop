@@ -21,6 +21,7 @@
         <div class="listHead">
             <div class="faqnum">NO</div>
             <div class="faqcry">구분</div>
+            <div class="qnauserid">작성자</div>
             <div class="faqtitle">제목</div>
             <div class="qnadate">등록일</div>
             <div class="reply">답변</div>
@@ -33,9 +34,10 @@
 						<input type="hidden" value="${qnaVO.QCSEQ}" class="qcseq">
 						<div class="faqnum2">${qnaVO.QSEQ}</div>
 			            <div class="faqcry2">${qnaVO.NAME}</div>
+			            <div class="qnauserid2" name="userid">${qnaVO.USERID}</div>
 			            <c:choose>
 			            	<c:when test="${qnaVO.SECRET == 'Y'}">
-			            		<a href='#' onclick="passCheck('${qnaVO.QSEQ}')">
+			            		<a href='#' onclick="userCheckForm('${qnaVO.QSEQ}', '${qnaVO.USERID}')">
 			            			<div class="faqtitle2">${qnaVO.TITLE}<img src="/images/key.png" style="width:20px;"></div>
 			            		</a>
 			            	</c:when>
@@ -54,8 +56,9 @@
 			            </c:choose>
 					</div>
 				</c:forEach>
-			
-           
+        </div>
+        <div>
+        	<a href="qnaWriteForm"><input type="button" value="문의하기"></a>
         </div>
     </form>
 </article>
