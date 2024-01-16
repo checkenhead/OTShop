@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="/css/otshop.css">
+<script type="text/javascript" src="/script/product.js"></script>
+<script type="text/javascript" src="/script/cart.js"></script>
 <script type="text/javascript" src="/script/member.js"></script>
 <script type="text/javascript" src="/script/customer.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

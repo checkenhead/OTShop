@@ -922,3 +922,56 @@ begin
         select * from product_sub_category_list where pseq = p_pseq order by psclseq;
     
 end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductListByPmcseq(
+    p_pmcseq in product_main_category_list.pmcseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product where pseq in 
+        (select pseq from product_main_category_list where pmcseq = p_pmcseq)
+        order by regdate desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getProductListByPscseq(
+    p_pscseq in product_sub_category_list.pscseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product where pseq in 
+        (select pseq from product_sub_category_list where pscseq = p_pscseq)
+        order by regdate desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getCartList(
+    p_userid in cart.userid%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from product_cart_view where userid = p_userid order by cseq asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertCart(
+    p_userid in cart.userid%type,
+    p_pdseq in cart.pdseq%type,
+    p_qty in cart.qty%type)
+is
+
+begin
+    insert into cart(cseq, userid, pdseq, qty) values(cart_cseq.nextval, p_userid, p_pdseq, p_qty);
+    -- no commit here : Service Transaction
+    
+end;

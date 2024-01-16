@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/otshop.css">
 
+<div class="sub_wrap">
 <div class="container">
 	<div class="box">
 		<a href="medit">
@@ -15,6 +16,7 @@
 		<a href="qnaList">
 			<div class="subCategory"><img src="images/call.png">고객센터</div></a>
 	</div>
+</div>
 </div>
 			
 

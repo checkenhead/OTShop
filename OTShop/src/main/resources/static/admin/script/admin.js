@@ -576,7 +576,7 @@ function remove_sub_cat_set(index){
 		for(var i = 0; i < rowNum; i++){
 			var value = document.getElementById("subRow_input_" + sub_rows[i].id.replace("sub_row_", "")).value; //삭제 전 선택된 값 저장
 			sub_rows[i].outerHTML = ""; //삭제
-			
+			alert(value);
 			var content = document.getElementById("sub_template").innerHTML;
 			content = content.replace(/#origin/g, "");
 			content = content.replace(/#index/g, (i + 1) + "");

@@ -4,7 +4,7 @@
 
 <script>
 	function view_product(index){
-		document.productListForm.pseq = index;
+		document.productListForm.pseq.value = index;
 		document.productListForm.action = "viewProduct";
 		document.productListForm.submit();
 	}
@@ -18,10 +18,11 @@
 	}
 </script>
 
-
-<div class="content_wrap">
 <form name=productListForm method="get">
-	<input type="hidden" name="pseq">
+<input type="hidden" name="pseq">
+<div class="content_wrap">
+
+	
 	<c:forEach items="${productList}" var="productVO">
 	<div class="item">
 		<div class="item_img" onClick="view_product('${productVO.PSEQ}');"><img src="images/product/${productVO.IMAGE}"></div>
@@ -29,20 +30,21 @@
 		<div class="item_name" title="${productVO.NAME}" onClick="view_product('${productVO.PSEQ}');">${productVO.NAME}</div>
 		<div class="item_price"><fmt:formatNumber type="number" value="${productVO.price}"/>원</div>
 		<div class="item_options" onClick="toggle_options('${productVO.PSEQ}');">options<img src="images/bottom.png"></div>
-		<div class="options_wrap" id="options_wrap_${productVO.PSEQ}" style="display:none;">
+		<div class="options_wrap" id="options_wrap_${productVO.PSEQ}" style="display:none;z-index:1;">
 			<c:forEach items="${productVO.optionList}" var="optionVO">
 			<div class="option">
-				<div>${optionVO.OPTNAME}</div>
+				<div style="margin-left:5px;margin-right:5px;">${optionVO.OPTNAME}</div>
 				<div>
-					<c:if test="${optionVO.STOCK == 0}">X</c:if>
-					<c:if test="${optionVO.STOCK != 0}">O</c:if>
+					<c:if test="${optionVO.STOCK == 0}"><div style="margin-left:5px;margin-right:5px;">X</div></c:if>
+					<c:if test="${optionVO.STOCK != 0}"><div style="margin-left:5px;margin-right:5px;">O</div></c:if>
 				</div>
 			</div>
 			</c:forEach>
 		</div>
 	</div>
 	</c:forEach>
-</form>
+
 </div>
+</form>
 
 <%@ include file="../include/footer.jsp" %>

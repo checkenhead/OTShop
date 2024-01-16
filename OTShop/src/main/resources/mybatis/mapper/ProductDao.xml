@@ -69,4 +69,19 @@
 		}
 	</select>
 	
+	<select id="getProductListByPmcseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductListByPmcseq(
+			#{pmcseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
+	
+	<select id="getProductListByPscseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getProductListByPscseq(
+			#{pscseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap})
+		}
+	</select>
 </mapper>
