@@ -23,7 +23,7 @@ public class LogisController {
 	
 	@GetMapping("/logisMain")
 	public String logisMain() {
-		return "logis/member/logisLoginForm";
+		return "logis/common/logisLoginForm";
 	}
 
 }

@@ -18,7 +18,25 @@
 <body>
 <div class="header_wrap">
 <header>
-	
+
+	<div class="logo"><a href="logisMain"><img src="logis/images/logisLogo.png"></a></div>
+	<div class="adminLogin">
+	<c:choose>
+		<c:when test="${empty loginLogis}"><a href="logisLoginForm">Login</a></c:when>
+		<c:otherwise>
+			${loginLogis.NAME}(${loginLogis.LOGISID})<a href="logisLogout">Logout</a>
+		</c:otherwise>
+	</c:choose>
+	</div>
+	<div class="top_menu">
+		<ul>
+			<li><a href="">신규</a></li>
+			<li><a href="">진행중</a></li>
+			<li><a href="">배송 내역</a></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+		
 
 
 </header>
