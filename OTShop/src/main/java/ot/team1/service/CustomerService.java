@@ -29,4 +29,8 @@ public class CustomerService {
 		cdao.getQnaCatListUser(paramMap);
 	}
 
+	public void insertQna(HashMap<String, Object> paramMap) {
+		cdao.insertQna(paramMap);
+	}
+
 }

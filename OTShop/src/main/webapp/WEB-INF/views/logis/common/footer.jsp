@@ -3,6 +3,8 @@
 
 </div>
 
+<div class="clear"></div>
+<div class="footer_wrap">
 <footer>
 <hr>
 <span class="title">COPYRIGHT (C) OTSHOP ALL RIGHTS RESERVED.</span><br>
@@ -31,14 +33,8 @@ OTSHOP 내 매거진, 스트리트스냅, 스토어 등 OTSHOP 자체 생성 콘
 <div id="footerEnd">
 	<span>FASHION WEB / LIFE STYLE SELECT SHOP WWW.OTSHOP.COM</span>
 </div>
-
-
-
-<a href="adminMain">admin</a><br>
-<a href="logisMain">logis</a>
-
 </footer>
-
+</div>
 
 </body>
 </html>
