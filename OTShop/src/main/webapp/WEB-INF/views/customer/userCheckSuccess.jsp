@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="/css/otshop.css">
 <script type="text/javascript">
 
 function userCheckClose(result, qseq){
@@ -26,9 +26,9 @@ function userCheckClose(result, qseq){
 
 </head>
 <body>
+<div class="userCheck">
 <span>${message}</span><br>
-
 <input type="button" value="확인" onclick="userCheckClose('${result}' , '${qseq}')">
-
+</div>
 </body>
 </html>

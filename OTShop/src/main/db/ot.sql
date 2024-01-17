@@ -336,6 +336,7 @@ CREATE TABLE transport
 );
 
 
+
 CREATE TABLE invoice
 (
 	iseq number NOT NULL,
@@ -350,7 +351,6 @@ CREATE TABLE invoice
 	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (iseq)
 );
-
 
 
 
@@ -582,8 +582,6 @@ select * from product_sub_category_list;
 select * from product_main_cat_set;
 select * from product_sub_cat_set;
 
-<<<<<<< HEAD
-=======
 delete from qna;
 
 select * from product_main_cat_list_view;
@@ -593,7 +591,6 @@ select * from cart;
 select * from product_cart_view;
 
 
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 select max(nvl(priority, 0)) from banner;
 
 
@@ -642,13 +639,13 @@ insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nex
 
 
 insert into product_main_category_list(pmclseq, pseq, pmcseq) values(product_main_cat_list_pmclseq.nextval, 3, 2);
-<<<<<<< HEAD
 insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
-=======
 insert into product_sub_category_list(psclseq, pseq, pscseq) values(product_sub_cat_list_psclseq.nextval, 3, 3);
 
 
 insert into qna(qseq, qcseq, userid, title, content, pseq) values(qna_qseq.nextval, 2, 'hong', '상품 문의 드려요.', '정품 맞나요?', 4);
 insert into qna(qseq, qcseq, userid, title, content, secret) values(qna_qseq.nextval, 1, 'kim', '전화번호 변경 문의', '전화번호를 변경하고 싶은데 어떻게 해야하나요?', 'Y');
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
+
+insert into logis(logisid, pwd, name, tel, email) values('logis', '1234', '김배송', '010-9875-5789', 'logis1@naver.com');
 

@@ -5,4 +5,14 @@
 
 	<resultMap id="logisMap" type="java.util.HashMap"></resultMap>
 	
+	<select id="getLogis" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getLogis(
+			#{logisid},
+			#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=logisMap}
+		)
+	}
+	</select>
+	
+	
 </mapper>

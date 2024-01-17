@@ -143,7 +143,7 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 /* mypageSub CSS */
 
 .container{width:100vw; height:250px; display:flex; justify-content:center; align-items:center; }					
-.container .box{width:500px; height:200px; display:flex; gap:20px; margin-top:50px; margin-bottom:50px;
+.container .box{width:850px; height:200px; display:flex; gap:20px; margin-top:50px; margin-bottom:50px;
 			background-color:white; justify-content:center; align-items:center; }
 .container .box .subCategory{ border-right:1px solid white; cursor: pointer; width:150px; height:150px;
 			text-align:center; display:flex; flex-direction:column; justify-content:center; color:black; }
@@ -153,7 +153,8 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* categorySub CSS */
 
-.containerCry{ width:250px;  display:flex; flex-direction:column; align-items:left; border:1px solid lightgray; margin-top:50px; }
+
+
 .bigcry{ padding:10px; margin:5px; cursor:pointer; border:none; border-bottom:1px solid lightgray; flex-direction:column; justify-content:left;
 			font-weight:bold; }
 .bigcry:last-child{ border-bottom:none; }
@@ -341,21 +342,86 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* faqListForm CSS */
 
-article#wrap2{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
-article#wrap2 form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 50px 0 0; width:1400px; height:100%; }
-.faqBanner{margin:0; width:100%; height:70px; background-color:black; color:white; text-align:left; font-weight:bold; padding-top:15px; }
-.faqBanner .bannerTitle{ font-size:200%; padding-left:20px; }
-.faqBanner .bannerSub{ font-size:110%; padding-left:20px; }
-.listHead{ display:flex; flex-direction:row; width:100%; height:40px; margin-top:30px; line-height:40px;  text-align:center;
+.faqWrap{display:flex; justify-content:center; align-items:center; width:80%; height:100%; margin:300px 0 0 -20px;}
+.faqFrm{display:flex; flex-direction:column; width:1200px; }
+
+.faqBanner{background-color:black; color:white; width:100%; height:80px; line-height:80px; }
+.bannerTitle{ font-size:200%; font-weight:bold; padding-left: 20px; letter-spacing:4px;}
+.bannerSub{ margin-left:20px; font-size:100%; font-weight:bold; letter-spacing:2px; padding-bottom:3px;}
+
+.listHead{ display:flex; flex-direction:row; width:100%; height:50px; margin-top:15px; line-height:50px;  text-align:center;
 			border:none; border-bottom:2px solid black; border-top:2px solid black; font-weight:bold; font-size:90%; }
-.faqnum{ margin:0; width:150px; height:100%; }
-.faqcry{ margin:0; width:300px; height:100%;  }
-.faqtitle{ margin:0; width:100%; height:100%; }
-.listBody{ width:100%; height:100%;  }
-.listWrap{ width:100%; height:50px; display:flex; flex-direction:row; line-height:50px; text-align:center; font-size:90%; font-weight:bold; 
-			border:none; border-bottom:1px solid lightgray; }
+#faqnum{ margin:0; width:150px; height:100%; }
+#faqcry{ margin:0; width:300px; height:100%; }
+#faqtitle{ margin:0; width:100%; height:100%; }
+
+.listBody{ width:100%; height:100%; }
+.listWrap{ width:100%; height:50px; display:flex; flex-direction:row; line-height:60px; text-align:center; font-size:90%; font-weight:bold; 
+			border:none; border-bottom:1px solid lightgray;}
 .faqnum2{ width:150px; height:100%; margin:0; }
 .faqcry2{ width:300px; height:100%; margin:0; }
 .faqtitle2{ width:100%; height:100%; margin:0; cursor:pointer; }
 .faqcontent{ width:100%; height:100%; background-color:rgb(242, 242, 242); color:rgb(65, 65, 65); line-height:50px; }
 .faqcontent span{ margin:0 0 0 20px; font-size:90%; text-align:left; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* qnaListForm CSS (faqListForm 에 기반함) */
+
+.qnaCry{ margin:0 0 10px 810px; width:120px; height:25px; border:none; text-align:center; font-size:80%; color:rgb(18, 18, 18) }
+
+.qnanum{ margin:0; width:120px; height:100%; }
+.qnacry{ margin:0; width:150px; height:100%; }
+.qnauserid{ margin:0; width:150px; height:100%; }
+.qnatitle{ margin:0; width:400px; height:100%; }
+.qnadate{ margin:0; width:300px; height:100%; }
+.reply{ margin:0; width:100px; height:100% }
+
+.qna{width:100%; height:50px; display:flex; flex-direction:row; border:none; border-bottom:1px solid lightgray; line-height:50px;
+				text-align:center; font-size:90%; font-weight:bold;}
+.qnanum2{ margin:0; width:120px; height:100%; }
+.qnacry2{ margin:0; width:150px; height:100%; }
+.qnauserid2{ margin:0; width:150px; height:100%; }
+.qnatitle2{ margin:0; width:400px; height:100%; text-decoration:none; color:black; }
+.qnadate2{ margin:0; width:300px; height:100%; }
+.reply2{ margin:0; width:100px; height:100% }
+
+.faqFrm #goqnaWrite{margin:50px 0 50px 1081px; width:120px; height:25px; background-color:black;
+				color:white; border:none; border-radius:5px;}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* userCheckForm, userCheckSuccess CSS */
+
+.userCheck{ display:flex; flex-direction:column; justify-content:center; align-items:center; font-size:100%; font-weight:bold; margin-top:50px; }
+.userCheck span{text-align:center; font-size:100%; font-weight:bold;}
+.userCheck input{width:120px; height:30px; border-radius:5px; color:white; background-color:black;}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* qnaViewForm CSS */
+
+.qnaViewCnt{ width:75%; margin-left:120px; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+
+.qnaViewCnt .qnaViewTitle{ width:880px; height:60px; line-height:60px; font-size:160%; font-weight:bold; background-color:black; color:white;
+				padding-left:20px; letter-spacing:2px; }
+				
+.qnaViewSubs{display:flex; flex-direction:row; justify-content:left; align-items:center; width:100%; height:400px; margin-top:30px; border:none; 
+				border-top:2px solid black; border-bottom:2px solid black; }
+				
+.SubsTitle{ margin:105px 0 30px 30px; width:200px; height:100%; font-size:100%; font-weight:bold; text-align:left;}
+.SubsTitle div{ border-bottom:2px solid black; height:30px; line-height:30px; text-align:center; }
+
+.SubsSubs{ margin: 80px 30px 0 25px; font-size:100%; width:100%; height:100%; }
+.SubsSubs div{ height:30px; line-height:30px; }
+
+.qnaViewButtons{display:flex; flex-direction:rows; justify-content:right; align-items:center; margin:30px 180px 30px 0;}
+.qnaViewButtons #goBack{ margin-right:700px; border:none; border-radius:5px; width:100px; height:30px; 
+				background-color:deepskyblue; color:white; font-weight:bold;}
+.qnaViewButtons #goMain{  border:none; border-radius:5px; width:100px; height:30px; 
+				background-color:black; color:white; font-weight:bold;}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* qnaWriteForm CSS (qnaViewForm 에 기반함) */
+
+.SubsSubs #qnaTitle{ width:470px;}
+.SubsSubs #qnaUserid{width:100px;}
+.SubsSubs textarea{ margin:20px 0 0 0; }
+.SubsSubs #qnaWriteSpan{ margin-left:150px; }

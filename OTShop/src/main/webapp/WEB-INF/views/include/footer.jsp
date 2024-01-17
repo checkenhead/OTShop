@@ -35,7 +35,7 @@ OTSHOP 내 매거진, 스트리트스냅, 스토어 등 OTSHOP 자체 생성 콘
 
 
 <a href="adminMain">admin</a><br>
-<a href="logisMain">logis</a>
+<a href="logisLogin">logis</a>
 
 </footer>
 
