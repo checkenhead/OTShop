@@ -13,11 +13,39 @@
 		}
 	</select>
 	
-	<select id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call insertCart(
 			#{userid}, #{pdseq}, #{qty})
 		}
+	</insert>
+	
+	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteCart(#{cseq})
+		}
+	</delete>
+	
+	<insert id="insertOrders" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertOrders(
+			#{userid}, #{oseq, mode=OUT, jdbcType=INTEGER})
+		}
+	</insert>
+	
+	<select id="getCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getCart(
+			#{cseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap})
+		}
 	</select>
+	
+	<insert id="insertOrderDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call insertOrderDetail(
+			#{oseq}, #{pdseq}, #{qty})
+		}
+	</insert>
 	
 </mapper>

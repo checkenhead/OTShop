@@ -800,4 +800,47 @@ public class AdminService {
 		return (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 	}
 
+	public ArrayList<HashMap<String, Object>> getAllOrderList() {
+		//1. orders_view의 모든 레코드 orderVO 리스트에 저장
+		//2. 각 orderVO의 oseq로 검색된 order_detail_view 리스트를 해당 orderVO에 저장
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("ref_cursor", null);
+		
+		adao.getOrderList(paramMap);
+		
+		ArrayList<HashMap<String, Object>> orderList = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		for(HashMap<String, Object> orderVO : orderList) {
+			paramMap.put("oseq", orderVO.get("OSEQ"));
+			paramMap.put("ref_cursor", null);
+			
+			adao.getOrderDetailList(paramMap);
+			
+			ArrayList<HashMap<String, Object>> orderDetailList = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			int amount = 0;
+			
+			for(HashMap<String, Object> orderDetailVO : orderDetailList) {
+				amount +=  Integer.parseInt(orderDetailVO.get("PRICE2").toString()) * Integer.parseInt(orderDetailVO.get("QTY").toString());
+			}
+			
+			orderVO.put("amount", amount);
+			
+			orderVO.put("orderDetailList", orderDetailList);
+		}
+		
+		
+		return orderList;
+	}
+
+	public void updateOrderState(int oseq, String command) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("oseq", oseq);
+		paramMap.put("command", command);
+		
+		adao.updateOrderState(paramMap);
+	}
+
 }

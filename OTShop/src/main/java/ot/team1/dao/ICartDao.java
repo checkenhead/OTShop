@@ -11,4 +11,12 @@ public interface ICartDao {
 
 	void insertCart(HashMap<String, Object> paramMap);
 
+	void deleteCart(HashMap<String, Object> paramMap);
+
+	void insertOrders(HashMap<String, Object> paramMap);
+
+	void getCart(HashMap<String, Object> paramMap);
+
+	void insertOrderDetail(HashMap<String, Object> paramMap);
+
 }

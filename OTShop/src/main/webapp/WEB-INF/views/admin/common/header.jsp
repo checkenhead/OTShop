@@ -30,7 +30,7 @@
 	<div class="top_menu">
 		<ul>
 			<li><a href="productManagement">상품</a></li>
-			<li>주문</li>
+			<li><a href="orderManagement">주문</a></li>
 			<li><a href="memberManagement">회원</a></li>
 			<li><a href="qnaManagement">Q&amp;A</a></li>
 			<li><a href="faqManagement">FAQ</a></li>

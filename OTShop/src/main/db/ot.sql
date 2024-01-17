@@ -177,6 +177,7 @@ CREATE TABLE orders
 	userid varchar2(20) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
 	invoicenum number default 0 not null,
+	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (oseq)
 );
 
@@ -187,7 +188,6 @@ CREATE TABLE order_detail
 	oseq number NOT NULL,
 	pdseq number NOT NULL,
 	qty number NOT NULL,
-	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (odseq)
 );
 
@@ -551,6 +551,26 @@ from cart c, product p, product_detail pd
 where c.pdseq = pd.pdseq and pd.pseq = p.pseq;
 
 
+--create or replace view order_view as
+--select o.oseq, o.regdate, o.state,
+--o.userid, m.name as mname, m.email, m.tel, m.zipnum, m.address1, m.address2, m.address3,
+--o.odseq, pd.pseq, p.name as pname, od.pdseq, pd.optname, pd.price2, od.qty
+--from orders o, order_detail od, members m, product p, product_detail pd
+--where o.userid = m.userid and od.pdseq = pd.pdseq and pd.pseq = p.pseq;
+
+--orders/member join
+create or replace view orders_view as
+select o.oseq, o.regdate, o.state, o.invoicenum, o.userid, m.name, m.email, m.tel, m.zipnum, m.address1, m.address2, m.address3
+from orders o, members m
+where o.userid = m.userid;
+
+--order_detail/product/product_detail join
+create or replace view order_detail_view as
+select od.odseq, od.oseq, pd.pseq, p.brand, p.name, od.pdseq, pd.optname, pd.price2, od.qty
+from order_detail od, product p, product_detail pd
+where od.pdseq = pd.pdseq and pd.pseq = p.pseq;
+
+
 /* Select Tables */
 select * from admins;
 select * from members;
@@ -597,6 +617,14 @@ select * from product_main_category_list;
 select * from product where pseq in (select pseq from product_main_category_list where pmcseq = 2);
 
 
+select * from orders;
+select * from order_detail;
+
+--alter table order_detail drop column state;
+--alter table orders add state char(1) default '1' not null;
+
+select * from orders_view;
+select * from order_detail_view;
 
 
 /* Test Records */

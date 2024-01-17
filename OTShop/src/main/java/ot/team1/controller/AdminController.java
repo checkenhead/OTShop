@@ -1124,4 +1124,31 @@ public class AdminController {
 			return "redirect:/bannerManagement";
 		}
 	}
+	
+	@GetMapping("orderManagement")
+	public String orderManagement(HttpServletRequest request, Model model) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			model.addAttribute("orderList", as.getAllOrderList());
+					
+			return "admin/order/orderManagement";
+		}
+	}
+	
+	@PostMapping("/updateOrderState")
+	public String updateOrderState(
+			@RequestParam("oseq") int oseq,
+			@RequestParam("command") String command,
+			HttpServletRequest request) {
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.updateOrderState(oseq, command);
+							
+			return "redirect:/orderManagement";
+		}
+	}
 }
