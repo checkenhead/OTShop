@@ -966,3 +966,106 @@ begin
     -- no commit here : Service Transaction
     
 end;
+------------------------------------------------------------------------------
+
+create or replace procedure deleteCart(
+    p_cseq in cart.cseq%type)
+is
+
+begin
+    delete from cart where cseq = p_cseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertOrders(
+    p_userid in orders.userid%type,
+    p_oseq out number)
+is
+
+begin
+    insert into orders(oseq, userid) values(orders_oseq.nextval, p_userid);
+    p_oseq := orders_oseq.currval;
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getCart(
+    p_cseq in cart.cseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from cart where cseq = p_cseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertOrderDetail(
+    p_oseq in order_detail.oseq%type,
+    p_pdseq in order_detail.pdseq%type,
+    p_qty in order_detail.qty%type)
+is
+
+begin
+    insert into order_detail(odseq, oseq, pdseq, qty)
+    values(order_detail_odseq.nextval, p_oseq, p_pdseq, p_qty);
+    -- no commit here : Service Transaction
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getOrderList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from orders_view order by oseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getOrderDetailList(
+    p_oseq in order_detail_view.oseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from order_detail_view where oseq = p_oseq order by odseq asc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateOrderState(
+    p_oseq in order_detail_view.oseq%type,
+    p_command in varchar2)
+is
+
+begin
+    if p_command = 'cancel' then
+        update orders set state = '0' where oseq = p_oseq;
+    elsif p_command = 'preparing' then
+        update orders set state = '2' where oseq = p_oseq;
+    elsif p_command = 'delivering' then
+        update orders set state = '3' where oseq = p_oseq;
+    elsif p_command = 'deliverCompleted' then
+        update orders set state = '4' where oseq = p_oseq;
+    elsif p_command = 'purchaseConfirmed' then
+        update orders set state = '5' where oseq = p_oseq;
+    elsif p_command = 'returning' then
+        update orders set state = '6' where oseq = p_oseq;
+    elsif p_command = 'returnCompleted' then
+        update orders set state = '7' where oseq = p_oseq;
+    elsif p_command = 'checking' then
+        update orders set state = '8' where oseq = p_oseq;
+    elsif p_command = 'RefundCompleted' then
+        update orders set state = '9' where oseq = p_oseq;
+    end if;
+    commit;
+    
+end;
