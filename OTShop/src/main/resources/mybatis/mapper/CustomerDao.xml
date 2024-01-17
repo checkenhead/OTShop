@@ -16,6 +16,40 @@
 			)
 		}
 	</select>
+	
+	<select id="getQnaCatList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getQnaCatList(
+				#{rfcursor2 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap }
+			)
+		}
+	</select>
+	
+	<select id="getQnaCatListUser" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getQnaCatListUser(
+				#{qseq},
+				#{rfcursor2 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap }
+			)
+		}
+	</select>
+	
+	<select id="getQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getQna(
+				#{qseq},
+				#{rfcursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap }
+			)
+		}
+	</select>
+	
+	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertQna(
+				#{userid} , #{secret} , #{qcseq} , #{title} , #{content}
+			)
+		}
+	</insert>
 
 	
 	

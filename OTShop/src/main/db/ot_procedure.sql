@@ -151,12 +151,35 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM qna_view ORDER BY qseq DESC;
 END;
 
+--------------------------------------------------------------------------------------------
 
+create or replace procedure getQnaCatListUser(
+    p_qseq IN qna_view.qseq%TYPE,
+    p_cur out sys_refcursor)
+is
 
+begin
+    open p_cur for select * from qna_view WHERE qseq = p_qseq;
+    
+end;
 
+--------------------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE insertQna(
+    p_userid IN qna.userid%TYPE,
+    p_secret IN qna.secret%TYPE,
+    p_qcseq IN qna.qcseq%TYPE,
+    p_title IN qna.title%TYPE,
+    p_content IN qna.content%TYPE
+)
+IS
+BEGIN
 
-
+    INSERT INTO qna( qseq, qcseq, userid, secret, title, content )
+    VALUES ( qna_qseq.nextVal, p_qcseq, p_userid, p_secret, p_title, p_content);
+    
+    COMMIT;
+END;
 
 
 

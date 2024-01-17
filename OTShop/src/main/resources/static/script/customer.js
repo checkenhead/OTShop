@@ -25,3 +25,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+function getselect(){
+	var qnaName = document.getElementById("qnaName").value;
+	// 배열이므로 .value는 X(=.value는 하나의 값으로 가져오는 것)
+	var qnaAll = document.getElementsByClassName("qna");
+	
+	for(var i=0; i<document.getElementsByClassName("qcseq").length; i++){
+		var qcseqValue = document.getElementsByClassName("qcseq")[i].value;
+		
+		if(qnaName == "all"){
+			qnaAll[i].style.display = '';
+		} else if(qnaName == qcseqValue){
+			document.getElementById("qna_"+ i).style.display='';
+		} else {
+			document.getElementById("qna_"+ i).style.display='none';
+		}		
+	}
+}
+
+
+function userCheckForm(qseq, userid){
+	var url = "userCheckForm?qseq=" + qseq + "&userid=" + userid;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "userCheck", opt);
+}
