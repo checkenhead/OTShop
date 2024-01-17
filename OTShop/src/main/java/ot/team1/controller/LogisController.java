@@ -9,23 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import ot.team1.service.LogisService;
-import ot.team1.service.ProductService;
+
 
 @Controller
 public class LogisController {
 	
 	@Autowired
 	LogisService ls;
-	
-	@Autowired
-	ProductService ps;
-	
-	@Autowired
-	ServletContext context;
-	
 	
 	
 	@GetMapping("/logisLogin")

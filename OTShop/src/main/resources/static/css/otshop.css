@@ -424,4 +424,4 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 .SubsSubs #qnaTitle{ width:470px;}
 .SubsSubs #qnaUserid{width:100px;}
 .SubsSubs textarea{ margin:20px 0 0 0; }
-.SubsSubs #qnaWriteSpan{ margin-left:150px; }
+.qnaWriteStatue{margin-left:118px; font-weight:bold; font-size:100%; }

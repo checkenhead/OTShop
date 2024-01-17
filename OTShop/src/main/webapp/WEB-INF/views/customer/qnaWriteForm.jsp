@@ -34,8 +34,9 @@
 				</div>
     		</div>
     	</div><br><br>
-		
-		<span id="qnaWriteSpan">${message}</span><br>
+    	
+		<div class="qnaWriteStatue"><span>${message}</span></div><br>
+
 		<div class="qnaViewButtons">
 			<input type="button" id="goBack" value="이전으로" onclick="history.go(-1)">
 			<input type="submit" id="goMain" value="저장">

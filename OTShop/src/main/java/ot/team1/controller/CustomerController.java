@@ -22,7 +22,6 @@ public class CustomerController {
 	CustomerService cs;
 	
 	
-	
 	@GetMapping("/qnaList")
 	public ModelAndView qnaList(HttpServletRequest request) {
 		
@@ -175,10 +174,10 @@ public class CustomerController {
 			System.out.println("qnaname(QCSEQ) : " + qnaname);
 			
 			if(title == null || title.equals("")) {
-				model.addAttribute("message", "제목을 입력해주세요.");
+				model.addAttribute("message", "※ 제목을 입력해주세요.");
 				mav.setViewName("customer/qnaWriteForm");
 			}else if(content == null || content.equals("")) {
-				model.addAttribute("message", "내용을 입력하세요.");
+				model.addAttribute("message", "※ 내용을 입력하세요.");
 				mav.setViewName("customer/qnaWriteForm");
 			}else {
 				HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -196,6 +195,11 @@ public class CustomerController {
 		return mav;
 	}
 	
+	
+	@GetMapping("/introCompany")
+	public String introCompany() {
+		return "customer/introCompanyFrm";
+	}
 	
 
 }

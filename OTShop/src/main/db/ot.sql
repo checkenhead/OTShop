@@ -176,6 +176,7 @@ CREATE TABLE orders
 	oseq number NOT NULL,
 	userid varchar2(20) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
+	state char(1) DEFAULT '1' NOT NULL,
 	invoicenum number default 0 not null,
 	PRIMARY KEY (oseq)
 );
@@ -187,7 +188,6 @@ CREATE TABLE order_detail
 	oseq number NOT NULL,
 	pdseq number NOT NULL,
 	qty number NOT NULL,
-	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (odseq)
 );
 

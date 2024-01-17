@@ -63,7 +63,6 @@
 							<!-- 마이페이지 클릭 : 사용자 주문 정보 조회로 이동 -->
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
-							<li><a href="customer">고객센터</a></li>
 						</ul>
 					</nav>
 				</c:otherwise>
