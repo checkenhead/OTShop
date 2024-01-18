@@ -84,6 +84,8 @@ div#agreebox input[type="button"]{ border:none; border-bottom:1px solid black; b
 /* joinForm, mypage(일부), mupdate CSS	 */
 
 /* joinForm.jsp */
+.joinWrap{ display:flex; justify-content:center; align-items:center; width:80%; height:100%; margin:100px 0 0 200px; }
+
 article#jwrap{ display:flex; flex-direction:column;  align-items:center;  justify-content:center; margin:0 auto; }
 article#jwrap #join{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 10px; width:900px; height:100%; }
 article#jwrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
@@ -92,10 +94,7 @@ article#jwrap #joinCover{ display:flex;  flex-direction:column; align-items:cent
 
 
 /* mypage, mupdate */
-article#wrap{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
-article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:900px; height:100%; }
-article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:800px; height:100%; border:1px solid lightgray;
-			border-radius:10px; }
+
 #join #joinCover legend{ font-size:180%; font-weight:bold; padding:0; }
 #join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:550px; margin-top:20px; border:1px solid gray; 
 			border-radius:10px; }
@@ -436,12 +435,24 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 .introMapSubs{ margin:0 0 30px 0; font-weight:bold; letter-spacing:1px; }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-/* viewProduct */
+/* viewProduct CSS */
 
 .head_info_element{ width:100%; height:40px; margin:0; }
-#viewBrand{ background-color: dimgray; color:white; letter-spacing:3px; font-size:150%; font-style: italic; line-height:40px; margin:20px 0 0 0; }
+#viewBrand{ background-color:deepskyblue; color:white; letter-spacing:3px; font-size:150%; font-style: italic; line-height:40px; margin:20px 0 0 0; }
 #viewName{ line-height:40px; font-size:95%; letter-spacing:2px; font-weight:bold; }
 
 .PinfoTitle{ font-size:120%; font-weight:bold; }
-#goCart{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:deepskyblue; text-align:center; }
-#goBuy{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:black; text-align:center; margin:5px 0 0 0; }
+#optionSelection{ border-radius:5px; width:200px; height:25px; text-align:center; margin:10px 0 0 0; }
+#goCart{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:deepskyblue; text-align:center; font-weight:bold; }
+#goBuy{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:black; text-align:center; margin:5px 0 0 0; font-weight:bold; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* cartList CSS */
+
+#cartListWrap{ width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+#cartTitle{width:100%; height:40px; background-color:deepskyblue; color:white; letter-spacing:3px; font-size:150%;
+				font-style: italic; line-height:40px; margin:20px 0 20px 0; }
+.totalBuyPrice{ letter-spacing:2px;}
+.cartListBtn{ display:flex; flex-direction:rows; }
+#goCart2{ border:none; border-radius:10px; width:200px; height:40px; color:white; background-color:black; text-align:center; font-weight:bold; }
+#goBuy2{ border:none; border-radius:10px; width:200px; height:40px; color:white; background-color:deepskyblue; text-align:center; margin:0 0 0 400px; font-weight:bold; }

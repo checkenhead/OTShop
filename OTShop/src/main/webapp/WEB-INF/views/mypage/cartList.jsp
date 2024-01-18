@@ -33,12 +33,12 @@
 	
 </style>
 
-<div class="content_wrap">
+<div class="content_wrap" id="cartListWrap">
 <%-- <%@ include file="../include/categorySub.jsp" %> --%>
 <form name="cartListForm" method="post">
 <input type="hidden" name="cseq">
-<h2>cart list</h2>
-<table id="cart_list">
+<div id="cartTitle"><h2>cart list</h2></div>
+<table id="cart_list" style="width:800px;">
 	<tr class="head_row">
 		<th width="50">번호</th>
 		<th width="50"><input type="checkbox" id="check_box_toggle" onChange="toggle_checkbox();" checked></th>
@@ -76,12 +76,13 @@
 		<td><div class="btn" onClick="delete_cart('${cartVO.CSEQ}');"><img src="images/delete.png" width="20" height="20"></div></td>
 	</tr>
 	</c:forEach>
-	<tr><th colspan="7"><div><div>총 구매 비용</div><div>0원</div></div></th></tr>
+	<tr><th colspan="7"><div><div class="totalBuyPrice">총 구매 비용 : 0원</div></div></th></tr>
 </table>
 <br>
-<input type="button" value="선택항목 삭제" onClick="delete_cart_selected();">
-<br><br>
-<input type="button" value="선택항목 구매하기" onClick="insert_order_cart();">
+<div class="cartListBtn">
+	<input type="button" id="goCart2" value="선택항목 삭제" onClick="delete_cart_selected();">
+	<input type="button" id="goBuy2" value="선택항목 구매하기" onClick="insert_order_cart();">
+</div>
 </form>
 </div>
     

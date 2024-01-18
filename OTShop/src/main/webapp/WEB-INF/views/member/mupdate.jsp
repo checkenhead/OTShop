@@ -4,10 +4,14 @@
 <%@ include file="../include/mypageSub.jsp" %>
 
 
+<div class="faqWrap">
+<article>
+<form id="join" method="post" name="mupdateFrm" action="mupdate" class="faqFrm">
 
-<article id="wrap">
-<%@ include file="../include/categorySub.jsp" %>
-<form id="join" method="post" name="mupdateFrm" action="mupdate">
+<div class="faqBanner">
+	<span class="bannerTitle">내 정보 수정</span><span class="bannerSub">개인정보를 수정할 수 있습니다.</span>
+</div><br>
+
 	<fieldset id="joinCover"><legend><img src="images/user.png">내 정보 수정</legend>
 	
 		<fieldset id="mtitle1"><legend>기본 정보</legend>
@@ -132,6 +136,7 @@
 
 </form>
 </article>
+</div>
 
 
 <%@ include file="../include/footer.jsp" %>

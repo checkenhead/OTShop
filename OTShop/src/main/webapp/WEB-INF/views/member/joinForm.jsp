@@ -2,9 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-
+<div class="joinWrap">
 <article id="jwrap">
 <form id="join" action="join" method="post" name="joinFrm">
+
+	<div class="faqBanner">
+		<span class="bannerTitle">회원가입</span><span class="bannerSub">개인 정보를 수정할 수 있습니다.</span>
+	</div><br>
+
 	<fieldset id="joinCover"><legend><img src="images/user.png">회원 정보 입력</legend>
 		
 			<fieldset id="mtitle1"><legend>필수 입력 사항</legend>
@@ -114,7 +119,7 @@
 	<input type="button" id="goBack" value="돌아가기" onclick="history.go(-1)">	
 </form>
 </article>
-
+</div>
 
 
 <%@ include file="../include/footer.jsp" %>

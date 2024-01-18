@@ -171,14 +171,17 @@ CREATE TABLE members
 	provider varchar2(10) DEFAULT 'ot' NOT NULL,
 	PRIMARY KEY (userid)
 );
-
+alter table members modify birthdate varchar2(20);
+alter table members drop column birthdate;
+alter table members add birthdate varchar2(20) DEFAULT '0' NOT NULL;
+delete from members where userid = 'park';
+SELECT * FROM MEMBERS;
 
 CREATE TABLE orders
 (
 	oseq number NOT NULL,
 	userid varchar2(20) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
-	state char(1) DEFAULT '1' NOT NULL,
 	invoicenum number default 0 not null,
 	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (oseq)
@@ -471,12 +474,6 @@ ALTER TABLE order_detail
 	ON DELETE CASCADE
 ;
 
-
-ALTER TABLE reply
-	ADD FOREIGN KEY (qseq)
-	REFERENCES qna (qseq)
-	ON DELETE CASCADE
-;
 
 
 ALTER TABLE transport
