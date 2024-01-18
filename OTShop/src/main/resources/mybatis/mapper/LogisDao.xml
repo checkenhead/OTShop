@@ -14,5 +14,73 @@
 	}
 	</select>
 	
+	<insert id="insertInvoice" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL insertInvoice(
+			#{clientid}, #{ordernum}, #{recipient}, #{tel}, #{zipnum}, #{address1}, #{address2}, #{address3})
+	}
+	</insert>
+	
+	<select id="getInvoiceStateByIseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getInvoiceStateByIseq(
+			#{iseq},
+			#{state, mode=OUT, jdbcType=VARCHAR})
+	}
+	</select>
+	
+	<select id="getInvoiceStateByIdAndOrdernum" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getInvoiceStateByIdAndOrdernum(
+			#{clientid}, #{ordernum},
+			#{state, mode=OUT, jdbcType=VARCHAR})
+	}
+	</select>
+	
+	<select id="getInvoicenumByIdAndOrdernum" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getInvoicenumByIdAndOrdernum(
+			#{clientid}, #{ordernum},
+			#{invoicenum, mode=OUT, jdbcType=INTEGER})
+	}
+	</select>
+	
+	<select id="getAllInvoiceList" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getAllInvoiceList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=logisMap})
+	}
+	</select>
+	
+	<insert id="insertTransport" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL insertTransport(
+			#{iseq}, #{logisid}, #{description})
+	}
+	</insert>
+	
+	<update id="updateInvoiceState" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL updateInvoiceState(
+			#{iseq}, #{state})
+	}
+	</update>
+	
+	<select id="getInvoiceListByLogisid" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getInvoiceListByLogisid(
+			#{logisid},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=logisMap})
+	}
+	</select>
+	
+	<select id="getTransportListByIseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		CALL getTransportListByIseq(
+			#{iseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=logisMap})
+	}
+	</select>
+	
 	
 </mapper>
