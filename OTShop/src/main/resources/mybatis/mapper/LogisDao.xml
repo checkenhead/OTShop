@@ -55,14 +55,14 @@
 	<insert id="insertTransport" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{
 		CALL insertTransport(
-			#{iseq}, #{logisid}, #{description})
+			#{iseq}, #{logisid}, #{description}, #{state})
 	}
 	</insert>
 	
 	<update id="updateInvoiceState" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{
 		CALL updateInvoiceState(
-			#{iseq}, #{state})
+			#{iseq}, #{command})
 	}
 	</update>
 	

@@ -99,21 +99,6 @@ public class LogisController {
 		return redirectURL;
 	}
 	*/
-	@PostMapping("/startTransport")
-	public String startTransport(
-			@RequestParam("iseq") int iseq,
-			HttpServletRequest request,
-			Model model) {
-		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
-		if (loginLogis == null) {
-			return "redirect:/logisLogin";
-		} else {
-			ls.insertTransport(iseq, (String)loginLogis.get("LOGISID"), "집화 시작");
-			ls.updateInvoiceState(iseq, "2");
-			
-			return "redirect:/logisMain";
-		}
-	}
 	
 	@GetMapping("/transportList")
 	public String transportList(HttpServletRequest request, Model model) {
@@ -125,6 +110,36 @@ public class LogisController {
 			model.addAttribute("invoiceList", ls.getTransportListByInvoice((String)loginLogis.get("LOGISID")));
 			
 			return "logis/common/transportList";
+		}
+	}
+	
+	@PostMapping("/insertTransportHistory")
+	public String insertTransportHistory(
+			@RequestParam("iseq") int iseq,
+			@RequestParam("description") String description,
+			HttpServletRequest request) {
+		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
+		if (loginLogis == null) {
+			return "redirect:/logisLogin";
+		} else {
+			ls.insertTransport(iseq, (String)loginLogis.get("LOGISID"), description, ls.getInvoiceStateByIseq(iseq));
+			
+			return "redirect:/transportList";
+		}
+	}
+	
+	@PostMapping("/updateInvoiceState")
+	public String updateInvoiceState(
+			@RequestParam("iseq") int iseq,
+			@RequestParam("command") String command,
+			HttpServletRequest request) {
+		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
+		if (loginLogis == null) {
+			return "redirect:/logisLogin";
+		} else {
+			ls.updateInvoiceState(iseq, command, (String)loginLogis.get("LOGISID"));
+			
+			return "redirect:/transportList";
 		}
 	}
 	

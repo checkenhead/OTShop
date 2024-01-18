@@ -28,9 +28,11 @@
 		<td>${orderVO.EMAIL}</td>
 		<td><fmt:formatDate type="date" value="${orderVO.REGDATE}"/></td>
 		<td>
-			<c:if test="${orderVO.logisState == 0}">-</c:if>
-			<c:if test="${orderVO.logisState >= 1 and orderVO.logisState <= 3}">집화 요청 중</c:if>
-			<c:if test="${orderVO.logisState >= 3 and orderVO.INVOICENUM != 0}">${orderVO.INVOICENUM}</c:if>
+			<c:choose>
+			<c:when test="${orderVO.logisState == '0'}">-</c:when>
+			<c:when test="${orderVO.INVOICENUM == 0}">집화 요청 중</c:when>
+			<c:otherwise>${orderVO.INVOICENUM}</c:otherwise>
+			</c:choose>
 		</td>
 		<td id="amount_row_${mainStatus.index}" rowspan="1"><fmt:formatNumber type="number" value="${orderVO.amount}"/>원</td>
 		<td id="state_row_${mainStatus.index}" rowspan="1">
@@ -48,6 +50,9 @@
 			</c:if>
 			<c:if test="${orderVO.STATE == '2'}">
 				<div>배송 준비 중<br></div>
+				<c:if test="${not empty orderVO.recievedInvoicenum}">
+					<input type="text" name="invoicenum" value="${orderVO.recievedInvoicenum}">
+				</c:if>
 				<div class="hidden_element_${mainStatus.index}" style="display:none;">
 					<c:if test="${orderVO.logisState == 0}">
 						<input type="hidden" name="recipient" value="${orderVO.NAME}">
@@ -59,7 +64,6 @@
 						<input type="button" value="집화 요청" onClick="request_collect('${orderVO.OSEQ}');">
 					</c:if>
 					<c:if test="${orderVO.logisState >= 1 and orderVO.logisState <= 3}">
-						<input type="text" name="invoicenum" value="${orderVO.recievedInvoicenum}">
 						<input type="button" value="송장번호 입력" onClick="save_order_invoicenum('${orderVO.OSEQ}');">
 					</c:if>
 				</div>
@@ -120,7 +124,7 @@
 </table>
 
 </form>
-
+<br><span style="font-weight:bold;color:red;">${message}</span>
 </div>
 
 <%@ include file="../common/footer.jsp" %>

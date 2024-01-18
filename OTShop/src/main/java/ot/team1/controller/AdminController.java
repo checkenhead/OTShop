@@ -1168,7 +1168,7 @@ public class AdminController {
 			return "redirect:/adminLoginForm";
 		} else {
 			as.requestCollect("otshop", oseq, recipient, tel, zipnum, address1, address2, address3);
-									
+
 			return "redirect:/orderManagement";
 		}
 	}
