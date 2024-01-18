@@ -183,6 +183,21 @@ END;
 
 
 
+--------------------------------------------------------------------------------------------
+
+-- ¿Â¿Ø¡¯ (Logis)
+
+CREATE OR REPLACE PROCEDURE getLogis(
+    p_logisid in logis.logisid%TYPE,
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM logis WHERE logisid = p_logisid;
+END;
+
+
+
 ------------------------------------------------------------------------------
 
 create or replace procedure getAllProductCatList(

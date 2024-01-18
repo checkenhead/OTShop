@@ -425,3 +425,12 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 .SubsSubs #qnaUserid{width:100px;}
 .SubsSubs textarea{ margin:20px 0 0 0; }
 .qnaWriteStatue{margin-left:118px; font-weight:bold; font-size:100%; }
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* introCompanyFrm CSS (faqListForm 에 기반함) */
+
+.listBody legend{ font-size:150%; font-weight:bold; letter-spacing:3px; }
+.introMap{ height:100%; }
+#map, #map2{ margin:30px 0 30px 0; }
+.introMapSubs{ margin:0 0 30px 0; font-weight:bold; letter-spacing:1px; }
