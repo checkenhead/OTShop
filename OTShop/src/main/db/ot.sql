@@ -103,6 +103,7 @@ CREATE TABLE banner
 );
 
 
+
 CREATE TABLE banner_images
 (
 	biseq number NOT NULL,
@@ -110,6 +111,7 @@ CREATE TABLE banner_images
 	image varchar2(300) NOT NULL,
 	PRIMARY KEY (biseq)
 );
+
 
 
 CREATE TABLE cart

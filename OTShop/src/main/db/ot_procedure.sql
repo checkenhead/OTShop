@@ -11,7 +11,7 @@ end;
 
 --------------------------------------------------------------------------------------------
 
--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Member)
+-- ÀåÀ¯Áø (Member)
 
 CREATE OR REPLACE PROCEDURE getMember(
     p_userid IN members.userid%TYPE,
@@ -127,7 +127,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (FAQ)
+-- ÀåÀ¯Áø (FAQ)
 
 
 CREATE OR REPLACE PROCEDURE listFaq(
@@ -140,7 +140,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Customer)
+-- ÀåÀ¯Áø (Customer)
 
 
 CREATE OR REPLACE PROCEDURE listQna(
@@ -184,17 +184,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Logis)
-
-CREATE OR REPLACE PROCEDURE getLogis(
-    p_logisid in logis.logisid%TYPE,
-    p_cur OUT SYS_REFCURSOR
-)
-IS
-BEGIN
-    OPEN p_cur FOR SELECT * FROM logis WHERE logisid = p_logisid;
-END;
-
+-- ÀåÀ¯Áø (Logis)
 
 
 CREATE OR REPLACE PROCEDURE getLogis(

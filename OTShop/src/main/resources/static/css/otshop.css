@@ -4,10 +4,10 @@
 /* header CSS */
 
 #category{ display:flex; align-items:center; width:100%; height:80px; background-color: black; margin-bottom:0; }
-#category form{ margin-right:150px; }
-#category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px; flex:1;}
-#category form button{ border:none; padding:0; }
-#category form button img{ width:30px; height:30px;}
+#category form{ margin-right:150px; display:flex;}
+#category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px;}
+#category form button{ border:none; padding:0; width:25px; height:25px; margin:2px 0 0 10px; }
+#category form button img{ width:100%; height:100%;}
 
 #category_menu ul{ list-style:none; margin:0; padding:0; display:flex; }
 #category_menu ul li{ margin-right:20px; }

@@ -24,8 +24,8 @@
 
 <div id="category">
 	<img src="/images/logo.png" width="180" height="80" onclick="location.href='/'">
-	<form action="/mainSearch" method="get">
-		<input type="search" id="mainSearch" placeholder="상품명을 입력하세요">
+	<form action="searchProduct">
+		<input type="search" id="mainSearch" placeholder="상품명을 입력하세요" name="searchKeyword">
 		<button type="submit"><img src="/images/search.png" ></button>
 	</form>
 	<nav id="category_menu">
