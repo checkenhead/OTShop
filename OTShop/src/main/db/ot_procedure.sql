@@ -11,7 +11,7 @@ end;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Member)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Member)
 
 CREATE OR REPLACE PROCEDURE getMember(
     p_userid IN members.userid%TYPE,
@@ -127,7 +127,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (FAQ)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (FAQ)
 
 
 CREATE OR REPLACE PROCEDURE listFaq(
@@ -140,7 +140,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Customer)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Customer)
 
 
 CREATE OR REPLACE PROCEDURE listQna(
@@ -182,12 +182,9 @@ BEGIN
 END;
 ------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-
-
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Logis)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Logis)
 
 CREATE OR REPLACE PROCEDURE getLogis(
     p_logisid in logis.logisid%TYPE,
@@ -200,7 +197,6 @@ END;
 
 
 
-=======
 CREATE OR REPLACE PROCEDURE getLogis(
     p_logisid in logis.logisid%TYPE,
     p_cur OUT SYS_REFCURSOR
@@ -209,7 +205,7 @@ IS
 BEGIN
     OPEN p_cur FOR SELECT * FROM logis WHERE logisid = p_logisid;
 END;
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
 ------------------------------------------------------------------------------
 
 create or replace procedure getAllProductCatList(
@@ -316,7 +312,7 @@ begin
     
 end;
 ------------------------------------------------------------------------------
---Á¦Ç° Ä«Å×°í¸® º¯°æ
+--ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½
 --create or replace procedure insertProductCat(
 --    p_name in product_category.name%type)
 --is

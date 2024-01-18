@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import ot.team1.service.LogisService;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 
 @Controller
 public class LogisController {
@@ -22,10 +19,7 @@ public class LogisController {
 	@Autowired
 	LogisService ls;
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
+
 	@GetMapping("/logisLogin")
 	public String logisMain() {
 		return "logis/common/logisLoginForm";
