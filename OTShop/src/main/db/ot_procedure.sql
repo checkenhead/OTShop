@@ -1183,12 +1183,13 @@ end;
 create or replace procedure insertTransport(
     p_iseq in transport.iseq%type,
     p_logisid in transport.logisid%type,
-    p_description in transport.description%type)
+    p_description in transport.description%type,
+    p_state in transport.state%type)
 is
 
 begin
-    insert into transport(tseq, iseq, logisid, description)
-    values(transport_tseq.nextval, p_iseq, p_logisid, p_description);
+    insert into transport(tseq, iseq, logisid, description, state)
+    values(transport_tseq.nextval, p_iseq, p_logisid, p_description, p_state);
     commit;
     
 end;
@@ -1196,11 +1197,20 @@ end;
 
 create or replace procedure updateInvoiceState(
     p_iseq in invoice.iseq%type,
-    p_state in invoice.state%type)
+    p_command in varchar2)
 is
 
 begin
-    update invoice set state = p_state where iseq = p_iseq;
+    if p_command = 'startCollect' then
+        update invoice set state = '2' where iseq = p_iseq;
+    elsif p_command = 'collectgCompleted' then
+        update invoice set state = '3' where iseq = p_iseq;
+    elsif p_command = 'delivering' then
+        update invoice set state = '4' where iseq = p_iseq;
+    elsif p_command = 'deliverCompleted' then
+        update invoice set state = '9' where iseq = p_iseq;
+    end if;
+    
     commit;
     
 end;

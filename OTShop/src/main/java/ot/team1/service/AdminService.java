@@ -841,7 +841,7 @@ public class AdminService {
 			//invoice state 9 : 배송 완료(order state 4로 update) | order state가 3이고 invoice state가 9인 경우
 			
 			String logisState = ls.getInvoiceStateByIdAndOrdernum("otshop", Integer.parseInt(orderVO.get("OSEQ").toString()));
-			String orderState = orderVO.get("STATE").toString();
+			String orderState = (String)orderVO.get("STATE");
 			
 			orderVO.put("logisState", logisState);
 			
@@ -881,6 +881,8 @@ public class AdminService {
 			paramMap.put("invoicenum", invoicenum);
 			
 			adao.updateOrderInvoicenum(paramMap);
+			
+			updateOrderState(oseq, "delivering");
 			
 			return true;
 		}

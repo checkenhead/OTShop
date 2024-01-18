@@ -5,6 +5,7 @@
 <h2>logisMain 페이지입니다</h2>
 <form name="invoiceListForm" method="post">
 <input type="hidden" name="iseq">
+<input type="hidden" name="command">
 <table class="tblInvoiceList">
 	<tr><th>송장번호</th><th>주문번호</th><th>보내는이</th><th>받는이</th><th>주소</th><th>전화</th><th>상태</th></tr>
 	<c:forEach items="${invoiceList}" var="invoiceVO" varStatus="status">
@@ -18,7 +19,7 @@
 			<td>
 				<c:if test="${invoiceVO.STATE == '1'}">
 					<div>대기 중</div>
-					<div><input type="button" value="진행" onClick="start_transport('${invoiceVO.ISEQ}');"></div>
+					<div><input type="button" value="진행" onClick="change_invoice_state('${invoiceVO.ISEQ}','startTransport')"></div>
 				</c:if>
 				<c:if test="${invoiceVO.STATE == '2'}">
 					<div>집화 중</div>

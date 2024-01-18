@@ -52,7 +52,7 @@ public class LogisService {
 		
 		ldao.getInvoiceStateByIseq(paramMap);
 		
-		return (String)paramMap.get("state");
+		return ((String)paramMap.get("state")).trim();
 	}
 	
 	public String getInvoiceStateByIdAndOrdernum(String clientid, int ordernum) {
@@ -64,7 +64,7 @@ public class LogisService {
 		
 		ldao.getInvoiceStateByIdAndOrdernum(paramMap);
 		
-		return ((paramMap.get("state") == null) ? null : (String)paramMap.get("state"));
+		return ((paramMap.get("state") == null) ? null : ((String)paramMap.get("state"))).trim();
 	}
 
 	public int getInvoicenumByIdAndOrdernum(String clientid, int ordernum) {
@@ -89,24 +89,38 @@ public class LogisService {
 		return (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 	}
 
-	public void insertTransport(int iseq, String logisid, String description) {
+	public void insertTransport(int iseq, String logisid, String description, String state) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap.put("iseq", iseq);
 		paramMap.put("logisid", logisid);
 		paramMap.put("description", description);
+		paramMap.put("state", state);
 		
 		ldao.insertTransport(paramMap);
 	}
 
-	public void updateInvoiceState(int iseq, String state) {
+	public void updateInvoiceState(int iseq, String command, String logisid) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap.put("iseq", iseq);
-		paramMap.put("state", state);
+		paramMap.put("command", command);
 		
 		ldao.updateInvoiceState(paramMap);
 		
+		String message = "";
+		
+		if(command.equals("startCollect"))
+			message = "집화 시작";
+		else if(command.equals("collectgCompleted"))
+			message = "집화 완료";
+		else if(command.equals("delivering"))
+			message = "배송 중";
+		else if(command.equals("deliverCompleted"))
+			message = "배송 완료";
+		
+		if(!message.equals(""))
+			insertTransport(iseq, logisid, message, getInvoiceStateByIseq(iseq));
 	}
 
 	public ArrayList<HashMap<String, Object>> getTransportListByInvoice(String logisid) {

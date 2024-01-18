@@ -208,6 +208,7 @@ CREATE TABLE product
 );
 
 
+
 CREATE TABLE product_detail
 (
 	pdseq number NOT NULL,
@@ -310,17 +311,6 @@ CREATE TABLE qna_category
 	qcseq number NOT NULL,
 	name varchar2(30) NOT NULL,
 	PRIMARY KEY (qcseq)
-);
-
-
-CREATE TABLE reply
-(
-	rseq number NOT NULL,
-	qseq number NOT NULL,
-	content varchar2(1000) NOT NULL,
-	regdate date DEFAULT sysdate NOT NULL,
-	secret char(1) DEFAULT 'N' NOT NULL,
-	PRIMARY KEY (rseq)
 );
 
 
