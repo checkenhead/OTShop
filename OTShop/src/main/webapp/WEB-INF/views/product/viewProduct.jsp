@@ -28,9 +28,9 @@
 <div class="content_wrap">
 <form name="viewProductForm" method="post">
 <div class="head_info">
-<div class="head_info_element" style="font-weight:bold;">${productVO.BRAND}</div>
+<div class="head_info_element" id="viewBrand" style="font-weight:bold;">${productVO.BRAND}</div>
 
-<div class="head_info_element" style="font-weight:bold;">${productVO.NAME}</div>
+<div class="head_info_element" id="viewName" style="font-weight:bold;">${productVO.NAME}</div>
 <div class="head_info_element" style="display:flex;"> 
 	<c:forEach items="${productVO.mainCategoryList}" var="mainCategoryVO">
 	<div style="display:flex;" class="btn" onClick="searchProduct('main', '${mainCategoryVO.PMCSEQ}');">
@@ -57,17 +57,17 @@
 		<img src="images/product/${productVO.IMAGE}">
 	</div>
 	<div class="info">
-		<h2>Product Info</h2>
+		<div class="PinfoTitle">Product Info</div><br>
 		Brand : ${productVO.BRAND}<br>
 		Gender : 
 		<c:if test="${productVO.GENDER == 'N'}">남여공용</c:if>
 		<c:if test="${productVO.GENDER == 'M'}">남성</c:if>
 		<c:if test="${productVO.GENDER == 'F'}">여성</c:if>
-		<br>
-		ViewCount<br>
-		<h2>Price Info</h2>
-		<fmt:formatNumber type="number" value="${productVO.price}"/>원
-		<h2>Options</h2>
+		<br><br>
+		<div class="PinfoTitle">ViewCount</div><br><br>
+		<div class="PinfoTitle">Price Info</div><br>
+		<fmt:formatNumber type="number" value="${productVO.price}"/>원<br>
+		<div class="PinfoTitle" style="margin-top:10px;">Options</div>
 		<select id="optionSelection" onChange="add_option();">
 			<option value="0">선택</option>
 			<c:forEach items="${productVO.optionList}" var="optionVO">
@@ -109,8 +109,8 @@
 			<div id="totalPrice" style="font-weight:bold;">0원</div>
 		</div>
 		<br><br><br><br><br>
-		<div class="btn"><input type="button" value="장바구니에 담기" onClick="go_add_cart();"></div>
-		<div class="btn"><input type="button" value="구매하기"></div>
+		<div class="btn"><input type="button" id="goCart" value="장바구니에 담기" onClick="go_add_cart();"></div>
+		<div class="btn"><input type="button" id="goBuy" value="구매하기"></div>
 	</div>
 </div>
 
