@@ -175,6 +175,7 @@ alter table members modify birthdate varchar2(20);
 alter table members drop column birthdate;
 alter table members add birthdate varchar2(20) DEFAULT '0' NOT NULL;
 delete from members where userid = 'park';
+update members set birthdate = '2000-10-23' where userid = 'abcd';
 SELECT * FROM MEMBERS;
 
 CREATE TABLE orders

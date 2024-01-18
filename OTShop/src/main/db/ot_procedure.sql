@@ -11,7 +11,7 @@ end;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Member)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Member)
 
 CREATE OR REPLACE PROCEDURE getMember(
     p_userid IN members.userid%TYPE,
@@ -127,7 +127,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (FAQ)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (FAQ)
 
 
 CREATE OR REPLACE PROCEDURE listFaq(
@@ -140,7 +140,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Customer)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Customer)
 
 
 CREATE OR REPLACE PROCEDURE listQna(
@@ -184,15 +184,8 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ÀåÀ¯Áø (Logis)
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Logis)
 
---------------------------------------------------------------------------------------------
-
-<<<<<<< HEAD
--- ÀåÀ¯Áø (Customer)
-
-=======
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 CREATE OR REPLACE PROCEDURE getLogis(
     p_logisid in logis.logisid%TYPE,
     p_cur OUT SYS_REFCURSOR
