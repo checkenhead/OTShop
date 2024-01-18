@@ -130,4 +130,6 @@ public interface IAdminDao {
 	public void getOrderDetailList(HashMap<String, Object> paramMap);
 
 	public void updateOrderState(HashMap<String, Object> paramMap);
+
+	public void updateOrderInvoicenum(HashMap<String, Object> paramMap);
 }

@@ -329,9 +329,11 @@ CREATE TABLE transport
 (
 	tseq number NOT NULL,
 	iseq number NOT NULL,
+	logisid varchar2(30) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
 	-- 배송위치
 	description varchar2(100) NOT NULL,
+	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (tseq)
 );
 
@@ -491,6 +493,14 @@ ALTER TABLE transport
 ;
 
 
+ALTER TABLE transport
+	ADD FOREIGN KEY (logisid)
+	REFERENCES logis (logisid)
+	ON DELETE CASCADE
+;
+
+
+
 /* Create Views */
 
 
@@ -573,6 +583,9 @@ from order_detail od, product p, product_detail pd
 where od.pdseq = pd.pdseq and pd.pseq = p.pseq;
 
 
+
+
+
 /* Select Tables */
 select * from admins;
 select * from members;
@@ -627,6 +640,17 @@ select * from order_detail;
 
 select * from orders_view;
 select * from order_detail_view;
+
+select * from logis;
+select * from invoice;
+select * from transport;
+
+
+
+
+select * from invoice where iseq in (select distinct iseq from
+                (select * from transport where logisid = 'logis' order by regdate desc));
+
 
 
 /* Test Records */

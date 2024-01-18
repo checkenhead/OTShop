@@ -746,10 +746,8 @@ function change_order_state(oseq, command){
 		confirm_message = "해당 주문을 취소하시겠습니까?";
 	else if(command == "preparing")
 		confirm_message = "해당 주문을 배송 준비 중으로 전환하시겠습니까?";
-	else if(command == "delivering"){
-		confirm_message = "해당 주문을 배송 중으로 전환하시겠습니까?";
-		//배송 중으로 전환 시 송장 번호 입력
-	}
+//	else if(command == "delivering")
+//		confirm_message = "해당 주문을 배송 중으로 전환하시겠습니까?";
 //	else if(command == "deliverCompleted")
 //		confirm_message = "해당 주문을 배송 완료로 전환하시겠습니까?";
 //	else if(command == "purchaseConfirmed")
@@ -769,4 +767,18 @@ function change_order_state(oseq, command){
 		document.orderManForm.action = "updateOrderState";
 		document.orderManForm.submit();
 	}
+}
+
+function request_collect(oseq){
+	if(confirm("택배업체에 배송정보를 전송하시겠습니까?")){
+		document.orderManForm.oseq.value = oseq;
+		document.orderManForm.action = "requestCollect";
+		document.orderManForm.submit();
+	}
+}
+
+function save_order_invoicenum(oseq){
+	document.orderManForm.oseq.value = oseq;
+	document.orderManForm.action = "updateInvoicenum";
+	document.orderManForm.submit();
 }

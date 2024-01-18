@@ -1151,4 +1151,47 @@ public class AdminController {
 			return "redirect:/orderManagement";
 		}
 	}
+	
+	@PostMapping("/requestCollect")
+	public String requestCollect(
+			@RequestParam("oseq") int oseq,
+			@RequestParam("recipient") String recipient,
+			@RequestParam("tel") String tel,
+			@RequestParam("zipnum") String zipnum,
+			@RequestParam("address1") String address1,
+			@RequestParam("address2") String address2,
+			@RequestParam("address3") String address3,
+			HttpServletRequest request) {
+		
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			as.requestCollect("otshop", oseq, recipient, tel, zipnum, address1, address2, address3);
+									
+			return "redirect:/orderManagement";
+		}
+	}
+	
+	@PostMapping("/updateInvoicenum")
+	public String updateInvoicenum(
+			@RequestParam("oseq") int oseq,
+			@RequestParam("invoicenum") int invoicenum,
+			HttpServletRequest request,
+			Model model) {
+		
+		// 로그인 체크
+		if (request.getSession().getAttribute("loginAdmin") == null) {
+			return "redirect:/adminLoginForm";
+		} else {
+			if(!as.updateInvoicenum(oseq, invoicenum)) {
+				model.addAttribute("message", "잘못된 송장번호입니다.");
+				model.addAttribute("orderList", as.getAllOrderList());
+				
+				return "admin/order/orderManagement";
+			}
+									
+			return "redirect:/orderManagement";
+		}
+	}
 }

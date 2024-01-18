@@ -28,9 +28,9 @@
 		<td>${orderVO.EMAIL}</td>
 		<td><fmt:formatDate type="date" value="${orderVO.REGDATE}"/></td>
 		<td>
-			<c:if test="${orderVO.INVOICENUM == -1}">픽업 요청 중</c:if>
-			<c:if test="${orderVO.INVOICENUM == 0}">-</c:if>
-			<c:if test="${orderVO.INVOICENUM != 0 && orderVO.INVOICENUM != -1}">${orderVO.INVOICENUM}</c:if>
+			<c:if test="${orderVO.logisState == 0}">-</c:if>
+			<c:if test="${orderVO.logisState >= 1 and orderVO.logisState <= 3}">집화 요청 중</c:if>
+			<c:if test="${orderVO.logisState >= 3 and orderVO.INVOICENUM != 0}">${orderVO.INVOICENUM}</c:if>
 		</td>
 		<td id="amount_row_${mainStatus.index}" rowspan="1"><fmt:formatNumber type="number" value="${orderVO.amount}"/>원</td>
 		<td id="state_row_${mainStatus.index}" rowspan="1">
@@ -43,16 +43,28 @@
 					<input type="button" value="배송 준비 중으로 전환" onClick="change_order_state('${orderVO.OSEQ}', 'preparing');">
 				</div>
 				<div class="hidden_element_${mainStatus.index}" style="display:none;">
-					<input type="button" value="취소로 전환" onClick="change_order_state('${orderVO.OSEQ}', 'cancel');">
+					<input type="button" value="주문 취소" onClick="change_order_state('${orderVO.OSEQ}', 'cancel');">
 				</div>
 			</c:if>
 			<c:if test="${orderVO.STATE == '2'}">
-				<div>배송 준비 중</div>
+				<div>배송 준비 중<br></div>
 				<div class="hidden_element_${mainStatus.index}" style="display:none;">
-					<input type="button" value="배송 중으로 전환" onClick="change_order_state('${orderVO.OSEQ}', 'delivering');">
+					<c:if test="${orderVO.logisState == 0}">
+						<input type="hidden" name="recipient" value="${orderVO.NAME}">
+						<input type="hidden" name="tel" value="${orderVO.TEL}">
+						<input type="hidden" name="zipnum" value="${orderVO.ZIPNUM}">
+						<input type="hidden" name="address1" value="${orderVO.ADDRESS1}">
+						<input type="hidden" name="address2" value="${orderVO.ADDRESS2}">
+						<input type="hidden" name="address3" value="${orderVO.ADDRESS3}">
+						<input type="button" value="집화 요청" onClick="request_collect('${orderVO.OSEQ}');">
+					</c:if>
+					<c:if test="${orderVO.logisState >= 1 and orderVO.logisState <= 3}">
+						<input type="text" name="invoicenum" value="${orderVO.recievedInvoicenum}">
+						<input type="button" value="송장번호 입력" onClick="save_order_invoicenum('${orderVO.OSEQ}');">
+					</c:if>
 				</div>
 				<div class="hidden_element_${mainStatus.index}" style="display:none;">
-					<input type="button" value="취소로 전환" onClick="change_order_state('${orderVO.OSEQ}', 'cancel');">
+					<input type="button" value="주문 취소" onClick="change_order_state('${orderVO.OSEQ}', 'cancel');">
 				</div>
 			</c:if>
 			<c:if test="${orderVO.STATE == '3'}">

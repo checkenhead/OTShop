@@ -1,1 +1,22 @@
 @charset "UTF-8";
+
+table.tblInvoiceList,
+table.tblTransportList {
+	/*border-collapse: collapse;*/
+	border-spacing: 2px;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	margin-top: 15px;
+	width: 100%;
+	font-size: 90%;
+	empty-cells: hide;
+}
+
+.tblInvoiceList th, .tblInvoiceList td,
+.tblTransportList th, .tblTransportList td {
+	text-align: center;
+	/* border-bottom: 1px dotted #6F0C78; */
+	padding: 5px;
+	border: 1px solid black;
+	/*empty-cells: hide;*/
+}

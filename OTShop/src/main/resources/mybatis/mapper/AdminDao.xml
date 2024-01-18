@@ -417,4 +417,10 @@
 		}
 	</update>
 	
+	<update id="updateOrderInvoicenum" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateOrderInvoicenum(#{oseq}, #{invoicenum})
+		}
+	</update>
+	
 </mapper>

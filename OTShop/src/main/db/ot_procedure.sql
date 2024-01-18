@@ -180,9 +180,16 @@ BEGIN
     
     COMMIT;
 END;
+------------------------------------------------------------------------------
 
-
-
+CREATE OR REPLACE PROCEDURE getLogis(
+    p_logisid in logis.logisid%TYPE,
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM logis WHERE logisid = p_logisid;
+END;
 ------------------------------------------------------------------------------
 
 create or replace procedure getAllProductCatList(
@@ -1092,3 +1099,147 @@ begin
     commit;
     
 end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertInvoice(
+    p_clientid in invoice.clientid%type,
+    p_ordernum in invoice.ordernum%type,
+    p_recipient in invoice.recipient%type,
+    p_tel in invoice.tel%type,
+    p_zipnum in invoice.zipnum%type,
+    p_address1 in invoice.address1%type,
+    p_address2 in invoice.address2%type,
+    p_address3 in invoice.address3%type)
+is
+
+begin
+    insert into invoice(iseq, clientid, ordernum, recipient, tel, zipnum, address1, address2, address3)
+    values(invoice_iseq.nextval, p_clientid, p_ordernum, p_recipient, p_tel, p_zipnum, p_address1, p_address2, p_address3);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getInvoiceStateByIseq(
+    p_iseq in invoice.iseq%type,
+    p_state out invoice.state%type)
+is
+
+begin
+    select state into p_state from invoice where iseq = p_iseq;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getInvoiceStateByIdAndOrdernum(
+    p_clientid in invoice.clientid%type,
+    p_ordernum in invoice.ordernum%type,
+    p_state out varchar2)
+is
+
+begin
+    select state into p_state from invoice where clientid = p_clientid and ordernum = p_ordernum;
+    exception when no_data_found then p_state := '0';
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getInvoicenumByIdAndOrdernum(
+    p_clientid in invoice.clientid%type,
+    p_ordernum in invoice.ordernum%type,
+    p_invoicenum out invoice.iseq%type)
+is
+
+begin
+    select iseq into p_invoicenum from invoice where clientid = p_clientid and ordernum = p_ordernum;
+    exception when no_data_found then p_invoicenum := 0;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateOrderInvoicenum(
+    p_oseq in orders.oseq%type,
+    p_invoicenum in orders.invoicenum%type)
+is
+
+begin
+    update orders set invoicenum = p_invoicenum where oseq = p_oseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getAllInvoiceList(
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from invoice order by iseq desc;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure insertTransport(
+    p_iseq in transport.iseq%type,
+    p_logisid in transport.logisid%type,
+    p_description in transport.description%type)
+is
+
+begin
+    insert into transport(tseq, iseq, logisid, description)
+    values(transport_tseq.nextval, p_iseq, p_logisid, p_description);
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure updateInvoiceState(
+    p_iseq in invoice.iseq%type,
+    p_state in invoice.state%type)
+is
+
+begin
+    update invoice set state = p_state where iseq = p_iseq;
+    commit;
+    
+end;
+------------------------------------------------------------------------------
+
+--create or replace procedure getTransportListById(
+--    p_logisid in transport.logisid%type,
+--    p_cur out sys_refcursor)
+--is
+--
+--begin
+--    open p_cur for
+--        select * from transport order by state asc, tseq asc;
+--    
+--end;
+------------------------------------------------------------------------------
+
+create or replace procedure getInvoiceListByLogisid(
+    p_logisid in transport.logisid%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from invoice where iseq in
+            (select distinct iseq from
+                (select * from transport where logisid = p_logisid order by regdate desc));
+    
+end;
+------------------------------------------------------------------------------
+
+create or replace procedure getTransportListByIseq(
+    p_iseq in transport.iseq%type,
+    p_cur out sys_refcursor)
+is
+
+begin
+    open p_cur for
+        select * from transport where iseq = p_iseq order by regdate asc;
+    
+end;
+
