@@ -17,6 +17,9 @@ public class AdminService {
 	
 	@Autowired
 	IProductDao pdao;
+	
+	@Autowired
+	LogisService ls;
 
 	public HashMap<String, Object> getAdmin(String adminid) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -798,6 +801,91 @@ public class AdminService {
 		adao.getProductSubCatList(paramMap);
 		
 		return (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+	}
+
+	public ArrayList<HashMap<String, Object>> getAllOrderList() {
+		//1. orders_view의 모든 레코드 orderVO 리스트에 저장
+		//2. 각 orderVO의 oseq로 검색된 order_detail_view 리스트를 해당 orderVO에 저장
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("ref_cursor", null);
+		
+		adao.getOrderList(paramMap);
+		
+		ArrayList<HashMap<String, Object>> orderList = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		for(HashMap<String, Object> orderVO : orderList) {
+			paramMap.put("oseq", orderVO.get("OSEQ"));
+			paramMap.put("ref_cursor", null);
+			
+			adao.getOrderDetailList(paramMap);
+			
+			ArrayList<HashMap<String, Object>> orderDetailList = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			int amount = 0;
+			
+			for(HashMap<String, Object> orderDetailVO : orderDetailList) {
+				amount +=  Integer.parseInt(orderDetailVO.get("PRICE2").toString()) * Integer.parseInt(orderDetailVO.get("QTY").toString());
+			}
+			
+			orderVO.put("amount", amount);
+			
+			orderVO.put("orderDetailList", orderDetailList);
+			
+			//택배업체 invoice state 조회 후 order state update
+			//invoice state 0 : 집화 요청 하지 않은 상태
+			//invoice state 1 : 집화 요청 중(OTShop에서 요청함/택배업체에서 확인 전)
+			//invoice state 2 : 집화 중(택배업체에서 확인함/집화 전)
+			//invoice state 3 : 집화 완료(전달받은 invoicenum 입력 후 order state 3으로 update) | order state가 2이고 invoice state가 3인 경우 invoicenum 조회
+			//invoice state 4 : 배송 중
+			//invoice state 9 : 배송 완료(order state 4로 update) | order state가 3이고 invoice state가 9인 경우
+			
+			String logisState = ls.getInvoiceStateByIdAndOrdernum("otshop", Integer.parseInt(orderVO.get("OSEQ").toString()));
+			String orderState = (String)orderVO.get("STATE");
+			
+			orderVO.put("logisState", logisState);
+			
+			if(orderState.equals("2") && logisState.equals("3"))
+				orderVO.put("recievedInvoicenum", ls.getInvoicenumByIdAndOrdernum("otshop", Integer.parseInt(orderVO.get("OSEQ").toString())));
+			else if(orderState.equals("3") && logisState.equals("9"))
+				updateOrderState(Integer.parseInt(orderVO.get("OSEQ").toString()), "deliverCompleted");
+		}
+		
+		return orderList;
+	}
+
+	public void updateOrderState(int oseq, String command) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("oseq", oseq);
+		paramMap.put("command", command);
+		
+		adao.updateOrderState(paramMap);
+	}
+
+	public void requestCollect(
+			String clientid, int ordernum, String recipient, String tel, String zipnum, String address1, String address2, String address3) {
+		ls.insertInvoice(clientid, ordernum, recipient, tel, zipnum, address1, address2, address3);
+	}
+
+	public boolean updateInvoicenum(int oseq, int invoicenum) {
+		//invoice 테이블에서 해당 oseq의 invoicenum 조회 하여 값이 같지 않으면 false 리턴
+		int searchedInvoicenum = ls.getInvoicenumByIdAndOrdernum("otshop", oseq);
+		
+		if(searchedInvoicenum != invoicenum) {
+			return false;
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			
+			paramMap.put("oseq", oseq);
+			paramMap.put("invoicenum", invoicenum);
+			
+			adao.updateOrderInvoicenum(paramMap);
+			
+			updateOrderState(oseq, "delivering");
+			
+			return true;
+		}
 	}
 
 }

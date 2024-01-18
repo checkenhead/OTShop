@@ -701,3 +701,84 @@ function remove_category(categoryClass, index){
 		document.getElementById(categoryClass + "CatEmptyMessage").style.display = "";
 	}
 }
+
+function toggle_detail(index, row_size){
+	var hidden_elements = document.getElementsByClassName("hidden_element_" + index);
+	var main_rows = document.getElementsByClassName("main_row");
+	
+	if(hidden_elements[0].style.display == "none"){
+		document.getElementById("img_" + index).src = "admin/images/top.png";
+		document.getElementById("btn_row_" + index).rowSpan = row_size;
+		document.getElementById("count_row_" + index).rowSpan = row_size;
+		document.getElementById("amount_row_" + index).rowSpan = 3;
+		document.getElementById("state_row_" + index).rowSpan = row_size;
+		
+		for(var i = 0; i < hidden_elements.length; i++){
+			hidden_elements[i].style.display = "";
+		}
+		
+		for(var i = 0; i < main_rows.length; i++){
+				main_rows[i].style.display = "none";
+		}
+		document.getElementById("main_row_" + index).style.display = "";
+		
+	} else {
+		document.getElementById("img_" + index).src = "admin/images/bottom.png";
+		document.getElementById("btn_row_" + index).rowSpan = 1;
+		document.getElementById("count_row_" + index).rowSpan = 1;
+		document.getElementById("amount_row_" + index).rowSpan = 1;
+		document.getElementById("state_row_" + index).rowSpan = 1;
+		
+		for(var i = 0; i < hidden_elements.length; i++){
+			hidden_elements[i].style.display = "none";
+		}
+		
+		for(var i = 0; i < main_rows.length; i++){
+			main_rows[i].style.display = "";
+		}
+	}
+}
+
+function change_order_state(oseq, command){
+	var confirm_message = "";
+	
+	if(command == "cancel")
+		confirm_message = "해당 주문을 취소하시겠습니까?";
+	else if(command == "preparing")
+		confirm_message = "해당 주문을 배송 준비 중으로 전환하시겠습니까?";
+//	else if(command == "delivering")
+//		confirm_message = "해당 주문을 배송 중으로 전환하시겠습니까?";
+//	else if(command == "deliverCompleted")
+//		confirm_message = "해당 주문을 배송 완료로 전환하시겠습니까?";
+//	else if(command == "purchaseConfirmed")
+//		confirm_message = "해당 주문을 구매 확정으로 전환하시겠습니까?";
+//	else if(command == "returning")
+//		confirm_message = "해당 주문을 반품 중으로 전환하시겠습니까?";
+	else if(command == "returnCompleted")
+		confirm_message = "해당 주문을 반품 완료로 전환하시겠습니까?";
+	else if(command == "checking")
+		confirm_message = "해당 주문을 확인 중으로 전환하시겠습니까?";
+	else if(command == "RefundCompleted")
+		confirm_message = "해당 주문을 환불 완료로 전환하시겠습니까?";
+	
+	if(confirm(confirm_message)){
+		document.orderManForm.oseq.value = oseq;
+		document.orderManForm.command.value = command;
+		document.orderManForm.action = "updateOrderState";
+		document.orderManForm.submit();
+	}
+}
+
+function request_collect(oseq){
+	if(confirm("택배업체에 배송정보를 전송하시겠습니까?")){
+		document.orderManForm.oseq.value = oseq;
+		document.orderManForm.action = "requestCollect";
+		document.orderManForm.submit();
+	}
+}
+
+function save_order_invoicenum(oseq){
+	document.orderManForm.oseq.value = oseq;
+	document.orderManForm.action = "updateInvoicenum";
+	document.orderManForm.submit();
+}

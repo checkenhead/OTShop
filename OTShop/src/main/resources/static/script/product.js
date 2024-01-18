@@ -139,3 +139,17 @@ function refresh_total_price() {
 
 	totalPrice.innerHTML = sum.toLocaleString("ko-KR") + "원";
 }
+
+function view_product(index) {
+	document.productListForm.pseq.value = index;
+	document.productListForm.action = "viewProduct";
+	document.productListForm.submit();
+}
+
+function toggle_options(index) {
+	if (document.getElementById("options_wrap_" + index).style.display == "none") {
+		document.getElementById("options_wrap_" + index).style.display = "";
+	} else {
+		document.getElementById("options_wrap_" + index).style.display = "none";
+	}
+}

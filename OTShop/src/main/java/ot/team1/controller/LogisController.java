@@ -19,7 +19,7 @@ public class LogisController {
 	@Autowired
 	LogisService ls;
 	
-	
+
 	@GetMapping("/logisLogin")
 	public String logisMain() {
 		return "logis/common/logisLoginForm";
@@ -27,8 +27,15 @@ public class LogisController {
 	
 	
 	@GetMapping("/logisMain")
-	public String logis() {
-		return "logis/common/logisMainForm";
+	public String logis(HttpServletRequest request, Model model) {
+		if (request.getSession().getAttribute("loginLogis") == null) {
+			return "redirect:/logisLogin";
+		} else {
+			//invoiceVO model에 저장
+			model.addAttribute("invoiceList", ls.getAllInvoiceList());
+			
+			return "logis/common/logisMainForm";
+		}
 	}
 	
 	
@@ -63,6 +70,78 @@ public class LogisController {
 		return url;
 	}
 	
-
-
+	/* AdminController에서 LogisService 메서드 호출로 변경
+	@PostMapping("/requestCollect")
+	public String requestCollect(
+			@RequestParam("clientid") String clientid,
+			@RequestParam("ordernum") int ordernum,
+			@RequestParam("recipient") String recipient,
+			@RequestParam("tel") String tel,
+			@RequestParam("zipnum") String zipnum,
+			@RequestParam("address1") String address1,
+			@RequestParam("address2") String address2,
+			@RequestParam("address3") String address3,
+			@RequestParam("redirectURL") String redirectURL) {
+		
+		ls.insertInvoice(clientid, ordernum, recipient, tel, zipnum, address1, address2, address3);
+		
+		return redirectURL;
+	}
+	*/
+	/* AdminController에서 LogisService 메서드 호출로 변경
+	@PostMapping("/getInvoiceStateByIseq")
+	public String getInvoiceStateByIseq(
+			@RequestParam("invoicenum") int iseq,
+			@RequestParam("redirectURL") String redirectURL) {
+		
+		ls.getInvoiceStateByIseq(iseq);
+		
+		return redirectURL;
+	}
+	*/
+	
+	@GetMapping("/transportList")
+	public String transportList(HttpServletRequest request, Model model) {
+		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
+		if (loginLogis == null) {
+			return "redirect:/logisLogin";
+		} else {
+			//로그인 아이디의 transportList 저장
+			model.addAttribute("invoiceList", ls.getTransportListByInvoice((String)loginLogis.get("LOGISID")));
+			
+			return "logis/common/transportList";
+		}
+	}
+	
+	@PostMapping("/insertTransportHistory")
+	public String insertTransportHistory(
+			@RequestParam("iseq") int iseq,
+			@RequestParam("description") String description,
+			HttpServletRequest request) {
+		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
+		if (loginLogis == null) {
+			return "redirect:/logisLogin";
+		} else {
+			ls.insertTransport(iseq, (String)loginLogis.get("LOGISID"), description, ls.getInvoiceStateByIseq(iseq));
+			
+			return "redirect:/transportList";
+		}
+	}
+	
+	@PostMapping("/updateInvoiceState")
+	public String updateInvoiceState(
+			@RequestParam("iseq") int iseq,
+			@RequestParam("command") String command,
+			HttpServletRequest request) {
+		HashMap<String, Object> loginLogis = (HashMap<String, Object>) request.getSession().getAttribute("loginLogis");
+		if (loginLogis == null) {
+			return "redirect:/logisLogin";
+		} else {
+			ls.updateInvoiceState(iseq, command, (String)loginLogis.get("LOGISID"));
+			
+			return "redirect:/transportList";
+		}
+	}
+	
+	
 }

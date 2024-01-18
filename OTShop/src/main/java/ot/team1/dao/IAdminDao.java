@@ -124,4 +124,12 @@ public interface IAdminDao {
 	public void deleteMainCatList(HashMap<String, Object> paramMap2);
 
 	public void deleteSubCatList(HashMap<String, Object> paramMap2);
+
+	public void getOrderList(HashMap<String, Object> paramMap);
+
+	public void getOrderDetailList(HashMap<String, Object> paramMap);
+
+	public void updateOrderState(HashMap<String, Object> paramMap);
+
+	public void updateOrderInvoicenum(HashMap<String, Object> paramMap);
 }

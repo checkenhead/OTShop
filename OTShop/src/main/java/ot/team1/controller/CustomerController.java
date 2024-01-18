@@ -201,5 +201,11 @@ public class CustomerController {
 		return "customer/introCompanyFrm";
 	}
 	
+	
+	@GetMapping("/shopMap")
+	public String shopMap() {
+		return "customer/shopMapFrm";
+	}
+	
 
 }

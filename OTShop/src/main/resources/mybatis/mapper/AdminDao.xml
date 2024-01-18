@@ -396,4 +396,31 @@
 		}
 	</delete>
 	
+	<select id="getOrderList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getOrderList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<select id="getOrderDetailList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call getOrderDetailList(
+			#{oseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})
+		}
+	</select>
+	
+	<update id="updateOrderState" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateOrderState(#{oseq}, #{command})
+		}
+	</update>
+	
+	<update id="updateOrderInvoicenum" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call updateOrderInvoicenum(#{oseq}, #{invoicenum})
+		}
+	</update>
+	
 </mapper>

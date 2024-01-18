@@ -103,6 +103,7 @@ CREATE TABLE banner
 );
 
 
+
 CREATE TABLE banner_images
 (
 	biseq number NOT NULL,
@@ -110,6 +111,7 @@ CREATE TABLE banner_images
 	image varchar2(300) NOT NULL,
 	PRIMARY KEY (biseq)
 );
+
 
 
 CREATE TABLE cart
@@ -169,15 +171,19 @@ CREATE TABLE members
 	provider varchar2(10) DEFAULT 'ot' NOT NULL,
 	PRIMARY KEY (userid)
 );
-
+alter table members modify birthdate varchar2(20);
+alter table members drop column birthdate;
+alter table members add birthdate varchar2(20) DEFAULT '0' NOT NULL;
+delete from members where userid = 'park';
+SELECT * FROM MEMBERS;
 
 CREATE TABLE orders
 (
 	oseq number NOT NULL,
 	userid varchar2(20) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
-	state char(1) DEFAULT '1' NOT NULL,
 	invoicenum number default 0 not null,
+	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (oseq)
 );
 
@@ -206,6 +212,7 @@ CREATE TABLE product
 	regdate date DEFAULT sysdate NOT NULL,
 	PRIMARY KEY (pseq)
 );
+
 
 
 CREATE TABLE product_detail
@@ -313,25 +320,16 @@ CREATE TABLE qna_category
 );
 
 
-CREATE TABLE reply
-(
-	rseq number NOT NULL,
-	qseq number NOT NULL,
-	content varchar2(1000) NOT NULL,
-	regdate date DEFAULT sysdate NOT NULL,
-	secret char(1) DEFAULT 'N' NOT NULL,
-	PRIMARY KEY (rseq)
-);
-
-
 
 CREATE TABLE transport
 (
 	tseq number NOT NULL,
 	iseq number NOT NULL,
+	logisid varchar2(30) NOT NULL,
 	regdate date DEFAULT sysdate NOT NULL,
 	-- 배송위치
 	description varchar2(100) NOT NULL,
+	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (tseq)
 );
 
@@ -477,18 +475,20 @@ ALTER TABLE order_detail
 ;
 
 
-ALTER TABLE reply
-	ADD FOREIGN KEY (qseq)
-	REFERENCES qna (qseq)
-	ON DELETE CASCADE
-;
-
 
 ALTER TABLE transport
 	ADD FOREIGN KEY (iseq)
 	REFERENCES invoice (iseq)
 	ON DELETE CASCADE
 ;
+
+
+ALTER TABLE transport
+	ADD FOREIGN KEY (logisid)
+	REFERENCES logis (logisid)
+	ON DELETE CASCADE
+;
+
 
 
 /* Create Views */
@@ -553,6 +553,29 @@ from cart c, product p, product_detail pd
 where c.pdseq = pd.pdseq and pd.pseq = p.pseq;
 
 
+--create or replace view order_view as
+--select o.oseq, o.regdate, o.state,
+--o.userid, m.name as mname, m.email, m.tel, m.zipnum, m.address1, m.address2, m.address3,
+--o.odseq, pd.pseq, p.name as pname, od.pdseq, pd.optname, pd.price2, od.qty
+--from orders o, order_detail od, members m, product p, product_detail pd
+--where o.userid = m.userid and od.pdseq = pd.pdseq and pd.pseq = p.pseq;
+
+--orders/member join
+create or replace view orders_view as
+select o.oseq, o.regdate, o.state, o.invoicenum, o.userid, m.name, m.email, m.tel, m.zipnum, m.address1, m.address2, m.address3
+from orders o, members m
+where o.userid = m.userid;
+
+--order_detail/product/product_detail join
+create or replace view order_detail_view as
+select od.odseq, od.oseq, pd.pseq, p.brand, p.name, od.pdseq, pd.optname, pd.price2, od.qty
+from order_detail od, product p, product_detail pd
+where od.pdseq = pd.pdseq and pd.pseq = p.pseq;
+
+
+
+
+
 /* Select Tables */
 select * from admins;
 select * from members;
@@ -598,6 +621,25 @@ select max(nvl(priority, 0)) from banner;
 select * from product_main_category_list;
 select * from product where pseq in (select pseq from product_main_category_list where pmcseq = 2);
 
+
+select * from orders;
+select * from order_detail;
+
+--alter table order_detail drop column state;
+--alter table orders add state char(1) default '1' not null;
+
+select * from orders_view;
+select * from order_detail_view;
+
+select * from logis;
+select * from invoice;
+select * from transport;
+
+
+
+
+select * from invoice where iseq in (select distinct iseq from
+                (select * from transport where logisid = 'logis' order by regdate desc));
 
 
 
