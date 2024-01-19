@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 import ot.team1.service.LogisService;
 
+
 @Controller
 public class LogisController {
 	
 	@Autowired
 	LogisService ls;
 	
+
 	@GetMapping("/logisLogin")
 	public String logisMain() {
 		return "logis/common/logisLoginForm";

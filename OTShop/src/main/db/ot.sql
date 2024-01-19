@@ -103,6 +103,7 @@ CREATE TABLE banner
 );
 
 
+
 CREATE TABLE banner_images
 (
 	biseq number NOT NULL,
@@ -110,6 +111,7 @@ CREATE TABLE banner_images
 	image varchar2(300) NOT NULL,
 	PRIMARY KEY (biseq)
 );
+
 
 
 CREATE TABLE cart
@@ -169,7 +171,11 @@ CREATE TABLE members
 	provider varchar2(10) DEFAULT 'ot' NOT NULL,
 	PRIMARY KEY (userid)
 );
-
+alter table members modify birthdate varchar2(20);
+alter table members drop column birthdate;
+alter table members add birthdate varchar2(20) DEFAULT '0' NOT NULL;
+delete from members where userid = 'park';
+SELECT * FROM MEMBERS;
 
 CREATE TABLE orders
 (
@@ -468,12 +474,6 @@ ALTER TABLE order_detail
 	ON DELETE CASCADE
 ;
 
-
-ALTER TABLE reply
-	ADD FOREIGN KEY (qseq)
-	REFERENCES qna (qseq)
-	ON DELETE CASCADE
-;
 
 
 ALTER TABLE transport

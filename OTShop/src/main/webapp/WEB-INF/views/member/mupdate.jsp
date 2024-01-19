@@ -4,73 +4,105 @@
 <%@ include file="../include/mypageSub.jsp" %>
 
 
+<div class="mupdateWrap">
+<article>
+<form method="post" name="mupdateFrm" action="mupdate" class="mupdateFrm">
 
-<article id="wrap">
-<%@ include file="../include/categorySub.jsp" %>
-<form id="join" method="post" name="mupdateFrm" action="mupdate">
-	<fieldset id="joinCover"><legend><img src="images/user.png">내 정보 수정</legend>
+	<div class="mupdateBanner">
+		<span class="bannerTitle">정보 수정</span><span class="bannerSub">내 정보를 수정할 수 있습니다.</span>
+	</div><br>
+
+	<div class="listHead">
+		<img src="images/mustCheck.png"><div class="mupdateTitle">기본정보</div>
+	</div><br>
+
 	
-		<fieldset id="mtitle1"><legend>기본 정보</legend>
-			<div id="mspec">
-				<c:choose>
-					<c:when test="${dto.provider=='kakao'}">
-						<span>
-							카카오 회원은 카카오 계정에서 내 정보를 수정할 수 있습니다. 
-							<a href="https://www.kakaocorp.com/page/">카카오 홈페이지로 이동</a>
-						</span><br>
-						
-						<label>아이디</label><input type="text" name="userid" disabled><br>
-						<label>비밀번호</label><input type="password" name="pwd" disabled><br>
-						<label>비밀번호 확인</label><input type="password" name="repwd" disabled><br>
-						<label>이름</label><input type="text" name="name" disabled><br>
-						<label>성별</label>
+	<fieldset id="mtitle1">
+			<c:choose>
+				<c:when test="${dto.provider=='kakao'}">
+					<span>
+						카카오 회원은 카카오 계정에서 내 정보를 수정할 수 있습니다. 
+						<a href="https://www.kakaocorp.com/page/">카카오 홈페이지로 이동</a>
+					</span><br>
+					<div class="mspecTitle">
+					    <div><img src="images/infoCheck.png">아이디</div>
+					    <div><img src="images/infoCheck.png">비밀번호</div>
+					    <div><img src="images/infoCheck.png">비밀번호 확인</div>
+					    <div><img src="images/infoCheck.png">이름</div>
+					    <div><img src="images/infoCheck.png">성별</div>
+					    <div><img src="images/infoCheck.png">생년월일</div>
+					</div>
+					
+					<div class="mspecSubs">
+						<input type="text" name="userid" disabled>
+						<input type="password" name="pwd" disabled>
+						<input type="password" name="repwd" disabled>
+						<input type="text" name="name" disabled>
 						<input type="radio" name="gender" value="M" disabled>남자
-						<input type="radio" name="gender" value="F" disabled>여자<br>
+						<input type="radio" name="gender" value="F" disabled>여자
 						<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 String 데이터가 저장된다 -->
-						<label>생년월일</label>
-						<input type="text" name="birthdate" disabled><br>
-					</c:when>
-					<c:otherwise>
-						<label>아이디</label><input type="text" name="huserid" value="${dto.userid}" disabled><br>
-														 <input type="hidden"	name="userid" value="${dto.userid}">
-						<label>비밀번호</label><input type="password" name="pwd" placeholder="비밀번호"><br>
-						<label>비밀번호 확인</label><input type="password" name="repwd" placeholder="비밀번호 다시 입력"><br>
-						<label>이름</label><input type="text" name="name" value="${dto.name}"><br>
-						<label>성별</label>
-							<input type="radio" name="gender" value="M">남자
-							<input type="radio" name="gender" value="F">여자<br>
-						<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 데이터가 저장된다 -->
-						<label>생년월일</label>
+						<input type="text" name="birthdate" disabled>
+					</div>				
+				</c:when>
+				<c:otherwise>
+					<div class="mspecTitle">
+						<div><img src="images/infoCheck.png">아이디</div>
+						<div><img src="images/infoCheck.png">비밀번호</div>
+						<div><img src="images/infoCheck.png">비밀번호 확인</div>
+						<div><img src="images/infoCheck.png">이름</div>
+						<div><img src="images/infoCheck.png">성별</div>
+						<div><img src="images/infoCheck.png">생년월일</div>
+						<div><img src="images/infoCheck.png">전화번호</div>
+						<div><img src="images/infoCheck.png">이메일</div>
+					</div>
+					
+					<div class="mspecSubs">
+						<input type="text" name="huserid" value="${dto.userid}" disabled><br>
+						<input type="hidden"	name="userid" value="${dto.userid}">
+						<input type="password" name="pwd" placeholder="비밀번호"><br>
+						<input type="password" name="repwd" placeholder="비밀번호 다시 입력"><br>
+						<input type="text" name="name" value="${dto.name}"><br>
+						<input type="radio" name="gender" value="M">남자
+						<input type="radio" name="gender" value="F">여자<br>
 						<input type="text" name="hbirthdate" value="${dto.birthdate}" disabled><br>
 						<input type="hidden" name="birthdate" value="${dto.birthdate}">
-						<label>전화번호</label><input type="text" name="tel" value="${dto.tel}"><br>
-						<label>이메일</label><input type="text" name="email" value="${dto.email}"><br>
-						<input type="hidden" name="provider" value="ot"><br><br><br><br>
-						<a href="mdeleteForm"><input type="button" value="회원탈퇴" class="mdeleteBtn"></a>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</fieldset><br>
+						<input type="text" name="tel" value="${dto.tel}"><br>
+						<input type="text" name="email" value="${dto.email}"><br>
+						<input type="hidden" name="provider" value="ot">
+					</div><br>
+					<a href="mdeleteForm"><input type="button" value="회원탈퇴" class="mdeleteBtn"></a>
+				</c:otherwise>
+			</c:choose>
+		</fieldset><br><br><br>
+		
+		<div class="listHead">
+			<img src="images/deliveryInfo.png"><div class="mupdateTitle">배송지 정보</div>
+		</div><br>
 	
-		<fieldset id="mtitle2"><legend>배송지 정보</legend>
-			<div id="mspec">
-				<label>우편번호</label>
-		        <input type="text" id="sample6_postcode" name="zipnum" readonly>
-				<input type="button" onclick="sample6_execDaumPostcode()" class="dup" 
-					value="우편번호 찾기"><br>
-				<label>주&nbsp;소</label>
-				<input type="text" id="sample6_address" size="50" name="address1" 
-					value="${dto.address1}" readonly><br>
-				<label>상세주소</label>
-				<input type="text" id="sample6_detailAddress" name="address2" 
-					value="${dto.address2}" size="50"><br>
-				<label>추가주소</label>
-				<input type="text" id="sample6_extraAddress" name="address3" 
-					value="${dto.address3}" readonly><br>
+		<fieldset id="mtitle2">
+			
+			<div class="mwrap2">
+				<div class="mspecTitle2">
+				    <div><img src="images/infoCheck.png">우편번호</div>
+				    <div><img src="images/infoCheck.png">주&nbsp;소</div>
+				    <div><img src="images/infoCheck.png">상세주소</div>
+				    <div><img src="images/infoCheck.png">추가주소</div>
+				</div>
 				
+				<div class="mspecSubs2">
+					<input type="text" id="sample6_postcode" name="zipnum" readonly>
+					<input type="button" onclick="sample6_execDaumPostcode()" class="dup" 
+						value="우편번호 찾기"><br>
+					<input type="text" id="sample6_address" size="50" name="address1" 
+						value="${dto.address1}" readonly><br>	
+					<input type="text" id="sample6_detailAddress" name="address2" 
+						value="${dto.address2}" size="50"><br>
+					<input type="text" id="sample6_extraAddress" name="address3" 
+						value="${dto.address3}" readonly><br>
+				</div><br>
+			</div>	
 				
-				
-				 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				
 				<script>
 				    function sample6_execDaumPostcode() {
@@ -121,17 +153,20 @@
 				        }).open();
 				    }
 				</script><br>
-				
+			
+			<div class="jMessage">${message}</div><br>
+			<div class="mupdateBtn">
+				<input type="submit" value="저장하기">
+				<input type="button" id="goBack" value="돌아가기" onclick="history.go(-1)">
 			</div>
-		</fieldset>
-		
+			
+		</div>
+			
 	</fieldset>
-	<span>${message}</span><br>
-	<input type="submit" value="저장하기"><br>
-	<input type="button" id="goBack" value="돌아가기" onclick="history.go(-1)">
 
 </form>
 </article>
+</div>
 
 
 <%@ include file="../include/footer.jsp" %>

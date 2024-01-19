@@ -4,10 +4,10 @@
 /* header CSS */
 
 #category{ display:flex; align-items:center; width:100%; height:80px; background-color: black; margin-bottom:0; }
-#category form{ margin-right:150px; }
-#category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px; flex:1;}
-#category form button{ border:none; padding:0; }
-#category form button img{ width:30px; height:30px;}
+#category form{ margin-right:150px; display:flex;}
+#category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px;}
+#category form button{ border:none; padding:0; width:25px; height:25px; margin:2px 0 0 10px; }
+#category form button img{ width:100%; height:100%;}
 
 #category_menu ul{ list-style:none; margin:0; padding:0; display:flex; }
 #category_menu ul li{ margin-right:20px; }
@@ -81,46 +81,65 @@ div#agreebox input[type="button"]{ border:none; border-bottom:1px solid black; b
 			background-color:deepskyblue; }
 			
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-/* joinForm, mypage(일부), mupdate CSS	 */
+/* mupdate CSS */
 
-/* joinForm.jsp */
-article#jwrap{ display:flex; flex-direction:column;  align-items:center;  justify-content:center; margin:0 auto; }
-article#jwrap #join{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 10px; width:900px; height:100%; }
-article#jwrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:900px; height:100%; border:1px solid lightgray;
-			border-radius:10px; }
+.mupdateWrap{ display:flex; justify-content:center; align-items:center; width:80%; height:100%; margin:300px 0 0 -20px; }
+.mupdateFrm{ display:flex; flex-direction:column; width:1000px; margin:0 0 0 -100px; }
+.mupdateFrm fieldset{ border:none; border-top:1px solid black; border-bottom:1px solid black; }
 
+.mupdateBanner{ background-color:black; color:white; width:100%; height:80px; line-height:80px; }
+.bannerTitle{ font-size:200%; font-weight:bold; padding-left: 20px; letter-spacing:4px;}
+.bannerSub{ margin-left:20px; font-size:100%; font-weight:bold; letter-spacing:2px; padding-bottom:3px;}
 
+.listHead img{ width:30px; height:30px; margin:10px 5px 0 10px; }
+.mupdateTitle{ font-style:italic; font-size:120%; font-weight:bold; letter-spacing:2px; margin-left:5px; }
 
-/* mypage, mupdate */
-article#wrap{ display:flex; flex-direction:row;  align-items:flex-start; margin:0 auto; }
-article#wrap form{ display:flex;  flex-direction:column; align-items:center; justify-content:center; margin:50px 0 0 230px; width:900px; height:100%; }
-article#wrap #joinCover{ display:flex;  flex-direction:column; align-items:center; justify-content:center; width:800px; height:100%; border:1px solid lightgray;
-			border-radius:10px; }
-#join #joinCover legend{ font-size:180%; font-weight:bold; padding:0; }
-#join #joinCover fieldset#mtitle1{ display:inline-block;  flex-direction:column; width:700px; height:550px; margin-top:20px; border:1px solid gray; 
-			border-radius:10px; }
-#join #joinCover fieldset#mtitle2{ display:inline-block;  flex-direction:column; width:700px; height:250px; margin-top:20px; border:1px solid gray; 
-			border-radius:10px; }
-#join #joinCover img{ width:50px; height:50px;}
+#mtitle1{ display:flex; flex-direction:row; height:500px; }
+.mspecTitle{ width:250px; height:450px; text-align:center; font-weight:bold; margin:30px 40px 0 100px; }
+.mspecTitle div{ margin-top:30px; text-align:left;}
+.mspecTitle img{ margin-right:30px; }
+.mspecSubs{ width:450px; height:450px; text-align:center; font-weight:bold; margin:30px 30px 0 20px; }
+.mspecSubs input{ margin-top:30px; width:250px; height:17px; }
+.mspecSubs input[type="radio"]{ width:80px; height:17px; }
+.mspecSubs input[type="button"]{ width:80px; height:17px; }
+.mdeleteBtn{width:100px; height:25px; border:1px solid lightgray; border-radius:5px; margin:457px 0 0 -50px; background-color: white;
+			color:gray; }
 
-#join #mtitle1, #join #mtitle2{ display:inline-block; text-align:left; width:800px; height:50px; margin-top:10px; border:1px solid blue; }
-#join #mtitle1 legend, #join #mtitle2 legend{  font-size:140%; font-weight:bold; }
-#join label{ display:inline-block; align-items:left; text-align:left; width:200px; height:30px; margin:0 10px 10px 20px; padding-top:10px; 
-			border:none; border-right:1px solid lightgray; }
-#join select{ display:inline-block; text-align:left; width:190px; height:25px; margin-left:23px; }
-#join #idcheckBtn{ width:50px; height:20px; }
-#join #mspec input[type="text"], #join #mspec input[type="password"]
-			{ display:inline-block; text-align:left;  width:180px; height:20px; margin-left:30px; }
-#join #mspec input[type="radio"]	 {margin-left:30px;}
-#join #mspec input[type="date"] {margin-left:25px; width:180px; height:20px; }
-#join #mspec a{ margin-left: 600px; }
-#join #mspec input[type="button"] { width:100px; height:25px; background-color:white; border-radius:5px; border:1px solid lightgray; }
+.mspecTitle2{ width:250px; height:200px; text-align:center; font-weight:bold; margin:30px 40px 0 100px; }
+.mspecTitle2 div{ margin-top:30px; text-align:left; }
+.mwrap2{ display:flex; flex-direction:row; }
+.mspecSubs2{ width:450px; height:200px; text-align:center; font-weight:bold; margin:30px 30px 0 20px; }
+.mspecSubs2 input{ margin-top:30px; width:250px; height:17px; }
+.mspecSubs2 #sample6_postcode{ width:150px; }
+.mspecSubs2 input[type="button"]{ width:100px; height:25px; border-radius:5px; background-color:white; }
 
-#join  input[type="submit"]{ width:730px; height:50px; color:white; background-color:deepskyblue; font-size:110%; font-weight:bold;
-			border:none; border-radius:10px; margin-bottom:10px; }
-#join input#goBack{ width:730px; height:50px; color:white; background-color:black; font-size:110%; font-weight:bold;
-			border:none; border-radius:10px; margin-bottom:100px; }
-#join span{ font-size:100%; font-weight:bold; }
+.mupdateBtn{ width:100%; height:100px; display:flex; flex-direction:column; justify-content:center; align-items:center; margin:30px 0 0 0;}
+.mupdateBtn input[type="submit"]{ width:300px; height:50px; color:white; background-color:deepskyblue; border:none; border-radius:5px; margin:0 0 5px 0;}
+.mupdateBtn #goBack{ width:300px; height:50px; color:white; background-color:black; border:none; border-radius:5px; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* mdeleteForm CSS */
+
+.mdeleteWrap{ display:flex; justify-content:center; align-items:center; width:80%; height:100%; margin:150px 0 0 200px; }
+#mdeleteY{ width:150px; height:30px; border:1px solid gray; border-radius:5px; background-color:white; font-weight:bold; margin-left:350px;}
+#mdeleteN{ width:150px; height:30px; border:1px solid gray; border-radius:5px; background-color:white; font-weight:bold; }
+
+#goMainBtn{ margin-left:350px; width:300px; height:30px; border:1px solid gray; border-radius:5px; background-color:white; font-weight:bold; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* joinForm CSS */
+
+#jtitle1{ display:flex; flex-direction:row; height:630px; }
+.jwrap1{ display:flex; flex-direction:row; }
+.jspecTitle1{ width:250px; height:450px; text-align:center; font-weight:bold; margin:30px 40px 0 100px; }
+.jspecTitle1 div{ margin-top:30px; text-align:left; }
+.jspecSubs2{ width:450px; height:450px; }
+.jspecSubs2 input, .jspecSubs2 select{ margin-top:28px; width:250px; height:20px; }
+.jspecSubs2 .juseridInput{ margin-top:50px; }
+.jspecSubs2 #idcheckBtn{ width:80px; height:25px; color:black; background-color:white; border:1px solid lightgray; border-radius:5px; }
+.jspecSubs2 input[type="radio"]{ width:80px; height:17px; }
+
+.jMessage{ font-weight:bold; margin:50px 0 0 100px; color:red; }
 
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
@@ -424,4 +443,36 @@ body#idcheck div input{ margin-top:40px; width:300px; height:30px; background-co
 .SubsSubs #qnaTitle{ width:470px;}
 .SubsSubs #qnaUserid{width:100px;}
 .SubsSubs textarea{ margin:20px 0 0 0; }
-.SubsSubs #qnaWriteSpan{ margin-left:150px; }
+.qnaWriteStatue{margin-left:118px; font-weight:bold; font-size:100%; }
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* introCompanyFrm CSS (faqListForm 에 기반함) */
+
+.listBody legend{ font-size:150%; font-weight:bold; letter-spacing:3px; }
+.introMap{ height:100%; }
+#map, #map2{ margin:30px 0 30px 0; }
+.introMapSubs{ margin:0 0 30px 0; font-weight:bold; letter-spacing:1px; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* viewProduct CSS */
+
+.head_info_element{ width:100%; height:40px; margin:0; }
+#viewBrand{ background-color:deepskyblue; color:white; letter-spacing:3px; font-size:150%; font-style: italic; line-height:40px; margin:20px 0 0 0; }
+#viewName{ line-height:40px; font-size:95%; letter-spacing:2px; font-weight:bold; }
+
+.PinfoTitle{ font-size:120%; font-weight:bold; }
+#optionSelection{ border-radius:5px; width:200px; height:25px; text-align:center; margin:10px 0 0 0; }
+#goCart{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:deepskyblue; text-align:center; font-weight:bold; }
+#goBuy{ border:none; border-radius:10px; width:300px; height:40px; color:white; background-color:black; text-align:center; margin:5px 0 0 0; font-weight:bold; }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/* cartList CSS */
+
+#cartListWrap{ width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+#cartTitle{width:100%; height:40px; background-color:deepskyblue; color:white; letter-spacing:3px; font-size:150%;
+				font-style: italic; line-height:40px; margin:20px 0 20px 0; }
+.totalBuyPrice{ letter-spacing:2px;}
+.cartListBtn{ display:flex; flex-direction:rows; }
+#goCart2{ border:none; border-radius:10px; width:200px; height:40px; color:white; background-color:black; text-align:center; font-weight:bold; }
+#goBuy2{ border:none; border-radius:10px; width:200px; height:40px; color:white; background-color:deepskyblue; text-align:center; margin:0 0 0 400px; font-weight:bold; }

@@ -24,8 +24,8 @@
 
 <div id="category">
 	<img src="/images/logo.png" width="180" height="80" onclick="location.href='/'">
-	<form action="/mainSearch" method="get">
-		<input type="search" id="mainSearch" placeholder="상품명을 입력하세요">
+	<form action="searchProduct" method="get">
+		<input type="search" id="mainSearch" placeholder="상품명을 입력하세요" value="${keyword}" name="keyword">
 		<button type="submit"><img src="/images/search.png" ></button>
 	</form>
 	<nav id="category_menu">
@@ -63,7 +63,6 @@
 							<!-- 마이페이지 클릭 : 사용자 주문 정보 조회로 이동 -->
 							<li><a href="myPage">마이페이지</a><li>
 							<li><a href="cartList">장바구니</a></li>
-							<li><a href="customer">고객센터</a></li>
 						</ul>
 					</nav>
 				</c:otherwise>

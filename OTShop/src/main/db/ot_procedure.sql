@@ -182,6 +182,17 @@ BEGIN
 END;
 ------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------
+
+-- ÀåÀ¯Áø (Logis)
+
+--------------------------------------------------------------------------------------------
+
+<<<<<<< HEAD
+-- ÀåÀ¯Áø (Customer)
+
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 CREATE OR REPLACE PROCEDURE getLogis(
     p_logisid in logis.logisid%TYPE,
     p_cur OUT SYS_REFCURSOR
@@ -190,6 +201,7 @@ IS
 BEGIN
     OPEN p_cur FOR SELECT * FROM logis WHERE logisid = p_logisid;
 END;
+
 ------------------------------------------------------------------------------
 
 create or replace procedure getAllProductCatList(
@@ -296,7 +308,7 @@ begin
     
 end;
 ------------------------------------------------------------------------------
---Á¦Ç° Ä«Å×°í¸® º¯°æ
+--ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½
 --create or replace procedure insertProductCat(
 --    p_name in product_category.name%type)
 --is
