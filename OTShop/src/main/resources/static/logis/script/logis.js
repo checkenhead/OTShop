@@ -30,3 +30,20 @@ function change_invoice_state(iseq, command){
 		targetForm.submit();
 	}
 }
+
+function toggle_history(iseq){
+	var hidden_rows = document.getElementsByClassName("hidden_row_" + iseq);
+	var img = document.getElementById("img_" + iseq);
+	
+	if(hidden_rows[0].style.display == "none"){
+		img.src = "images/top.png";
+		for(var i = 0; i < hidden_rows.length; i++){
+			hidden_rows[i].style.display = "";
+		}
+	} else {
+		img.src = "images/bottom.png";
+		for(var i = 0; i < hidden_rows.length; i++){
+			hidden_rows[i].style.display = "none";
+		}
+	}
+}
