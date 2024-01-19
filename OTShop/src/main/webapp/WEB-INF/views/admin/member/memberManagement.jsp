@@ -47,7 +47,7 @@
 			<c:if test="${memberVO.GENDER == 'M'}">남성</c:if>
 			<c:if test="${memberVO.GENDER == 'F'}">여성</c:if>
 		</td>
-		<td><fmt:formatDate value="${memberVO.BIRTHDATE}"/></td>
+		<td>${memberVO.BIRTHDATE}</td>
 		<td>${memberVO.TEL}</td>
 		<td colspan="3">
 			<c:if test="${empty memberVO.ZIPNUM}">-</c:if>
