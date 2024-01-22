@@ -175,7 +175,12 @@ alter table members modify birthdate varchar2(20);
 alter table members drop column birthdate;
 alter table members add birthdate varchar2(20) DEFAULT '0' NOT NULL;
 delete from members where userid = 'park';
+<<<<<<< HEAD
 update members set birthdate = '2000-10-23' where userid = 'abcd';
+=======
+update members set birthdate = '2000-01-01' where userid = 'abcd';
+
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 SELECT * FROM MEMBERS;
 
 CREATE TABLE orders
