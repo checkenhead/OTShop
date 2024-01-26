@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/otshop.css">
+<link rel="stylesheet" href="/css/member.css">
 
-<html id=loginHtml>
-<body id=loginBody>
-<article id=login>
+<html>
+<body class=loginBody>
+<article class=login>
 
 <form method="post" action="login" name="loginFrom">
-	<div id="loginTop">
+	<div class="loginTop">
 		<img src="/images/back.png" onclick="history.go(-1);">
 		<span>로그인</span>
 	</div>
-	<div id="loginBottom">
+	<div class="loginBottom">
 	<span>가입 회원</span>
 	<hr>
 	<input type="text" name="userid" class="loginData" placeholder="아이디" value="${dto.userid}" ><br>
