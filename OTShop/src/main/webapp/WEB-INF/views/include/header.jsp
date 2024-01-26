@@ -9,6 +9,7 @@
 
 <!-- <link rel="stylesheet" href="/css/otshop.css"> -->
 <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/product.css">
 <script type="text/javascript" src="/script/product.js"></script>
 <script type="text/javascript" src="/script/cart.js"></script>
 <script type="text/javascript" src="/script/member.js"></script>
