@@ -1,10 +1,14 @@
 @charset "UTF-8";
 
-.wrap{
+body{
+	width: 100vw;
+	/* height: 100vh; */
+	margin: 0;
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 }
 
+<<<<<<< HEAD
 
 /* header  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
@@ -17,6 +21,22 @@
 	background-color:black;
 	color:white;
 	border:3px solid blue;
+=======
+.wrap{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	
+	box-sizing: border-box;
+	/* border: 3px solid red; */
+	margin: 1px;
+}
+
+header{
+	box-sizing: border-box;
+	border: 3px dotted blue;
+	margin: 1px;
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 }
 
 #category img:first-child{ width:180px; }
@@ -52,13 +72,41 @@
 }
 
 .sub_wrap{
+	display: flex;
+	flex-direction: column;
 	
+	box-sizing: border-box;
+	/* border: 3px dotted green; */
+	margin: 1px;
 }
 
 .main_wrap{
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	
+	box-sizing: border-box;
+	/* border: 3px dotted orange; */
+	margin: 1px;
+}
+
+footer{
+	box-sizing: border-box;
+	border: 3px dotted blue;
+	margin: 1px;
+}
+
+
+/*media query*/
+@media(max-width:430px){
+	
+	.body_wrap{
+		flex-direction: column;
+	}
 	
 }
 
+<<<<<<< HEAD
 
 
 /* footer ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -125,3 +173,12 @@ footer fieldset a{
 
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+=======
+@media(min-width:431px) and (max-width:1024px){
+	
+	.body_wrap{
+		flex-direction: column;
+	}
+	
+}
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
