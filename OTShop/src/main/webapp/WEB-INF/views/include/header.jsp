@@ -10,11 +10,8 @@
 
 <!-- <link rel="stylesheet" href="/css/otshop.css"> -->
 <link rel="stylesheet" href="/css/common.css">
-<<<<<<< HEAD
 <link rel="stylesheet" href="/css/member.css">
-=======
 <link rel="stylesheet" href="/css/product.css">
->>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 <script type="text/javascript" src="/script/product.js"></script>
 <script type="text/javascript" src="/script/cart.js"></script>
 <script type="text/javascript" src="/script/member.js"></script>
