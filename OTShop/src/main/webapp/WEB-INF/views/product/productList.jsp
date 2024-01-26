@@ -14,7 +14,8 @@
 			<div class="item_name" title="${productVO.NAME}" onClick="view_product('${productVO.PSEQ}');">${productVO.NAME}</div>
 			<div class="item_price"><fmt:formatNumber type="number" value="${productVO.price}"/>원</div>
 			<div class="item_options" onClick="toggle_options('${productVO.PSEQ}');">options<img src="images/bottom.png"></div>
-			<div class="options_wrap" id="options_wrap_${productVO.PSEQ}" style="display:none;z-index:1;">
+			<div class="options_wrap" id="options_wrap_${productVO.PSEQ}" style="display: none;">
+				<div class="options">
 				<c:forEach items="${productVO.optionList}" var="optionVO">
 				<div class="option">
 					<div style="margin-left:5px;margin-right:5px;">${optionVO.OPTNAME}</div>
@@ -24,6 +25,7 @@
 					</div>
 				</div>
 				</c:forEach>
+				</div>
 			</div>
 		</div>
 		</c:forEach>
