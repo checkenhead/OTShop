@@ -3,7 +3,7 @@
 <%@ include file="../include/categorySub.jsp" %>
 
 
-
+<div class="main_wrap">
 <form name=productListForm method="get">
 <input type="hidden" name="pseq">
 <div class="content_wrap">
@@ -32,5 +32,5 @@
 
 </div>
 </form>
-
+</div>
 <%@ include file="../include/footer.jsp" %>

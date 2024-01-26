@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.wrap{
+	display: flex;
+	flex-direction: column;
+}
+
+.header{
+	
+}
+
+.body_wrap{
+	display: flex;
+	flex-direction: row;
+}
+
+.sub_wrap{
+	
+}
+
+.main_wrap{
+	
+}
+
+.footer{
+	
+}
