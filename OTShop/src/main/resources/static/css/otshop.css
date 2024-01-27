@@ -3,32 +3,9 @@
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* header CSS */
 
-#category{ display:flex; align-items:center; width:100%; height:80px; background-color: black; margin-bottom:0; }
-#category form{ margin-right:150px; display:flex;}
-#category form input[type="search"] { margin-right:0; padding:0; width:250px; height:30px;}
-#category form button{ border:none; padding:0; width:25px; height:25px; margin:2px 0 0 10px; }
-#category form button img{ width:100%; height:100%;}
-
-#category_menu ul{ list-style:none; margin:0; padding:0; display:flex; }
-#category_menu ul li{ margin-right:20px; }
-#category_menu ul li a{ text-decoration:none; padding:10px; color:white; font-weight:bold; font-size:130%; }
 
 
-#top_menu{ display:flex; align-items:center; width:100%; height:40px; background-color:white;
-			margin-top:0; clear:both; }
-#top_menu input{ margin:0 10px 0 10px; padding:0; width:150px; height:30px; border:1px solid black;
-			background-color:white; font-weight:bold; font-size:90%; }
-#top_menu ul{ list-style:none; margin:0; padding:0; display:flex; }
-#top_menu ul li{margin-right:5px;}
-#top_menu ul li a{ text-decoration:none; padding:5px; color:black; font-weight:bold; font-size:90%; }
 
-hr{ border:none; border-top:1px solid lightgray; margin:10px 0 0 0;}
-
-footer span.title{ text-align:left; font-weight:bold; margin-left:11px; }
-footer fieldset{ text-align:left; color:darkgray; font-weight:light; border:none; font-size:80%; margin-bottom:10;}
-footer #footerEnd{ width:100%; height:50px; background-color:black; color:white; }
-footer #footerEnd span{ line-height:50px; color:white; text-align:left; font-weight:light; font-size:100%;
-			margin-left:10px; letter-spacing:2px; }
 		
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 /* login CSS */

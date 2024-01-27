@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/otshop.css">
+<link rel="stylesheet" href="/css/member.css">
 <script type="text/javascript" src="/script/member.js"></script>
 
-<html id="loginHtml">
-<body id="loginBody">
-<article id="login">
+<html>
+<body class="loginBody">
+<article class="login">
 	<form id="contract" action="joinForm" method="post" name="contractFrm">
-		<div id="loginTop">
+		<div class="loginTop">
 			<img src="/images/back.png" onclick="history.go(-1);">
 			<span id="contractTitle">OTSHOP</span>
 		</div>
-		<div id="loginBottom">
+		<div class="loginBottom">
 		<span id="welcome">
 		환영합니다!<br>
 		옷샵에 가입하시려면<br>

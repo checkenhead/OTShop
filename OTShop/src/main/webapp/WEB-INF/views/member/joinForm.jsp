@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-<div class="mdeleteWrap">
+
 <article>
 <form id="join" action="join" method="post" name="joinFrm"  class="mupdateFrm">
 

@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+
+/* login ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.loginBody{
+	display: flex;
+	justify-content:center;
+	height:100%;
+	background-color:lightgray;
+	margin-top:-45px;}
+
+.login{
+	width:390px;
+	height:100%;
+	display:flex;
+	justify-content:center;
+	text-align:center; 
+	margin:0;
+	padding-top:45px;}
+			
+.loginTop{ 
+	width:100%; height:45px;
+	background-color:white;
+	display:flex;
+	padding-bottom:20px; }
+	
+.loginTop img{ margin-left:0; }
+
+.loginTop span{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-left:127px;
+	font-weight:bold; font-size:larger; }
+
+.loginBottom{
+	width:100%; height:100%;
+	background-color:white; }
+	
+.loginBottom span{ font-size:larger; width:100px; }
+
+.loginBottom hr{
+	width:100px;
+	border:1.5px solid black;
+	margin-bottom:40px; margin-left:145px; }
+
+.loginBottom input[type="text"], .loginBottom input[type="password"]{
+	width:300px; height:50px;
+	border-radius:5px;
+	border:1px solid lightgray;
+	margin-bottom:5px; }
+	
+.loginBottom input[type="password"]{ margin-bottom:15px; }
+
+.loginBottom input[type="submit"]{
+	width:300px; height:40px;
+	border-radius:5px;
+	margin-top:10px;
+	background-color:deepskyblue; color:white; 
+	font-weight:bold; border:none;}
+	
+.loginBottom input.joinBtn{
+	width:300px; height:40px;
+	border-radius:5px;
+	background-color:black; color:white;
+	font-weight:bold;
+	margin-top:5px; }
+	
+.loginBottom span#statueText{
+	width:300px; height:20px;
+	display:inline-block;
+	text-align:left;
+	font-size:smaller; font-weight:bold; }
+		
+.loginBottom input#findBtn{
+	width:200px; height:20px;
+	border:none; 
+	color:gray; background-color:white;
+	margin:15px 0 15px 168px; }
+	
+.loginBottom img#kakaoBtn{
+	width:300px; height:40px;
+	margin-bottom:5px;
+	border-radius:5px; }
+	
+.loginBottom img#appleBtn{ 
+	width:300px; height:38px;
+	margin-bottom:50px;
+	border:1px solid lightgray; border-radius:5px; }
+	
+.loginBottom span#joinText{ font-weight:bold; }
+
+
+@media(max-width:390px){
+	.login{width:100%;}
+	.loginTop{width:100%;}
+	.loginTop span{ margin-left:110px; }
+	.loginBottom hr{ margin-left:135px; }
+}
+
+				
+/* contract CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+
+#contractTitle{
+	display:flex;
+	justify-content:center;
+	margin-left:120px;
+	font-weight:bold; 
+	font-size:larger; }
+	
+span#welcome{
+	width:100%; height:100px;
+	display:inline-block;
+	text-align:left;
+	margin:40px 0 10px 20px;
+	font-weight:bolder; }
+	
+div#agreebox{
+	width:100%; height:250px;
+	display:inline-block;
+	text-align:left;
+	margin:30px 0 0 20px; }
+	
+div#agreebox span{ font-size:large; font-weight:bold; }
+
+div#agreebox input[type="checkbox"]{ margin-top:10px; }
+
+div#agreebox input[type="button"]{
+	border:none; border-bottom:1px solid black;
+	background-color:transparent;
+	font-weight:bold; 
+	margin-left:5px; }
+	
+#joinGo, #kakaoGo{
+	width:300px; height:40px;
+	border-radius:5px; border:none;
+	font-weight:bold; margin-bottom:5px;
+	color:white; background-color:deepskyblue; }
+
+/* joinForm CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+
+
+
+
