@@ -9,6 +9,18 @@ function searchProduct(cat, index) {
 	location.href = "searchProduct?" + param + "=" + index;
 }
 
+function category_menu_action(pmcseq){
+	$(function(){		
+		//첫번째 클릭 시 서브 카테고리 show / 두번째 클릭 시 메인 카테고리로 검색
+		if($("#sub_category_wrap_" + pmcseq).css("display") == "none"){
+			$(".sub_category_wrap").hide(500);
+			$("#sub_category_wrap_" + pmcseq).show(500);
+		} else {
+			searchProduct("main", pmcseq);
+		}
+	});
+}
+
 function add_option() {
 	var selector = document.getElementById("optionSelection");
 	var target_element = document.getElementById("option_" + selector.value);
