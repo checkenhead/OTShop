@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" type="text/css" href="/script/slick/slick.css">
 <link rel="stylesheet" type="text/css" href="/script/slick/slick-theme.css">
-<!-- <link rel="stylesheet" href="/css/otshop.css"> -->
+<link rel="stylesheet" href="/css/otshop.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/member.css">
 <link rel="stylesheet" href="/css/product.css">
@@ -65,13 +65,12 @@
 					</c:when>
 					
 					<c:otherwise>
-								<a href="logout"><input type="button" value="로그아웃"></a>
-
-								<!-- 사용자 계정 클릭 : 사용자 정보 수정으로 이동 -->
-								<div><a href="medit">${loginUser.NAME} (${loginUser.USERID})</li>
-								<!-- 마이페이지 클릭 : 사용자 주문 정보 조회로 이동 -->
-								<div><a href="myPage">마이페이지</a><div>
-								<div><a href="cartList">장바구니</a></div>
+							<a href="logout"><input type="button" value="로그아웃"></a>
+							<!-- 사용자 계정 클릭 : 사용자 정보 수정으로 이동 -->
+							<div><a href="medit">${loginUser.NAME} (${loginUser.USERID})</li>
+							<!-- 마이페이지 클릭 : 사용자 주문 정보 조회로 이동 -->
+							<div><a href="myPage">마이페이지</a><div>
+							<div><a href="cartList">장바구니</a></div>
 					</c:otherwise>
 				</c:choose>
 	</div>

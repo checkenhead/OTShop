@@ -112,7 +112,7 @@ public class MemberController {
    public @ResponseBody String kakaostart() {
       String a = "<script type='text/javascript'>" 
             + "location.href='https://kauth.kakao.com/oauth/authorize?"
-            + "client_id=904cba975ef71bec9a2a57539968e40a" 
+            + "client_id=6c463d8600c99a1eaaad8d0d62b71308" 
             + "&redirect_uri=http://localhost:8070/kakaoLogin"
             + "&response_type=code';" 
             + "</script>";
@@ -126,7 +126,7 @@ public class MemberController {
       String endpoint = "https://kauth.kakao.com/oauth/token";
       URL url = new URL(endpoint); // import java.net.URL;
       String bodyData = "grant_type=authorization_code&";
-      bodyData += "client_id=904cba975ef71bec9a2a57539968e40a&";
+      bodyData += "client_id=6c463d8600c99a1eaaad8d0d62b71308&";
       bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
       bodyData += "code=" + code;
       
@@ -297,6 +297,11 @@ public class MemberController {
     	  
     	  // HashMap에 데이터 추가
           HashMap<String, Object> paramMap = new HashMap<>();
+          
+          System.out.println(pwdfindvo.getKind());
+          System.out.println(pwdfindvo.getAnswer());
+          System.out.println(membervo.getBirthdate());
+          System.out.println(membervo.getBirthdate().getClass().getSimpleName());
           
           paramMap.put("userid", membervo.getUserid());
           paramMap.put("pwd", membervo.getPwd());

@@ -3,78 +3,82 @@
 <%@ include file="../include/header.jsp" %>
 
 
-<article>
-<form id="join" action="join" method="post" name="joinFrm"  class="mupdateFrm">
+<div class="mupdateWrap">
+	<form id="join" action="join" method="post" name="joinFrm"  class="mupdateFrm">
 
-	<div class="faqBanner">
-		<span class="bannerTitle">회원가입</span><span class="bannerSub">개인 정보를 수정할 수 있습니다.</span>
-	</div><br>
+		<div class="joinBanner">
+			<span class="bannerTitle">회원가입</span>
+		</div><br>
+		
+		<div class="listHead">
+			<img src="images/mustCheck.png">
+			<div class="mupdateTitle">필수 입력 사항</div>
+		</div><br>
 	
-	<div class="listHead">
-		<img src="images/mustCheck.png"><div class="mupdateTitle">필수 입력 사항</div>
-	</div><br>
-
-			<fieldset id="jtitle1">
-				<div class="jwrap1">
-					<div class="jspecTitle1">
-						<div>아이디</div>
-						<div>비밀번호</div>
-						<div>비밀번호 확인</div>
-						<div>비밀번호 찾기 질문 선택</div>
-						<div>답변</div>
-						<div>이름</div>
-						<div>성별</div>
-						<div>생년월일</div>
-						<div>전화번호</div>
-						<div>이메일</div>
-					</div>
-				
-					<div class="jspecSubs2">
-						<input type="text" name="userid" value="${mdto.userid}" class="juseridInput">
-						<input type="hidden" name="reid" value="${reid}">
-						<input type="button" id="idcheckBtn" value="중복 확인" onclick="idcheck()"><br>
-						<input type="password" name="pwd" value="${mdto.pwd}"><br>
-						<input type="password" name="repwd" value="${repwd}"><br>
-						
-						<select name="kind" id="pwdAsk">
-							<option value="0" selected>---- 질문을 선택하세요 ----</option>
-							<option value="1">기억에 남는 추억의 장소는?</option>
-							<option value="2">가장 기억에 남는 선생님 성함은?</option>
-							<option value="3">유년시절 가장 생각나는 친구 이름은?</option>
-						</select><br>
-						<input type="text" name="answer" placeholder="답변 입력"><br>
-						<input type="text" name="name" value="${mdto.name}"><br>
-						<input type="radio" name="gender" value="M">남자	<input type="radio" name="gender" value="F">여자<br>
-						<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 String 데이터가 저장된다 -->
-						
-						<input type="date" name="birthdate" value="${mdto.birthdate}"><br>
-						<input type="text" name="tel" value="${mdto.tel}"><br>
-						<input type="text" name="email" value="${mdto.email}"><br>
-					</div>
+		<fieldset id="jtitle1">
+			<div class="jwrap1">
+				<div class="jspecTitle1">
+					<div>아이디</div>
+					<div>비밀번호</div>
+					<div>비밀번호 확인</div>
+					<div>비밀번호 찾기 질문 선택</div>
+					<div>답변</div>
+					<div>이름</div>
+					<div>성별</div>
+					<div>생년월일</div>
+					<div>전화번호</div>
+					<div>이메일</div>
 				</div>
-						
-			</fieldset><br>
 			
-			
+				<div class="jspecSubs2">
+					<input type="text" name="userid" value="${mdto.userid}" class="juseridInput">
+					<input type="hidden" name="reid" value="${reid}">
+					<input type="button" id="idcheckBtn" value="중복 확인" onclick="idcheck()"><br>
+					<input type="password" name="pwd" value="${mdto.pwd}"><br>
+					<input type="password" name="repwd" value="${repwd}"><br>
+					
+					<select name="kind" id="pwdAsk">
+						<option value="0" selected>---- 질문을 선택하세요 ----</option>
+						<option value="1">기억에 남는 추억의 장소는?</option>
+						<option value="2">가장 기억에 남는 선생님 성함은?</option>
+						<option value="3">유년시절 가장 생각나는 친구 이름은?</option>
+					</select><br>
+					<input type="text" name="answer" placeholder="답변 입력"><br>
+					<input type="text" name="name" value="${mdto.name}"><br>
+					<input type="radio" name="gender" value="M">남자	<input type="radio" name="gender" value="F">여자<br>
+					<!-- input의 date 타입은 yyyy-mm-dd 포맷으로 String 데이터가 저장된다 -->
+					
+					<input type="date" name="birthdate" value="${mdto.birthdate}"><br>
+					<input type="text" name="tel" value="${mdto.tel}"><br>
+					<input type="text" name="email" value="${mdto.email}"><br>
+				</div>
+			</div>
+					
+		</fieldset><br>
+				
+				
 		<div class="listHead">
 			<img src="images/deliveryInfo.png"><div class="mupdateTitle">선택 입력 사항</div>
 		</div><br>
 			
 		
-		<fieldset id="mtitle2">
+		<fieldset id="jtitle2">
 			
-			<div class="mwrap2">
-				<div class="mspecTitle2">
+			<div class="jwrap1">
+				<div class="jspecTitle1">
 				    <div><img src="images/infoCheck.png">우편번호</div>
 				    <div><img src="images/infoCheck.png">주&nbsp;소</div>
 				    <div><img src="images/infoCheck.png">상세주소</div>
 				    <div><img src="images/infoCheck.png">추가주소</div>
 				</div>
 				
-				<div class="mspecSubs2">
-					<input type="text" id="sample6_postcode" name="zipnum" readonly>
-					<input type="button" onclick="sample6_execDaumPostcode()" class="dup" 
-						value="우편번호 찾기"><br>
+				<div class="jspecSubs2">
+					<div class="jzipnum">
+						<input type="text" id="sample6_postcode" name="zipnum" readonly>
+						<input type="button" onclick="sample6_execDaumPostcode()" class="dup" 
+						value="찾기">
+					</div>
+					<br>
 					<input type="text" id="sample6_address" size="50" name="address1" 
 						value="${dto.address1}" readonly><br>	
 					<input type="text" id="sample6_detailAddress" name="address2" 
@@ -137,17 +141,15 @@
 				</script><br>
 			
 			<div class="jMessage">${message}</div><br>
-			<div class="mupdateBtn">
-				<input type="submit" value="가입하기">
-				<input type="button" id="goBack" value="돌아가기" onclick="history.go(-1)">
-			</div>
-			
-		</div>			
-</fieldset>
-
+		</fieldset>
+				
+		<div class="mupdateBtn">
+			<input type="submit" value="가입하기">
+			<input type="button" id="goBack" value="돌아가기" onclick="history.go(-1)">
+		</div>
 		
-</form>
-</article>
+	</form>
+
 </div>
 
 

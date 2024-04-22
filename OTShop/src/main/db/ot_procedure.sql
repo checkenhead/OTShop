@@ -11,7 +11,7 @@ end;
 
 --------------------------------------------------------------------------------------------
 
--- ������ (Member)
+-- ?????? (Member)
 
 CREATE OR REPLACE PROCEDURE getMember(
     p_userid IN members.userid%TYPE,
@@ -127,7 +127,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ������ (FAQ)
+-- ?????? (FAQ)
 
 
 CREATE OR REPLACE PROCEDURE listFaq(
@@ -140,7 +140,7 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ������ (Customer)
+-- ?????? (Customer)
 
 
 CREATE OR REPLACE PROCEDURE listQna(
@@ -184,8 +184,15 @@ END;
 
 --------------------------------------------------------------------------------------------
 
--- ������ (Logis)
+-- ?????? (Logis)
 
+--------------------------------------------------------------------------------------------
+
+<<<<<<< HEAD
+-- ?????? (Customer)
+
+=======
+>>>>>>> branch 'master' of https://github.com/checkenhead/OTShop.git
 CREATE OR REPLACE PROCEDURE getLogis(
     p_logisid in logis.logisid%TYPE,
     p_cur OUT SYS_REFCURSOR
@@ -301,7 +308,7 @@ begin
     
 end;
 ------------------------------------------------------------------------------
---��ǰ ī�װ� ����
+--??? ???? ????
 --create or replace procedure insertProductCat(
 --    p_name in product_category.name%type)
 --is
@@ -1257,4 +1264,3 @@ begin
         select * from transport where iseq = p_iseq order by regdate asc;
     
 end;
-
